@@ -1,0 +1,16 @@
+.input {
+  padding: 15px 18px;
+  width: 100%;
+  min-height: 50px;
+  font-size: 1.7rem;
+  letter-spacing: 0.15px;
+  line-height: 1.1;
+  outline: none;
+  background: #fff;
+  border: 1px solid $light-grey;
+  border-radius: 3px;
+
+  &::placeholder {
+    color: rgba(#2a363b, 0.5);
+  }
+}

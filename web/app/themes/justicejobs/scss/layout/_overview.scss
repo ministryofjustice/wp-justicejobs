@@ -1,0 +1,74 @@
+.overview {
+  @include respond-to(md) {
+    padding: 100px 45px 0px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__text-wrap {
+    padding: 40px 15px;
+
+    @include respond-to(md) {
+      padding: 0;
+      padding-right: 50px;
+      width: 50%;
+    }
+  }
+
+  &__text {
+    max-width: 700px;
+  }
+
+  .heading--md {
+    margin-bottom: 20px;
+    color: $mid-blue;
+
+    @include respond-to(md) {
+      margin-bottom: 10px;
+    }
+  }
+
+  .heading--body {
+    margin-bottom: 15px;
+  }
+
+  p:not(.heading--body):not(:last-child) {
+    margin-bottom: 30px;
+
+    @include respond-to(md) {
+      margin-bottom: 15px;
+    }
+  }
+
+  &__video-wrap {
+    @include respond-to(md) {
+      width: 50%;
+    }
+  }
+
+  &__video {
+    position: relative;
+    width: 100%;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 300px;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: block;
+      background-color: rgba(#000, 0.54);
+      content: '';
+    }
+
+    video {
+      width: 100%;
+      display: block;
+    }
+  }
+}
