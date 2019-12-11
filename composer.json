@@ -38,6 +38,7 @@
         "wpackagist-plugin/mce-table-buttons": "*",
         "wpackagist-plugin/wordpress-seo": "*",
         "ministryofjustice/wp-user-roles": "*",
+        "ministryofjustice/cookie-compliance-for-wordpress": "*",
         "thadafinser/user-agent-parser": "^2.0",
         "browscap/browscap-php": "^4.2",
         "piwik/device-detector": "^3.11"

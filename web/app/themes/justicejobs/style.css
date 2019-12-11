@@ -1017,6 +1017,12 @@ a img.aligncenter {
   opacity: 0.9;
   z-index: 60; }
 
+#ccfw-page-banner-container {
+  z-index: 2;
+  position: relative; }
+  #ccfw-page-banner-container .ccfw-banner__message {
+    margin-bottom: 15px; }
+
 .hero {
   position: relative;
   display: -webkit-box;
