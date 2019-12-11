@@ -32,7 +32,7 @@
         <img
         width="188"
         height="28"
-        src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/logo--white.svg"
+        src="<?php echo esc_url( get_template_directory_uri() ); ?>/dist/img/logo--white.svg"
         alt="Ministry of Justice Logo - this takes the user back to the homepage"
         aria-hidden="true"
         />

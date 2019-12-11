@@ -157,3 +157,26 @@ gulp.task(
 gulp.task('deploy', function() {
   return gulp.src('./dist/**/*').pipe(ghPages());
 });
+
+
+"acorn": "^6.1.1",
+    "ajv": "^6.10.2",
+    "browser-sync": "^2.26.7",
+    "browser-sync-webpack-plugin": "^2.0.1",
+    "cross-env": "^5.2.0",
+    "del": "^5.1.0",
+    "details-element-polyfill": "^2.0.1",
+    "imagemin": "^6.1.0",
+    "imagemin-mozjpeg": "^8.0.0",
+    "imagemin-pngquant": "^7.0.0",
+    "laravel-mix": "^4.0.14",
+    "laravel-mix-imagemin": "^1.0.3",
+    "marked": "^0.7.0",
+    "node-sass": "^4.13.0",
+    "resolve-url-loader": "^2.3.1",
+    "sass": "^1.23.7",
+    "sass-loader": "^8.0.0",
+    "scrollpoints": "^0.4.0",
+    "url-search-params-polyfill": "^4.0.0",
+    "vue-template-compiler": "^2.6.8",
+    "webpack": "^4.29.6"

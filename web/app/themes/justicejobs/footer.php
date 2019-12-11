@@ -4,7 +4,7 @@
     <a class="page-footer__logo" href="<?php bloginfo('url');?>" aria-label="Back to Home">
       <span class="screen-reader-text">Back to Home</span>
       <img
-        src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/logo--white.svg"
+        src="<?php echo esc_url( get_template_directory_uri() ); ?>/dist/img/logo--white.svg"
         width="215"
         height="31"
         alt="Ministry of Justice Logo - this takes the user back to the homepage"
@@ -31,7 +31,7 @@
   <div class="page-footer__col">
     <div class="page-footer__crown-wrap">
       <img
-        src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/logo--footer.svg"
+        src="<?php echo esc_url( get_template_directory_uri() ); ?>/dist/img/logo--footer.svg"
         width="63"
         height="52"
         alt=""

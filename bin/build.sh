@@ -16,6 +16,7 @@ composer install
 
 cd web/app/themes/justicejobs
 npm install
+npm run production
 rm -rf node_modules
 cd ../../../..
 
