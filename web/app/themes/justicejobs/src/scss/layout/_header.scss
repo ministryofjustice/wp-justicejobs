@@ -336,3 +336,13 @@
   opacity: 0.9;
   z-index: 60;
 }
+
+#ccfw-page-banner-container {
+
+  z-index: 2;
+  position: relative;
+
+  .ccfw-banner__message {
+    margin-bottom: 15px;
+  }
+}

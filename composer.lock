@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "791cab7a3d02280881496e15d989980f",
+    "content-hash": "e1a1fe855c105a25a6aa615a7575b0ff",
     "packages": [
         {
             "name": "acf/advanced-custom-fields-pro",
@@ -715,6 +715,48 @@
             ],
             "description": "Install packages or a few files from packages into custom paths without overwriting existing stuff.",
             "time": "2018-02-04T10:52:01+00:00"
+        },
+        {
+            "name": "ministryofjustice/cookie-compliance-for-wordpress",
+            "version": "1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ministryofjustice/cookie-compliance-for-wordpress.git",
+                "reference": "5ce9bcfc5f6f03310c7e29e035457353b5cfb5f0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.wp.dsd.io/dist/ministryofjustice/cookie-compliance-for-wordpress/ministryofjustice-cookie-compliance-for-wordpress-5ce9bcfc5f6f03310c7e29e035457353b5cfb5f0-zip-54eaa5.zip",
+                "reference": "5ce9bcfc5f6f03310c7e29e035457353b5cfb5f0",
+                "shasum": "62f4103d245ca4711215a26490bf7275b0a86cfe"
+            },
+            "require": {
+                "composer/installers": "^1.0"
+            },
+            "type": "wordpress-plugin",
+            "autoload": {
+                "psr-4": {
+                    "CCFW\\": "./includes"
+                },
+                "classmap": [
+                    "includes/"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Minstry of Justice",
+                    "email": "wordpress@digital.justice.gov.uk"
+                }
+            ],
+            "description": "WP plugin that presents visitor with a cookie consent banner and opt-out setting page.",
+            "support": {
+                "source": "https://github.com/ministryofjustice/cookie-compliance-for-wordpress/tree/1.3.1",
+                "issues": "https://github.com/ministryofjustice/cookie-compliance-for-wordpress/issues"
+            },
+            "time": "2019-12-03T14:35:30+00:00"
         },
         {
             "name": "ministryofjustice/wp-moj-components",
