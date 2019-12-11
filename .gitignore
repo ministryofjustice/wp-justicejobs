@@ -1,6 +1,7 @@
 # Editor
 .idea*
-._D*
+._DS*
+.DS_*
 ._.*
 
 # Application
