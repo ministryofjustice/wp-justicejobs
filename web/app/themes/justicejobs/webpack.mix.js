@@ -4,7 +4,12 @@ const dist = 'dist/';
 require('laravel-mix-imagemin');
 mix.setPublicPath('./dist/');
 
-mix.js('src/js/main.js', dist + 'js/main.min.js')
+mix.js([
+        'src/js/job-search-results.js',
+        'src/js/job-search-form.js',
+        'src/js/map.js',
+        'src/js/main.js'
+    ], dist + 'js/main.min.js')
     .sass('src/scss/style.scss', dist + 'css/main.min.css')
     .copy('src/video/*', dist + 'video')
     .copy('src/fonts/*', dist + 'fonts')

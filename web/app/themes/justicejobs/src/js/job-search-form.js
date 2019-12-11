@@ -40,16 +40,15 @@ jQuery(document).ready(function($) {
     console.log(thisRadius);
 
     var keywordLive;
-    console.log(keyword);
-    if (keyword.length !== '') {
-      var keywordLive = keyword;
+    if (keyword !== '') {
+      keywordLive = keyword;
     }
 
     var roleTypeLive;
-    if (roleType.length == '') {
+    if (roleType === '') {
       roleTypeLive = '';
     } else {
-      if (roleType == 'all') {
+      if (roleType === 'all') {
         roleTypeLive = '';
       } else {
         roleTypeLive = '&role-type=' + roleType;
@@ -57,10 +56,10 @@ jQuery(document).ready(function($) {
     }
 
     var salaryRangeLive;
-    if (salaryRange.length == '') {
+    if (salaryRange === '') {
       salaryRangeLive = '';
     } else {
-      if (salaryRange == 'all') {
+      if (salaryRange === 'all') {
         salaryRangeLive = '';
       } else {
         salaryRangeLive = '&salary-range=' + salaryRange;
@@ -68,10 +67,10 @@ jQuery(document).ready(function($) {
     }
 
     var workingPatternLive;
-    if (workingPattern.length == '') {
+    if (workingPattern === '') {
       workingPatternLive = '';
     } else {
-      if (workingPattern == 'all') {
+      if (workingPattern === 'all') {
         workingPatternLive = '';
       } else {
         workingPatternLive = '&working-pattern=' + workingPattern;
@@ -81,7 +80,7 @@ jQuery(document).ready(function($) {
 
     var locationLive;
     var radiusLive;
-    if (thisLocation.length == '') {
+    if (thisLocation == '') {
       locationLive = '';
       radiusLive = '';
       console.log('woot');
@@ -107,9 +106,8 @@ jQuery(document).ready(function($) {
     var thisLocation = $(this).find('#location').attr('value');
     thisRadius = parseInt($(this).find('#radius').attr('data-cur'));
 
-    var keywordLive;
     console.log(keyword);
-    if (keyword.length !== '') {
+    if (keyword !== '') {
       var keywordLive = keyword;
     }
 
@@ -128,7 +126,7 @@ jQuery(document).ready(function($) {
 
     var locationLive;
     var radiusLive;
-    if (!thisLocation.length) {
+    if (!thisLocation) {
       locationLive = '';
       radiusLive = '';
       str = '?s=' + keywordLive;
