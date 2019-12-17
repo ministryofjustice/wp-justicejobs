@@ -38,6 +38,7 @@
         "wpackagist-plugin/fast-user-switching": "*",
         "wpackagist-plugin/mce-table-buttons": "*",
         "wpackagist-plugin/wordpress-seo": "*",
+        "wpackagist-plugin/duplicate-post":"*",
         "ministryofjustice/wp-user-roles": "*",
         "ministryofjustice/wp-moj-components": "*",
         "ministryofjustice/cookie-compliance-for-wordpress": "*",

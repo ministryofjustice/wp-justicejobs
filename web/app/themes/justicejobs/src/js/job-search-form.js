@@ -19,7 +19,6 @@ jQuery(document).ready(function($) {
         $('#radius').attr('data-cur',  10);
     });
 
-    var userLocationGeocode;
     var userLocationGeocodeLat;
     var userLocationGeocodeLng;
     var $markers = [];
@@ -49,7 +48,7 @@ jQuery(document).ready(function($) {
         if (_hasString(roleType)) {
             roleTypeLive = '';
         } else {
-            if (roleType == 'all') {
+            if (roleType === 'all') {
                 roleTypeLive = '';
             } else {
                 roleTypeLive = '&role-type=' + roleType;
@@ -60,7 +59,7 @@ jQuery(document).ready(function($) {
         if (_hasString(salaryRange)) {
             salaryRangeLive = '';
         } else {
-            if (salaryRange == 'all') {
+            if (salaryRange === 'all') {
                 salaryRangeLive = '';
             } else {
                 salaryRangeLive = '&salary-range=' + salaryRange;
@@ -71,7 +70,7 @@ jQuery(document).ready(function($) {
         if (_hasString(workingPattern)) {
             workingPatternLive = '';
         } else {
-            if (workingPattern == 'all') {
+            if (workingPattern === 'all') {
                 workingPatternLive = '';
             } else {
                 workingPatternLive = '&working-pattern=' + workingPattern;
@@ -79,11 +78,9 @@ jQuery(document).ready(function($) {
         }
 
 
-        var locationLive;
-        var radiusLive;
+        var locationLive = '';
+        var radiusLive = '';
         if (_hasString(thisLocation)) {
-            locationLive = '';
-            radiusLive = '';
             console.log('woot');
             str = '?s=' + keywordLive + roleTypeLive + salaryRangeLive + workingPatternLive;
             localStorage.setItem("currentSearch", str);
