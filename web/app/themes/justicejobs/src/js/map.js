@@ -19,16 +19,16 @@ The Map Functionality
      ];
 
 
-	if ($('.search__map-wrap').length) {
+	if ($('.search_contain__map-wrap').length) {
 		initMap();
 	}
 
 	// Pop-up map entry
-	$('.search__item').on('click', function( e ){
+	$('.search_contain__item').on('click', function( e ){
 		//e.preventDefault();
 		var search_id = $(this).children('.marker').data('id');
 
-		$('.search__item.active').removeClass('active');
+		$('.search_contain__item.active').removeClass('active');
 		$(this).addClass('active');
 
 		$.each(markers, function(){
@@ -54,7 +54,7 @@ The Map Functionality
 
 	function initMap() {
 
-		$markers 	= $('.search__item').find('.marker');
+		$markers 	= $('.search_contain__item').find('.marker');
 
 		map = new google.maps.Map(document.getElementById('map'), {
 			center: centreUK,
@@ -98,8 +98,8 @@ The Map Functionality
 
 				console.log(marker.id);
 
-				$('.search__item.active').removeClass('active');
-				$('.search__item .marker[data-id="' + marker.id + '"]').parent('.search__item').addClass('active');
+				$('.search_contain__item.active').removeClass('active');
+				$('.search_contain__item .marker[data-id="' + marker.id + '"]').parent('.search_contain__item').addClass('active');
 
 			});
 
