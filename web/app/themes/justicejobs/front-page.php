@@ -108,32 +108,24 @@
       <div class="dropdown">
         <div class="dropdown__wrap">
           <label for="radius" class="screen-reader-text">Radius (in miles)</label>
-          <input
+          <select
             id="radius"
             name='radius'
             aria-label="Radius (in miles)"
             data-cur="10"
             class="dropdown__current input"
             placeholder="Radius (miles)"
-            readonly
-          />
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="8"
-            height="13"
-            viewBox="0 0 7.6 11.52"
           >
+          <option value="5 miles">5 miles</option>
+          <option value="10 miles">10 miles</option>
+          <option value="25 miles">25 miles</option>
+          <option value="50 miles">50 miles</option>
+          </select>
             <path
               d="M7.6,5.71a1.61,1.61,0,0,1-.5,1.1l-4.6,4.3a1.27,1.27,0,0,1-1,.4A1.54,1.54,0,0,1,0,10a1.61,1.61,0,0,1,.5-1.1l1-1L4,5.71,1.6,3.41l-1-1A1.46,1.46,0,0,1,.83.36L.9.31A1.68,1.68,0,0,1,2.7.21l4.5,4.4A1.55,1.55,0,0,1,7.6,5.71Z"
             />
           </svg>
         </div>
-        <ul class="dropdown__list">
-          <li data-slug="5">5 Miles</li>
-          <li data-slug="10">10 Miles</li>
-          <li data-slug="25">25 Miles</li>
-          <li data-slug="50">50 Miles</li>
-        </ul>
       </div>
       <button class="btn btn--blue btn--full" type="submit">Search jobs</button>
     </form>
