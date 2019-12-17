@@ -43,7 +43,7 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
 </section>
 
 
-<div class="search">
+<div class="search_contain">
     <div id="allLocations" data-user-location='<?php echo $_location; ?>' data-relevant-terms=''>
         <?php
         $terms = get_terms(array(
@@ -239,10 +239,10 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
             <button class="btn btn--blue" role="button">Search jobs</button>
         </form>
     </div>
-    <div class="search__wrap">
+    <div class="search_contain__wrap">
         <label for="list-view" class="screen-reader-text">Select List View</label>
         <input
-            class="search__radio search__radio--list"
+            class="search_contain__radio search_contain__radio--list"
             name="search"
             type="radio"
             id="list-view"
@@ -251,7 +251,7 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
         />
         <label for="map-view" class="screen-reader-text">Select Map View</label>
         <input
-            class="search__radio search__radio--map"
+            class="search_contain__radio search_contain__radio--map"
             name="search"
             id="map-view"
             type="radio"
@@ -568,7 +568,7 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
             $pagenum = $job_query->query_vars['paged'] < 1 ? 1 : $job_query->query_vars['paged'];
             $first = (($pagenum - 1) * $job_query->query_vars['posts_per_page']) + 1;
             $last = $first + $job_query->post_count - 1;
-            echo "<span class='search__results search__results--live'>Showing <b>" . $first . " - " . $last . "</b> of <b>" . "$job_query->found_posts" . "</b> job results</span>";
+            echo "<span class='search_contain__results search_contain__results--live'>Showing <b>" . $first . " - " . $last . "</b> of <b>" . "$job_query->found_posts" . "</b> job results</span>";
             ?>
             <div class="pagination">
                 <?php
@@ -588,15 +588,15 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                 ?>
             </div>
 
-            <div class="search__controls">
+            <div class="search_contain__controls">
                 <span>VIEW BY</span>
-                <label class="search__label search__label--list" for="list-view">
+                <label class="search_contain__label search_contain__label--list" for="list-view">
                     List
                     <svg width="28" height="28">
                         <use xlink:href="#icon-list"></use>
                     </svg>
                 </label>
-                <label class="search__label search__label--map" for="map-view">
+                <label class="search_contain__label search_contain__label--map" for="map-view">
                     Map
                     <svg width="17" height="24">
                         <use xlink:href="#icon-marker"></use>
@@ -604,11 +604,11 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                 </label>
             </div>
         </header>
-        <div class="search__container">
+        <div class="search_contain__container">
 
-            <div class="search__list-wrap">
-                <table class="search__list">
-                    <tr class="search__heading">
+            <div class="search_contain__list-wrap">
+                <table class="search_contain__list">
+                    <tr class="search_contain__heading">
                         <th>ROLE</th>
                         <th>LOCATION</th>
                         <th>SALARY</th>
@@ -620,7 +620,7 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                         $job_query->the_post();
                         ?>
 
-                        <tr class="search__item" data-locations="<?php
+                        <tr class="search_contain__item" data-locations="<?php
                         $terms = wp_get_post_terms($post->ID, 'job_location', array("fields" => "all"));
                         foreach ($terms as $term) {
                             echo $term->name;
@@ -683,7 +683,7 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                 </table>
             </div>
 
-            <div class="search__map-wrap">
+            <div class="search_contain__map-wrap">
                 <div
                     class="map"
                     id="map"
@@ -697,7 +697,7 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
 
         } else { ?>
 
-            <div class="search__empty">
+            <div class="search_contain__empty">
                 <p class="heading--sm">Sorry no results found</p>
                 <span>Please try again</span>
             </div>
