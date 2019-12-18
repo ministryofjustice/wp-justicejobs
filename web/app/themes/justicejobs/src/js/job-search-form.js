@@ -81,12 +81,13 @@ jQuery(document).ready(function($) {
         var locationLive = '';
         var radiusLive = '';
         if (_hasString(thisLocation)) {
-            console.log('woot');
+            console.log('aaa');
+            console.log(thisLocation);
             str = '?s=' + keywordLive + roleTypeLive + salaryRangeLive + workingPatternLive;
             localStorage.setItem("currentSearch", str);
-            console.log(str + sessionStorage.getItem("currentSearch"));
-            window.location = window.location.origin + str;
+           // window.location = window.location.origin + str;
         } else {
+            console.log('bb');
             locationLive = '&location=' + thisLocation;
             radiusLive = '&radius=' + thisRadius;
             str = '?s=' + keywordLive + roleTypeLive + salaryRangeLive + workingPatternLive + locationLive + radiusLive;
@@ -135,7 +136,6 @@ jQuery(document).ready(function($) {
             radiusLive = '&radius=' + thisRadius;
             str = '?s='+ keywordLive + locationLive + radiusLive;
             getJSON(thisLocation);
-            testEachMarker();
         }
 
     });
@@ -145,12 +145,24 @@ jQuery(document).ready(function($) {
     }
 
     function getJSON(userLocation){
-        $.getJSON( "https://maps.googleapis.com/maps/api/geocode/json?address=" + userLocation + "&key=" + justice.map_key , function( data ) {
-            userLocationGeocodeLat = parseFloat(data.results[0].geometry.location.lat);
-            userLocationGeocodeLng = parseFloat(data.results[0].geometry.location.lng);
-            var userMathstest = userLocationGeocodeLat - userLocationGeocodeLng;
-            console.log(userLocationGeocodeLat + ' ' + userLocationGeocodeLng + ' = ' + userMathstest);
-        });
+
+        $.ajax({
+            type : "post",
+            dataType : "json",
+            url : justice.ajaxurl,
+            data : {action: "get_location_coordinates", location : userLocation },
+            success: function(response) {
+                if(response.error == false) {
+                    userLocationGeocodeLat = parseFloat(response.lat);
+                    userLocationGeocodeLng = parseFloat(response.lng);
+                    var userMathstest = userLocationGeocodeLat - userLocationGeocodeLng;
+                    testEachMarker();
+                }
+                else {
+                    console.log('Error getting location');
+                }
+            }
+        })
     }
 
     function testEachMarker(){
@@ -185,7 +197,8 @@ jQuery(document).ready(function($) {
             locationsRelevantLive = '&locations-relevant=' + locationsRelevant;
 
             str = str + locationsRelevantLive;
-            window.location = window.location.origin + str;
+
+           // window.location = window.location.origin + str;
 
         }, 1000);
 

@@ -91,8 +91,10 @@ function enqueue_justice_jobs_scripts()
 
     $local_attr = [
         'root_url' => get_template_directory_uri(),
-        'map_key' => ''
+        'map_key' => '',
+        'ajaxurl' => admin_url( 'admin-ajax.php' )
     ];
+
 
     $map_key = get_field('google_maps_api_key', 'option');
 
@@ -267,6 +269,7 @@ if ( ! wp_next_scheduled( 'updatejobs_cron_hook' ) ) {
  * Custom functions that act independently of the theme templates.
  */
 require get_template_directory() . '/inc/extras.php';
+require get_template_directory() . '/inc/maps-endpoint.php';
 
 /**
  * Load Custom Posts file
