@@ -88,7 +88,6 @@ jQuery(document).ready(function($) {
             window.location = window.location.origin + str;
 
         } else {
-            console.log('bb');
             locationLive = '&location=' + thisLocation;
             radiusLive = '&radius=' + thisRadius;
             str = '?s=' + keywordLive + roleTypeLive + salaryRangeLive + workingPatternLive + locationLive + radiusLive;
@@ -170,7 +169,6 @@ jQuery(document).ready(function($) {
         setTimeout(function(){
 
             $markers 	= $('#allLocations').find('li');
-            console.log($markers);
 
             $($markers).each(function(k){
                 var thisLAT = parseFloat($(this).data('lat'));
@@ -185,7 +183,6 @@ jQuery(document).ready(function($) {
                 var thisRadiusInMiles = parseInt(thisRadius) * 1.609344;
 
                 if (parseInt(currentDistance) < thisRadiusInMiles ) {
-                    console.log($(this).data('id'));
                     locationsRelevant += $(this).data('id') + ', ';
                 }
                 //calculates distance between two points in km's
