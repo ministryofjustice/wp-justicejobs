@@ -91,16 +91,8 @@ function enqueue_justice_jobs_scripts()
 
     $local_attr = [
         'root_url' => get_template_directory_uri(),
-        'map_key' => '',
         'ajaxurl' => admin_url( 'admin-ajax.php' )
     ];
-
-
-    $map_key = get_field('google_maps_api_key', 'option');
-
-    if (strlen($map_key) > 0) {
-        $local_attr['map_key'] = $map_key;
-    }
 
     wp_localize_script('core-js', 'justice', $local_attr);
 }
