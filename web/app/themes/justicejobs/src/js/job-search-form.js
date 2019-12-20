@@ -36,7 +36,6 @@ jQuery(document).ready(function($) {
         var workingPattern = $(this).find('#working-pattern').attr('data-cur');
         var thisLocation = $(this).find('#location').val();
         thisRadius = parseInt($(this).find('#radius').attr('data-cur'));
-        console.log(thisRadius);
 
         var keywordLive;
         console.log(keyword);
@@ -45,7 +44,7 @@ jQuery(document).ready(function($) {
         }
 
         var roleTypeLive;
-        if (_hasString(roleType)) {
+        if (!_hasString(roleType)) {
             roleTypeLive = '';
         } else {
             if (roleType === 'all') {
@@ -56,7 +55,7 @@ jQuery(document).ready(function($) {
         }
 
         var salaryRangeLive;
-        if (_hasString(salaryRange)) {
+        if (!_hasString(salaryRange)) {
             salaryRangeLive = '';
         } else {
             if (salaryRange === 'all') {
@@ -67,7 +66,7 @@ jQuery(document).ready(function($) {
         }
 
         var workingPatternLive;
-        if (_hasString(workingPattern)) {
+        if (!_hasString(workingPattern)) {
             workingPatternLive = '';
         } else {
             if (workingPattern === 'all') {
@@ -80,12 +79,14 @@ jQuery(document).ready(function($) {
 
         var locationLive = '';
         var radiusLive = '';
-        if (_hasString(thisLocation)) {
-            console.log('aaa');
-            console.log(thisLocation);
+
+
+        if (!_hasString(thisLocation)) {
             str = '?s=' + keywordLive + roleTypeLive + salaryRangeLive + workingPatternLive;
             localStorage.setItem("currentSearch", str);
-           // window.location = window.location.origin + str;
+
+            window.location = window.location.origin + str;
+
         } else {
             console.log('bb');
             locationLive = '&location=' + thisLocation;
@@ -175,15 +176,14 @@ jQuery(document).ready(function($) {
                 var thisLAT = parseFloat($(this).data('lat'));
                 var thisLNG = parseFloat($(this).data('lng'));
                 var thisMathstest = thisLAT - thisLNG;
-                console.log(thisLAT + ' test ' + thisLNG + ' = ' + thisMathstest);
+
                 var p1 = new google.maps.LatLng(thisLAT, thisLNG);
                 var p2 = new google.maps.LatLng(userLocationGeocodeLat, userLocationGeocodeLng);
-                //console.log(p1 + p2);
+
                 var currentDistance = calcDistance(p1, p2);
-                console.log(parseInt(currentDistance));
-                console.log(parseInt(thisRadius));
+
                 var thisRadiusInMiles = parseInt(thisRadius) * 1.609344;
-                console.log(thisRadiusInMiles);
+
                 if (parseInt(currentDistance) < thisRadiusInMiles ) {
                     console.log($(this).data('id'));
                     locationsRelevant += $(this).data('id') + ', ';
@@ -198,7 +198,7 @@ jQuery(document).ready(function($) {
 
             str = str + locationsRelevantLive;
 
-           // window.location = window.location.origin + str;
+            window.location = window.location.origin + str;
 
         }, 1000);
 
