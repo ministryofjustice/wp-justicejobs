@@ -152,15 +152,22 @@ jQuery(document).ready(function ($) {
         if (block.hasClass('is-opened')) {
             block
                 .removeClass('is-opened')
+                .attr("aria-expanded", "false")
                 .find('.accordion__content-wrap')
                 .slideUp();
+            $('.accordion__btn')
+                .attr("aria-expanded", "false")
         } else {
             $('.accordion__block')
                 .removeClass('is-opened')
+                .attr("aria-expanded", "false")
                 .find('.accordion__content-wrap')
                 .slideUp();
+            $('.accordion__btn')
+                .attr("aria-expanded", "true")
             block
                 .addClass('is-opened')
+                .attr("aria-expanded", "true")
                 .find('.accordion__content-wrap')
                 .slideDown();
         }
@@ -173,6 +180,7 @@ jQuery(document).ready(function ($) {
         if (block.hasClass('inner_is-opened')) {
             block
                 .removeClass('inner_is-opened')
+                .attr("aria-expanded", "false")
                 .find('.inner_accordion__content-wrap')
                 .slideUp();
         } else {
@@ -182,6 +190,7 @@ jQuery(document).ready(function ($) {
             //   .slideUp();
             block
                 .addClass('inner_is-opened')
+                .attr("aria-expanded", "true")
                 .find('.inner_accordion__content-wrap')
                 .slideDown();
         }

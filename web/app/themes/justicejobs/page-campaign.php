@@ -119,15 +119,23 @@ Template Post Type: page, campaign
       <?php if ( have_rows('accordion') ): while( have_rows('accordion') ): the_row(); ?>
       <div class="accordion__block">
         <div class="campaign--container">
-          <button class="accordion__btn" role="button" aria-label="Open Accordion" aria-expanded="false">
-            <span><?php the_sub_field('accordion_title'); ?></span>
+          <button
+              class="accordion__btn"
+              aria-controls="accordion-<?php the_field( 'accordion_section_title' );?>"
+              aria-expanded="false"
+              id="<?php the_field( 'accordion_section_title' );?>">
+            <h3><?php the_sub_field('accordion_title'); ?></h3>
             <span class="btn-plus">
               <svg width="30" height="30">
                 <use xlink:href="#icon-plus"></use>
               </svg>
             </span>
           </button>
-          <div class="accordion__content-wrap">
+          <div
+              class="accordion__content-wrap"
+              id="accordion-<?php the_field( 'accordion_section_title' );?>"
+              aria-labelledby="<?php the_field( 'accordion_section_title' );?>"
+              role="region">
             <?php the_sub_field('accordion_content'); ?>
 
             <?php
