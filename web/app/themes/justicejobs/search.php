@@ -582,8 +582,10 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                     'mid_size' => 2,
                     'current' => max(1, get_query_var('paged')),
                     'total' => $job_query->max_num_pages,
-                    'prev_text' => 'PREV',
-                    'next_text' => 'NEXT'
+                    'prev_text' => '<span class="screen-reader-text"> Search results - previous page</span><span aria-hidden="true">PREV</span>',
+                    'next_text' => '<span class="screen-reader-text"> Search results - </span>NEXT <span class="screen-reader-text">page</span>',
+                    'before_page_number' => '<span class="screen-reader-text"> Search results - page </span>',
+                    'after_page_number' => '<span class="screen-reader-text"> of ' . __( $job_query->max_num_pages ). '</span>'
                 ));
 
 
@@ -721,29 +723,15 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                     'mid_size' => 2,
                     'current' => max(1, get_query_var('paged')),
                     'total' => $job_query->max_num_pages,
-                    'prev_text' => 'PREV',
-                    'next_text' => 'NEXT'
+                    'prev_text' => '<span class="screen-reader-text"> Search results - previous page</span><span aria-hidden="true">PREV</span>',
+                    'next_text' => '<span class="screen-reader-text"> Search results - </span>NEXT <span class="screen-reader-text">page</span>',
+                    'before_page_number' => '<span class="screen-reader-text"> Search results - page </span>',
+                    'after_page_number' => '<span class="screen-reader-text"> of ' . __( $job_query->max_num_pages ). '</span>'
                 ));
 
 
                 ?>
             </div>
-            <!--
-           <ul class="pagination">
-             <li><a class="current" href="#">1</a></li>
-             <li><a href="#">2</a></li>
-             <li><a href="#">3</a></li>
-             <li><a href="#">4</a></li>
-             <li>
-               <a class="next" href="#">
-                 NEXT
-                 <svg width="9" height="13">
-                   <use xlink:href="#icon-arrow"></use>
-                 </svg>
-               </a>
-             </li>
-           </ul>
-           -->
         </footer>
     </div>
 </div>
