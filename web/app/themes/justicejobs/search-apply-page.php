@@ -51,170 +51,172 @@ Template Name: Search/Apply Template
   ?>
   </div>
   <div class="filter">
-    <header>
-      <h2 class="heading--sm">Refine by:</h2>
-      <button class="filter__reset" id="reset" role="button">Reset</button>
-    </header>
     <form action="#" id="search-form">
-      <label for="keyword" class="screen-reader-text">Keyword</label>
-      <input aria-label="Keyword" type="text" class="input" placeholder="Keyword" name="keyword" id="keyword" />
-      <span class="filter__label">Roles</span>
-      <div class="dropdown">
-        <div class="dropdown__wrap">
-          <label for="role-type" class="screen-reader-text">Role Type</label>
-          <input
-            id="role-type"
-            name="role-type"
-            placeholder="Role Type"
-            aria-label="Role Type"
-            data-cur=""
-            class="dropdown__current input"
-            value=""
-            readonly
-          />
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="8"
-            height="13"
-            viewBox="0 0 7.6 11.52"
-          >
-            <path
-              d="M7.6,5.71a1.61,1.61,0,0,1-.5,1.1l-4.6,4.3a1.27,1.27,0,0,1-1,.4A1.54,1.54,0,0,1,0,10a1.61,1.61,0,0,1,.5-1.1l1-1L4,5.71,1.6,3.41l-1-1A1.46,1.46,0,0,1,.83.36L.9.31A1.68,1.68,0,0,1,2.7.21l4.5,4.4A1.55,1.55,0,0,1,7.6,5.71Z"
-            />
-          </svg>
+      <fieldset class="filter__fieldset">
+        <div class="header">
+          <legend class="heading--sm">Refine by:</legend>
+          <button class="filter__reset" id="reset" role="button">Reset</button>
         </div>
-        <ul class="dropdown__list">
-          <li data-slug="all">All Role Types</li>
-          <?php
-
-          $terms = get_terms( array(
-              'taxonomy' => 'role_type',
-              'hide_empty' => true,
-          ) );          if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
-              foreach ( $terms as $term ) {
-                echo '<li data-slug="' . $term->slug . '">' . $term->name . '</li>';
-              }
-          }
-
-           ?>
-        </ul>
-      </div>
-      <span class="filter__label">Location</span>
-      <label for="location" class="screen-reader-text">Location</label>
-      <input aria-label="Location" name="location" id="location" type="text" class="input" placeholder="City / Postcode" />
-      <div class="dropdown">
-        <div class="dropdown__wrap">
-          <label for="radius" class="screen-reader-text">Radius (in miles)</label>
-          <input
-            id="radius"
-            name='radius'
-            aria-label="Radius (in miles)"
-            data-cur="10"
-            class="dropdown__current input"
-            placeholder="Radius (miles)"
-            readonly
-          />
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="8"
-            height="13"
-            viewBox="0 0 7.6 11.52"
-          >
-            <path
-              d="M7.6,5.71a1.61,1.61,0,0,1-.5,1.1l-4.6,4.3a1.27,1.27,0,0,1-1,.4A1.54,1.54,0,0,1,0,10a1.61,1.61,0,0,1,.5-1.1l1-1L4,5.71,1.6,3.41l-1-1A1.46,1.46,0,0,1,.83.36L.9.31A1.68,1.68,0,0,1,2.7.21l4.5,4.4A1.55,1.55,0,0,1,7.6,5.71Z"
+        <label for="keyword" class="screen-reader-text">Keyword</label>
+        <input aria-label="Keyword" type="text" class="input" placeholder="Keyword" name="keyword" id="keyword" />
+        <span class="filter__label">Roles</span>
+        <div class="dropdown">
+          <div class="dropdown__wrap">
+            <label for="role-type" class="screen-reader-text">Role Type</label>
+            <input
+              id="role-type"
+              name="role-type"
+              placeholder="Role Type"
+              aria-label="Role Type"
+              data-cur=""
+              class="dropdown__current input"
+              value=""
+              readonly
             />
-          </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="8"
+              height="13"
+              viewBox="0 0 7.6 11.52"
+            >
+              <path
+                d="M7.6,5.71a1.61,1.61,0,0,1-.5,1.1l-4.6,4.3a1.27,1.27,0,0,1-1,.4A1.54,1.54,0,0,1,0,10a1.61,1.61,0,0,1,.5-1.1l1-1L4,5.71,1.6,3.41l-1-1A1.46,1.46,0,0,1,.83.36L.9.31A1.68,1.68,0,0,1,2.7.21l4.5,4.4A1.55,1.55,0,0,1,7.6,5.71Z"
+              />
+            </svg>
+          </div>
+          <ul class="dropdown__list">
+            <li data-slug="all">All Role Types</li>
+            <?php
+
+            $terms = get_terms( array(
+                'taxonomy' => 'role_type',
+                'hide_empty' => true,
+            ) );          if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
+                foreach ( $terms as $term ) {
+                  echo '<li data-slug="' . $term->slug . '">' . $term->name . '</li>';
+                }
+            }
+
+            ?>
+          </ul>
         </div>
-        <ul class="dropdown__list">
-          <li data-slug="5">5 Miles</li>
-          <li data-slug="10">10 Miles</li>
-          <li data-slug="25">25 Miles</li>
-          <li data-slug="50">50 Miles</li>
-        </ul>
-      </div>
-      <span class="filter__label">Salary Range</span>
-      <div class="dropdown">
-        <div class="dropdown__wrap">
-          <label for="salary-range" class="screen-reader-text">Salary Range</label>
-          <input
-            id="salary-range"
-            placeholder="Salary Range"
-            name="salary-range"
-            aria-label="Salary Range"
-            data-cur=""
-            class="dropdown__current input"
-            value=""
-            readonly
-          />
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="8"
-            height="13"
-            viewBox="0 0 7.6 11.52"
-          >
-            <path
-              d="M7.6,5.71a1.61,1.61,0,0,1-.5,1.1l-4.6,4.3a1.27,1.27,0,0,1-1,.4A1.54,1.54,0,0,1,0,10a1.61,1.61,0,0,1,.5-1.1l1-1L4,5.71,1.6,3.41l-1-1A1.46,1.46,0,0,1,.83.36L.9.31A1.68,1.68,0,0,1,2.7.21l4.5,4.4A1.55,1.55,0,0,1,7.6,5.71Z"
+        <span class="filter__label">Location</span>
+        <label for="location" class="screen-reader-text">Location</label>
+        <input aria-label="Location" name="location" id="location" type="text" class="input" placeholder="City / Postcode" />
+        <div class="dropdown">
+          <div class="dropdown__wrap">
+            <label for="radius" class="screen-reader-text">Radius (in miles)</label>
+            <input
+              id="radius"
+              name='radius'
+              aria-label="Radius (in miles)"
+              data-cur="10"
+              class="dropdown__current input"
+              placeholder="Radius (miles)"
+              readonly
             />
-          </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="8"
+              height="13"
+              viewBox="0 0 7.6 11.52"
+            >
+              <path
+                d="M7.6,5.71a1.61,1.61,0,0,1-.5,1.1l-4.6,4.3a1.27,1.27,0,0,1-1,.4A1.54,1.54,0,0,1,0,10a1.61,1.61,0,0,1,.5-1.1l1-1L4,5.71,1.6,3.41l-1-1A1.46,1.46,0,0,1,.83.36L.9.31A1.68,1.68,0,0,1,2.7.21l4.5,4.4A1.55,1.55,0,0,1,7.6,5.71Z"
+              />
+            </svg>
+          </div>
+          <ul class="dropdown__list">
+            <li data-slug="5">5 Miles</li>
+            <li data-slug="10">10 Miles</li>
+            <li data-slug="25">25 Miles</li>
+            <li data-slug="50">50 Miles</li>
+          </ul>
         </div>
-        <ul class="dropdown__list">
-          <li data-slug="all">All Salary Ranges</li>
-          <?php
-
-          $terms = get_terms( array(
-              'taxonomy' => 'salary_range',
-              'hide_empty' => true,
-          ) );          if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
-              foreach ( $terms as $term ) {
-                echo '<li data-slug=' . $term->slug . '>' . $term->name . '</li>';
-              }
-          }
-
-           ?>
-        </ul>
-      </div>
-      <span class="filter__label">Working Pattern</span>
-      <div class="dropdown">
-        <div class="dropdown__wrap">
-          <label for="working-pattern" class="screen-reader-text">Working Pattern</label>
-          <input
-            id="working-pattern"
-            name="working-pattern"
-            placeholder="Working Pattern"
-            aria-label="Working Pattern"
-            data-cur=""
-            class="dropdown__current input"
-            value=""
-            readonly
-          />
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="8"
-            height="13"
-            viewBox="0 0 7.6 11.52"
-          >
-            <path
-              d="M7.6,5.71a1.61,1.61,0,0,1-.5,1.1l-4.6,4.3a1.27,1.27,0,0,1-1,.4A1.54,1.54,0,0,1,0,10a1.61,1.61,0,0,1,.5-1.1l1-1L4,5.71,1.6,3.41l-1-1A1.46,1.46,0,0,1,.83.36L.9.31A1.68,1.68,0,0,1,2.7.21l4.5,4.4A1.55,1.55,0,0,1,7.6,5.71Z"
+        <span class="filter__label">Salary Range</span>
+        <div class="dropdown">
+          <div class="dropdown__wrap">
+            <label for="salary-range" class="screen-reader-text">Salary Range</label>
+            <input
+              id="salary-range"
+              placeholder="Salary Range"
+              name="salary-range"
+              aria-label="Salary Range"
+              data-cur=""
+              class="dropdown__current input"
+              value=""
+              readonly
             />
-          </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="8"
+              height="13"
+              viewBox="0 0 7.6 11.52"
+            >
+              <path
+                d="M7.6,5.71a1.61,1.61,0,0,1-.5,1.1l-4.6,4.3a1.27,1.27,0,0,1-1,.4A1.54,1.54,0,0,1,0,10a1.61,1.61,0,0,1,.5-1.1l1-1L4,5.71,1.6,3.41l-1-1A1.46,1.46,0,0,1,.83.36L.9.31A1.68,1.68,0,0,1,2.7.21l4.5,4.4A1.55,1.55,0,0,1,7.6,5.71Z"
+              />
+            </svg>
+          </div>
+          <ul class="dropdown__list">
+            <li data-slug="all">All Salary Ranges</li>
+            <?php
+
+            $terms = get_terms( array(
+                'taxonomy' => 'salary_range',
+                'hide_empty' => true,
+            ) );          if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
+                foreach ( $terms as $term ) {
+                  echo '<li data-slug=' . $term->slug . '>' . $term->name . '</li>';
+                }
+            }
+
+            ?>
+          </ul>
         </div>
-        <ul class="dropdown__list">
-          <li data-slug="all">All Working Patterns</li>
-          <?php
+        <span class="filter__label">Working Pattern</span>
+        <div class="dropdown">
+          <div class="dropdown__wrap">
+            <label for="working-pattern" class="screen-reader-text">Working Pattern</label>
+            <input
+              id="working-pattern"
+              name="working-pattern"
+              placeholder="Working Pattern"
+              aria-label="Working Pattern"
+              data-cur=""
+              class="dropdown__current input"
+              value=""
+              readonly
+            />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="8"
+              height="13"
+              viewBox="0 0 7.6 11.52"
+            >
+              <path
+                d="M7.6,5.71a1.61,1.61,0,0,1-.5,1.1l-4.6,4.3a1.27,1.27,0,0,1-1,.4A1.54,1.54,0,0,1,0,10a1.61,1.61,0,0,1,.5-1.1l1-1L4,5.71,1.6,3.41l-1-1A1.46,1.46,0,0,1,.83.36L.9.31A1.68,1.68,0,0,1,2.7.21l4.5,4.4A1.55,1.55,0,0,1,7.6,5.71Z"
+              />
+            </svg>
+          </div>
+          <ul class="dropdown__list">
+            <li data-slug="all">All Working Patterns</li>
+            <?php
 
-          $terms = get_terms( array(
-              'taxonomy' => 'working_pattern',
-              'hide_empty' => true,
-          ) );          if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
-              foreach ( $terms as $term ) {
-                echo '<li data-slug=' . $term->slug . '>' . $term->name . '</li>';
-              }
-          }
+            $terms = get_terms( array(
+                'taxonomy' => 'working_pattern',
+                'hide_empty' => true,
+            ) );          if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
+                foreach ( $terms as $term ) {
+                  echo '<li data-slug=' . $term->slug . '>' . $term->name . '</li>';
+                }
+            }
 
-           ?>
-        </ul>
-      </div>
-      <button class="btn btn--blue" role="button">Search jobs</button>
+            ?>
+          </ul>
+        </div>
+        <button class="btn btn--blue" role="button">Search jobs</button>
+        </fieldset>
     </form>
   </div>
   <div class="search_contain__wrap">
@@ -227,7 +229,7 @@ Template Name: Search/Apply Template
       aria-label="Select List View"
       aria-pressed="false"
     />
-    <label for="map-view" class="screen-reader-text">Select Map View</label>    
+    <label for="map-view" class="screen-reader-text">Select Map View</label>
     <input
       class="search_contain__radio search_contain__radio--map"
       name="search"

@@ -60,11 +60,12 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
         ?>
     </div>
     <div class="filter">
-        <header>
-            <h2 class="heading--sm">Refine by:</h2>
-            <button class="filter__reset" id="reset" role="button">Reset</button>
-        </header>
         <form action="#" id="search-form">
+            <fieldset class="filter__fieldset">
+            <div class="header">
+                <legend class="heading--sm">Refine by:</legend>
+                <button class="filter__reset" id="reset" role="button">Reset</button>
+            </div>
             <label for="keyword" class="screen-reader-text">Keyword</label>
             <input aria-label="Keyword" type="text" class="input" placeholder="Keyword" name="keyword" id="keyword"
                    value="<?php echo $search_query; ?>"/>
@@ -237,6 +238,7 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                 </ul>
             </div>
             <button class="btn btn--blue" role="button">Search jobs</button>
+            </fieldset>
         </form>
     </div>
     <div class="search_contain__wrap">
