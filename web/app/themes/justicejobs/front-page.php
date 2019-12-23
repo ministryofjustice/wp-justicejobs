@@ -52,82 +52,84 @@
       }
     ?>
     </div>
-    <h2 class="heading--sm">Quick job search</h2>
     <form id="mini-search-form">
-      <div class="row">
-        <label for="keyword" class="screen-reader-text">Keyword</label>
-        <input aria-label="Keyword" type="text" class="input" placeholder="Keyword" name="keyword" id="keyword" />
-      </div>
-
-      <!--
-
-      <div class="dropdown">
-        <div class="dropdown__wrap">
-          <input
-            id="role-type"
-            name="role-type"
-            data-cur=""
-            class="dropdown__current input"
-            value=""
-            placeholder="Role Type"
-            readonly
-          />
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="8"
-            height="13"
-            viewBox="0 0 7.6 11.52"
-          >
-            <path
-              d="M7.6,5.71a1.61,1.61,0,0,1-.5,1.1l-4.6,4.3a1.27,1.27,0,0,1-1,.4A1.54,1.54,0,0,1,0,10a1.61,1.61,0,0,1,.5-1.1l1-1L4,5.71,1.6,3.41l-1-1A1.46,1.46,0,0,1,.83.36L.9.31A1.68,1.68,0,0,1,2.7.21l4.5,4.4A1.55,1.55,0,0,1,7.6,5.71Z"
-            />
-          </svg>
+    <fieldset class="hero__search--fieldset">
+      <legend class="heading--sm">Quick job search</legend>
+        <div class="row">
+          <label for="keyword" class="screen-reader-text">Keyword</label>
+          <input aria-label="Keyword" type="text" class="input" placeholder="Keyword" name="keyword" id="keyword" />
         </div>
-        <ul class="dropdown__list">
-          <li data-slug="all">All Role Types</li>
-          <?php
 
-          $terms = get_terms( array(
-              'taxonomy' => 'role_type',
-              'hide_empty' => true,
-          ) );          if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
-              foreach ( $terms as $term ) {
-                echo '<li data-slug="' . $term->slug . '">' . $term->name . '</li>';
-              }
-          }
+        <!--
 
-           ?>
-        </ul>
-      </div>
-      -->
-      <div class="row">
-        <span>in</span>
-        <label for="location" class="screen-reader-text">Location</label>
-        <input id="location" name="location" aria-label="Location" type="text" class="input" placeholder="City / Postcode" />
-      </div>
-      <div class="dropdown">
-        <div class="dropdown__wrap">
-          <label for="radius" class="screen-reader-text">Radius (in miles)</label>
-          <select
-            id="radius"
-            name='radius'
-            aria-label="Radius (in miles)"
-            data-cur="10"
-            class="dropdown__current input"
-            placeholder="Radius (miles)"
-          >
-          <option value="5 miles">5 miles</option>
-          <option value="10 miles">10 miles</option>
-          <option value="25 miles">25 miles</option>
-          <option value="50 miles">50 miles</option>
-          </select>
-            <path
-              d="M7.6,5.71a1.61,1.61,0,0,1-.5,1.1l-4.6,4.3a1.27,1.27,0,0,1-1,.4A1.54,1.54,0,0,1,0,10a1.61,1.61,0,0,1,.5-1.1l1-1L4,5.71,1.6,3.41l-1-1A1.46,1.46,0,0,1,.83.36L.9.31A1.68,1.68,0,0,1,2.7.21l4.5,4.4A1.55,1.55,0,0,1,7.6,5.71Z"
+        <div class="dropdown">
+          <div class="dropdown__wrap">
+            <input
+              id="role-type"
+              name="role-type"
+              data-cur=""
+              class="dropdown__current input"
+              value=""
+              placeholder="Role Type"
+              readonly
             />
-          </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="8"
+              height="13"
+              viewBox="0 0 7.6 11.52"
+            >
+              <path
+                d="M7.6,5.71a1.61,1.61,0,0,1-.5,1.1l-4.6,4.3a1.27,1.27,0,0,1-1,.4A1.54,1.54,0,0,1,0,10a1.61,1.61,0,0,1,.5-1.1l1-1L4,5.71,1.6,3.41l-1-1A1.46,1.46,0,0,1,.83.36L.9.31A1.68,1.68,0,0,1,2.7.21l4.5,4.4A1.55,1.55,0,0,1,7.6,5.71Z"
+              />
+            </svg>
+          </div>
+          <ul class="dropdown__list">
+            <li data-slug="all">All Role Types</li>
+            <?php
+
+            $terms = get_terms( array(
+                'taxonomy' => 'role_type',
+                'hide_empty' => true,
+            ) );          if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
+                foreach ( $terms as $term ) {
+                  echo '<li data-slug="' . $term->slug . '">' . $term->name . '</li>';
+                }
+            }
+
+            ?>
+          </ul>
         </div>
-      </div>
-      <button class="btn btn--blue btn--full" type="submit">Search jobs</button>
+        -->
+        <div class="row">
+          <span>in</span>
+          <label for="location" class="screen-reader-text">Location</label>
+          <input id="location" name="location" aria-label="Location" type="text" class="input" placeholder="City / Postcode" />
+        </div>
+        <div class="dropdown">
+          <div class="dropdown__wrap">
+            <label for="radius" class="screen-reader-text">Radius (in miles)</label>
+            <select
+              id="radius"
+              name='radius'
+              aria-label="Radius (in miles)"
+              data-cur="10"
+              class="dropdown__current input"
+              placeholder="Radius (miles)"
+            >
+            <option value="5 miles">5 miles</option>
+            <option value="10 miles">10 miles</option>
+            <option value="25 miles">25 miles</option>
+            <option value="50 miles">50 miles</option>
+            </select>
+              <path
+                d="M7.6,5.71a1.61,1.61,0,0,1-.5,1.1l-4.6,4.3a1.27,1.27,0,0,1-1,.4A1.54,1.54,0,0,1,0,10a1.61,1.61,0,0,1,.5-1.1l1-1L4,5.71,1.6,3.41l-1-1A1.46,1.46,0,0,1,.83.36L.9.31A1.68,1.68,0,0,1,2.7.21l4.5,4.4A1.55,1.55,0,0,1,7.6,5.71Z"
+              />
+            </svg>
+          </div>
+        </div>
+        <button class="btn btn--blue btn--full" type="submit">Search jobs</button>
+      </fieldset>
     </form>
   </div>
 
