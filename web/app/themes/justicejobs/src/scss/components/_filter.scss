@@ -6,15 +6,15 @@
     @include respond-to(md) {
         max-width: 270px;
     }
-    header {
+    .header {
         margin-bottom: 30px;
         padding: 0;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        .heading--sm {
-            color: $mid-blue;
-        }
+    }
+    .heading--sm {
+        color: $mid-blue;
     }
     &__reset {
         font-size: 1.4rem;
@@ -24,24 +24,29 @@
         border: none;
         background: none;
         cursor: pointer;
+        margin-right: 20px;
     }
     &__label {
         margin-bottom: 12px;
         font-size: 1.5rem;
         font-weight: 700;
     }
-    form {
+    &__fieldset {
+        border: 0;
+        margin: 0;
+        padding: 0;
+    }
+    fieldset {
         display: flex;
         flex-direction: column;
     }
-    form>.input {
+    form>fieldset>.input {
         margin-bottom: 15px;
     }
     .dropdown {
         margin-bottom: 15px;
     }
     .btn {
-        margin-top: 40px;
-        align-self: center;
+        margin: 40px auto 0 auto;
     }
 }
