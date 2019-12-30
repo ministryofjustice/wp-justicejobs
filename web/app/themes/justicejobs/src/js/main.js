@@ -196,6 +196,41 @@ jQuery(document).ready(function ($) {
         }
     });
 
+    $('.accordion__btn').on('keydown', function () {
+        var target = event.target;
+        var key = event.which.toString();
+
+        // 33 = Page Up, 34 = Page Down
+        var ctrlModifier = (event.ctrlKey && key.match(/33|34/));
+
+        // Collects where current focus is in relation to other accordions
+        var triggers = $('.accordion__btn');
+        var current = triggers.filter(target);
+        var position = triggers.index(current);
+
+        // 38 = Up, 40 = Down
+        if (key.match(/38|40/) || ctrlModifier) {
+            var direction = (key.match(/34|40/)) ? 1 : -1;
+            var length = triggers.length;
+            var newIndex = (position + length + direction) % length;
+            triggers[newIndex].focus();
+            event.preventDefault();
+        }
+        else if (key.match(/35|36/)) {
+            // 35 = End, 36 = Home keyboard operations
+            switch (key) {
+                case '36':
+                    triggers[0].focus();
+                    break;
+                case '35':
+                    triggers[triggers.length - 1].focus();
+                    break;
+            }
+            event.preventDefault();
+        }
+    });
+
+
     if ($('.campaign__carousel').length > 0) {
         $('.campaign__carousel').slick({
             dots: true,
