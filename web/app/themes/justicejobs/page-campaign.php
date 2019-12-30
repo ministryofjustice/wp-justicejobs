@@ -121,9 +121,9 @@ Template Post Type: page, campaign
         <div class="campaign--container">
           <button
               class="accordion__btn"
-              aria-controls="accordion-<?php the_field( 'accordion_section_title' );?>"
+              aria-controls="accordion-<?php the_sub_field( 'accordion_title' );?>"
               aria-expanded="false"
-              id="<?php the_field( 'accordion_section_title' );?>">
+              id="<?php the_sub_field( 'accordion_title' );?>">
             <h3><?php the_sub_field('accordion_title'); ?></h3>
             <span class="btn-plus">
               <svg width="30" height="30">
@@ -133,8 +133,8 @@ Template Post Type: page, campaign
           </button>
           <div
               class="accordion__content-wrap"
-              id="accordion-<?php the_field( 'accordion_section_title' );?>"
-              aria-labelledby="<?php the_field( 'accordion_section_title' );?>"
+              id="accordion-<?php the_sub_field( 'accordion_title' );?>"
+              aria-labelledby="<?php the_sub_field( 'accordion_title' );?>"
               role="region">
             <?php the_sub_field('accordion_content'); ?>
 
@@ -206,7 +206,11 @@ Template Post Type: page, campaign
               <div class="accordion">
                 <div class="inner_accordion__block">
                   <div class="campaign--container inner_accordion--container">
-                    <button class="inner_accordion__btn" role="button" aria-label="Open Accordion" aria-expanded="false">
+                    <button
+                        class="inner_accordion__btn"
+                        aria-controls="accordion-<?php the_sub_field( 'accordion_title' );?>"
+                        aria-expanded="false"
+                        id="<?php the_sub_field( 'accordion_title' );?>">
                       <span><?php echo $accordion_group['accordion_title']; ?></span>
                       <span class="inner_btn-plus">
                         <svg width="30" height="30">
@@ -214,7 +218,11 @@ Template Post Type: page, campaign
                         </svg>
                       </span>
                     </button>
-                    <div class="inner_accordion__content-wrap">
+                    <div
+                        class="inner_accordion__content-wrap"
+                        id="accordion-<?php the_sub_field( 'accordion_title' );?>"
+                        aria-labelledby="<?php the_sub_field( 'accordion_title' );?>"
+                        role="region">>
                       <?php echo $accordion_group['accordion_content']; ?>
                     </div>
                   </div>
