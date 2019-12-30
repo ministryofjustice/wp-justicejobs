@@ -262,16 +262,16 @@ Template Name: Search/Apply Template
          <?php
 
          $big = 999999999; // need an unlikely integer
-          echo paginate_links( array(
-            'base' => str_replace( $big, '%#%', get_pagenum_link( $big, false ) ),
+         echo paginate_links( array(
+            'base' => str_replace( $big, '%#%', get_pagenum_link( $big ) ),
             'format' => '?paged=%#%',
             'mid_size' => 2,
             'current' => max( 1, get_query_var('paged') ),
             'total' => $job_query->max_num_pages,
-            'prev_text' => '<span class="screen-reader-text"> Search results - previous page</span><span aria-hidden="true">PREV</span>',
-            'next_text' => '<span class="screen-reader-text"> Search results - </span>NEXT <span class="screen-reader-text">page</span>',
-            'before_page_number' => '<span class="screen-reader-text"> Search results - page </span>',
-            'after_page_number' => '<span class="screen-reader-text"> of ' . __( $job_query->max_num_pages ). '</span>'
+            'prev_text' => '<span class="screen-reader-text">' . __('Search results - previous page', 'justicejobs') . '</span><span aria-hidden="true">' . __('PREV', 'justicejobs') . '</span>',
+            'next_text' => '<span class="screen-reader-text"> ' . __('Search results', 'justicejobs') . ' -  </span>' . __('NEXT', 'justicejobs') . ' <span class="screen-reader-text">' . __('page', 'justicejobs') . '</span>',
+            'before_page_number' => '<span class="screen-reader-text">' . __('Search results - page', 'justicejobs') . '</span>',
+            'after_page_number' => '<span class="screen-reader-text"> ' . __(' of ', 'justicejobs') . __( $job_query->max_num_pages ) . '</span>'
             ) );
           ?>
        </div>
@@ -388,10 +388,10 @@ Template Name: Search/Apply Template
             'mid_size' => 2,
             'current' => max( 1, get_query_var('paged') ),
             'total' => $job_query->max_num_pages,
-            'prev_text' => '<span class="screen-reader-text"> Search results - previous page</span><span aria-hidden="true">PREV</span>',
-            'next_text' => '<span class="screen-reader-text"> Search results - </span>NEXT <span class="screen-reader-text">page</span>',
-            'before_page_number' => '<span class="screen-reader-text"> Search results - page </span>',
-            'after_page_number' => '<span class="screen-reader-text"> of ' . __( $job_query->max_num_pages ). '</span>'
+            'prev_text' => '<span class="screen-reader-text">' . __('Search results - previous page', 'justicejobs') . '</span><span aria-hidden="true">' . __('PREV', 'justicejobs') . '</span>',
+            'next_text' => '<span class="screen-reader-text"> ' . __('Search results', 'justicejobs') . ' -  </span>' . __('NEXT', 'justicejobs') . ' <span class="screen-reader-text">' . __('page', 'justicejobs') . '</span>',
+            'before_page_number' => '<span class="screen-reader-text">' . __('Search results - page', 'justicejobs') . '</span>',
+            'after_page_number' => '<span class="screen-reader-text"> ' . __(' of ', 'justicejobs') . __( $job_query->max_num_pages ) . '</span>'
             ) );
          ?>
       </div>
