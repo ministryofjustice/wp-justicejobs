@@ -16,11 +16,17 @@ jQuery(document).ready(function ($) {
     };
     ajax.send();
 
-    $('.page-header__checkbox').on('change', e => {
-        if (e.target.checked) {
+    $('.page-header__menu').click(function() {
+        var target = $(this);
+        console.log(target);
+        if (target.hasClass('closed')) {
             $('body').addClass('disable-scrolling');
+            target.removeClass('closed');
+            target.addClass('open');
         } else {
             $('body').removeClass('disable-scrolling');
+            target.removeClass('open');
+            target.addClass('closed');
         }
     });
 

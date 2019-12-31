@@ -977,10 +977,6 @@ a img.aligncenter {
     fill: #fff;
 }
 
-.page-header__checkbox {
-    display: none;
-}
-
 .page-header__menu {
     position: relative;
     width: 30px;
@@ -1035,17 +1031,17 @@ a img.aligncenter {
     bottom: -6px;
 }
 
-.page-header__checkbox:checked ~ .page-header__menu span {
+.page-header__menu.open ~ .page-header__menu span {
     background: transparent;
 }
 
-.page-header__checkbox:checked ~ .page-header__menu span::before {
+.page-header__menu.open ~ .page-header__menu span::before {
     top: 0;
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
 }
 
-.page-header__checkbox:checked ~ .page-header__menu span::after {
+.page-header__menu.open ~ .page-header__menu span::after {
     bottom: 0;
     -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
@@ -1169,7 +1165,7 @@ a img.aligncenter {
     -webkit-tap-highlight-color: transparent;
 }
 
-.page-header__checkbox:checked ~ .page-header__nav-wrap {
+.page-menu.open ~ .page-header__nav-wrap {
     opacity: 1;
     visibility: visible;
 }
