@@ -51,6 +51,9 @@
     <label class="page-header__menu" for="menu">
         <span>MENU</span>
     </label>
+    <button class="page-header__menu closed">
+        <span>MENU<span>
+    </button>
     <nav class="page-header__nav-wrap">
         <?php
 
