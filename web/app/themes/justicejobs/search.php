@@ -237,7 +237,7 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                     ?>
                 </ul>
             </div>
-            <button class="btn btn--blue" role="button">Search jobs</button>
+            <button class="btn btn--blue" role="button" type="submit">Search jobs</button>
             </fieldset>
         </form>
     </div>
