@@ -28,8 +28,8 @@ mix.js([
                 require('imagemin-mozjpeg')({
                     quality: 82,
                     progressive: true,
-                }),
-            ],
+                })
+            ]
         }
     )
     .copy('src/img/*.svg', dist + 'img')
