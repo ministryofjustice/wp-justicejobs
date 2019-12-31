@@ -215,7 +215,7 @@ Template Name: Search/Apply Template
             ?>
           </ul>
         </div>
-        <button class="btn btn--blue" role="button">Search jobs</button>
+        <button class="btn btn--blue" role="button" type="submit">Search jobs</button>
         </fieldset>
     </form>
   </div>
