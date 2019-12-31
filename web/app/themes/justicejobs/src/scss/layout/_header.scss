@@ -77,7 +77,7 @@
     }
   }
 
-  &__checkbox:checked ~ &__menu {
+  &__menu.open ~ &__menu {
     span {
       background: transparent;
 
@@ -300,7 +300,7 @@
   //   }
   // }
 
-  &__checkbox:checked ~ &__nav-wrap {
+  &__menu.open ~ &__nav-wrap {
     opacity: 1;
     visibility: visible;
   }

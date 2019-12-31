@@ -47,10 +47,6 @@
             aria-hidden="true"
         />
     </a>
-    <input type="checkbox" class="page-header__checkbox" id="menu"/>
-    <label class="page-header__menu" for="menu">
-        <span>MENU</span>
-    </label>
     <button class="page-header__menu closed">
         <span>MENU<span>
     </button>
