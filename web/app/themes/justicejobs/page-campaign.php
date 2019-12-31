@@ -5,7 +5,7 @@ Template Post Type: page, campaign
 */
 
 ?>
-<?php get_header(); ?>
+<?php get_header(  ); ?>
 
 <section class="hero">
   <div class="hero__img-block">
@@ -116,18 +116,36 @@ Template Post Type: page, campaign
   <div class="campaign__accordion">
     <h2 class="heading--md"><?php the_field( 'accordion_section_title' );?></h2>
     <div class="accordion">
-      <?php if ( have_rows('accordion') ): while( have_rows('accordion') ): the_row(); ?>
+      <?php
+
+
+
+      if ( have_rows('accordion') ): while( have_rows('accordion') ): the_row();
+
+
+      $accordion_title = get_sub_field('accordion_title');
+      $accordion_title = sanitize_title_with_dashes($accordion_title);
+
+      ?>
       <div class="accordion__block">
         <div class="campaign--container">
-          <button class="accordion__btn" role="button" aria-label="Open Accordion" aria-expanded="false">
-            <span><?php the_sub_field('accordion_title'); ?></span>
+          <button
+              class="accordion__btn"
+              aria-controls="accordion-<?= $accordion_title ?>"
+              aria-expanded="false"
+              id="jj-<?= $accordion_title ?>">
+            <h3><?php the_sub_field('accordion_title'); ?></h3>
             <span class="btn-plus">
               <svg width="30" height="30">
                 <use xlink:href="#icon-plus"></use>
               </svg>
             </span>
           </button>
-          <div class="accordion__content-wrap">
+          <div
+              class="accordion__content-wrap"
+              id="accordion-<?= $accordion_title ?>"
+              aria-labelledby="jj-<?= $accordion_title ?>"
+              role="region">
             <?php the_sub_field('accordion_content'); ?>
 
             <?php
@@ -194,11 +212,17 @@ Template Post Type: page, campaign
               <?php $add_accordion = get_sub_field('add_inner_accordion');
               if ( $add_accordion ):
                 $accordion_group = get_sub_field('inner');
+                $accordion_inner_title = $accordion_group['accordion_title'];
+                $accordion_inner_title = sanitize_title_with_dashes($accordion_inner_title);
               ?>
               <div class="accordion">
                 <div class="inner_accordion__block">
                   <div class="campaign--container inner_accordion--container">
-                    <button class="inner_accordion__btn" role="button" aria-label="Open Accordion" aria-expanded="false">
+                    <button
+                        class="inner_accordion__btn"
+                        aria-controls="accordion-<?= $accordion_inner_title ?>"
+                        aria-expanded="false"
+                        id="jj-<?= $accordion_inner_title ?>">
                       <span><?php echo $accordion_group['accordion_title']; ?></span>
                       <span class="inner_btn-plus">
                         <svg width="30" height="30">
@@ -206,7 +230,11 @@ Template Post Type: page, campaign
                         </svg>
                       </span>
                     </button>
-                    <div class="inner_accordion__content-wrap">
+                    <div
+                        class="inner_accordion__content-wrap"
+                        id="accordion-<?= $accordion_inner_title ?>"
+                        aria-labelledby="jj-<?= $accordion_inner_title ?>"
+                        role="region">>
                       <?php echo $accordion_group['accordion_content']; ?>
                     </div>
                   </div>
