@@ -576,16 +576,17 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                 <?php
 
                 $big = 999999999; // need an unlikely integer
-                echo paginate_links(array(
-                    'base' => str_replace($big, '%#%', get_pagenum_link($big, false)),
+                echo paginate_links( array(
+                    'base' => str_replace( $big, '%#%', get_pagenum_link( $big ) ),
                     'format' => '?paged=%#%',
                     'mid_size' => 2,
-                    'current' => max(1, get_query_var('paged')),
+                    'current' => max( 1, get_query_var('paged') ),
                     'total' => $job_query->max_num_pages,
-                    'prev_text' => 'PREV',
-                    'next_text' => 'NEXT'
-                ));
-
+                    'prev_text' => '<span class="screen-reader-text">' . __('Search results - previous page', 'justicejobs') . '</span><span aria-hidden="true">' . __('PREV', 'justicejobs') . '</span>',
+                    'next_text' => '<span class="screen-reader-text"> ' . __('Search results', 'justicejobs') . ' -  </span>' . __('NEXT', 'justicejobs') . ' <span class="screen-reader-text">' . __('page', 'justicejobs') . '</span>',
+                    'before_page_number' => '<span class="screen-reader-text">' . __('Search results - page', 'justicejobs') . '</span>',
+                    'after_page_number' => '<span class="screen-reader-text"> ' . __(' of ', 'justicejobs') . __( $job_query->max_num_pages ) . '</span>'
+                    ) );
 
                 ?>
             </div>
@@ -713,37 +714,21 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
             <div class="pagination">
 
                 <?php
-
                 $big = 999999999; // need an unlikely integer
-                echo paginate_links(array(
-                    'base' => str_replace($big, '%#%', get_pagenum_link($big, false)),
+                echo paginate_links( array(
+                    'base' => str_replace( $big, '%#%', get_pagenum_link( $big ) ),
                     'format' => '?paged=%#%',
                     'mid_size' => 2,
-                    'current' => max(1, get_query_var('paged')),
+                    'current' => max( 1, get_query_var('paged') ),
                     'total' => $job_query->max_num_pages,
-                    'prev_text' => 'PREV',
-                    'next_text' => 'NEXT'
-                ));
-
+                    'prev_text' => '<span class="screen-reader-text">' . __('Search results - previous page', 'justicejobs') . '</span><span aria-hidden="true">' . __('PREV', 'justicejobs') . '</span>',
+                    'next_text' => '<span class="screen-reader-text"> ' . __('Search results', 'justicejobs') . ' -  </span>' . __('NEXT', 'justicejobs') . ' <span class="screen-reader-text">' . __('page', 'justicejobs') . '</span>',
+                    'before_page_number' => '<span class="screen-reader-text">' . __('Search results - page', 'justicejobs') . '</span>',
+                    'after_page_number' => '<span class="screen-reader-text"> ' . __(' of ', 'justicejobs') . __( $job_query->max_num_pages ) . '</span>'
+                    ) );
 
                 ?>
             </div>
-            <!--
-           <ul class="pagination">
-             <li><a class="current" href="#">1</a></li>
-             <li><a href="#">2</a></li>
-             <li><a href="#">3</a></li>
-             <li><a href="#">4</a></li>
-             <li>
-               <a class="next" href="#">
-                 NEXT
-                 <svg width="9" height="13">
-                   <use xlink:href="#icon-arrow"></use>
-                 </svg>
-               </a>
-             </li>
-           </ul>
-           -->
         </footer>
     </div>
 </div>
