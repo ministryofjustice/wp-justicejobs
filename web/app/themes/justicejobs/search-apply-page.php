@@ -220,6 +220,7 @@ Template Name: Search/Apply Template
     </form>
   </div>
   <div class="search_contain__wrap">
+    <!-- This is all a bit redundant - if you're using keyboard, you'd navigat to the visible list/map toggle button a bit later on. To remove once I've finished this PR.
     <label for="list-view" class="screen-reader-text">Select List View</label>
     <input
       class="search_contain__radio search_contain__radio--list"
@@ -238,7 +239,7 @@ Template Name: Search/Apply Template
       aria-label="Select Map View"
       aria-pressed="true"
       checked
-    />
+    /> -->
     <header>
 
       <?php
@@ -276,7 +277,24 @@ Template Name: Search/Apply Template
           ?>
        </div>
 
-      <div class="search_contain__controls">
+
+       <div class="search_contain__controls">
+         <span>VIEW BY</span>
+          <button class="search_contain__label search_contain__label--list">
+            List
+            <svg width="28" height="28">
+                <use xlink:href="#icon-list"></use>
+            </svg>
+          </button>
+          <button class="search_contain__label search_contain__label--map">
+              MAP
+              <svg width="17" height="24">
+                  <use xlink:href="#icon-marker"></use>
+              </svg>
+          </button>
+        </div>
+
+      <!-- <div class="search_contain__controls">
         <span>VIEW BY</span>
         <label class="search_contain__label search_contain__label--list" for="list-view">
           List
@@ -290,7 +308,8 @@ Template Name: Search/Apply Template
             <use xlink:href="#icon-marker"></use>
           </svg>
         </label>
-      </div>
+      </div> -->
+
     </header>
     <div class="search_contain__container">
       <div class="search_contain__list-wrap">
@@ -366,7 +385,7 @@ Template Name: Search/Apply Template
         </table>
       </div>
 
-      <div class="search_contain__map-wrap">
+      <div class="search_contain__map-wrap" id="js-show-map">
         <div
           class="map"
           id="map"

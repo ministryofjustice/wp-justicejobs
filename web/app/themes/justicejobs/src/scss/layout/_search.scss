@@ -52,7 +52,6 @@
         @include respond-to(md) {
             display: flex;
             align-items: flex-start;
-            //color: #9b9b9b;
             color: #000;
             font-size: 1.4rem;
             font-weight: 700;
@@ -64,32 +63,25 @@
             }
         }
     }
-    &__radio {
-        display: none;
-    }
     &__label {
         margin-left: 15px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        //font-weight: 300;
         font-weight: 400;
         cursor: pointer;
         @include transition;
         svg {
             margin-top: 10px;
-            //fill: rgba(#000, 0.08);
             fill: rgba(#000, 1);
             @include transition;
         }
     }
-    &__radio--map:checked~header &__label--map,
-    &__radio--list:checked~header &__label--list {
-        //color: $mid-blue;
+    &__container#js-show-map &__label--map,
+    &__container#js-show-map~header &__label--list {
         color: #000;
         svg {
             fill: $mid-blue;
-            //color: #000;
         }
     }
     &__container {
@@ -103,7 +95,7 @@
         visibility: hidden;
         transform: translateX(100%);
     }
-    &__radio--map:checked~&__container &__map-wrap {
+    &__map-wrap#js-show-map {
         transform: translateX(0);
         opacity: 1;
         visibility: visible;
@@ -134,7 +126,7 @@
             background-color: $light-blue;
         }
     }
-    &__radio--map:checked~&__container &__list-wrap {
+    &__map-wrap#js-show-map~&__list-wrap {
         max-height: 75vh;
         overflow-y: auto;
         overflow-x: hidden;
@@ -170,7 +162,7 @@
             text-align: left;
         }
     }
-    &__radio--map:checked~&__container &__heading {
+    &__map-wrap#js-show-map~&__container &__heading {
         display: none;
     }
     &__item {
@@ -217,7 +209,7 @@
             }
         }
     }
-    &__radio--map:checked~&__container &__item {
+    &__map-wrap#js-show-map~&__container &__item {
         margin-bottom: 30px;
         padding-bottom: 15px;
         display: flex;
@@ -257,7 +249,7 @@
             }
         }
     }
-    &__radio--map:checked~&__container .btn--small {
+    &__map-wrap#js-show-map~&__container .btn--small {
         @include respond-to(md) {
             font-size: 1.8rem;
             min-width: 175px;
