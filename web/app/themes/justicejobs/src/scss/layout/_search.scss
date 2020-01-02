@@ -95,7 +95,7 @@
         visibility: hidden;
         transform: translateX(100%);
     }
-    &__map-wrap#js-show-map {
+    &__container#js-show-map > &__map-wrap {
         transform: translateX(0);
         opacity: 1;
         visibility: visible;
@@ -126,7 +126,7 @@
             background-color: $light-blue;
         }
     }
-    &__map-wrap#js-show-map~&__list-wrap {
+    &__container#js-show-map > &__list-wrap {
         max-height: 75vh;
         overflow-y: auto;
         overflow-x: hidden;
@@ -162,7 +162,7 @@
             text-align: left;
         }
     }
-    &__map-wrap#js-show-map~&__container &__heading {
+    &__container#js-show-map &__heading {
         display: none;
     }
     &__item {
@@ -209,7 +209,7 @@
             }
         }
     }
-    &__map-wrap#js-show-map~&__container &__item {
+    &__container#js-show-map &__item {
         margin-bottom: 30px;
         padding-bottom: 15px;
         display: flex;
@@ -249,7 +249,7 @@
             }
         }
     }
-    &__map-wrap#js-show-map~&__container .btn--small {
+    &__container#js-show-map .btn--small {
         @include respond-to(md) {
             font-size: 1.8rem;
             min-width: 175px;

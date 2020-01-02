@@ -21,13 +21,13 @@ The Map Functionality
 	// Toggle map appearing
 	// add a class to map-wrap
 	$('.search_contain__label--list').on('click', function (e) {
-		$('.search_contain__map-wrap').removeAttr('id', 'js-show-map');
-		$('.search_contain__map-wrap').attr('id', 'js-hide-map');
+		$('.search_contain__container').removeAttr('id', 'js-show-map');
+		$('.search_contain__container').attr('id', 'js-hide-map');
 	});
 
 	$('.search_contain__label--map').on('click', function (e) {
-		$('.search_contain__map-wrap').removeAttr('id', 'js-hide-map');
-		$('.search_contain__map-wrap').attr('id', 'js-show-map');
+		$('.search_contain__container').removeAttr('id', 'js-hide-map');
+		$('.search_contain__container').attr('id', 'js-show-map');
 	});
 
 	if ($('.search_contain__map-wrap').length) {
