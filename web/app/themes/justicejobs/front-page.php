@@ -4,14 +4,14 @@
   <div class="hero__img-block">
     <div
       class="hero__img hero__img--desktop"
-      style="background-image: url('<?php the_field( 'hero_desktop_image' ); ?>');"
+      style="background-image: url('<?php the_field('hero_desktop_image'); ?>');"
     ></div>
     <div
       class="hero__img hero__img--mobile"
-      style="background-image: url('<?php the_field( 'hero_mobile_image' ); ?>');"
+      style="background-image: url('<?php the_field('hero_mobile_image'); ?>');"
     ></div>
     <div class="hero__img_description">
-      <?php the_field( 'hero_image_description' ); ?>
+      <?php the_field('hero_image_description'); ?>
     </div>
     <svg class="hero__line" width="843" height="83">
       <use xlink:href="#icon-decor-line-2"></use>
@@ -21,7 +21,7 @@
         <svg class="hero__arrow hero__arrow--top" width="37" height="24">
           <use xlink:href="#icon-arrow--decor"></use>
         </svg>
-        <h1 class="heading--lg"><?php the_field( 'hero_title' ); ?></h1>
+        <h1 class="heading--lg"><?php the_field('hero_title'); ?></h1>
         <svg
           class="hero__arrow hero__arrow--bottom"
           width="37"
@@ -40,17 +40,17 @@
   <div class="hero__search">
     <div id="allLocations" data-user-location='<?php echo $_location; ?>' data-relevant-terms=''>
       <?php
-      $terms = get_terms( array(
+        $terms = get_terms(array(
           'taxonomy' => 'job_location',
           'hide_empty' => true,
-      ) );
-      if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
-          foreach ( $terms as $term ) {
-            $thisJobSite = get_field('the_job_location', $term); ?>
+        ));
+        if (! empty($terms) && ! is_wp_error($terms)) {
+            foreach ($terms as $term) {
+                $thisJobSite = get_field('the_job_location', $term); ?>
             <li data-name="<?php echo $term->name; ?>" data-id="<?php echo $term->term_id; ?>"  data-lat='<?php echo $thisJobSite['lat']; ?>' data-lng='<?php echo $thisJobSite['lng']; ?>'></li>
-          <?php }
-      }
-    ?>
+            <?php }
+        }
+        ?>
     </div>
     <form id="mini-search-form">
     <fieldset class="hero__search--fieldset">
@@ -88,12 +88,12 @@
             <li data-slug="all">All Role Types</li>
             <?php
 
-            $terms = get_terms( array(
+            $terms = get_terms(array(
                 'taxonomy' => 'role_type',
                 'hide_empty' => true,
-            ) );          if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
-                foreach ( $terms as $term ) {
-                  echo '<li data-slug="' . $term->slug . '">' . $term->name . '</li>';
+            ));          if (! empty($terms) && ! is_wp_error($terms)) {
+                foreach ($terms as $term) {
+                    echo '<li data-slug="' . $term->slug . '">' . $term->name . '</li>';
                 }
             }
 
@@ -134,37 +134,37 @@
 
 
 <?php
-  $add_carousel = get_field( 'add_latest_roles_carousel' );
-    if ( $add_carousel == 1 ):
-  ?>
+  $add_carousel = get_field('add_latest_roles_carousel');
+if ($add_carousel == 1) :
+    ?>
   <div class="hero__carousel">
     <div class="carousel">
       <div class="carousel__dots"></div>
 
-      <?php if( have_rows( 'latest_roles_carousel' ) ): ?>
-
+    <?php if (have_rows('latest_roles_carousel')) : ?>
       <div class="carousel__container">
-        <?php while( have_rows( 'latest_roles_carousel' ) ): the_row();
-        $agency_name = get_sub_field( 'agency_name' );
-        $position_title = get_sub_field( 'position_title' );
-        $position_location = get_sub_field( ' position_location' );
-        $more_link = get_sub_field( 'find-out-more_link' );
-        ?>
+            <?php while (have_rows('latest_roles_carousel')) :
+                the_row();
+                $agency_name = get_sub_field('agency_name');
+                $position_title = get_sub_field('position_title');
+                $position_location = get_sub_field(' position_location');
+                $more_link = get_sub_field('find-out-more_link');
+                ?>
         <div class="carousel__slide">
           <div class="carousel__wrap">
             <span class="heading--xxs"><?php echo $agency_name; ?></span>
             <h3 class="heading--sm"><?php echo $position_title; ?></h3>
             <span class="heading--xxs"><?php echo $position_location; ?></span>
 
-            <a href="<?php echo esc_url( $more_link['url'] ); ?>" class="btn-secondary btn-secondary--light">
-              <?php echo esc_html( $more_link['title'] ); ?>
+            <a href="<?php echo esc_url($more_link['url']); ?>" class="btn-secondary btn-secondary--light">
+                <?php echo esc_html($more_link['title']); ?>
               <svg width="8" height="13">
                 <use xlink:href="#icon-arrow"></use>
               </svg>
             </a>
           </div>
         </div>
-      <?php endwhile; ?>
+            <?php endwhile; ?>
       </div>
     <?php endif; ?>
       <div class="carousel__controls">
@@ -186,13 +186,13 @@
 
 <div class="about" id="work">
   <div class="about__text-wrap">
-    <h2 class="heading--md"><?php the_field( 'working_with_us_title' ); ?></h2>
+    <h2 class="heading--md"><?php the_field('working_with_us_title'); ?></h2>
     <p>
-      <?php $working_with_us_text = get_field( 'working_with_us_text' );
-      if ($working_with_us_text) {
-        echo $working_with_us_text;
-      }
-      ?>
+      <?php $working_with_us_text = get_field('working_with_us_text');
+        if ($working_with_us_text) {
+            echo $working_with_us_text;
+        }
+        ?>
     </p>
   </div>
 </div>
@@ -203,23 +203,23 @@ $args = array(
   'orderby' => 'date',
   'order' => 'ASC'
 );
-$the_query = new WP_Query( $args );
+$the_query = new WP_Query($args);
 
 
-if( $the_query->have_posts() ): ?>
-
+if ($the_query->have_posts()) : ?>
   <div class="about__container" id="agencies-grid">
 
-    <?php while( $the_query->have_posts() ): $the_query->the_post();
-    $post_id = get_the_id();
+    <?php while ($the_query->have_posts()) :
+        $the_query->the_post();
+        $post_id = get_the_id();
 
-    $featured_img_url = get_field( 'agency_hero_desktop_image' );
-    $agency_logo = get_field( 'agency_logo_white' );
-    $agency_name = get_the_title( $post_id );
-    $agency_link = get_post_permalink( $post_id );
-    $agency_colour = get_field('agency_colour');
+        $featured_img_url = get_field('agency_hero_desktop_image');
+        $agency_logo = get_field('agency_logo_white');
+        $agency_name = get_the_title($post_id);
+        $agency_link = get_post_permalink($post_id);
+        $agency_colour = get_field('agency_colour');
 
-    ?>
+        ?>
 
       <a
         href="<?php echo $agency_link; ?>"
@@ -250,23 +250,27 @@ if( $the_query->have_posts() ): ?>
     <?php endwhile; ?>
   </div>
 
-<?php wp_reset_postdata(); endif; ?>
-
+    <?php wp_reset_postdata();
+endif; ?>
 
 <div class="awards">
-  <?php if( have_rows( 'awards' ) ): ?>
   <div class="awards__container">
     <div class="awards-carousel">
-      <?php while( have_rows( 'awards' ) ): the_row(); ?>
+    <?php
+
+    // Award gallery ACF field
+    $images = get_field('award_gallery');
+
+    foreach ($images as $image) : ?>
       <div class="awards__slide">
         <div class="awards__img-wrap">
-          <img src="<?php the_sub_field('award_logo'); ?>" wdith="97" height="67" alt="" />
-        </div>
+        <img src="<?php echo $image['url'] ; ?>" width="<?php echo $image['sizes']['thumbnail-width']; ?>" height="<?php echo $image['sizes']['thumbnail-height']; ?>" alt="<?php echo $image['alt'] ; ?>" />
       </div>
-      <?php endwhile; ?>
+      </div>
+    <?php endforeach; ?>
     </div>
   </div>
-  <?php endif; ?>
+
 </div>
 
 <?php get_footer(); ?>
