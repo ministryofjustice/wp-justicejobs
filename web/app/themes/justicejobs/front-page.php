@@ -33,7 +33,7 @@
       <p>
         <?php the_field('hero_text');?>
       </p>
-      <a href="<?php bloginfo('url');?>/search-page/" class="btn btn--bw">Search & Apply</a>
+      <a href="<?php bloginfo('url');?>/search-page/" class="btn btn--bw search-page-link ga-nav-top-right">Search & Apply</a>
     </div>
   </div>
 
@@ -115,7 +115,6 @@
               aria-label="Radius (in miles)"
               data-cur="10"
               class="dropdown__current input"
-              placeholder="Radius (miles)"
             >
             <option value="5 miles">5 miles</option>
             <option value="10 miles">10 miles</option>
@@ -128,7 +127,7 @@
             </svg>
           </div>
         </div>
-        <button class="btn btn--blue btn--full" type="submit">Search jobs</button>
+        <button class="btn btn--blue btn--full search-page-link ga-mini-home-form-button" type="submit">Search jobs</button>
       </fieldset>
     </form>
   </div>

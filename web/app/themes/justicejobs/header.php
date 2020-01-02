@@ -45,6 +45,6 @@
         ?>
 
     </nav>
-    <a href="<?php bloginfo('url'); ?>/search-page/" class="btn btn--bw">Search & Apply</a>
+    <a href="<?php bloginfo('url'); ?>/search-page/" class="btn btn--bw search-page-link ga-nav-top-right">Search & Apply</a>
 </header>
 <main id="main-content-hook">
