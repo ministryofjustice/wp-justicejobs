@@ -62,182 +62,181 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
     <div class="filter">
         <form action="#" id="search-form">
             <fieldset class="filter__fieldset">
-            <div class="header">
-                <legend class="heading--sm">Refine by:</legend>
-                <button class="filter__reset" id="reset" role="button">Reset</button>
-            </div>
-            <label for="keyword" class="screen-reader-text">Keyword</label>
-            <input aria-label="Keyword" type="text" class="input" placeholder="Keyword" name="keyword" id="keyword"
-                   value="<?php echo $search_query; ?>"/>
-            <span class="filter__label">Roles</span>
-            <div class="dropdown">
-                <div class="dropdown__wrap">
-                    <label for="role-type" class="screen-reader-text">Role Type</label>
-                    <input
-                        id="role-type"
-                        name="role-type"
-                        aria-label="Role Type"
-                        data-cur="<?php echo $_role_type; ?>"
-                        class="dropdown__current input"
-                        value=""
-                        placeholder="Role Type"
-                        readonly
-                    />
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="8"
-                        height="13"
-                        viewBox="0 0 7.6 11.52"
-                    >
-                        <path
-                            d="M7.6,5.71a1.61,1.61,0,0,1-.5,1.1l-4.6,4.3a1.27,1.27,0,0,1-1,.4A1.54,1.54,0,0,1,0,10a1.61,1.61,0,0,1,.5-1.1l1-1L4,5.71,1.6,3.41l-1-1A1.46,1.46,0,0,1,.83.36L.9.31A1.68,1.68,0,0,1,2.7.21l4.5,4.4A1.55,1.55,0,0,1,7.6,5.71Z"
-                        />
-                    </svg>
+                <div class="header">
+                    <legend class="heading--sm">Refine by:</legend>
+                    <button class="filter__reset" id="reset" role="button">Reset</button>
                 </div>
-                <ul class="dropdown__list">
-                    <li data-slug="all">All Role Types</li>
-                    <?php
+                <label for="keyword" class="screen-reader-text">Keyword</label>
+                <input aria-label="Keyword" type="text" class="input" placeholder="Keyword" name="keyword" id="keyword"
+                       value="<?php echo $search_query; ?>"/>
+                <span class="filter__label">Roles</span>
+                <div class="dropdown">
+                    <div class="dropdown__wrap">
+                        <label for="role-type" class="screen-reader-text">Role Type</label>
+                        <input
+                            id="role-type"
+                            name="role-type"
+                            aria-label="Role Type"
+                            data-cur="<?php echo $_role_type; ?>"
+                            class="dropdown__current input"
+                            value=""
+                            placeholder="Role Type"
+                            readonly
+                        />
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="8"
+                            height="13"
+                            viewBox="0 0 7.6 11.52"
+                        >
+                            <path
+                                d="M7.6,5.71a1.61,1.61,0,0,1-.5,1.1l-4.6,4.3a1.27,1.27,0,0,1-1,.4A1.54,1.54,0,0,1,0,10a1.61,1.61,0,0,1,.5-1.1l1-1L4,5.71,1.6,3.41l-1-1A1.46,1.46,0,0,1,.83.36L.9.31A1.68,1.68,0,0,1,2.7.21l4.5,4.4A1.55,1.55,0,0,1,7.6,5.71Z"
+                            />
+                        </svg>
+                    </div>
+                    <ul class="dropdown__list">
+                        <li data-slug="all">All Role Types</li>
+                        <?php
 
-                    $terms = get_terms(array(
-                        'taxonomy' => 'role_type',
-                        'hide_empty' => true,
-                    ));
-                    if (!empty($terms) && !is_wp_error($terms)) {
-                        foreach ($terms as $term) {
-                            echo '<li data-slug="' . $term->slug . '">' . $term->name . '</li>';
+                        $terms = get_terms(array(
+                            'taxonomy' => 'role_type',
+                            'hide_empty' => true,
+                        ));
+                        if (!empty($terms) && !is_wp_error($terms)) {
+                            foreach ($terms as $term) {
+                                echo '<li data-slug="' . $term->slug . '">' . $term->name . '</li>';
+                            }
                         }
-                    }
 
-                    ?>
-                </ul>
-            </div>
-            <span class="filter__label">Location</span>
-            <label for="location" class="screen-reader-text">Location</label>
-            <input id="location" aria-label="Location" name="location" type="text" class="input"
-                   placeholder="City / Postcode" value="<?php echo $_location; ?>"/>
-            <div class="dropdown">
-                <div class="dropdown__wrap">
-                    <label for="radius" class="screen-reader-text">Radius (in miles)</label>
-                    <input
-                        id="radius"
-                        name='radius'
-                        aria-label="Radius (in miles)"
-                        data-cur="<?php if (!empty($_radius)) {
-                            echo (int)trim($_radius);
-                        } else {
-                            echo 10;
-                        } ?>"
-                        class="dropdown__current input"
-                        value="<?php if (!empty($_radius)) {
-                            echo (int)trim($_radius) . ' Miles';
-                        } else {
-                            echo '';
-                        } ?>"
-                        placeholder="Radius (miles)"
-                        readonly
-                    />
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="8"
-                        height="13"
-                        viewBox="0 0 7.6 11.52"
-                    >
-                        <path
-                            d="M7.6,5.71a1.61,1.61,0,0,1-.5,1.1l-4.6,4.3a1.27,1.27,0,0,1-1,.4A1.54,1.54,0,0,1,0,10a1.61,1.61,0,0,1,.5-1.1l1-1L4,5.71,1.6,3.41l-1-1A1.46,1.46,0,0,1,.83.36L.9.31A1.68,1.68,0,0,1,2.7.21l4.5,4.4A1.55,1.55,0,0,1,7.6,5.71Z"
-                        />
-                    </svg>
+                        ?>
+                    </ul>
                 </div>
-                <ul class="dropdown__list">
-                    <li data-slug="5">5 Miles</li>
-                    <li data-slug="10">10 Miles</li>
-                    <li data-slug="25">25 Miles</li>
-                    <li data-slug="50">50 Miles</li>
-                </ul>
-            </div>
-            <span class="filter__label">Salary Range</span>
-            <div class="dropdown">
-                <div class="dropdown__wrap">
-                    <label for="salary-range" class="screen-reader-text">Salary Range</label>
-                    <input
-                        id="salary-range"
-                        name="salary-range"
-                        aria-label="Salary Range"
-                        data-cur="<?php echo $_salary_range; ?>"
-                        class="dropdown__current input"
-                        value=""
-                        placeholder="Salary Range"
-                        readonly
-                    />
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="8"
-                        height="13"
-                        viewBox="0 0 7.6 11.52"
-                    >
-                        <path
-                            d="M7.6,5.71a1.61,1.61,0,0,1-.5,1.1l-4.6,4.3a1.27,1.27,0,0,1-1,.4A1.54,1.54,0,0,1,0,10a1.61,1.61,0,0,1,.5-1.1l1-1L4,5.71,1.6,3.41l-1-1A1.46,1.46,0,0,1,.83.36L.9.31A1.68,1.68,0,0,1,2.7.21l4.5,4.4A1.55,1.55,0,0,1,7.6,5.71Z"
+                <span class="filter__label">Location</span>
+                <label for="location" class="screen-reader-text">Location</label>
+                <input id="location" aria-label="Location" name="location" type="text" class="input"
+                       placeholder="City / Postcode" value="<?php echo $_location; ?>"/>
+                <div class="dropdown">
+                    <div class="dropdown__wrap">
+                        <label for="radius" class="screen-reader-text">Radius (in miles)</label>
+                        <input
+                            id="radius"
+                            name='radius'
+                            aria-label="Radius (in miles)"
+                            data-cur="<?php if (!empty($_radius)) {
+                                echo (int)trim($_radius);
+                            } else {
+                                echo 10;
+                            } ?>"
+                            class="dropdown__current input"
+                            value="<?php if (!empty($_radius)) {
+                                echo (int)trim($_radius) . ' Miles';
+                            } else {
+                                echo '';
+                            } ?>"
+                            placeholder="Radius (miles)"
+                            readonly
                         />
-                    </svg>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="8"
+                            height="13"
+                            viewBox="0 0 7.6 11.52"
+                        >
+                            <path
+                                d="M7.6,5.71a1.61,1.61,0,0,1-.5,1.1l-4.6,4.3a1.27,1.27,0,0,1-1,.4A1.54,1.54,0,0,1,0,10a1.61,1.61,0,0,1,.5-1.1l1-1L4,5.71,1.6,3.41l-1-1A1.46,1.46,0,0,1,.83.36L.9.31A1.68,1.68,0,0,1,2.7.21l4.5,4.4A1.55,1.55,0,0,1,7.6,5.71Z"
+                            />
+                        </svg>
+                    </div>
+                    <ul class="dropdown__list">
+                        <li data-slug="5">5 Miles</li>
+                        <li data-slug="10">10 Miles</li>
+                        <li data-slug="25">25 Miles</li>
+                        <li data-slug="50">50 Miles</li>
+                    </ul>
                 </div>
-                <ul class="dropdown__list">
-                    <li data-slug="all">All Salary Ranges</li>
-                    <?php
+                <span class="filter__label">Salary Range</span>
+                <div class="dropdown">
+                    <div class="dropdown__wrap">
+                        <label for="salary-range" class="screen-reader-text">Salary Range</label>
+                        <input
+                            id="salary-range"
+                            name="salary-range"
+                            aria-label="Salary Range"
+                            data-cur="<?php echo $_salary_range; ?>"
+                            class="dropdown__current input"
+                            value=""
+                            placeholder="Salary Range"
+                            readonly
+                        />
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="8"
+                            height="13"
+                            viewBox="0 0 7.6 11.52"
+                        >
+                            <path
+                                d="M7.6,5.71a1.61,1.61,0,0,1-.5,1.1l-4.6,4.3a1.27,1.27,0,0,1-1,.4A1.54,1.54,0,0,1,0,10a1.61,1.61,0,0,1,.5-1.1l1-1L4,5.71,1.6,3.41l-1-1A1.46,1.46,0,0,1,.83.36L.9.31A1.68,1.68,0,0,1,2.7.21l4.5,4.4A1.55,1.55,0,0,1,7.6,5.71Z"
+                            />
+                        </svg>
+                    </div>
+                    <ul class="dropdown__list">
+                        <li data-slug="all">All Salary Ranges</li>
+                        <?php
 
-                    $terms = get_terms(array(
-                        'taxonomy' => 'salary_range',
-                        'hide_empty' => true,
-                    ));
-                    if (!empty($terms) && !is_wp_error($terms)) {
-                        foreach ($terms as $term) {
-                            echo '<li data-slug=' . $term->slug . '>' . $term->name . '</li>';
+                        $terms = get_terms(array(
+                            'taxonomy' => 'salary_range',
+                            'hide_empty' => true,
+                        ));
+                        if (!empty($terms) && !is_wp_error($terms)) {
+                            foreach ($terms as $term) {
+                                echo '<li data-slug=' . $term->slug . '>' . $term->name . '</li>';
+                            }
                         }
-                    }
 
-                    ?>
-                </ul>
-            </div>
-            <span class="filter__label">Working Pattern</span>
-            <div class="dropdown">
-                <div class="dropdown__wrap">
-                    <label for="working-pattern" class="screen-reader-text">Working Pattern</label>
-                    <input
-                        id="working-pattern"
-                        name="working-pattern"
-                        aria-label="Working Pattern"
-                        data-cur="<?php echo $_working_pattern; ?>"
-                        class="dropdown__current input"
-                        placeholder="Working Pattern"
-                        readonly
-                    />
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="8"
-                        height="13"
-                        viewBox="0 0 7.6 11.52"
-                    >
-                        <path
-                            d="M7.6,5.71a1.61,1.61,0,0,1-.5,1.1l-4.6,4.3a1.27,1.27,0,0,1-1,.4A1.54,1.54,0,0,1,0,10a1.61,1.61,0,0,1,.5-1.1l1-1L4,5.71,1.6,3.41l-1-1A1.46,1.46,0,0,1,.83.36L.9.31A1.68,1.68,0,0,1,2.7.21l4.5,4.4A1.55,1.55,0,0,1,7.6,5.71Z"
-                        />
-                    </svg>
+                        ?>
+                    </ul>
                 </div>
-                <ul class="dropdown__list">
-                    <li data-slug="all">All Working Patterns</li>
-                    <?php
+                <span class="filter__label">Working Pattern</span>
+                <div class="dropdown">
+                    <div class="dropdown__wrap">
+                        <label for="working-pattern" class="screen-reader-text">Working Pattern</label>
+                        <input
+                            id="working-pattern"
+                            name="working-pattern"
+                            aria-label="Working Pattern"
+                            data-cur="<?php echo $_working_pattern; ?>"
+                            class="dropdown__current input"
+                            placeholder="Working Pattern"
+                            readonly
+                        />
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="8"
+                            height="13"
+                            viewBox="0 0 7.6 11.52"
+                        >
+                            <path
+                                d="M7.6,5.71a1.61,1.61,0,0,1-.5,1.1l-4.6,4.3a1.27,1.27,0,0,1-1,.4A1.54,1.54,0,0,1,0,10a1.61,1.61,0,0,1,.5-1.1l1-1L4,5.71,1.6,3.41l-1-1A1.46,1.46,0,0,1,.83.36L.9.31A1.68,1.68,0,0,1,2.7.21l4.5,4.4A1.55,1.55,0,0,1,7.6,5.71Z"
+                            />
+                        </svg>
+                    </div>
+                    <ul class="dropdown__list">
+                        <li data-slug="all">All Working Patterns</li>
+                        <?php
 
-                    $terms = get_terms(array(
-                        'taxonomy' => 'working_pattern',
-                        'hide_empty' => true,
-                    ));
-                    if (!empty($terms) && !is_wp_error($terms)) {
-                        foreach ($terms as $term) {
-                            echo '<li data-slug=' . $term->slug . '>' . $term->name . '</li>';
+                        $terms = get_terms(array(
+                            'taxonomy' => 'working_pattern',
+                            'hide_empty' => true,
+                        ));
+                        if (!empty($terms) && !is_wp_error($terms)) {
+                            foreach ($terms as $term) {
+                                echo '<li data-slug=' . $term->slug . '>' . $term->name . '</li>';
+                            }
                         }
-                    }
-
-                    ?>
-                </ul>
-            </div>
-            <button class="btn btn--blue" role="button" type="submit">Search jobs</button>
+                        ?>
+                    </ul>
+                </div>
+                <button class="btn btn--blue search-page-link ga-main-form-button" role="button" type="submit">Search jobs</button>
             </fieldset>
         </form>
     </div>

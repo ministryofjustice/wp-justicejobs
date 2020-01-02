@@ -82,8 +82,9 @@ function enqueue_justice_jobs_scripts()
     wp_enqueue_style('core-css', mix_asset('/css/main.min.css'), array(), null, 'all');
 
     // JS and jQuery
-    wp_enqueue_script('slick-js', mix_asset('/js/slick.min.js'), array('jquery'));
+    wp_enqueue_script('slick-js', mix_asset('/js/slick.min.js'), array('jquery', 'core-js'), null, true);
     wp_enqueue_script('core-js', mix_asset('/js/main.min.js'), array('jquery'), null, true);
+    wp_enqueue_script('jj-gtm', mix_asset('/js/jj-gtm.min.js'), array('jquery'));
 
     // Third party vendor scripts
     wp_deregister_script('jquery'); // This removes jquery shipped with WP so that we can add our own.
@@ -112,8 +113,23 @@ function add_specific_menu_location_atts($atts, $item, $args)
 {
     // check if the item is in the header menu
     if ($args->theme_location == 'header-main-menu') {
+        /*echo '<pre style="font-size: 0.8em">' . print_r($args, true) . '</pre>';
+        echo '<pre style="font-size: 0.8em">' . print_r($item, true) . '</pre>';*/
+
         // add desired attributes:
         $atts['class'] = 'jj-nav-primary';
+
+        // detect search page link by class in menu and drop classes
+        if (in_array('search-page-link', $item->classes)) {
+            $atts['class'] = 'search-page-link ga-nav-primary';
+        }
+    }
+
+    // check if the item is in the footer menu
+    if ($args->theme_location == 'footer-menu') {
+
+        // add desired attributes:
+        $atts['class'] = 'jj-nav-footer';
     }
     return $atts;
 }
@@ -148,7 +164,7 @@ add_filter('mce_buttons_2', 'add_style_select_buttons');
 
 
 //Add custom styles to the Wysiwyg editor
-function my_custom_styles($init_array)
+function moj_custom_styles($init_array)
 {
 
     $style_formats = array(
@@ -168,7 +184,7 @@ function my_custom_styles($init_array)
 }
 
 // Attach callback to 'tiny_mce_before_init'
-add_filter('tiny_mce_before_init', 'my_custom_styles');
+add_filter('tiny_mce_before_init', 'moj_custom_styles');
 
 // ************ Cron Jobs for Jobs Feed ****************************************
 // Create custom cron interval
@@ -282,25 +298,25 @@ if ( ! wp_next_scheduled( 'updatejobs_cron_hook' ) ) {
 /**
  * Custom functions that act independently of the theme templates.
  */
-require get_template_directory() . '/inc/extras.php';
-require get_template_directory() . '/inc/maps-endpoint.php';
+require 'inc/extras.php';
+require 'inc/maps-endpoint.php';
 
 /**
  * Load Custom Posts file
  */
-require get_template_directory() . '/inc/custom-posts.php';
+require 'inc/custom-posts.php';
 
 /**
  * Load Jobs Handler file
  */
-require get_template_directory() . '/inc/jobs-handler/save-jobs-xmlfile.php';
-require get_template_directory() . '/inc/jobs-handler/add-edit-jobs.php';
-require get_template_directory() . '/inc/jobs-handler/job-search.php';
+require 'inc/jobs-handler/save-jobs-xmlfile.php';
+require 'inc/jobs-handler/add-edit-jobs.php';
+require 'inc/jobs-handler/job-search.php';
 
 /**
  * Load Custom Taxonomies file
  */
-require get_template_directory() . '/inc/custom-taxonomies.php';
+require 'inc/custom-taxonomies.php';
 
 /* TEST IMPORT. TO REMOVE ON LAUNCH */
 add_action('wp', 'test_import');
@@ -329,3 +345,11 @@ function rj_add_query_vars_filter($vars)
 }
 
 add_filter('query_vars', 'rj_add_query_vars_filter');
+
+/**
+ * clean some stuff from the head...
+ */
+remove_action('wp_head', 'rsd_link'); // blog editing link
+remove_action('wp_head', 'wlwmanifest_link'); // windows blog editing link
+remove_action('wp_head', 'wp_generator'); // remove version declaration
+
