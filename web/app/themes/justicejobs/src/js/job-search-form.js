@@ -1,38 +1,38 @@
 /*
 The Job Form Search Functionality
 */
-jQuery(document).ready(function($) {
+jQuery(document).ready(function ($) {
 
     var resultsViewWrapper = $('.search_contain__container');
     var listButton = $('.search_contain__label--list');
     var mapButton = $('.search_contain__label--map');
 
-    listButton.on('click', function (e) {
+    listButton.on('click', function () {
         resultsViewWrapper.removeAttr('id', 'js-show-map').attr('id', 'js-hide-map');
         mapButton.removeAttr('aria-pressed', 'true').attr('aria-pressed', 'false');
         listButton.removeAttr('aria-pressed', 'false').attr('aria-pressed', 'true');
     });
 
-    mapButton.on('click', function (e) {
+    mapButton.on('click', function () {
         resultsViewWrapper.removeAttr('id', 'js-hide-map').attr('id', 'js-show-map');
         listButton.removeAttr('aria-pressed', 'true').attr('aria-pressed', 'false');
         mapButton.removeAttr('aria-pressed', 'false').attr('aria-pressed', 'true');
     });
 
-    $('.dropdown__list').children('li').on('click', function(){
+    $('.dropdown__list').children('li').on('click', function () {
         var thisSelection = $(this).attr('data-slug');
         $(this).parent().siblings('.dropdown__wrap').children('input').attr('data-cur', thisSelection);
 
     });
 
-    $('#reset').click(function() {
-        $(':input','#search-form')
+    $('#reset').click(function () {
+        $(':input', '#search-form')
             .not(':button, :submit, :reset, :hidden')
             .val('')
             .removeAttr('checked')
             .removeAttr('selected')
             .attr('data-cur', '');
-        $('#radius').attr('data-cur',  10);
+        $('#radius').attr('data-cur', 10);
     });
 
     var userLocationGeocodeLat;
@@ -43,7 +43,30 @@ jQuery(document).ready(function($) {
     var str;
     var thisRadius;
 
-    $('#search-form').on('submit', function(event){
+
+    // user view preference default
+    var userViewPref = 'list';
+
+    // if present, get stored view from local storage using nullFirst ternary
+    userViewPref = (!localStorage ? userViewPref : localStorage.getItem('search_results_view'));
+
+    // load the preferred view on init, force element click
+    $('.search_contain__label--' + userViewPref).click();
+
+    // onchange, store the preference
+    $('.search_contain__label').on('click', function(){
+        // check if element has the list class, if not, map has been clicked
+        var newView = ($(this).hasClass('search_contain__label--list') ? 'list' : 'map');
+        if (!localStorage) {
+            // extremely wide usage however some browsers may lack support (Opera, etc)
+            // TODO: fallback to cookie
+            return;
+        }
+
+        localStorage.setItem('search_results_view', newView);
+    });
+
+    $('#search-form').on('submit', function (event) {
 
         event.preventDefault();
         var keyword = $(this).find('#keyword').val();
@@ -112,7 +135,7 @@ jQuery(document).ready(function($) {
         }
     });
 
-    $('#mini-search-form').on('submit', function(e){
+    $('#mini-search-form').on('submit', function (e) {
         e.preventDefault();
         var keyword = $(this).find("#keyword").val();
         // var roleType = $(this).find('#role-type').attr('data-cur');
@@ -148,7 +171,7 @@ jQuery(document).ready(function($) {
         } else {
             locationLive = '&location=' + thisLocation;
             radiusLive = '&radius=' + thisRadius;
-            str = '?s='+ keywordLive + locationLive + radiusLive;
+            str = '?s=' + keywordLive + locationLive + radiusLive;
             getJSON(thisLocation);
         }
 
@@ -158,33 +181,32 @@ jQuery(document).ready(function($) {
         return (string !== '' || typeof string !== 'undefined')
     }
 
-    function getJSON(userLocation){
+    function getJSON(userLocation) {
 
         $.ajax({
-            type : "post",
-            dataType : "json",
-            url : justice.ajaxurl,
-            data : {action: "get_location_coordinates", location : userLocation },
-            success: function(response) {
-                if(response.error == false) {
+            type: "post",
+            dataType: "json",
+            url: justice.ajaxurl,
+            data: {action: "get_location_coordinates", location: userLocation},
+            success: function (response) {
+                if (response.error == false) {
                     userLocationGeocodeLat = parseFloat(response.lat);
                     userLocationGeocodeLng = parseFloat(response.lng);
                     var userMathstest = userLocationGeocodeLat - userLocationGeocodeLng;
                     testEachMarker();
-                }
-                else {
+                } else {
                     console.log('Error getting location');
                 }
             }
         })
     }
 
-    function testEachMarker(){
-        setTimeout(function(){
+    function testEachMarker() {
+        setTimeout(function () {
 
-            $markers 	= $('#allLocations').find('li');
+            $markers = $('#allLocations').find('li');
 
-            $($markers).each(function(k){
+            $($markers).each(function (k) {
                 var thisLAT = parseFloat($(this).data('lat'));
                 var thisLNG = parseFloat($(this).data('lng'));
                 var thisMathstest = thisLAT - thisLNG;
@@ -196,9 +218,10 @@ jQuery(document).ready(function($) {
 
                 var thisRadiusInMiles = parseInt(thisRadius) * 1.609344;
 
-                if (parseInt(currentDistance) < thisRadiusInMiles ) {
+                if (parseInt(currentDistance) < thisRadiusInMiles) {
                     locationsRelevant += $(this).data('id') + ', ';
                 }
+
                 //calculates distance between two points in km's
                 function calcDistance(p1, p2) {
                     return (google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
