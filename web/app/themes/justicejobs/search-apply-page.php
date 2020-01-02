@@ -262,12 +262,12 @@ Template Name: Search/Apply Template
        <div class="search_contain__controls">
          <span>VIEW BY</span>
           <button class="search_contain__label search_contain__label--list">
-            List
+            LIST
             <svg width="28" height="28">
                 <use xlink:href="#icon-list"></use>
             </svg>
           </button>
-          <button class="search_contain__label search_contain__label--map">
+          <button class="search_contain__label search_contain__label--map" id="js-active">
               MAP
               <svg width="17" height="24">
                   <use xlink:href="#icon-marker"></use>

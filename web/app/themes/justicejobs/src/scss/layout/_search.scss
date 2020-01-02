@@ -64,6 +64,8 @@
         }
     }
     &__label {
+        background: none;
+        border: 0;
         margin-left: 15px;
         display: flex;
         flex-direction: column;
@@ -76,12 +78,12 @@
             fill: rgba(#000, 1);
             @include transition;
         }
-    }
-    &__container#js-show-map &__label--map,
-    &__container#js-show-map~header &__label--list {
-        color: #000;
-        svg {
-            fill: $mid-blue;
+        &#js-active {
+            color: #000;
+            svg {
+                fill: $mid-blue;
+            }
+
         }
     }
     &__container {

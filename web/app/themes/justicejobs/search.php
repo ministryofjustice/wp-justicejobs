@@ -581,7 +581,7 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                         <use xlink:href="#icon-list"></use>
                     </svg>
                 </button>
-                <button class="search_contain__label search_contain__label--map">
+                <button class="search_contain__label search_contain__label--map" id="js-active">
                     MAP
                     <svg width="17" height="24">
                         <use xlink:href="#icon-marker"></use>

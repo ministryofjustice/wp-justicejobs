@@ -19,15 +19,18 @@ The Map Functionality
      ];
 
 	// Toggle map appearing
-	// add a class to map-wrap
 	$('.search_contain__label--list').on('click', function (e) {
 		$('.search_contain__container').removeAttr('id', 'js-show-map');
 		$('.search_contain__container').attr('id', 'js-hide-map');
+		$('.search_contain__label--map').removeAttr('id', 'js-active');
+		$('.search_contain__label--list').attr('id', 'js-active');
 	});
 
 	$('.search_contain__label--map').on('click', function (e) {
 		$('.search_contain__container').removeAttr('id', 'js-hide-map');
 		$('.search_contain__container').attr('id', 'js-show-map');
+		$('.search_contain__label--list').removeAttr('id', 'js-active');
+		$('.search_contain__label--map').attr('id', 'js-active');
 	});
 
 	if ($('.search_contain__map-wrap').length) {
@@ -36,7 +39,6 @@ The Map Functionality
 
 	// Pop-up map entry
 	$('.search_contain__item').on('click', function( e ){
-		//e.preventDefault();
 		var search_id = $(this).children('.marker').data('id');
 
 		$('.search_contain__item.active').removeClass('active');
@@ -107,8 +109,6 @@ The Map Functionality
 				infowindow.setContent(content );
 				infowindow.open( map, marker);
 
-				console.log(marker.id);
-
 				$('.search_contain__item.active').removeClass('active');
 				$('.search_contain__item .marker[data-id="' + marker.id + '"]').parent('.search_contain__item').addClass('active');
 
@@ -170,7 +170,6 @@ The Map Functionality
 
 		function geocodeAddress(location) {
 		  geocoder.geocode( { 'address': location[0]}, function(results, status) {
-		  //alert(status);
 		    if (status == google.maps.GeocoderStatus.OK) {
 
 		      //createMarker(results[0].geometry.location,location[0]+"<br>"+location[1]);
@@ -185,8 +184,6 @@ The Map Functionality
 
 		function geocodeAddressString(location) {
 		  geocoder.geocode( { 'address': location}, function(results, status) {
-				console.log(location);
-		  //alert(status);
 		    if (status == google.maps.GeocoderStatus.OK) {
 
 		      createMarker(results[0].geometry.location,location);
