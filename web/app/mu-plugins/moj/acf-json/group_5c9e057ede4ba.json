@@ -1,6 +1,6 @@
 {
     "key": "group_5c9e057ede4ba",
-    "title": "Front Page Fields",
+    "title": "Front Page fields",
     "fields": [
         {
             "key": "field_5c9e05af11f39",
@@ -189,7 +189,7 @@
         },
         {
             "key": "field_5ccc73f93e189",
-            "label": "Agency Grid Section",
+            "label": "Homepage section one",
             "name": "",
             "type": "tab",
             "instructions": "",
@@ -240,67 +240,6 @@
             "maxlength": "",
             "rows": "",
             "new_lines": ""
-        },
-        {
-            "key": "field_5c9e06e0d5beb",
-            "label": "Awards Section",
-            "name": "",
-            "type": "tab",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "placement": "top",
-            "endpoint": 0
-        },
-        {
-            "key": "field_5c9e086477db7",
-            "label": "Awards",
-            "name": "awards",
-            "type": "repeater",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "collapsed": "",
-            "min": 0,
-            "max": 0,
-            "layout": "table",
-            "button_label": "Add New Award",
-            "sub_fields": [
-                {
-                    "key": "field_5c9e088c77db8",
-                    "label": "Award Logo",
-                    "name": "award_logo",
-                    "type": "image",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "url",
-                    "preview_size": "thumbnail",
-                    "library": "all",
-                    "min_width": "",
-                    "min_height": "",
-                    "min_size": "",
-                    "max_width": "",
-                    "max_height": "",
-                    "max_size": "",
-                    "mime_types": ""
-                }
-            ]
         }
     ],
     "location": [
@@ -324,5 +263,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1573138638
+    "modified": 1578002787
 }
