@@ -261,13 +261,13 @@ Template Name: Search/Apply Template
 
        <div class="search_contain__controls">
           <p >VIEW BY</p>
-          <button class="search_contain__label search_contain__label--list" aria-pressed="false" aria-controls="jj-search-results-map">
+          <button class="search_contain__label search_contain__label--list" aria-pressed="false" aria-controls="jj-search-results-view">
             <span class="screen-reader-text">View search results as a </span> LIST
             <svg width="28" height="28">
                 <use xlink:href="#icon-list"></use>
             </svg>
           </button>
-          <button class="search_contain__label search_contain__label--map" aria-pressed="true" aria-describedby="results-label-text" aria-controls="jj-search-results-view">
+          <button class="search_contain__label search_contain__label--map" aria-pressed="true" aria-controls="jj-search-results-view">
             <span class="screen-reader-text">View search results as a </span>MAP
             <svg width="17" height="24">
                 <use xlink:href="#icon-marker"></use>
@@ -276,8 +276,8 @@ Template Name: Search/Apply Template
         </div>
 
     </header>
-    <div class="search_contain__container" id="js-show-map">
-      <div class="search_contain__list-wrap" role="region" id="jj-search-results-view" aria-live="polite">
+    <div class="search_contain__container" id="js-show-map jj-search-results-view" role="region" aria-live="polite">
+      <div class="search_contain__list-wrap" >
         <table class="search_contain__list">
           <caption class="screen-reader-text">Job search results</caption>
           <thead>
