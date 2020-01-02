@@ -45,10 +45,10 @@ jQuery(document).ready(function ($) {
 
 
     // user view preference default
-    var userViewPref = 'map';
+    var userViewPref = 'list';
 
     // if present, get stored view from local storage using nullFirst ternary
-    userViewPref = (!localStorage ? userViewPref : localStorage.getItem('search-results-view'));
+    userViewPref = (!localStorage ? userViewPref : localStorage.getItem('search_results_view'));
 
     // load the preferred view on init, force element click
     $('.search_contain__label--' + userViewPref).click();
@@ -63,7 +63,7 @@ jQuery(document).ready(function ($) {
             return;
         }
 
-        localStorage.setItem('search-results-view', newView);
+        localStorage.setItem('search_results_view', newView);
     });
 
     $('#search-form').on('submit', function (event) {
