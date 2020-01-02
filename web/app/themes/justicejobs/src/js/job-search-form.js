@@ -3,6 +3,22 @@ The Job Form Search Functionality
 */
 jQuery(document).ready(function ($) {
 
+    var resultsViewWrapper = $('.search_contain__container');
+    var listButton = $('.search_contain__label--list');
+    var mapButton = $('.search_contain__label--map');
+
+    listButton.on('click', function () {
+        resultsViewWrapper.removeAttr('id', 'js-show-map').attr('id', 'js-hide-map');
+        mapButton.removeAttr('aria-pressed', 'true').attr('aria-pressed', 'false');
+        listButton.removeAttr('aria-pressed', 'false').attr('aria-pressed', 'true');
+    });
+
+    mapButton.on('click', function () {
+        resultsViewWrapper.removeAttr('id', 'js-hide-map').attr('id', 'js-show-map');
+        listButton.removeAttr('aria-pressed', 'true').attr('aria-pressed', 'false');
+        mapButton.removeAttr('aria-pressed', 'false').attr('aria-pressed', 'true');
+    });
+
     $('.dropdown__list').children('li').on('click', function () {
         var thisSelection = $(this).attr('data-slug');
         $(this).parent().siblings('.dropdown__wrap').children('input').attr('data-cur', thisSelection);
@@ -27,6 +43,7 @@ jQuery(document).ready(function ($) {
     var str;
     var thisRadius;
 
+
     // user view preference default
     var userViewPref = 'map';
 
@@ -34,12 +51,12 @@ jQuery(document).ready(function ($) {
     userViewPref = (!localStorage ? userViewPref : localStorage.getItem('search-results-view'));
 
     // load the preferred view on init, force element click
-    $('#' + userViewPref + '-view').attr('checked', 'checked').click();
+    $('.search_contain__label--' + userViewPref).click();
 
     // onchange, store the preference
-    $('.search_contain__radio').on('change', function(){
-        // get the ID, split into an array, select the first node = [list|map]
-        var newView = $(this).attr('id').split('-')[0];
+    $('.search_contain__label').on('click', function(){
+        // check if element has the list class, if not, map has been clicked
+        var newView = ($(this).hasClass('search_contain__label--list') ? 'list' : 'map');
         if (!localStorage) {
             // extremely wide usage however some browsers may lack support (Opera, etc)
             // TODO: fallback to cookie

@@ -22,11 +22,11 @@ jQuery(document).ready(function ($) {
     var salaryRangeName;
     var workingPatternName;
 
-    // bring the user back to results after a search action
+    // bring the user back to view results after a search action has taken place
     if (getQueryVariable('s') !== false) {
         $('html, body').stop(true, true).animate({
             scrollTop: $(".search_contain").offset().top - $('#main-nav-hook').outerHeight()
-        }, 600);
+        }, 400);
     }
 
     if (roleType.length) {
