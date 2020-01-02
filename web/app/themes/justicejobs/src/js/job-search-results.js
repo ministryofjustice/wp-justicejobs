@@ -26,7 +26,7 @@ jQuery(document).ready(function ($) {
     if (getQueryVariable('s') !== false) {
         $('html, body').stop(true, true).animate({
             scrollTop: $(".search_contain").offset().top - $('#main-nav-hook').outerHeight()
-        }, 150);
+        }, 550);
     }
 
     if (roleType.length) {
