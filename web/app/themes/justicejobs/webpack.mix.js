@@ -30,9 +30,10 @@ mix.js([
                     quality: 82,
                     progressive: true,
                 })
-            ],
+            ]
         }
     )
+    .copy('src/img/*.svg', dist + 'img')
     .options({
         processCssUrls: false
     });
