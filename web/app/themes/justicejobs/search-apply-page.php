@@ -220,25 +220,7 @@ Template Name: Search/Apply Template
     </form>
   </div>
   <div class="search_contain__wrap">
-    <label for="list-view" class="screen-reader-text">Select List View</label>
-    <input
-      class="search_contain__radio search_contain__radio--list"
-      name="search"
-      type="radio"
-      id="list-view"
-      aria-label="Select List View"
-      aria-pressed="false"
-    />
-    <label for="map-view" class="screen-reader-text">Select Map View</label>
-    <input
-      class="search_contain__radio search_contain__radio--map"
-      name="search"
-      id="map-view"
-      type="radio"
-      aria-label="Select Map View"
-      aria-pressed="true"
-      checked
-    />
+
     <header>
 
       <?php
@@ -276,32 +258,37 @@ Template Name: Search/Apply Template
           ?>
        </div>
 
-      <div class="search_contain__controls">
-        <span>VIEW BY</span>
-        <label class="search_contain__label search_contain__label--list" for="list-view">
-          List
-          <svg width="28" height="28">
-            <use xlink:href="#icon-list"></use>
-          </svg>
-        </label>
-        <label class="search_contain__label search_contain__label--map" for="map-view">
-          Map
-          <svg width="17" height="24">
-            <use xlink:href="#icon-marker"></use>
-          </svg>
-        </label>
-      </div>
+
+       <div class="search_contain__controls">
+          <p >VIEW BY</p>
+          <button class="search_contain__label search_contain__label--list" aria-pressed="false" aria-controls="jj-search-results-view">
+            <span class="screen-reader-text">View search results as a </span> LIST
+            <svg width="28" height="28">
+                <use xlink:href="#icon-list"></use>
+            </svg>
+          </button>
+          <button class="search_contain__label search_contain__label--map" aria-pressed="true" aria-controls="jj-search-results-view">
+            <span class="screen-reader-text">View search results as a </span>MAP
+            <svg width="17" height="24">
+                <use xlink:href="#icon-marker"></use>
+            </svg>
+          </button>
+        </div>
+
     </header>
-    <div class="search_contain__container">
-      <div class="search_contain__list-wrap">
+    <div class="search_contain__container" id="js-show-map jj-search-results-view" role="region" aria-live="polite">
+      <div class="search_contain__list-wrap" >
         <table class="search_contain__list">
-          <tr class="search_contain__heading">
-            <th>ROLE</th>
-            <th>LOCATION</th>
-            <th>SALARY</th>
-            <th>WORKING PATTERN</th>
-            <th>VIEW JOB</th>
-          </tr>
+          <caption class="screen-reader-text">Job search results</caption>
+          <thead>
+            <tr class="search_contain__heading">
+              <th scope="col">ROLE</th>
+              <th scope="col">LOCATION</th>
+              <th scope="col">SALARY</th>
+              <th scope="col">WORKING PATTERN</th>
+              <th scope="col">VIEW JOB</th>
+            </tr>
+          </thead>
           <?php
     				 while ( $job_query->have_posts() ) {
     					$job_query->the_post();

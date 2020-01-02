@@ -133,8 +133,6 @@ jQuery(document).ready(function ($) {
             getJSON(thisLocation);
             testEachMarker();
         }
-
-
     });
 
     $('#mini-search-form').on('submit', function (e) {
