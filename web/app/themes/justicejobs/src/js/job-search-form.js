@@ -3,6 +3,22 @@ The Job Form Search Functionality
 */
 jQuery(document).ready(function($) {
 
+    var resultsViewWrapper = $('.search_contain__container');
+    var listButton = $('.search_contain__label--list');
+    var mapButton = $('.search_contain__label--map');
+
+    listButton.on('click', function (e) {
+        resultsViewWrapper.removeAttr('id', 'js-show-map').attr('id', 'js-hide-map');
+        mapButton.attr('aria-pressed', 'false');
+        listButton.attr('aria-pressed', 'true');
+    });
+
+    mapButton.on('click', function (e) {
+        resultsViewWrapper.removeAttr('id', 'js-hide-map').attr('id', 'js-show-map');
+        listButton.attr('aria-pressed', 'false');
+        mapButton.attr('aria-pressed', 'true');
+    });
+
     $('.dropdown__list').children('li').on('click', function(){
         var thisSelection = $(this).attr('data-slug');
         $(this).parent().siblings('.dropdown__wrap').children('input').attr('data-cur', thisSelection);
@@ -94,8 +110,6 @@ jQuery(document).ready(function($) {
             getJSON(thisLocation);
             testEachMarker();
         }
-
-
     });
 
     $('#mini-search-form').on('submit', function(e){
@@ -198,13 +212,5 @@ jQuery(document).ready(function($) {
             window.location = window.location.origin + str;
 
         }, 1000);
-
-
     }
-
-
-
-
-
-
 });

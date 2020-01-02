@@ -574,33 +574,35 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
             </div>
 
             <div class="search_contain__controls">
-                <span>VIEW BY</span>
-                <button class="search_contain__label search_contain__label--list">
-                    List
+                <p >VIEW BY</p>
+                <button class="search_contain__label search_contain__label--list" aria-pressed="false" aria-controls="jj-search-results-map">
+                    <span class="screen-reader-text">View search results as a </span> LIST
                     <svg width="28" height="28">
                         <use xlink:href="#icon-list"></use>
                     </svg>
                 </button>
-                <button class="search_contain__label search_contain__label--map" id="js-active">
-                    MAP
+                <button class="search_contain__label search_contain__label--map" aria-pressed="true" aria-describedby="results-label-text" aria-controls="jj-search-results-view">
+                    <span class="screen-reader-text">View search results as a </span>MAP
                     <svg width="17" height="24">
                         <use xlink:href="#icon-marker"></use>
                     </svg>
                 </button>
             </div>
-
         </header>
-        <div class="search_contain__container" id="js-show-map">
 
-            <div class="search_contain__list-wrap">
+        <div class="search_contain__container" id="js-show-map">
+            <div class="search_contain__list-wrap" role="region" id="jj-search-results-view" aria-live="polite">
                 <table class="search_contain__list">
-                    <tr class="search_contain__heading">
-                        <th>ROLE</th>
-                        <th>LOCATION</th>
-                        <th>SALARY</th>
-                        <th>WORKING PATTERN</th>
-                        <th>VIEW JOB</th>
-                    </tr>
+                    <caption class="screen-reader-text">Job search results</caption>
+                    <thead>
+                        <tr class="search_contain__heading">
+                            <th scope="col">ROLE</th>
+                            <th scope="col">LOCATION</th>
+                            <th scope="col">SALARY</th>
+                            <th scope="col">WORKING PATTERN</th>
+                            <th scope="col">VIEW JOB</th>
+                        </tr>
+                    </thead>
                     <?php
                     while ($job_query->have_posts()) {
                         $job_query->the_post();

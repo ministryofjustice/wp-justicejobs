@@ -78,7 +78,7 @@
             fill: rgba(#000, 1);
             @include transition;
         }
-        &#js-active {
+        &[aria-pressed=true] {
             color: #000;
             svg {
                 fill: $mid-blue;

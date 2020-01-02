@@ -15,24 +15,9 @@ The Map Functionality
 	var markers = [];
 	var $markers = [];
 	var markerCluster;
-	var locations = [
-     ];
+	var locations = [];
 
 	// Toggle map appearing
-	$('.search_contain__label--list').on('click', function (e) {
-		$('.search_contain__container').removeAttr('id', 'js-show-map');
-		$('.search_contain__container').attr('id', 'js-hide-map');
-		$('.search_contain__label--map').removeAttr('id', 'js-active');
-		$('.search_contain__label--list').attr('id', 'js-active');
-	});
-
-	$('.search_contain__label--map').on('click', function (e) {
-		$('.search_contain__container').removeAttr('id', 'js-hide-map');
-		$('.search_contain__container').attr('id', 'js-show-map');
-		$('.search_contain__label--list').removeAttr('id', 'js-active');
-		$('.search_contain__label--map').attr('id', 'js-active');
-	});
-
 	if ($('.search_contain__map-wrap').length) {
 		initMap();
 	}
@@ -40,7 +25,6 @@ The Map Functionality
 	// Pop-up map entry
 	$('.search_contain__item').on('click', function( e ){
 		var search_id = $(this).children('.marker').data('id');
-
 		$('.search_contain__item.active').removeClass('active');
 		$(this).addClass('active');
 
@@ -51,22 +35,17 @@ The Map Functionality
 				if ( this.url ) {
 					content = content + '<br/><a href="' + this.url + '"  class="btn btn--blue btn--small btn--job-open" style="font-size: 16px; min-height:40px; min-width: 120px;">View Job</a>';
 				}
-
 				if (infowindow) {
 	          infowindow.close();
 	      }
 	      infowindow = new google.maps.InfoWindow();
-
 				infowindow.setContent(content );
 				infowindow.open( map, this);
 			}
 		});
-
 	});
 
-
 	function initMap() {
-
 		$markers 	= $('.search_contain__item').find('.marker');
 
 		map = new google.maps.Map(document.getElementById('map'), {
@@ -77,6 +56,7 @@ The Map Functionality
 		infowindow = new google.maps.InfoWindow({
 			content: ''
 		});
+
 		geocoder = new google.maps.Geocoder();
 
 		$($markers).each(function(){
@@ -97,8 +77,6 @@ The Map Functionality
 				)
 			});
 
-
-
 			marker.addListener('click', function( e ) {
 				var content =  '<h3 style="width: 250px; font-size: 18px;">' + marker.title + '<br /></h3>';
 
@@ -111,23 +89,15 @@ The Map Functionality
 
 				$('.search_contain__item.active').removeClass('active');
 				$('.search_contain__item .marker[data-id="' + marker.id + '"]').parent('.search_contain__item').addClass('active');
-
 			});
-
-
 			markers.push( marker );
-
 		});
 
 /*
 		var markerCluster = new MarkerClusterer(map, markers,
 				{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 
-
-
-
 		google.maps.event.addListener( map, 'idle', function() {
-
 
 			$(markers).each(function(key, value) {
 				console.log($(this));
@@ -139,13 +109,9 @@ The Map Functionality
 
 			 $('.marker[data-id="'+ value.id  +'"]').parent().data('distance', value.distance );
 				//theme.scrollbar.recalculate();
-
 			});
-
 			$(window).resize();
-
 		});
-
 
     for (i = 0; i < locations.length; i++) {
 			if (locations[i].length > 1) {
@@ -161,17 +127,13 @@ The Map Functionality
 					console.log(locations[i]);
 					createMarker(locations[i]);
 				}
-
 			}
-
     }
 		*/
-
 
 		function geocodeAddress(location) {
 		  geocoder.geocode( { 'address': location[0]}, function(results, status) {
 		    if (status == google.maps.GeocoderStatus.OK) {
-
 		      //createMarker(results[0].geometry.location,location[0]+"<br>"+location[1]);
 					createMarker(results[0].geometry.location,location[0]);
 		    }
@@ -185,9 +147,7 @@ The Map Functionality
 		function geocodeAddressString(location) {
 		  geocoder.geocode( { 'address': location}, function(results, status) {
 		    if (status == google.maps.GeocoderStatus.OK) {
-
 		      createMarker(results[0].geometry.location,location);
-
 		    }
 		    else
 		    {
@@ -196,10 +156,7 @@ The Map Functionality
 		  });
 		}
 
-
 /*
-
-
 		var request = {
 	    location: {lat: 51.8491751, lng: -1.0964753},
 	    radius: '5000',
@@ -222,9 +179,5 @@ The Map Functionality
 			}
 		}
 		*/
-
 	}
-
-
-
 })(jQuery);
