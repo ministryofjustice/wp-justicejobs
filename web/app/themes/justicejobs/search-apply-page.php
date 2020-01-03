@@ -2,9 +2,11 @@
 /*
 Template Name: Search/Apply Template
 */
-?>
 
-<?php get_header(); ?>
+$_location = isset($_location) ? $_location : '';
+
+get_header(); 
+?>
 
 <section class="hero hero--job hero--arrows">
   <div class="hero__img-block">

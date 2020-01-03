@@ -1,4 +1,8 @@
-<?php get_header(); ?>
+<?php 
+
+$_location = isset($_location) ? $_location : '';
+
+get_header(); ?>
 
 <section class="hero hero--home hero--arrows">
     <div class="hero__img-block">
