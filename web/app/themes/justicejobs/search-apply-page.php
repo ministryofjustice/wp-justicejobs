@@ -219,7 +219,7 @@ Template Name: Search/Apply Template
         </fieldset>
     </form>
   </div>
-  <div class="search_contain__wrap">
+  <div class="search_contain__wrap" id="jj-search-results-view">
 
     <header>
 
@@ -276,7 +276,7 @@ Template Name: Search/Apply Template
         </div>
 
     </header>
-    <div class="search_contain__container" id="js-show-map jj-search-results-view" role="region" aria-live="polite">
+    <div class="search_contain__container" id="js-show-map" role="region" aria-live="polite">
       <div class="search_contain__list-wrap" >
         <table class="search_contain__list">
           <caption class="screen-reader-text">Job search results</caption>
