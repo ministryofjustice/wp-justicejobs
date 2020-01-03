@@ -43,7 +43,7 @@ get_header(); ?>
     </div>
 
     <div class="hero__search">
-        <div id="allLocations" data-user-location='<?php echo $_location; ?>' data-relevant-terms=''>
+        <div id="allLocations" data-user-location='' data-relevant-terms=''>
             <?php
             $terms = get_terms(array(
                 'taxonomy' => 'job_location',
@@ -284,7 +284,7 @@ endif; ?>
                                  alt="<?php echo $image['alt']; ?>"/>
                         </div>
                     </div>
-                <?php
+                    <?php
                 endforeach;
             endif;
             ?>
