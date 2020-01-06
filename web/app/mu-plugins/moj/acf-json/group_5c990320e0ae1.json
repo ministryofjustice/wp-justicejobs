@@ -244,7 +244,7 @@
             "label": "Overview video",
             "name": "about_us_video_oembed",
             "type": "oembed",
-            "instructions": "To add video to page, copy and paste YouTube or Vimeo video.",
+            "instructions": "To add video to page, copy and paste YouTube or Vimeo video URL.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -330,5 +330,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1578312258
+    "modified": 1578326921
 }
