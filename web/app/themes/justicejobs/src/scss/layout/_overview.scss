@@ -15,7 +15,7 @@
   }
 
   &__text {
-    float:left;
+    float: left;
     padding-right: 5%;
   }
 
@@ -42,9 +42,9 @@
 
   &__video-wrap {
     padding-top: 3%;
-    
+
     @include respond-to(md) {
-      float:left;
+      float: left;
       padding-top: 3%;
       width: 50%;
       text-align: center;
