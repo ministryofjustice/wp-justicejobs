@@ -36,29 +36,30 @@
   </div>
 </section>
 
+
+
 <section class="overview" id="overview">
+
+<div class="container">
+
   <div class="overview__text-wrap">
     <div class="overview__text">
       <h2 class="heading--md"><?php the_field( 'overview_title' ); ?></h2>
       <?php the_field( 'overview_content' ); ?>
     </div>
   </div>
+
   <div class="overview__video-wrap">
-    <?php
-    $video_poster = get_field( 'overview_video_poster');
-    $video_url = get_field( 'overview_video_url' );
-    ?>
-    <div class="overview__video"
-    style="background-image: url('<?php echo $video_poster; ?>');"
-    >
-      <button class="btn-play single-video" data-video="<?php echo $video_url; ?>" role="button" aria-label="Play Video">
-        <svg width="12" height="15">
-          <use xlink:href="#icon-play"></use>
-        </svg>
-      </button>
+    <div class="overview__video">
+    <?php the_field('about_us_video_oembed'); ?>
     </div>
   </div>
+
+</div>
+
 </section>
+
+
 
 <section class="work">
   <div class="about__text-wrap">
