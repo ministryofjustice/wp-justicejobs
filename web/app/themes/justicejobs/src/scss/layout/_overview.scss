@@ -41,11 +41,10 @@
   }
 
   &__video-wrap {
-    padding-top: 3%;
 
     @include respond-to(md) {
       float: left;
-      padding-top: 3%;
+      padding: 8% 3%;
       width: 50%;
       text-align: center;
     }
