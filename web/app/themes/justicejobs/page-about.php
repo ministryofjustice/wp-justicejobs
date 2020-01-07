@@ -1,7 +1,8 @@
 <?php
 /* Template Name: About Us Template */
+
+get_header(); 
 ?>
-<?php get_header(); ?>
 
 <?php if( have_posts() ) : while ( have_posts() ) :the_post();   ?>
 <section class="hero">
@@ -36,12 +37,9 @@
   </div>
 </section>
 
-
-
 <section class="overview" id="overview">
 
 <div class="container">
-
   <div class="overview__text-wrap">
     <div class="overview__text">
       <h2 class="heading--md"><?php the_field( 'overview_title' ); ?></h2>
@@ -59,8 +57,6 @@
 
 </section>
 
-
-
 <section class="work">
   <div class="about__text-wrap">
     <h2 class="heading--md">Where we work</h2>
@@ -71,7 +67,6 @@
     <div class="carousel__dots"></div>
 
     <?php $agencies = get_field('featured_agencies'); ?>
-
 
     <div class="carousel__container">
       <?php foreach ($agencies as $agency):
@@ -90,11 +85,8 @@
       <div style="position: relative;">
         <div
           class="carousel__slide"
-          style="background-image: url('<?php echo $agency_image; ?>');"
-        >
-        <a
-          href="<?php echo $agency_link; ?>"
-        >
+          style="background-image: url('<?php echo $agency_image; ?>');">
+        <a href="<?php echo $agency_link; ?>">
           <div class="carousel__wrap">
             <h3 class="heading--md">
               <?php echo $agency_name; ?>
@@ -104,8 +96,7 @@
             </p>
             <a
               href="<?php echo $agency_link; ?>"
-              class="btn-secondary btn-secondary--light"
-            >
+              class="btn-secondary btn-secondary--light">
               Find out more
               <svg width="8" height="13">
                 <use xlink:href="#icon-arrow"></use>
@@ -156,7 +147,6 @@
 
 </section>
 
-
 <div class="about__search-wrap">
   <?php $search_job_title = get_field( 'search_job_title' );
   $search_job_text = get_field( 'search_job_text' );
@@ -172,4 +162,6 @@
 </div>
 
 <?php endwhile; endif; ?>
-<?php get_footer(); ?>
+
+<?php 
+get_footer();
