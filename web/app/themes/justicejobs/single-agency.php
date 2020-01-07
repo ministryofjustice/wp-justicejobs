@@ -73,30 +73,18 @@ Template Post Type: agency
     ?>
 
     <?php
-    $left_block = get_field( 'left_block' );
-    if ( $left_block == "Video"):
-      $video_poster = get_field( 'video_poster');
-      $video_url = get_field( 'video_url' );
-    ?>
-      <div
-        class="agency__video"
-        style="background-image: url('<?php echo $video_poster; ?>');"
-      >
-        <span class="heading--xs">Working Here</span>
-        <button class="btn-play single-video" data-video="<?php echo $video_url; ?>" role="button" aria-label="Play Video">
-          <svg>
-            <use xlink:href="#icon-play"></use>
-          </svg>
-        </button>
+    $left_block = get_field( 'left_block' ); ?>
+      <div class="agency__video">
+       <?php if ( $left_block == "Video"):
+        the_field( 'agency_video');
+        ?>
       </div>
     <?php elseif ( $left_block == "Campaign Block" ):
-      $campaign_block = get_field( 'top' );
-      // print_r($campaign_block);
-
+      
       $image_url_top = $campaign_block['background_image'];
       $name_role_top = $campaign_block['name_and_role'];
-      $title_top = $campaign_block['title'];
       $ispopup_top = $campaign_block['pop_up_block'];
+      $title_top = isset($campaign_block['title']) ?? '';
 
       if( $ispopup_top ){
         $popup_row = 'top';
@@ -110,7 +98,7 @@ Template Post Type: agency
         $a_class = '';
         $data_index = '';
       }
-
+      
       ?>
         <div
           class="agency__featured"

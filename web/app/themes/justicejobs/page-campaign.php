@@ -64,8 +64,6 @@ Template Post Type: page, campaign
         $overview = get_field('overview_fields');
         $overview_title = $overview['overview_title'];
         $overview_content = $overview['overview_content'];
-        $overview_video_url = $overview['video_url'];
-        $overview_video_poster = $overview['video_poster'];
         ?>
   <div class="container">
         <?php
