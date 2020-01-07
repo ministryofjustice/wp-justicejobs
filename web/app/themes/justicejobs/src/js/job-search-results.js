@@ -24,9 +24,13 @@ jQuery(document).ready(function ($) {
 
     // bring the user back to view results after a search action has taken place
     if (getQueryVariable('s') !== false) {
+        var sc = $(".search_contain").css('paddingTop'), // search contain
+            scn = parseFloat(sc.substr(0, sc.length -2)) || 20, // search contain number
+            sco = parseFloat($('#main-nav-hook').outerHeight()) + scn; // search contain offset adjust
+
         $('html, body').stop(true, true).animate({
-            scrollTop: $(".search_contain").offset().top - $('#main-nav-hook').outerHeight()
-        }, 550);
+            scrollTop: $(".search_contain__wrap").offset().top - sco
+        }, 500);
     }
 
     if (roleType.length) {

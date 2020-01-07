@@ -81,6 +81,8 @@ jQuery(function ($) {
 
         label = label.replace(' & ', ' and ');
 
+        //alert(tag.hasClass('ga-main-form-button') ? label : 'No class found on that tag!');
+
         _trackEvent('search-page-links', {'searchPageLabel': label, 'searchFormKeyword': keyword});
     });
 

@@ -4,7 +4,6 @@ add_action("wp_ajax_get_location_coordinates", "jj_get_location_coordinates");
 add_action("wp_ajax_nopriv_get_location_coordinates", "jj_get_location_coordinates");
 
 function jj_get_location_coordinates() {
-
     $result = array ("error" => false);
     $location = sanitize_text_field($_REQUEST['location']);
 
@@ -18,7 +17,7 @@ function jj_get_location_coordinates() {
             $request = wp_remote_get($maps_endpoint);
 
             if (is_wp_error($request)) {
-                $result["error"] = true;
+                $result["error"] = WP_Error::get_error_message();
             } else {
                 $body = wp_remote_retrieve_body($request);
 
@@ -31,21 +30,21 @@ function jj_get_location_coordinates() {
                     $result['lat'] = $lookup_result->geometry->location->lat;
                     $result['lng'] = $lookup_result->geometry->location->lng;
                 } else {
-                    $result["error"] = true;
+                    $result["error"] = 'Bad results';
                 }
             }
         } else {
-            $result["error"] = true;
+            $result["error"] = 'Map key missing';
         }
     }
     else {
-        $result["error"] = true;
+        $result["error"] = 'Location not supplied';
     }
+
     $encoded_response = json_encode($result);
 
     echo $encoded_response;
 
     die();
-
 }
 

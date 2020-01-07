@@ -64,179 +64,79 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
             <fieldset class="filter__fieldset">
                 <div class="header">
                     <legend class="heading--sm">Refine by:</legend>
-                    <button class="filter__reset" id="reset" role="button">Reset</button>
                 </div>
                 <label for="keyword" class="screen-reader-text">Keyword</label>
                 <input aria-label="Keyword" type="text" class="input" placeholder="Keyword" name="keyword" id="keyword"
                        value="<?php echo $search_query; ?>"/>
+                <label for="role-type" class="screen-reader-text">Roles</label>
                 <span class="filter__label">Roles</span>
-                <div class="dropdown">
-                    <div class="dropdown__wrap">
-                        <label for="role-type" class="screen-reader-text">Role Type</label>
-                        <input
-                            id="role-type"
-                            name="role-type"
-                            aria-label="Role Type"
-                            data-cur="<?php echo $_role_type; ?>"
-                            class="dropdown__current input"
-                            value=""
-                            placeholder="Role Type"
-                            readonly
-                        />
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="8"
-                            height="13"
-                            viewBox="0 0 7.6 11.52"
-                        >
-                            <path
-                                d="M7.6,5.71a1.61,1.61,0,0,1-.5,1.1l-4.6,4.3a1.27,1.27,0,0,1-1,.4A1.54,1.54,0,0,1,0,10a1.61,1.61,0,0,1,.5-1.1l1-1L4,5.71,1.6,3.41l-1-1A1.46,1.46,0,0,1,.83.36L.9.31A1.68,1.68,0,0,1,2.7.21l4.5,4.4A1.55,1.55,0,0,1,7.6,5.71Z"
-                            />
-                        </svg>
-                    </div>
-                    <ul class="dropdown__list">
-                        <li data-slug="all">All Role Types</li>
-                        <?php
+                <div class="select-list">
+                    <?php
+                    $terms = get_terms(array(
+                        'taxonomy' => 'role_type',
+                        'hide_empty' => true,
+                    ));
 
-                        $terms = get_terms(array(
-                            'taxonomy' => 'role_type',
-                            'hide_empty' => true,
-                        ));
-                        if (!empty($terms) && !is_wp_error($terms)) {
-                            foreach ($terms as $term) {
-                                echo '<li data-slug="' . $term->slug . '">' . $term->name . '</li>';
-                            }
-                        }
+                    $options = jj_select_options($_role_type, 'Role Type');
 
-                        ?>
-                    </ul>
+                    ?>
+                    <select class="select" id="role-type"<?= $options['title'] ?>>
+                        <?= $options['list'] ?>
+                    </select>
                 </div>
                 <span class="filter__label">Location</span>
                 <label for="location" class="screen-reader-text">Location</label>
                 <input id="location" aria-label="Location" name="location" type="text" class="input"
-                       placeholder="City / Postcode" value="<?php echo $_location; ?>"/>
-                <div class="dropdown">
-                    <div class="dropdown__wrap">
-                        <label for="radius" class="screen-reader-text">Radius (in miles)</label>
-                        <input
-                            id="radius"
-                            name='radius'
-                            aria-label="Radius (in miles)"
-                            data-cur="<?php if (!empty($_radius)) {
-                                echo (int)trim($_radius);
-                            } else {
-                                echo 10;
-                            } ?>"
-                            class="dropdown__current input"
-                            value="<?php if (!empty($_radius)) {
-                                echo (int)trim($_radius) . ' Miles';
-                            } else {
-                                echo '';
-                            } ?>"
-                            placeholder="Radius (miles)"
-                            readonly
-                        />
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="8"
-                            height="13"
-                            viewBox="0 0 7.6 11.52"
-                        >
-                            <path
-                                d="M7.6,5.71a1.61,1.61,0,0,1-.5,1.1l-4.6,4.3a1.27,1.27,0,0,1-1,.4A1.54,1.54,0,0,1,0,10a1.61,1.61,0,0,1,.5-1.1l1-1L4,5.71,1.6,3.41l-1-1A1.46,1.46,0,0,1,.83.36L.9.31A1.68,1.68,0,0,1,2.7.21l4.5,4.4A1.55,1.55,0,0,1,7.6,5.71Z"
-                            />
-                        </svg>
-                    </div>
-                    <ul class="dropdown__list">
-                        <li data-slug="5">5 Miles</li>
-                        <li data-slug="10">10 Miles</li>
-                        <li data-slug="25">25 Miles</li>
-                        <li data-slug="50">50 Miles</li>
-                    </ul>
+                       placeholder="City / Postcode" value="<?= $_location; ?>"/>
+                <div class="select-list" data-miles="<?= $_radius ?>">
+                    <label for="radius" class="screen-reader-text">Radius (in miles)</label>
+                    <select disabled class="select" id="radius" aria-label="Radius (in miles)"<?= ($_radius ? ' title="' . $_radius . ' miles"' : '') ?>>
+                        <option value="0" disabled selected>Radius (in miles)</option>
+                        <option value="5">5 Miles</option>
+                        <option value="10">10 Miles</option>
+                        <option value="25">25 Miles</option>
+                        <option value="50">50 Miles</option>
+                        <option value="100">100 miles</option>
+                    </select>
                 </div>
                 <span class="filter__label">Salary Range</span>
-                <div class="dropdown">
-                    <div class="dropdown__wrap">
-                        <label for="salary-range" class="screen-reader-text">Salary Range</label>
-                        <input
-                            id="salary-range"
-                            name="salary-range"
-                            aria-label="Salary Range"
-                            data-cur="<?php echo $_salary_range; ?>"
-                            class="dropdown__current input"
-                            value=""
-                            placeholder="Salary Range"
-                            readonly
-                        />
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="8"
-                            height="13"
-                            viewBox="0 0 7.6 11.52"
-                        >
-                            <path
-                                d="M7.6,5.71a1.61,1.61,0,0,1-.5,1.1l-4.6,4.3a1.27,1.27,0,0,1-1,.4A1.54,1.54,0,0,1,0,10a1.61,1.61,0,0,1,.5-1.1l1-1L4,5.71,1.6,3.41l-1-1A1.46,1.46,0,0,1,.83.36L.9.31A1.68,1.68,0,0,1,2.7.21l4.5,4.4A1.55,1.55,0,0,1,7.6,5.71Z"
-                            />
-                        </svg>
-                    </div>
-                    <ul class="dropdown__list">
-                        <li data-slug="all">All Salary Ranges</li>
-                        <?php
+                <div class="select-list">
+                    <?php
+                    $terms = get_terms(array(
+                        'taxonomy' => 'salary_range',
+                        'hide_empty' => true,
+                    ));
 
-                        $terms = get_terms(array(
-                            'taxonomy' => 'salary_range',
-                            'hide_empty' => true,
-                        ));
-                        if (!empty($terms) && !is_wp_error($terms)) {
-                            foreach ($terms as $term) {
-                                echo '<li data-slug=' . $term->slug . '>' . $term->name . '</li>';
-                            }
-                        }
+                    $options = jj_select_options($_salary_range, 'Salary Range');
 
-                        ?>
-                    </ul>
+                    ?>
+                    <label for="salary-range" class="screen-reader-text">Salary Range</label>
+                    <select class="select" id="salary-range"<?= $options['title'] ?>>
+                        <?= $options['list'] ?>
+                    </select>
                 </div>
                 <span class="filter__label">Working Pattern</span>
-                <div class="dropdown">
-                    <div class="dropdown__wrap">
-                        <label for="working-pattern" class="screen-reader-text">Working Pattern</label>
-                        <input
-                            id="working-pattern"
-                            name="working-pattern"
-                            aria-label="Working Pattern"
-                            data-cur="<?php echo $_working_pattern; ?>"
-                            class="dropdown__current input"
-                            placeholder="Working Pattern"
-                            readonly
-                        />
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="8"
-                            height="13"
-                            viewBox="0 0 7.6 11.52"
-                        >
-                            <path
-                                d="M7.6,5.71a1.61,1.61,0,0,1-.5,1.1l-4.6,4.3a1.27,1.27,0,0,1-1,.4A1.54,1.54,0,0,1,0,10a1.61,1.61,0,0,1,.5-1.1l1-1L4,5.71,1.6,3.41l-1-1A1.46,1.46,0,0,1,.83.36L.9.31A1.68,1.68,0,0,1,2.7.21l4.5,4.4A1.55,1.55,0,0,1,7.6,5.71Z"
-                            />
-                        </svg>
-                    </div>
-                    <ul class="dropdown__list">
-                        <li data-slug="all">All Working Patterns</li>
-                        <?php
+                <div class="select-list">
+                    <?php
+                    $terms = get_terms(array(
+                        'taxonomy' => 'working_pattern',
+                        'hide_empty' => true,
+                    ));
 
-                        $terms = get_terms(array(
-                            'taxonomy' => 'working_pattern',
-                            'hide_empty' => true,
-                        ));
-                        if (!empty($terms) && !is_wp_error($terms)) {
-                            foreach ($terms as $term) {
-                                echo '<li data-slug=' . $term->slug . '>' . $term->name . '</li>';
-                            }
-                        }
-                        ?>
-                    </ul>
+                    $options = jj_select_options($_working_pattern, 'Working Pattern');
+
+                    ?>
+                    <label for="working-pattern" class="screen-reader-text">Working Pattern</label>
+                    <select class="select" id="working-pattern"<?= $options['title'] ?>>
+                        <?= $options['list'] ?>
+                    </select>
                 </div>
-                <button class="btn btn--blue search-page-link ga-main-form-button" role="button" type="submit">Search jobs</button>
+                <button class="btn btn--blue search-page-link ga-main-form-button" role="button" type="submit">Search
+                    jobs
+                </button>
+                <div class="btn-reset-button-contain">
+                    <button class="btn-reset" id="reset" type="reset">Reset form</button>
+                </div>
             </fieldset>
         </form>
     </div>
@@ -557,30 +457,38 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                 <?php
 
                 $big = 999999999; // need an unlikely integer
-                echo paginate_links( array(
-                    'base' => str_replace( $big, '%#%', get_pagenum_link( $big ) ),
+                echo paginate_links(array(
+                    'base' => str_replace($big, '%#%', get_pagenum_link($big)),
                     'format' => '?paged=%#%',
                     'mid_size' => 2,
-                    'current' => max( 1, get_query_var('paged') ),
+                    'current' => max(1, get_query_var('paged')),
                     'total' => $job_query->max_num_pages,
-                    'prev_text' => '<span class="screen-reader-text">' . __('Search results - previous page', 'justicejobs') . '</span><span aria-hidden="true">' . __('PREV', 'justicejobs') . '</span>',
-                    'next_text' => '<span class="screen-reader-text"> ' . __('Search results', 'justicejobs') . ' -  </span>' . __('NEXT', 'justicejobs') . ' <span class="screen-reader-text">' . __('page', 'justicejobs') . '</span>',
-                    'before_page_number' => '<span class="screen-reader-text">' . __('Search results - page', 'justicejobs') . '</span>',
-                    'after_page_number' => '<span class="screen-reader-text"> ' . __(' of ', 'justicejobs') . __( $job_query->max_num_pages ) . '</span>'
-                    ) );
+                    'prev_text' => '<span class="screen-reader-text">' . __('Search results - previous page',
+                            'justicejobs') . '</span><span aria-hidden="true">' . __('PREV', 'justicejobs') . '</span>',
+                    'next_text' => '<span class="screen-reader-text"> ' . __('Search results',
+                            'justicejobs') . ' -  </span>' . __('NEXT',
+                            'justicejobs') . ' <span class="screen-reader-text">' . __('page',
+                            'justicejobs') . '</span>',
+                    'before_page_number' => '<span class="screen-reader-text">' . __('Search results - page',
+                            'justicejobs') . '</span>',
+                    'after_page_number' => '<span class="screen-reader-text"> ' . __(' of ',
+                            'justicejobs') . __($job_query->max_num_pages) . '</span>'
+                ));
 
                 ?>
             </div>
 
             <div class="search_contain__controls">
-                <p >VIEW BY</p>
-                <button class="search_contain__label search_contain__label--list" aria-pressed="false" aria-controls="jj-search-results-view">
+                <p>VIEW BY</p>
+                <button class="search_contain__label search_contain__label--list" aria-pressed="false"
+                        aria-controls="jj-search-results-view">
                     <span class="screen-reader-text">View search results as a </span> LIST
                     <svg width="28" height="28">
                         <use xlink:href="#icon-list"></use>
                     </svg>
                 </button>
-                <button class="search_contain__label search_contain__label--map" aria-pressed="true" aria-controls="jj-search-results-view">
+                <button class="search_contain__label search_contain__label--map" aria-pressed="true"
+                        aria-controls="jj-search-results-view">
                     <span class="screen-reader-text">View search results as a </span>MAP
                     <svg width="17" height="24">
                         <use xlink:href="#icon-marker"></use>
@@ -590,17 +498,17 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
         </header>
 
         <div class="search_contain__container" id="js-show-map jj-search-results-view" role="region" aria-live="polite">
-            <div class="search_contain__list-wrap" >
+            <div class="search_contain__list-wrap">
                 <table class="search_contain__list">
                     <caption class="screen-reader-text">Job search results</caption>
                     <thead>
-                        <tr class="search_contain__heading">
-                            <th scope="col">ROLE</th>
-                            <th scope="col">LOCATION</th>
-                            <th scope="col">SALARY</th>
-                            <th scope="col">WORKING PATTERN</th>
-                            <th scope="col">VIEW JOB</th>
-                        </tr>
+                    <tr class="search_contain__heading">
+                        <th scope="col">ROLE</th>
+                        <th scope="col">LOCATION</th>
+                        <th scope="col">SALARY</th>
+                        <th scope="col">WORKING PATTERN</th>
+                        <th scope="col">VIEW JOB</th>
+                    </tr>
                     </thead>
                     <?php
                     while ($job_query->have_posts()) {
@@ -670,7 +578,7 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                 </table>
             </div>
 
-            <div class="search_contain__map-wrap" >
+            <div class="search_contain__map-wrap">
                 <div
                     class="map"
                     id="map"
@@ -686,7 +594,8 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
 
             <div class="search_contain__empty">
                 <p class="heading--sm">Sorry no results found</p>
-                <span>Please try again</span>
+                <span>Please try again or <button class="btn-reset" id="reset-2"
+                                                  type="reset">reset the form</button></span>
             </div>
 
         <?php }
@@ -699,17 +608,23 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
 
                 <?php
                 $big = 999999999; // need an unlikely integer
-                echo paginate_links( array(
-                    'base' => str_replace( $big, '%#%', get_pagenum_link( $big ) ),
+                echo paginate_links(array(
+                    'base' => str_replace($big, '%#%', get_pagenum_link($big)),
                     'format' => '?paged=%#%',
                     'mid_size' => 2,
-                    'current' => max( 1, get_query_var('paged') ),
+                    'current' => max(1, get_query_var('paged')),
                     'total' => $job_query->max_num_pages,
-                    'prev_text' => '<span class="screen-reader-text">' . __('Search results - previous page', 'justicejobs') . '</span><span aria-hidden="true">' . __('PREV', 'justicejobs') . '</span>',
-                    'next_text' => '<span class="screen-reader-text"> ' . __('Search results', 'justicejobs') . ' -  </span>' . __('NEXT', 'justicejobs') . ' <span class="screen-reader-text">' . __('page', 'justicejobs') . '</span>',
-                    'before_page_number' => '<span class="screen-reader-text">' . __('Search results - page', 'justicejobs') . '</span>',
-                    'after_page_number' => '<span class="screen-reader-text"> ' . __(' of ', 'justicejobs') . __( $job_query->max_num_pages ) . '</span>'
-                    ) );
+                    'prev_text' => '<span class="screen-reader-text">' . __('Search results - previous page',
+                            'justicejobs') . '</span><span aria-hidden="true">' . __('PREV', 'justicejobs') . '</span>',
+                    'next_text' => '<span class="screen-reader-text"> ' . __('Search results',
+                            'justicejobs') . ' -  </span>' . __('NEXT',
+                            'justicejobs') . ' <span class="screen-reader-text">' . __('page',
+                            'justicejobs') . '</span>',
+                    'before_page_number' => '<span class="screen-reader-text">' . __('Search results - page',
+                            'justicejobs') . '</span>',
+                    'after_page_number' => '<span class="screen-reader-text"> ' . __(' of ',
+                            'justicejobs') . __($job_query->max_num_pages) . '</span>'
+                ));
 
                 ?>
             </div>

@@ -92,7 +92,7 @@ function enqueue_justice_jobs_scripts()
 
     $local_attr = [
         'root_url' => get_template_directory_uri(),
-        'ajaxurl' => admin_url( 'admin-ajax.php' )
+        'ajaxurl' => admin_url('admin-ajax.php')
     ];
 
     wp_localize_script('core-js', 'justice', $local_attr);
@@ -322,7 +322,6 @@ require 'inc/custom-taxonomies.php';
 add_action('wp', 'test_import');
 function test_import()
 {
-
     if (is_user_logged_in() && current_user_can('administrator')) {
 
         $import_test = get_query_var('importScriptTest');
@@ -352,4 +351,46 @@ add_filter('query_vars', 'rj_add_query_vars_filter');
 remove_action('wp_head', 'rsd_link'); // blog editing link
 remove_action('wp_head', 'wlwmanifest_link'); // windows blog editing link
 remove_action('wp_head', 'wp_generator'); // remove version declaration
+
+
+/**
+ * Used in search filter scripts
+ *
+ * @param $name
+ * @param $compare
+ * @return string
+ */
+function select_if_match($name, $compare)
+{
+    if ($name === $compare) {
+        return ' selected="selected"';
+    }
+    return '';
+}
+
+function jj_select_options($qs_param, $default = 'option')
+{
+    global $terms;
+
+    $role_options = $pre_options = $selected = '';
+    $selectedFound = false;
+    if (!empty($terms) && !is_wp_error($terms)) {
+        foreach ($terms as $term) {
+            $selected = select_if_match($term->slug, $qs_param);
+            if ($selected !== '') {
+                $selectedFound = $term->name;
+            }
+            $role_options .= '<option value="' . $term->slug . '"' . $selected . '>' . $term->name . '</option>';
+        }
+    }
+
+    if (!$selectedFound) {
+        $pre_options .= '<option value="" disabled selected>' . ucwords($default) . '</option>';
+        $selectedFound = '';
+    }
+
+    $pre_options .= '<option value="all">All ' . $default . 's</option>';
+
+    return ['list' => $pre_options . $role_options, 'title' => ' title="'.$selectedFound.'"'];
+}
 
