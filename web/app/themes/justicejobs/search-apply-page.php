@@ -154,166 +154,155 @@ Template Name: Search/Apply Template
             $last = $first + $job_query->post_count - 1;
             echo "<span class='search_contain__results search_contain__results--live'>Showing <b>" . $first . " - " . $last . "</b> of <b>" . "$job_query->found_posts" . "</b> job results</span>";
             ?>
-            <div class="pagination">
-                <?php
+          </ul>
+        </div>
+        <button class="btn btn--blue search-page-link ga-main-form-button" role="button" type="submit">Search jobs</button>
+        </fieldset>
+    </form>
+  </div>
+  <div class="search_contain__wrap" id="jj-search-results-view">
 
-                $big = 999999999; // need an unlikely integer
-                echo paginate_links(array(
-                    'base' => str_replace($big, '%#%', get_pagenum_link($big)),
-                    'format' => '?paged=%#%',
-                    'mid_size' => 2,
-                    'current' => max(1, get_query_var('paged')),
-                    'total' => $job_query->max_num_pages,
-                    'prev_text' => '<span class="screen-reader-text">' . __('Search results - previous page',
-                            'justicejobs') . '</span><span aria-hidden="true">' . __('PREV', 'justicejobs') . '</span>',
-                    'next_text' => '<span class="screen-reader-text"> ' . __('Search results',
-                            'justicejobs') . ' -  </span>' . __('NEXT',
-                            'justicejobs') . ' <span class="screen-reader-text">' . __('page',
-                            'justicejobs') . '</span>',
-                    'before_page_number' => '<span class="screen-reader-text">' . __('Search results - page',
-                            'justicejobs') . '</span>',
-                    'after_page_number' => '<span class="screen-reader-text"> ' . __(' of ',
-                            'justicejobs') . __($job_query->max_num_pages) . '</span>'
-                ));
-                ?>
-            </div>
+    <header>
 
+      <?php
+      $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 
-            <div class="search_contain__controls">
-                <p>VIEW BY</p>
-                <button class="search_contain__label search_contain__label--list" aria-pressed="false"
-                        aria-controls="jj-search-results-view">
-                    <span class="screen-reader-text">View search results as a </span> LIST
-                    <svg width="28" height="28">
-                        <use xlink:href="#icon-list"></use>
-                    </svg>
-                </button>
-                <button class="search_contain__label search_contain__label--map" aria-pressed="true"
-                        aria-controls="jj-search-results-view">
-                    <span class="screen-reader-text">View search results as a </span>MAP
-                    <svg width="17" height="24">
-                        <use xlink:href="#icon-marker"></use>
-                    </svg>
-                </button>
-            </div>
+      $args = array(
+        'post_type' => 'job',
+        'posts_per_page' => 10,
+        'paged'          => $paged
+      );
+      $job_query = new WP_Query( $args );
 
-        </header>
-        <div class="search_contain__container" id="js-show-map jj-search-results-view" role="region" aria-live="polite">
-            <div class="search_contain__list-wrap">
-                <table class="search_contain__list">
-                    <caption class="screen-reader-text">Job search results</caption>
-                    <thead>
-                    <tr class="search_contain__heading">
-                        <th scope="col">ROLE</th>
-                        <th scope="col">LOCATION</th>
-                        <th scope="col">SALARY</th>
-                        <th scope="col">WORKING PATTERN</th>
-                        <th scope="col">VIEW JOB</th>
-                    </tr>
-                    </thead>
-                    <?php
-                    while ($job_query->have_posts()) {
-                        $job_query->the_post();
-                        ?>
+      if ( $job_query->have_posts() ) {
 
-                        <tr class="search_contain__item">
-                            <td>
-                                <p><?php the_title(); ?></p>
-                            </td>
-                            <td>
-                                <p><?php the_field('location'); ?></p>
-                            </td>
-                            <td>
-                                <p>
-                                    <?php
-                                    $salary_copy = '';
-                                    $terms = wp_get_post_terms($post->ID, 'salary_range', array("fields" => "all"));
-                                    foreach ($terms as $term) {
-                                        $salary_copy = $salary_copy . $term->name . ', ';
-                                    }
-                                    echo substr($salary_copy, 0, -2);
-                                    ?>
-                                </p>
-                            </td>
-                            <td>
-                                <p>
-                                    <?php
-                                    $working_pattern_copy = '';
-                                    $terms = wp_get_post_terms($post->ID, 'working_pattern', array("fields" => "all"));
-                                    foreach ($terms as $term) {
-                                        $working_pattern_copy = $working_pattern_copy . $term->name . ', ';
-                                    }
-                                    echo substr($working_pattern_copy, 0, -2);
-                                    ?>
-                                </p>
-                            </td>
-                            <td>
-                                <a href="<?php the_permalink(); ?>" class="btn btn--blue btn--small">View</a>
-                            </td>
-                            <?php
+      $pagenum = $job_query->query_vars['paged'] < 1 ? 1 : $job_query->query_vars['paged'];
+      $first = ( ( $pagenum - 1 ) * $job_query->query_vars['posts_per_page'] ) + 1;
+      $last = $first + $job_query->post_count - 1;
+      echo "<span class='search_contain__results search_contain__results--live'>Showing <b>" . $first . " - " . $last . "</b> of <b>" . "$job_query->found_posts" . "</b> job results</span>";
+       ?>
+       <div class="pagination">
+         <?php
 
-                            $terms = wp_get_post_terms($post->ID, 'job_location', array("fields" => "all"));
-                            foreach ($terms as $term) {
-                                $thisJobSite = get_field('the_job_location', $term);
-                                ?>
-                                <td class="marker" style="height:0; width: 0;" data-url="<?php the_permalink(); ?>"
-                                    data-id="<?php the_ID(); ?>" data-lat="<?php echo $thisJobSite['lat']; ?>"
-                                    data-lng="<?php echo $thisJobSite['lng']; ?>"
-                                    data-title="<?php echo get_the_title(); ?>"></td>
-                            <?php } ?>
-                        </tr>
-
-                        <?php
-                    }
-                    ?>
-
-                    <?php
-
-                    }
-                    wp_reset_postdata();
-
-                    ?>
+         $big = 999999999; // need an unlikely integer
+         echo paginate_links( array(
+            'base' => str_replace( $big, '%#%', get_pagenum_link( $big ) ),
+            'format' => '?paged=%#%',
+            'mid_size' => 2,
+            'current' => max( 1, get_query_var('paged') ),
+            'total' => $job_query->max_num_pages,
+            'prev_text' => '<span class="screen-reader-text">' . __('Search results - previous page', 'justicejobs') . '</span><span aria-hidden="true">' . __('PREV', 'justicejobs') . '</span>',
+            'next_text' => '<span class="screen-reader-text"> ' . __('Search results', 'justicejobs') . ' -  </span>' . __('NEXT', 'justicejobs') . ' <span class="screen-reader-text">' . __('page', 'justicejobs') . '</span>',
+            'before_page_number' => '<span class="screen-reader-text">' . __('Search results - page', 'justicejobs') . '</span>',
+            'after_page_number' => '<span class="screen-reader-text"> ' . __(' of ', 'justicejobs') . __( $job_query->max_num_pages ) . '</span>'
+            ) );
+          ?>
+       </div>
 
 
-                </table>
-            </div>
-
-            <div class="search_contain__map-wrap">
-                <div
-                    class="map"
-                    id="map"
-                    data-zoom="14"
-                    style="width: 100%; height: 100%;"
-                >
-                </div>
-            </div>
+       <div class="search_contain__controls">
+          <p >VIEW BY</p>
+          <button class="search_contain__label search_contain__label--list" aria-pressed="false" aria-controls="jj-search-results-view">
+            <span class="screen-reader-text">View search results as a </span> LIST
+            <svg width="28" height="28">
+                <use xlink:href="#icon-list"></use>
+            </svg>
+          </button>
+          <button class="search_contain__label search_contain__label--map" aria-pressed="true" aria-controls="jj-search-results-view">
+            <span class="screen-reader-text">View search results as a </span>MAP
+            <svg width="17" height="24">
+                <use xlink:href="#icon-marker"></use>
+            </svg>
+          </button>
         </div>
 
-        <footer>
-            <div class="pagination">
-                <?php
+    </header>
+    <div class="search_contain__container" id="js-show-map" role="region" aria-live="polite">
+      <div class="search_contain__list-wrap" id="jj-search-results-view">
+        <table class="search_contain__list">
+          <caption class="screen-reader-text">Job search results</caption>
+          <thead>
+            <tr class="search_contain__heading">
+              <th scope="col">ROLE</th>
+              <th scope="col">LOCATION</th>
+              <th scope="col">SALARY</th>
+              <th scope="col">WORKING PATTERN</th>
+              <th scope="col">VIEW JOB</th>
+            </tr>
+          </thead>
+          <?php
+    				 while ( $job_query->have_posts() ) {
+    					$job_query->the_post();
+          ?>
 
-                $big = 999999999; // need an unlikely integer
-                echo paginate_links(array(
-                    'base' => str_replace($big, '%#%', get_pagenum_link($big)),
-                    'format' => '?paged=%#%',
-                    'mid_size' => 2,
-                    'current' => max(1, get_query_var('paged')),
-                    'total' => $job_query->max_num_pages,
-                    'prev_text' => '<span class="screen-reader-text">' . __('Search results - previous page',
-                            'justicejobs') . '</span><span aria-hidden="true">' . __('PREV', 'justicejobs') . '</span>',
-                    'next_text' => '<span class="screen-reader-text"> ' . __('Search results',
-                            'justicejobs') . ' -  </span>' . __('NEXT',
-                            'justicejobs') . ' <span class="screen-reader-text">' . __('page',
-                            'justicejobs') . '</span>',
-                    'before_page_number' => '<span class="screen-reader-text">' . __('Search results - page',
-                            'justicejobs') . '</span>',
-                    'after_page_number' => '<span class="screen-reader-text"> ' . __(' of ',
-                            'justicejobs') . __($job_query->max_num_pages) . '</span>'
-                ));
-                ?>
-            </div>
-        </footer>
+          <tr class="search_contain__item">
+            <td>
+              <p><?php the_title(); ?></p>
+            </td>
+            <td>
+              <p><?php the_field('location'); ?></p>
+            </td>
+            <td>
+              <p>
+              <?php
+                $salary_copy = '';
+                $terms = wp_get_post_terms($post->ID, 'salary_range', array("fields" => "all"));
+                foreach ($terms as $term) {
+                  $salary_copy = $salary_copy . $term->name . ', ';
+                }
+                echo substr($salary_copy, 0, -2);
+               ?>
+             </p>
+            </td>
+            <td>
+              <p>
+              <?php
+                $working_pattern_copy = '';
+                $terms = wp_get_post_terms($post->ID, 'working_pattern', array("fields" => "all"));
+                foreach ($terms as $term) {
+                  $working_pattern_copy = $working_pattern_copy . $term->name . ', ';
+                }
+                echo substr($working_pattern_copy, 0, -2);
+              ?>
+            </p>
+            </td>
+            <td>
+              <a href="<?php the_permalink(); ?>" class="btn btn--blue btn--small">View</a>
+            </td>
+            <?php
+
+            $terms = wp_get_post_terms($post->ID, 'job_location', array("fields" => "all"));
+            foreach ($terms as $term) {
+              $thisJobSite = get_field('the_job_location', $term);
+              ?>
+              <td class="marker" style="height:0; width: 0;" data-url="<?php the_permalink(); ?>" data-id="<?php the_ID(); ?>" data-lat="<?php echo $thisJobSite['lat']; ?>" data-lng="<?php echo  $thisJobSite['lng']; ?>" data-title="<?php echo get_the_title(); ?>"></td>
+              <?php } ?>
+          </tr>
+
+          <?php
+                }
+           ?>
+
+           <?php
+
+             }
+             wp_reset_postdata();
+
+            ?>
+
+
+        </table>
+      </div>
+
+      <div class="search_contain__map-wrap">
+        <div
+          class="map"
+          id="map"
+          data-zoom="14"
+          style="width: 100%; height: 100%;"
+        >
+        </div>
+      </div>
     </div>
 </div>
 

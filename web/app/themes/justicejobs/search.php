@@ -140,7 +140,7 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
             </fieldset>
         </form>
     </div>
-    <div class="search_contain__wrap">
+    <div class="search_contain__wrap" id="jj-search-results-view">
 
         <header>
             <?php
@@ -497,8 +497,8 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
             </div>
         </header>
 
-        <div class="search_contain__container" id="js-show-map jj-search-results-view" role="region" aria-live="polite">
-            <div class="search_contain__list-wrap">
+        <div class="search_contain__container" id="js-show-map" role="region" aria-live="polite">
+            <div class="search_contain__list-wrap" id="jj-search-results-view">
                 <table class="search_contain__list">
                     <caption class="screen-reader-text">Job search results</caption>
                     <thead>
