@@ -180,3 +180,27 @@
 .awards-carousel {
   width: 100%;
 }
+
+.active .slide {
+  display: block !important;
+  visibility: hidden;
+  transition: left .6s ease-out;
+}
+
+.active .slide.current {
+  visibility: visible;
+  left: 0;
+}
+
+.active .slide.next {
+  left: 100%;
+}
+
+.active .slide.prev {
+  left: -100%;
+}
+
+.active .slide.next.in-transition,
+.active .slide.prev.in-transition {
+  visibility:visible;
+}

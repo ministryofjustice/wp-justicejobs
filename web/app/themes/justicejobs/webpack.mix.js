@@ -5,6 +5,7 @@ require('laravel-mix-imagemin');
 mix.setPublicPath('./dist/');
 
 mix.js([
+        'src/js/accessible-carousel.js',
         'src/js/job-search-results.js',
         'src/js/job-search-form.js',
         'src/js/map.js',
