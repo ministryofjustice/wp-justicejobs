@@ -1,7 +1,6 @@
 .campaign {
   padding-top: 25px;
   position: relative;
-
   @include respond-to(sm) {
     display: flex;
     flex-direction: column;
@@ -40,29 +39,36 @@
     }
   }
 
-  &__video * {
-    max-width: 100%;
-
-    &::before {
-      max-width: 100%;
-    }
-
-    &::after {
-      max-width: 100%;
-    }
+  &__video {
+    position: relative;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 300px;
 
     video {
-      max-width: 100%;
-      height: auto;
+      width: 100%;
+      background-color: transparent;
+      background-position: 50% 50%;
+      background-size: cover;
+      background-repeat: no-repeat;
+
+      @include respond-to(md) {
+        height: 285px;
+      }
+    }
+
+    @include respond-to(sm) {
+      width: calc((100% - 100px) / 2);
     }
   }
 
   &__text-col {
     margin-bottom: 60px;
-
     @include respond-to(sm) {
       margin-bottom: 0;
-      margin-right: 5%;
+      width: calc((100% - 100px) / 2);
     }
   }
 
@@ -202,7 +208,7 @@
     }
   }
 
-  >.btn-big {
+  > .btn-big {
     @include respond-to(md) {
       margin-left: auto;
       width: 50%;

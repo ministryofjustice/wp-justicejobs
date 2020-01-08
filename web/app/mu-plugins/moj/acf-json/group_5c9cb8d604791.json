@@ -59,7 +59,6 @@
                 "id": ""
             },
             "choices": {
-                "Video": "Video",
                 "Campaign Block": "Campaign Block"
             },
             "default_value": [],
@@ -648,5 +647,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1578387116
+    "modified": 1578472203
 }
