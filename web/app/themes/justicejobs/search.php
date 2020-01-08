@@ -13,7 +13,6 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
 
 ?>
 
-
 <section class="hero hero--job hero--arrows">
     <div class="hero__img-block">
         <div
@@ -90,7 +89,8 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                        placeholder="City / Postcode" value="<?= $_location; ?>"/>
                 <div class="select-list" data-miles="<?= $_radius ?>">
                     <label for="radius" class="screen-reader-text">Radius (in miles)</label>
-                    <select disabled class="select" id="radius" aria-label="Radius (in miles)"<?= ($_radius ? ' title="' . $_radius . ' miles"' : '') ?>>
+                    <select disabled class="select" id="radius"
+                            aria-label="Radius (in miles)"<?= ($_radius ? ' title="' . $_radius . ' miles"' : '') ?>>
                         <option value="0" disabled selected>Radius (in miles)</option>
                         <option value="5">5 Miles</option>
                         <option value="10">10 Miles</option>
@@ -141,7 +141,6 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
         </form>
     </div>
     <div class="search_contain__wrap" id="jj-search-results-view">
-
         <header>
             <?php
 
@@ -498,7 +497,7 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
         </header>
 
         <div class="search_contain__container" id="js-show-map" role="region" aria-live="polite">
-            <div class="search_contain__list-wrap" id="jj-search-results-view">
+            <div class="search_contain__list-wrap">
                 <table class="search_contain__list">
                     <caption class="screen-reader-text">Job search results</caption>
                     <thead>
