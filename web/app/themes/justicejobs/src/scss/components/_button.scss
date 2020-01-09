@@ -22,16 +22,19 @@
     text-transform: uppercase;
     cursor: pointer;
     @include transition(opacity);
+
     &:hover,
     &:focus,
     &:active {
         color: $light-green;
         background: transparent;
     }
+
     &--bw {
         color: #000;
         background: #fff;
         border: 1px solid white;
+
         &:hover,
         &:focus,
         &:active {
@@ -39,31 +42,37 @@
             border: 1px solid #fff;
         }
     }
+
     &--blue {
         background: $light-blue;
-        color: #ffff;
+        color: #fff;
         border: 1px solid $light-blue;
         box-shadow: 0 17px 15px -5px rgba($light-blue, 0.3);
+
         &:hover,
         &:focus,
         &:active {
             color: $light-blue;
         }
     }
+
     &--green {
         background: $light-green;
-        color: #ffff;
+        color: #fff;
         border: 1px solid $light-green;
         box-shadow: 0 17px 15px -5px rgba($light-green, 0.3);
+
         &:hover,
         &:focus,
         &:active {
             color: $light-green;
         }
     }
+
     &--full {
         width: 100%;
     }
+
     &--small {
         padding: 6px 12px;
         font-size: 1.5rem;
@@ -89,19 +98,23 @@
     white-space: nowrap;
     cursor: pointer;
     @include transition(opacity);
+
     svg {
         margin-left: 15px;
         height: 13px;
         width: 8px;
         fill: #000;
     }
+
     &:hover,
     &:focus,
     &:active {
         opacity: 0.7;
     }
+
     &--light {
         color: #fff;
+
         svg {
             fill: #fff;
         }
@@ -123,12 +136,14 @@
     border: none;
     outline: none;
     cursor: pointer;
+
     svg {
         margin-left: 5px;
         width: 12px;
         height: 15px;
         fill: $light-blue;
     }
+
     @include respond-to(sm) {
         width: 70px;
         height: 70px;
@@ -138,6 +153,7 @@
             height: 25px;
         }
     }
+
     &--sm {
         @include respond-to(sm) {
             width: 40px;
@@ -160,6 +176,7 @@
     line-height: 0.8;
     //color: #adadad;
     color: #000;
+
     svg {
         margin-right: 8px;
         width: 8px;
@@ -168,16 +185,59 @@
         //fill: #adadad;
         fill: #000;
     }
+
     &--blue {
         color: $mid-blue;
+
         svg {
             fill: $mid-blue;
         }
     }
+
     &--agency {
         position: absolute;
         top: 40px;
         left: 15px;
+    }
+}
+
+.btn-reset {
+    font-size: inherit;
+    color: $mid-blue;
+    outline: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-decoration: underline;
+
+    svg {
+        margin-right: 8px;
+        width: 8px;
+        height: 13px;
+        transform: rotate(180deg);
+        fill: #000;
+    }
+
+    &--blue {
+        color: $mid-blue;
+
+        svg {
+            fill: $mid-blue;
+        }
+    }
+
+    &-button-contain {
+        position: relative;
+        min-height: 30px;
+
+        .btn-reset {
+            color: #000;
+            font-size: 1.4rem;
+            margin: 20px 8px;
+            position: absolute;
+            right: 0;
+            text-decoration: none;
+        }
     }
 }
 
@@ -193,9 +253,11 @@
     background: $light-blue;
     border: none;
     outline: none;
+
     svg {
         fill: #fff;
     }
+
     &--green {
         background: $light-green;
     }
@@ -212,14 +274,17 @@
     outline: none;
     background: none;
     cursor: pointer;
+
     svg {
         width: 33px;
         height: 33px;
         fill: #fff;
     }
+
     @include respond-to(sm) {
         right: -40px;
     }
+
     &:hover {
         svg {
             fill: #dedede;
@@ -232,6 +297,7 @@
     width: 30px;
     height: 30px;
     @include transition;
+
     svg {
         fill: $light-blue;
     }
@@ -242,7 +308,12 @@
     width: 30px;
     height: 30px;
     @include transition;
+
     svg {
         fill: $light-blue;
     }
+}
+
+.form-reset-button-contain {
+
 }
