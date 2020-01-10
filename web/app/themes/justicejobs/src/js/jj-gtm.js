@@ -66,13 +66,13 @@ jQuery(function ($) {
                 label = tag.val();
                     break;
             case tag.hasClass('ga-nav-primary'):
-                label = 'Primary nav - ' + label;
+                label = 'Main Menu - ' + label;
                 break;
             case tag.hasClass('ga-mini-home-form-button'):
-                label = 'Mini form homepage - ' + label;
+                label = 'Mini form - homepage ' + label;
                 break;
             case tag.hasClass('ga-main-form-button'):
-                label = 'Main form search - ' + label;
+                label = 'Main form - search ' + label;
                 break;
             case tag.hasClass('ga-nav-top-right'):
                 label = 'Header right - ' + label;

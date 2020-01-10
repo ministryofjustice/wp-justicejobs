@@ -69,17 +69,6 @@
                     <input id="location" name="location" aria-label="Location" type="text" class="input"
                            placeholder="City / Postcode"/>
                 </div>
-                <div class="select-list">
-                    <label for="radius" class="screen-reader-text">Radius (in miles)</label>
-                    <select id="radius" name="radius" aria-label="Radius (in miles)" class="select">
-                        <option value="0" disabled selected>Radius (in miles)</option>
-                        <option value="5">5 miles</option>
-                        <option value="10">10 miles</option>
-                        <option value="25">25 miles</option>
-                        <option value="50">50 miles</option>
-                        <option value="100">100 miles</option>
-                    </select>
-                </div>
                 <button class="btn btn--blue btn--full search-page-link ga-mini-home-form-button" type="submit">Search
                     jobs
                 </button>
