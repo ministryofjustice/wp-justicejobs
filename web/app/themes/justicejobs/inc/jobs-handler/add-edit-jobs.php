@@ -140,6 +140,17 @@ function set_job_details($job_content, $totalspans, $post_id) {
             update_field('location', $location, $post_id);
         }
 
+        // Save Closing Date
+        if ($job_content->div->span[$y]->attributes()->itemprop[0] == "Closing Date") {
+            $closing_date = (string) $job_content->div->span[$y];
+            if(strlen($closing_date > 0)){
+                $closing_date = strtotime($closing_date);
+                if($closing_date != false) {
+                    update_field('closing_date', $closing_date, $post_id);
+                }
+            }
+        }
+
         // Save Job Description Info
         if ($job_content->div->span[$y]->attributes()->itemprop[0] == "Job description Additional Information") {
             $job_info_string = $job_content->div->span[$y]->asXML();
