@@ -147,8 +147,9 @@
   &__accordion {
     margin-bottom: 90px;
 
-    .heading--md {
-      padding: 0 20px;
+    h2 {
+      color: #336699;
+      margin-bottom: 25px;
     }
   }
 
@@ -273,6 +274,11 @@
 
     @include respond-to(sm) {
       margin-bottom: 50px;
+    }
+
+    h2 {
+      color: #336699;
+      margin-bottom: 25px;
     }
 
     p {

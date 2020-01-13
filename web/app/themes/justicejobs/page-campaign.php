@@ -35,10 +35,10 @@ Template Post Type: page, campaign
     </div>
 </section>
 
-<div class="campaign ">
+<div class="campaign">
 
     <?php
-
+    
     $back_link = get_field('back_button');
 
     if ($back_link) :
@@ -46,6 +46,7 @@ Template Post Type: page, campaign
         $link_title = $back_link['title'];
         $link_target = $back_link['target'] ? $back_link['target'] : '_self';
         ?>
+
     <a href="<?php echo esc_url($link_url); ?>" class="btn-back btn-back--agency"
         target="<?php echo esc_attr($link_target); ?>">
         <svg width="8" height="13">
@@ -53,6 +54,7 @@ Template Post Type: page, campaign
         </svg>
         <?php echo esc_html($link_title); ?>
     </a>
+
     <?php endif; ?>
 
     <?php
@@ -62,6 +64,7 @@ Template Post Type: page, campaign
         $overview_title = $overview['overview_title'];
         $overview_content = $overview['overview_content'];
         ?>
+
     <div class="container">
         <?php
         $overview_link = get_field('overview_link');
@@ -87,7 +90,7 @@ Template Post Type: page, campaign
 
             <div class="campaign--container campaign__video">
                 <?php
-        // Campaign ACF field
+                // Campaign ACF field
                 the_field('campaign_overview_video_embed');
                 ?>
             </div>
@@ -101,7 +104,7 @@ Template Post Type: page, campaign
     $add_accordion = get_field('add_accordion_section');
 if ($add_accordion == 1) :
     ?>
-<div class="campaign__accordion">
+<div class="campaign--container campaign__accordion">
     <h2 class="heading--md"><?php the_field('accordion_section_title');?></h2>
     <div class="accordion">
         <?php
@@ -231,13 +234,15 @@ if ($add_accordion == 1) :
 <?php endif; ?>
 
 <div class="campaign__text-wrap container">
+
     <h2 class="heading--md"><?php the_field('people_stories_section_title');?></h2>
     <p>
         <?php the_field('people_stories_descripton'); ?>
     </p>
+
 </div>
 
-<div class="container">
+<div class="campaign--container">
 
     <?php
     if (get_field('people_stories_video_one_oembed')) : ?>
