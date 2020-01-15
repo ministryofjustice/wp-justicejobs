@@ -8,7 +8,7 @@ function import_jobs_from_xml() {
 
   $totaljobs = count($xml->entry);
 
-    for ($x = 0; $x < 20; $x++) {
+    for ($x = 0; $x < $totaljobs; $x++) {
       $job_content =  $xml->entry[$x]->content;
       $totalspans = count($job_content->div->span);
       $job_title = $xml->entry[$x]->title;
@@ -22,6 +22,7 @@ function import_jobs_from_xml() {
 
           $job_title = str_replace($job_id . " - ", "", $job_title);
 
+          $job_title = $job_title . " - " . $job_id;
           echo $job_title;
           echo "<br/>";
 
@@ -40,6 +41,7 @@ function import_jobs_from_xml() {
 
           if(count($job_check) == 0) {
 
+              /**
               // Creates job post
               $job_post = array(
                   'post_title' => $job_title,
@@ -59,7 +61,7 @@ function import_jobs_from_xml() {
               update_field('job_content_hash', $job_content_hash, $post_id);
 
               echo "Job Added";
-              echo "<br/>";
+              echo "<br/>";**/
 
           }
           else {
@@ -154,6 +156,12 @@ function set_job_details($job_content, $totalspans, $post_id) {
         // Save Job Description Info
         if ($job_content->div->span[$y]->attributes()->itemprop[0] == "Job description Additional Information") {
             $job_info_string = $job_content->div->span[$y]->asXML();
+
+
+            $job_info_string = str_replace('<strong>', "<h3>", $job_info_string);
+            $job_info_string = str_replace("</strong>", "</h3>", $job_info_string);
+            $job_info_string = str_replace("<strong/>", "</h3>", $job_info_string);
+
             $update_post = array(
                 'ID' => $post_id,
                 'post_content' => $job_info_string
@@ -165,6 +173,12 @@ function set_job_details($job_content, $totalspans, $post_id) {
         // Save Additional Info
         if ($job_content->div->span[$y]->attributes()->itemprop[0] == "Additional Information") {
             $job_add_info_string = $job_content->div->span[$y]->asXML();
+
+
+            $job_add_info_string = str_replace('<strong>', "<h3>", $job_add_info_string);
+            $job_add_info_string = str_replace("</strong>", "</h3>", $job_add_info_string);
+            $job_add_info_string = str_replace("<strong/>", "</h3>", $job_add_info_string);
+
             update_field('additional_information', $job_add_info_string, $post_id);
 
         }
