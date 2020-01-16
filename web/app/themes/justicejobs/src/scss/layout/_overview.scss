@@ -10,13 +10,13 @@
 
     @include respond-to(md) {
       padding: 0;
-      padding-right: 50px;
       width: 50%;
     }
   }
 
   &__text {
-    max-width: 700px;
+    float: left;
+    padding-right: 5%;
   }
 
   .heading--md {
@@ -41,34 +41,29 @@
   }
 
   &__video-wrap {
+
     @include respond-to(md) {
+      float: left;
+      padding-top: 60px;
       width: 50%;
+      text-align: center;
     }
   }
 
-  &__video {
-    position: relative;
-    width: 100%;
-    background-color: transparent;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    height: 300px;
+  &__video * {
+    max-width: 100%;
 
     &::before {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      display: block;
-      background-color: rgba(#000, 0.54);
-      content: '';
+      max-width: 100%;
+    }
+
+    &::after {
+      max-width: 100%;
     }
 
     video {
-      width: 100%;
-      display: block;
+      max-width: 100%;
+      height: auto;
     }
   }
 }

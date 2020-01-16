@@ -100,8 +100,6 @@
                 "field_5cc178345ccfe",
                 "field_5cc1784e5ccff",
                 "field_5cc178705cd00",
-                "field_5c9cec69e8e69",
-                "field_5c9cecafe8e6a",
                 "field_5c9ceea59906e"
             ],
             "display": "group",
@@ -112,8 +110,8 @@
         {
             "key": "field_5c9cdaeec70e4",
             "label": "Video",
-            "name": "video",
-            "type": "clone",
+            "name": "agency_video",
+            "type": "oembed",
             "instructions": "",
             "required": 0,
             "conditional_logic": [
@@ -135,14 +133,8 @@
                 "class": "",
                 "id": ""
             },
-            "clone": [
-                "field_5c9cd72d6adde",
-                "field_5ca1ef36bc2b0"
-            ],
-            "display": "group",
-            "layout": "block",
-            "prefix_label": 0,
-            "prefix_name": 0
+            "width": "",
+            "height": ""
         },
         {
             "key": "field_5cb48f10c1f2f",
@@ -654,5 +646,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1573138455
+    "modified": 1578486030
 }

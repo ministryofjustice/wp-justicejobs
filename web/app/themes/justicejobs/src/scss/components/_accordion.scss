@@ -23,6 +23,7 @@
 
     &.is-opened {
       background-color: rgba(#a0a5b4, 0.1);
+      padding: 12px;
 
       .accordion__btn {
         position: static;

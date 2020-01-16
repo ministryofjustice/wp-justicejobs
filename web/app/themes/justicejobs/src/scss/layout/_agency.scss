@@ -4,6 +4,7 @@
   }
 
   &__col {
+
     @include respond-to(md) {
       width: 50%;
       flex-grow: 1;
@@ -82,6 +83,16 @@
           margin-bottom: 30px;
         }
       }
+  
+      iframe,
+      object,
+      embed {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 380px;
+      }
     }
   }
 
@@ -112,16 +123,6 @@
       top: 50px;
       left: 50px;
     }
-
-    // video {
-    //   width: 100%;
-    //   // background: transparent url('/WP_Justice_Jobs/wp-content/themes/justicejobs/img/agency-video-poster.jpg') 50% 50% /
-    //   //   cover no-repeat;
-    //
-    //   @include respond-to(md) {
-    //     height: 285px;
-    //   }
-    // }
   }
 
   .agency__carousel {

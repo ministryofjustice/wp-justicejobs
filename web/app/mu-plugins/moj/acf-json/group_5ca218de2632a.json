@@ -100,13 +100,36 @@
             },
             "clone": [
                 "field_5c9b579c515b1",
-                "field_5c99036b7b7c2",
-                "group_5c9cd6189218f"
+                "field_5c99036b7b7c2"
             ],
             "display": "group",
             "layout": "block",
             "prefix_label": 0,
             "prefix_name": 0
+        },
+        {
+            "key": "field_5e15e2870ded5",
+            "label": "Overview video",
+            "name": "campaign_overview_video_embed",
+            "type": "oembed",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5caf3c0b05ec5",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "width": "",
+            "height": ""
         },
         {
             "key": "field_5cab4a3820772",
@@ -570,25 +593,6 @@
             "endpoint": 0
         },
         {
-            "key": "field_5caf4ac32a670",
-            "label": "Add People Stories Section",
-            "name": "add_people_stories_section",
-            "type": "true_false",
-            "instructions": "Check if you would like to add People Stories Section",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 0,
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
             "key": "field_5caf4c83a846c",
             "label": "People Stories Section Title",
             "name": "people_stories_section_title",
@@ -616,18 +620,17 @@
             "maxlength": ""
         },
         {
-            "key": "field_5ca36b304a720",
-            "label": "Description",
-            "name": "description",
+            "key": "field_5e17229861dc8",
+            "label": "People Stories description",
+            "name": "people_stories_descripton",
             "type": "textarea",
-            "instructions": "",
+            "instructions": "Descriptive text for this section.",
             "required": 0,
             "conditional_logic": [
                 [
                     {
-                        "field": "field_5caf4ac32a670",
-                        "operator": "==",
-                        "value": "1"
+                        "field": "field_5ccedb5c0f188",
+                        "operator": "!=empty"
                     }
                 ]
             ],
@@ -639,22 +642,21 @@
             "default_value": "",
             "placeholder": "",
             "maxlength": "",
-            "rows": 4,
+            "rows": "",
             "new_lines": ""
         },
         {
-            "key": "field_5ca35b16ac07d",
-            "label": "People",
-            "name": "people",
-            "type": "repeater",
-            "instructions": "",
+            "key": "field_5e15f7048100e",
+            "label": "People Stories video one",
+            "name": "people_stories_video_one_oembed",
+            "type": "oembed",
+            "instructions": "To add video, copy and paste YouTube or Vimeo URL.",
             "required": 0,
             "conditional_logic": [
                 [
                     {
-                        "field": "field_5caf4ac32a670",
-                        "operator": "==",
-                        "value": "1"
+                        "field": "field_5ccedb5c0f188",
+                        "operator": "!=empty"
                     }
                 ]
             ],
@@ -663,177 +665,31 @@
                 "class": "",
                 "id": ""
             },
-            "collapsed": "",
-            "min": 0,
-            "max": 0,
-            "layout": "row",
-            "button_label": "Add Person",
-            "sub_fields": [
-                {
-                    "key": "field_5ca35b4bac07e",
-                    "label": "Job Position",
-                    "name": "job_position",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                },
-                {
-                    "key": "field_5ca35b7aac07f",
-                    "label": "Job Location",
-                    "name": "job_location",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                },
-                {
-                    "key": "field_5ca35b89ac080",
-                    "label": "Name",
-                    "name": "name",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                },
-                {
-                    "key": "field_5ca35b97ac081",
-                    "label": "Photo",
-                    "name": "photo",
-                    "type": "image",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "url",
-                    "preview_size": "thumbnail",
-                    "library": "all",
-                    "min_width": "",
-                    "min_height": "",
-                    "min_size": "",
-                    "max_width": "",
-                    "max_height": "",
-                    "max_size": "",
-                    "mime_types": ""
-                },
-                {
-                    "key": "field_5ca35bc0ac082",
-                    "label": "Pop-up",
-                    "name": "pop-up",
-                    "type": "select",
-                    "instructions": "Select if you want to add a pop-up video or a pop-up carousel",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "Pop-up Video": "Pop-up Video",
-                        "Pop-up Carousel": "Pop-up Carousel"
-                    },
-                    "default_value": [],
-                    "allow_null": 0,
-                    "multiple": 0,
-                    "ui": 0,
-                    "return_format": "value",
-                    "ajax": 0,
-                    "placeholder": ""
-                },
-                {
-                    "key": "field_5ca35c7fac083",
-                    "label": "Pop-up Video",
-                    "name": "campaign_pop-up_video",
-                    "type": "clone",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_5ca35bc0ac082",
-                                "operator": "==",
-                                "value": "Pop-up Video"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "clone": [
-                        "field_5c9cd72d6adde"
-                    ],
-                    "display": "group",
-                    "layout": "block",
-                    "prefix_label": 0,
-                    "prefix_name": 0
-                },
-                {
-                    "key": "field_5ca35d8bac084",
-                    "label": "Pop-up Carousel",
-                    "name": "campaign_pop-up_carousel",
-                    "type": "clone",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_5ca35bc0ac082",
-                                "operator": "==",
-                                "value": "Pop-up Carousel"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "clone": [
-                        "field_5c9cecafe8e6a"
-                    ],
-                    "display": "group",
-                    "layout": "block",
-                    "prefix_label": 0,
-                    "prefix_name": 0
-                }
-            ]
+            "width": "",
+            "height": ""
+        },
+        {
+            "key": "field_5e15f8415cb41",
+            "label": "People Stories video two",
+            "name": "people_stories_video_two_oembed",
+            "type": "oembed",
+            "instructions": "To add video, copy and paste YouTube or Vimeo URL.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5ccedb5c0f188",
+                        "operator": "!=empty"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "width": "",
+            "height": ""
         },
         {
             "key": "field_5ca61bdec08ce",
@@ -1006,5 +862,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1573138583
+    "modified": 1578574537
 }

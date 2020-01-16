@@ -1,6 +1,7 @@
 .campaign {
   padding-top: 25px;
   position: relative;
+
   @include respond-to(sm) {
     display: flex;
     flex-direction: column;
@@ -40,43 +41,115 @@
   }
 
   &__video {
+    text-align: center;
+    float: left;
     position: relative;
-    width: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    height: 300px;
+    padding-bottom: 300px;
+    overflow: hidden;
+    max-width: 100%;
+    height: auto;
 
-    video {
+
+    iframe,
+    object,
+    embed {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
-      background-color: transparent;
-      background-position: 50% 50%;
-      background-size: cover;
-      background-repeat: no-repeat;
-
-      @include respond-to(md) {
-        height: 285px;
-      }
+      height: 100%;
     }
 
-    @include respond-to(sm) {
-      width: calc((100% - 100px) / 2);
+    video {
+      height: auto;
+    }
+
+    @include respond-to(md) {
+      position: relative;
+      padding-bottom: 300px;
+      overflow: hidden;
+      max-width: 100%;
+      height: auto;
+
+
+      iframe,
+      object,
+      embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 
   &__text-col {
     margin-bottom: 60px;
+
     @include respond-to(sm) {
       margin-bottom: 0;
-      width: calc((100% - 100px) / 2);
+      width: 800px;
     }
+  }
+
+  &__vid-col {
+    position: relative;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 60px;
+
+
+    iframe,
+    object,
+    embed {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    @include respond-to(md) {
+      float: left;
+      padding-bottom: 60px;
+      padding-right: 20px;
+      margin-bottom: 60px;
+      width: 50%;
+      text-align: left;
+
+      position: relative;
+      padding-bottom: 300px;
+      overflow: hidden;
+      max-width: 100%;
+      height: auto;
+
+
+      iframe,
+      object,
+      embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+  }
+
+  &__vid-col:nth-of-type(1) {
+    text-align: right;
   }
 
   &__accordion {
     margin-bottom: 90px;
 
-    .heading--md {
-      padding: 0 20px;
+    h2 {
+      color: #336699;
+      margin-bottom: 25px;
     }
   }
 
@@ -203,12 +276,17 @@
       margin-bottom: 50px;
     }
 
+    h2 {
+      color: #336699;
+      margin-bottom: 25px;
+    }
+
     p {
       margin-bottom: 35px;
     }
   }
 
-  > .btn-big {
+  >.btn-big {
     @include respond-to(md) {
       margin-left: auto;
       width: 50%;
