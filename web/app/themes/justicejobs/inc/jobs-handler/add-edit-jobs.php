@@ -41,7 +41,7 @@ function import_jobs_from_xml() {
 
           if(count($job_check) == 0) {
 
-              /**
+
               // Creates job post
               $job_post = array(
                   'post_title' => $job_title,
@@ -61,7 +61,7 @@ function import_jobs_from_xml() {
               update_field('job_content_hash', $job_content_hash, $post_id);
 
               echo "Job Added";
-              echo "<br/>";**/
+              echo "<br/>";
 
           }
           else {
