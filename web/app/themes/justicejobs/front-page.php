@@ -93,7 +93,7 @@
                             $position_location = get_sub_field(' position_location');
                             $more_link = get_sub_field('find-out-more_link');
                             ?>
-                            <li class="carousel__slide slide">
+                            <li class="carousel__slide carousel__wrap slide">
                                 <div class="carousel__wrap">
                                     <p class="heading--xxs"><?php echo $agency_name; ?></p>
                                     <h3 class="heading--sm"><?php echo $position_title; ?></h3>

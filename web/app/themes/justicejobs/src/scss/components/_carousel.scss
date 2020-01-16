@@ -182,9 +182,13 @@
 }
 
 .active .slide {
-  display: block !important;
   visibility: hidden;
   transition: left .6s ease-out;
+}
+
+.slide {
+  height: 100%;
+  padding: 50px;
 }
 
 .active .slide.current {
@@ -196,11 +200,22 @@
   left: 100%;
 }
 
-.active .slide.prev {
-  left: -100%;
+.slide.prev {
+  display: none;
 }
 
 .active .slide.next.in-transition,
 .active .slide.prev.in-transition {
   visibility:visible;
+}
+
+.slidenav {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  list-style-type: none;
+  li {
+    display: inline;
+  }
 }

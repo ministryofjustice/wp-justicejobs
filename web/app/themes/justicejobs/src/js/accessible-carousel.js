@@ -2,7 +2,6 @@
  * Source: https://gist.github.com/nuxodin/9250e56a3ce6c0446efa
  */
 jQuery(document).ready(function ($) {
-    console.log("accessible carousel has loaded!");
     var w = window,
     d = w.document;
 
@@ -41,7 +40,7 @@ jQuery(document).ready(function ($) {
     "use strict";
 
     // Initial variables
-    var carousel, slides, index, slidenav, settings, timer, setFocus, animationSuspended, announceItem;
+    var carousel, slides, index, slidenav, settings, timer, setFocus, animationSuspended, announceItem, _this;
 
     // Helper function: Iterates over an array of elements
     function forEachElement(elements, fn) {
@@ -136,13 +135,15 @@ jQuery(document).ready(function ($) {
             var klass = (i===0) ? 'class="current" ' : '';
             var kurrent = (i===0) ? ' <span class="visually-hidden">(Current Item)</span>' : '';
 
-            li.innerHTML = '<button '+ klass +'data-slide="' + i + '"><span class="visually-hidden">News</span> ' + (i+1) + kurrent + '</button>';
+            li.innerHTML = '<button '+ klass +'data-slide="' + i + '"><span class="visually-hidden">Item</span> ' + (i+1) + kurrent + '</button>';
             slidenav.appendChild(li);
           });
         }
 
         slidenav.addEventListener('click', function(event) {
           var button = event.target;
+          console.log(button);
+          console.log(button.getAttribute('data-slide'));
           if (button.localName == 'button') {
             if (button.getAttribute('data-slide')) {
               stopAnimation();
@@ -269,10 +270,10 @@ jQuery(document).ready(function ($) {
         var buttons = carousel.querySelectorAll('.slidenav button[data-slide]');
         for (var j = buttons.length - 1; j >= 0; j--) {
           buttons[j].className = '';
-          buttons[j].innerHTML = '<span class="visually-hidden">News</span> ' + (j+1);
+          buttons[j].innerHTML = '<span class="visually-hidden">Item</span> ' + (j+1);
         }
         buttons[new_current].className = "current";
-        buttons[new_current].innerHTML = '<span class="visually-hidden">News</span> ' + (new_current+1) + ' <span class="visually-hidden">(Current Item)</span>';
+        buttons[new_current].innerHTML = '<span class="visually-hidden">Item</span> ' + (new_current+1) + ' <span class="visually-hidden">(Current Item)</span>';
       }
 
       // Set the global index to the new current value
@@ -366,7 +367,7 @@ jQuery(document).ready(function ($) {
   var carousel = new myCarousel();
   carousel.init({
     id: 'carousel',
-    slidenav: false,
+    slidenav: true,
     animate: false,
     startAnimated: false
   })
