@@ -71,12 +71,6 @@ jQuery(document).ready(function ($) {
     // Possible settings:
     // id <string> ID of the carousel wrapper element (required).
     // slidenav <bool> If true, a list of slides is shown.
-    // animate <bool> If true, the slides can be animated.
-    // startAnimated <bool> If true, the animation begins
-    //                        immediately.
-    //                      If false, the animation needs
-    //                        to be initiated by clicking
-    //                        the play button.
     function init(set) {
 
       // Make settings available to all functions
@@ -87,7 +81,6 @@ jQuery(document).ready(function ($) {
       slides = carousel.querySelectorAll('.slide');
 
       carousel.className = 'active carousel';
-
 
       // Create unordered list for controls, and attach click events fo previous and next slide
       var ctrls = document.createElement('ul');
@@ -111,30 +104,16 @@ jQuery(document).ready(function ($) {
 
       carousel.appendChild(ctrls);
 
-      // If the carousel is animated or a slide navigation is requested in the settings, anoter unordered list that contains those elements is added. (Note that you cannot supress the navigation when it is animated.)
-      if (settings.slidenav || settings.animate) {
+      // If slide navigation is requested in the settings, another unordered list that contains those elements is added.
+      if (settings.slidenav) {
         slidenav = document.createElement('ul');
-
         slidenav.className = 'slidenav';
-
-        if (settings.animate) {
-          var li = document.createElement('li');
-
-          if (settings.startAnimated) {
-            li.innerHTML = '<button data-action="stop"><span class="visually-hidden">Stop Animation </span>￭</button>';
-          } else {
-            li.innerHTML = '<button data-action="start"><span class="visually-hidden">Start Animation </span>▶</button>';
-          }
-
-          slidenav.appendChild(li);
-        }
 
         if (settings.slidenav) {
           forEachElement(slides, function(el, i){
             var li = document.createElement('li');
-            var klass = (i===0) ? 'class="current" ' : '';
+            var klass = (i===0) ? 'class="slide-nav__button--current" ' : '';
             var kurrent = (i===0) ? ' <span class="visually-hidden">(Current Item)</span>' : '';
-
             li.innerHTML = '<button '+ klass +'data-slide="' + i + '"><span class="visually-hidden">Item</span> ' + (i+1) + kurrent + '</button>';
             slidenav.appendChild(li);
           });
@@ -142,16 +121,9 @@ jQuery(document).ready(function ($) {
 
         slidenav.addEventListener('click', function(event) {
           var button = event.target;
-          console.log(button);
-          console.log(button.getAttribute('data-slide'));
           if (button.localName == 'button') {
             if (button.getAttribute('data-slide')) {
-              stopAnimation();
               setSlides(button.getAttribute('data-slide'), true);
-            } else if (button.getAttribute('data-action') == "stop") {
-              stopAnimation();
-            } else if (button.getAttribute('data-action') == "start") {
-              startAnimation();
             }
           }
         }, true);
@@ -180,39 +152,9 @@ jQuery(document).ready(function ($) {
         }
       });
 
-        // When the mouse enters the carousel, suspend the animation.
-        carousel.addEventListener('mouseenter', suspendAnimation);
-
-        // When the mouse leaves the carousel, and the animation is suspended, start the animation.
-        carousel.addEventListener('mouseleave', function(event) {
-          if (animationSuspended) {
-            startAnimation();
-          }
-        });
-
-        // When the focus enters the carousel, suspend the animation
-        carousel.addEventListener('focusin', function(event) {
-          if (!hasClass(event.target, 'slide')) {
-            suspendAnimation();
-          }
-        });
-
-        // When the focus leaves the carousel, and the animation is suspended, start the animation
-        carousel.addEventListener('focusout', function(event) {
-          if (!hasClass(event.target, 'slide') && animationSuspended) {
-            startAnimation();
-          }
-        });
-
       // Set the index (=current slide) to 0 – the first slide
       index = 0;
       setSlides(index);
-
-      // If the carousel is animated, advance to the
-      // next slide after 5s
-      if (settings.startAnimated) {
-        timer = setTimeout(nextSlide, 5000);
-      }
     }
 
     // Function to set a slide the current slide
@@ -228,7 +170,6 @@ jQuery(document).ready(function ($) {
       setFocus = typeof setFocusHere !== 'undefined' ? setFocusHere : false;
       transition = typeof transition !== 'undefined' ? transition : 'none';
       announceItem = typeof announceItemHere !== 'undefined' ? announceItemHere : false;
-
       new_current = parseFloat(new_current);
 
       var length = slides.length;
@@ -278,7 +219,6 @@ jQuery(document).ready(function ($) {
 
       // Set the global index to the new current value
       index = new_current;
-
     }
 
     // Function to advance to the next slide
@@ -296,13 +236,6 @@ jQuery(document).ready(function ($) {
       // visible to the user, so the third parameter is 'prev', not
       // next.
       setSlides(new_current, false, 'prev', announceItem);
-
-      // If the carousel is animated, advance to the next
-      // slide after 5s
-      if (settings.animate) {
-        timer = setTimeout(nextSlide, 5000);
-      }
-
     }
 
     // Function to advance to the previous slide
@@ -321,38 +254,6 @@ jQuery(document).ready(function ($) {
       // visible to the user, so the third parameter is 'next', not
       // prev.
       setSlides(new_current, false, 'next', announceItem);
-
-    }
-
-    // Function to stop the animation
-    function stopAnimation() {
-      clearTimeout(timer);
-      settings.animate = false;
-      animationSuspended = false;
-      console.log("carousel: "+ carousel.querySelector('[data-slide]'))
-      _this = carousel.querySelector('[data-slide]');
-      console.log('this: '+ _this);
-      _this.innerHTML = '<span class="visually-hidden">Start Animation </span>▶';
-      _this.setAttribute('data-action', 'start');
-    }
-
-    // Function to start the animation
-    function startAnimation() {
-      settings.animate = true;
-      animationSuspended = false;
-      timer = setTimeout(nextSlide, 5000);
-      _this = carousel.querySelector('[data-action]');
-      _this.innerHTML = '<span class="visually-hidden">Stop Animation </span>￭';
-      _this.setAttribute('data-action', 'stop');
-    }
-
-    // Function to suspend the animation
-    function suspendAnimation() {
-      if(settings.animate) {
-        clearTimeout(timer);
-        settings.animate = false;
-        animationSuspended = true;
-      }
     }
 
     // Making some functions public
@@ -360,17 +261,13 @@ jQuery(document).ready(function ($) {
       init:init,
       next:nextSlide,
       prev:prevSlide,
-      goto:setSlides,
-      stop:stopAnimation,
-      start:startAnimation
+      goto:setSlides
     };
   });
 
   var carousel = new myCarousel();
   carousel.init({
     id: 'carousel',
-    slidenav: true,
-    animate: false,
-    startAnimated: false
+    slidenav: true
   })
 });

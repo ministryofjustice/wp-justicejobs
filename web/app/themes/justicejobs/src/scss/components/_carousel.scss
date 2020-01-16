@@ -218,4 +218,17 @@
   li {
     display: inline;
   }
+  button {
+    background: white;
+    border-radius: 50px;
+    padding: 1rem 1.5rem;
+    margin: 1rem;
+    box-shadow: none;
+    border: 0;
+
+    &.current {
+      background: yellow;
+      border: 2px solid black;
+    }
+  }
 }
