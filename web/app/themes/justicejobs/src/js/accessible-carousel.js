@@ -329,7 +329,9 @@ jQuery(document).ready(function ($) {
       clearTimeout(timer);
       settings.animate = false;
       animationSuspended = false;
-      _this = carousel.querySelector('[data-action]');
+      console.log("carousel: "+ carousel.querySelector('[data-slide]'))
+      _this = carousel.querySelector('[data-slide]');
+      console.log('this: '+ _this);
       _this.innerHTML = '<span class="visually-hidden">Start Animation </span>▶';
       _this.setAttribute('data-action', 'start');
     }
