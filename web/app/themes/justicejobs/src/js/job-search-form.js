@@ -3,6 +3,10 @@ The Job Form Search Functionality
 */
 jQuery(document).ready(function ($) {
 
+    $('.single-video, .single-video *').on('click', function(){
+        console.log($(this));
+    });
+
     var resultsViewWrapper = $('.search_contain__container');
     var listButton = $('.search_contain__label--list');
     var mapButton = $('.search_contain__label--map');
@@ -74,10 +78,10 @@ jQuery(document).ready(function ($) {
             radiusNow = radius.parent('.select-list').data('miles');
 
         if (!val) {
-            radius.attr('disabled', 'disabled');
+            radius.attr('disabled', 'disabled').hide();
         }
         else {
-            radius.attr('disabled', null).val(radiusNow || 10);
+            radius.attr('disabled', null).val(radiusNow || 10).fadeIn();
         }
     }).keyup();
 
