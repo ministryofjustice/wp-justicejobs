@@ -330,10 +330,28 @@ function test_import()
             die();
         } else {
             if ($import_test == 'import-jobs') {
-                addJobPost();
+                import_jobs_from_xml();
+                die();
+            }
+            if ($import_test == 'delete-jobs') {
+                deleteJobs();
                 die();
             }
         }
+    }
+}
+
+if (!function_exists('deleteJobs')) {
+
+    function deleteJobs()
+    {
+        $allposts= get_posts( array('post_type'=>'job','numberposts'=>-1) );
+        foreach ($allposts as $eachpost) {
+            wp_delete_post( $eachpost->ID, true );
+        }
+
+        echo "Jobs Deleted";
+        die();
     }
 }
 
