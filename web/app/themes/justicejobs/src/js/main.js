@@ -30,19 +30,19 @@ jQuery(document).ready(function ($) {
         }
     });
 
-    // $('.carousel').each((i, el) => {
-    //     $(el)
-    //         .find('.carousel__container')
-    //         .slick({
-    //             dots: true,
-    //             speed: 700,
-    //             cssEase: 'ease-in',
-    //             infinite: true,
-    //             appendDots: $(el).find('.carousel__dots'),
-    //             prevArrow: $(el).find('.carousel__arrow--prev'),
-    //             nextArrow: $(el).find('.carousel__arrow--next')
-    //         });
-    // });
+    $('.carousel').each((i, el) => {
+        $(el)
+            .find('.carousel__container')
+            .slick({
+                dots: true,
+                speed: 700,
+                cssEase: 'ease-in',
+                infinite: true,
+                appendDots: $(el).find('.carousel__dots'),
+                prevArrow: $(el).find('.carousel__arrow--prev'),
+                nextArrow: $(el).find('.carousel__arrow--next')
+            });
+    });
 
     // $('.video-popup').on('click', function(e) {
     //   console.log('in video popup');

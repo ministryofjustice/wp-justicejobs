@@ -267,7 +267,7 @@ jQuery(document).ready(function ($) {
 
   var carousel = new myCarousel();
   carousel.init({
-    id: 'carousel',
+    id: 'new-carousel',
     slidenav: true
   })
 });
