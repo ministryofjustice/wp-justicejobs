@@ -82,10 +82,10 @@
     if ($add_carousel == 1) :
         ?>
         <div class="hero__carousel">
-            <div class="carousel" id="new-carousel">
+            <div class="accessible-carousel" id="new-carousel">
 
                 <?php if (have_rows('latest_roles_carousel')) : ?>
-                    <ul class="carousel__container">
+                    <ul class="accessible-carousel__container">
                         <?php while (have_rows('latest_roles_carousel')) :
                             the_row();
                             $agency_name = get_sub_field('agency_name');
@@ -93,20 +93,18 @@
                             $position_location = get_sub_field(' position_location');
                             $more_link = get_sub_field('find-out-more_link');
                             ?>
-                            <li class="carousel__slide carousel__wrap slide">
-                                <div class="carousel__wrap">
-                                    <p class="heading--xxs"><?php echo $agency_name; ?></p>
-                                    <h3 class="heading--sm"><?php echo $position_title; ?></h3>
-                                    <p class="heading--xxs"><?php echo $position_location; ?></p>
+                            <li class="accessible-carousel__slide slide">
+                                <p class="heading--xxs"><?php echo $agency_name; ?></p>
+                                <h3 class="heading--sm"><?php echo $position_title; ?></h3>
+                                <p class="heading--xxs"><?php echo $position_location; ?></p>
 
-                                    <a href="<?php echo esc_url($more_link['url']); ?>"
-                                       class="btn-secondary btn-secondary--light">
-                                        <?php echo esc_html($more_link['title']); ?>
-                                        <svg width="8" height="13">
-                                            <use xlink:href="#icon-arrow"></use>
-                                        </svg>
-                                    </a>
-                                </div>
+                                <a href="<?php echo esc_url($more_link['url']); ?>"
+                                    class="btn-secondary btn-secondary--light">
+                                    <?php echo esc_html($more_link['title']); ?>
+                                    <svg width="8" height="13">
+                                        <use xlink:href="#icon-arrow"></use>
+                                    </svg>
+                                </a>
                             </li>
                         <?php endwhile; ?>
                     </ul>

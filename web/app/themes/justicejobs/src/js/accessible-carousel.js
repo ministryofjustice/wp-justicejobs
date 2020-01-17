@@ -78,9 +78,9 @@ jQuery(document).ready(function ($) {
 
       // Select the element and the individual slides
       carousel = document.getElementById(settings.id);
-      slides = carousel.querySelectorAll('.slide');
+      slides = carousel.querySelectorAll('.accessible-carousel__slide');
 
-      carousel.className = 'active carousel';
+      carousel.className = 'carousel';
 
       // Create unordered list for controls, and attach click events fo previous and next slide
       var ctrls = document.createElement('ul');
@@ -128,7 +128,7 @@ jQuery(document).ready(function ($) {
           }
         }, true);
 
-        carousel.className = 'active carousel with-slidenav';
+        carousel.className = 'carousel with-slidenav';
         carousel.appendChild(slidenav);
       }
 
@@ -192,13 +192,13 @@ jQuery(document).ready(function ($) {
       }
 
       // Add classes to the previous, next and current slide
-      slides[new_next].className = 'next slide' + ((transition == 'next') ? ' in-transition' : '');
+      slides[new_next].className = 'next accessible-carousel__slide' + ((transition == 'next') ? ' in-transition' : '');
       slides[new_next].setAttribute('aria-hidden', 'true');
 
-      slides[new_prev].className = 'prev slide' + ((transition == 'prev') ? ' in-transition' : '');
+      slides[new_prev].className = 'prev accessible-carousel__slide' + ((transition == 'prev') ? ' in-transition' : '');
       slides[new_prev].setAttribute('aria-hidden', 'true');
 
-      slides[new_current].className = 'current slide';
+      slides[new_current].className = 'current accessible-carousel__slide';
       slides[new_current].removeAttribute('aria-hidden');
 
       // Update the text in the live region which is then announced by screen readers.
