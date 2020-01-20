@@ -180,3 +180,146 @@
 .awards-carousel {
   width: 100%;
 }
+
+/* New CSS*/
+
+.accessible-carousel {
+  position: relative;
+  display: flex;
+  color: #fff;
+  flex-grow: 1;
+  flex-direction: column;
+  height: 100%;
+
+  &__container {
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+  }
+
+
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0;
+    outline: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      opacity: 0.7;
+    }
+
+    svg {
+      width: 16px;
+      height: 25px;
+      fill: #fff;
+    }
+
+    &--prev {
+      left: 20px;
+
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+
+    &--next {
+      right: 20px;
+    }
+  }
+
+  &__slide {
+    visibility: hidden;
+    transition: left .6s ease-out;
+    height: 100%;
+    padding: 50px;
+    margin-top: 50px;
+
+    &.current {
+      visibility: visible;
+      left: 0;
+    }
+    &.next {
+      left: 100%;
+      &.in-transition {
+        visibility:visible;
+      }
+    }
+    &.prev {
+      display: none;
+      &.in-transition {
+        visibility:visible;
+      }
+    }
+  }
+  .heading--sm,
+  .heading--xxs,
+  .btn-secondary {
+    color: inherit;
+    display: block;
+  }
+
+  .heading--md {
+    margin-bottom: 5px;
+    color: #fff;
+
+    @include respond-to(sm) {
+      margin-bottom: 30px;
+    }
+  }
+
+  .heading--xxs:first-child {
+    margin-bottom: 5px;
+    @include respond-to(sm) {
+      margin-bottom: auto;
+    }
+  }
+
+  .heading--sm {
+    margin-bottom: 15px;
+  }
+
+  .btn-secondary {
+    margin-top: 45px;
+    display: flex;
+
+    @include respond-to(sm) {
+      margin-top: auto;
+    }
+    @include respond-to(lg) {
+      margin-top: 45px;
+    }
+  }
+}
+
+.awards-carousel {
+  width: 100%;
+}
+
+.slidenav {
+  position: absolute;
+  padding-left: 35px;
+  left: 0;
+  right: 0;
+  list-style-type: none;
+  li {
+    display: inline;
+  }
+  button {
+    background: white;
+    border-radius: 50px;
+    padding: 0.5rem 1rem;
+    margin: 1rem 0.5rem;
+    box-shadow: none;
+    border: 0;
+
+    &.current {
+      background: yellow;
+      border: 2px solid black;
+    }
+  }
+}
