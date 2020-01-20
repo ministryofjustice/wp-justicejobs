@@ -318,6 +318,8 @@ require 'inc/jobs-handler/job-search.php';
  */
 require 'inc/custom-taxonomies.php';
 
+require 'inc/job-location-taxonomy-meta.php';
+
 /* TEST IMPORT. TO REMOVE ON LAUNCH */
 add_action('wp', 'test_import');
 function test_import()
