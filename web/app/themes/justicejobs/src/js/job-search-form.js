@@ -3,7 +3,7 @@ The Job Form Search Functionality
 */
 jQuery(document).ready(function ($) {
 
-    $('.single-video, .single-video *').on('click', function(){
+    $('.single-video, .single-video *').on('click', function () {
         console.log($(this));
     });
 
@@ -72,15 +72,14 @@ jQuery(document).ready(function ($) {
 
     // take control of the radius select box
     // force check on page load
-    $('#location').on('keyup', function() {
+    $('#location').on('keyup', function () {
         var val = $(this).val(),
             radius = $('#radius'),
             radiusNow = radius.parent('.select-list').data('miles');
 
         if (!val) {
             radius.attr('disabled', 'disabled').hide();
-        }
-        else {
+        } else {
             radius.attr('disabled', null).val(radiusNow || 10).fadeIn();
         }
     }).keyup();

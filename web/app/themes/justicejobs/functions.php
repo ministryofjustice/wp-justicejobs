@@ -345,9 +345,9 @@ if (!function_exists('deleteJobs')) {
 
     function deleteJobs()
     {
-        $allposts= get_posts( array('post_type'=>'job','numberposts'=>-1) );
+        $allposts = get_posts(array('post_type' => 'job', 'numberposts' => -1));
         foreach ($allposts as $eachpost) {
-            wp_delete_post( $eachpost->ID, true );
+            wp_delete_post($eachpost->ID, true);
         }
 
         echo "Jobs Deleted";
@@ -409,6 +409,30 @@ function jj_select_options($qs_param, $default = 'option')
 
     $pre_options .= '<option value="all">All ' . $default . 's</option>';
 
-    return ['list' => $pre_options . $role_options, 'title' => ' title="'.$selectedFound.'"'];
+    return ['list' => $pre_options . $role_options, 'title' => ' title="' . $selectedFound . '"'];
 }
 
+if (!function_exists('moj_at_glance_cpt_display')) {
+    function moj_at_glance_cpt_display()
+    {
+        $args = array(
+            'public' => true,
+            '_builtin' => false
+        );
+        $output = 'object';
+        $operator = 'and';
+
+        $post_types = get_post_types($args, $output, $operator);
+        foreach ($post_types as $post_type) {
+            $num_posts = wp_count_posts($post_type->name);
+            $num = number_format_i18n($num_posts->publish);
+            $text = _n($post_type->labels->singular_name, $post_type->labels->name, intval($num_posts->publish));
+            if (current_user_can('edit_posts')) {
+                $output = '<a href="edit.php?post_type=' . $post_type->name . '">' . $num . ' ' . $text . '</a>';
+                echo '<li class="post-count ' . $post_type->name . '-count">' . $output . '</li>';
+            }
+        }
+    }
+}
+
+add_action('dashboard_glance_items', 'moj_at_glance_cpt_display');
