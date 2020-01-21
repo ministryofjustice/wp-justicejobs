@@ -195,7 +195,6 @@
     flex-grow: 1;
   }
 
-
   &__arrow {
     position: absolute;
     top: 50%;
@@ -236,6 +235,11 @@
     height: 100%;
     padding: 50px;
     margin-top: 50px;
+    padding-top: 100px;
+
+    @include respond-to(lg) {
+      padding-top: 75px;
+    }
 
     &.current {
       visibility: visible;
@@ -293,10 +297,11 @@
 
 .slidenav {
   position: absolute;
-  padding-left: 35px;
+  padding-left: 42px;
   left: 0;
   right: 0;
   list-style-type: none;
+  margin-top: 3rem;
   li {
     display: inline;
   }
