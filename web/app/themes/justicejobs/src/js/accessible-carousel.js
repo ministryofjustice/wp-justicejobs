@@ -80,7 +80,7 @@ jQuery(document).ready(function ($) {
       carousel = document.getElementById(settings.id);
       slides = carousel.querySelectorAll('.accessible-carousel__slide');
 
-      carousel.className = 'carousel';
+      carousel.className = 'accessible-carousel';
 
       // Create unordered list for controls, and attach click events fo previous and next slide
       var ctrls = document.createElement('ul');
@@ -128,7 +128,7 @@ jQuery(document).ready(function ($) {
           }
         }, true);
 
-        carousel.className = 'carousel with-slidenav';
+        carousel.className = 'accessible-carousel with-slidenav';
         carousel.appendChild(slidenav);
       }
 
