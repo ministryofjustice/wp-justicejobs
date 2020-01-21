@@ -82,7 +82,7 @@
     if ($add_carousel == 1) :
         ?>
         <div class="hero__carousel">
-            <div class="accessible-carousel" id="new-carousel">
+            <div class="accessible-carousel" id="accessible-carousel">
 
                 <?php if (have_rows('latest_roles_carousel')) : ?>
                     <ul class="accessible-carousel__container">

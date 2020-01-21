@@ -78,83 +78,86 @@ jQuery(document).ready(function ($) {
 
       // Select the element and the individual slides
       carousel = document.getElementById(settings.id);
-      slides = carousel.querySelectorAll('.accessible-carousel__slide');
 
-      carousel.className = 'accessible-carousel';
+      if (carousel) {
+        slides = carousel.querySelectorAll('.accessible-carousel__slide');
 
-      // Create unordered list for controls, and attach click events fo previous and next slide
-      var ctrls = document.createElement('ul');
+        carousel.className = 'accessible-carousel';
 
-      ctrls.className = 'controls';
-      ctrls.innerHTML = '<li>' +
-          '<button type="button" class="btn-prev carousel__arrow--prev carousel__arrow"><svg width="16" height="25" aria-describedby="previous-carousel-button><title id="previous-carousel-button">Previous item</title><use xlink:href= "#icon-arrow"></use></svg ></button>' +
-        '</li>' +
-        '<li>' +
-        '<button type="button" class="btn-next carousel__arrow--next carousel__arrow"><svg width="16" height="25" aria-describedby="next-carousel-button><title id="next-carousel-button">Next item</title><use xlink:href= "#icon-arrow"></use></svg ></button>' +
-        '</li>';
+        // Create unordered list for controls, and attach click events fo previous and next slide
+        var ctrls = document.createElement('ul');
 
-      ctrls.querySelector('.btn-prev')
-        .addEventListener('click', function () {
-          prevSlide(true);
-        });
-      ctrls.querySelector('.btn-next')
-        .addEventListener('click', function () {
-          nextSlide(true);
-        });
+        ctrls.className = 'controls';
+        ctrls.innerHTML = '<li>' +
+            '<button type="button" class="btn-prev carousel__arrow--prev carousel__arrow"><svg width="16" height="25" aria-describedby="previous-carousel-button><title id="previous-carousel-button">Previous item</title><use xlink:href= "#icon-arrow"></use></svg ></button>' +
+          '</li>' +
+          '<li>' +
+          '<button type="button" class="btn-next carousel__arrow--next carousel__arrow"><svg width="16" height="25" aria-describedby="next-carousel-button><title id="next-carousel-button">Next item</title><use xlink:href= "#icon-arrow"></use></svg ></button>' +
+          '</li>';
 
-      carousel.appendChild(ctrls);
-
-      // If slide navigation is requested in the settings, another unordered list that contains those elements is added.
-      if (settings.slidenav) {
-        slidenav = document.createElement('ul');
-        slidenav.className = 'slidenav';
-
-        if (settings.slidenav) {
-          forEachElement(slides, function(el, i){
-            var li = document.createElement('li');
-            var klass = (i===0) ? 'class="slide-nav__button--current" ' : '';
-            var kurrent = (i===0) ? ' <span class="visually-hidden">(Current Item)</span>' : '';
-            li.innerHTML = '<button '+ klass +'data-slide="' + i + '"><span class="visually-hidden">Item</span> ' + (i+1) + kurrent + '</button>';
-            slidenav.appendChild(li);
+        ctrls.querySelector('.btn-prev')
+          .addEventListener('click', function () {
+            prevSlide(true);
           });
+        ctrls.querySelector('.btn-next')
+          .addEventListener('click', function () {
+            nextSlide(true);
+          });
+
+        carousel.appendChild(ctrls);
+
+        // If slide navigation is requested in the settings, another unordered list that contains those elements is added.
+        if (settings.slidenav) {
+          slidenav = document.createElement('ul');
+          slidenav.className = 'slidenav';
+
+          if (settings.slidenav) {
+            forEachElement(slides, function(el, i){
+              var li = document.createElement('li');
+              var klass = (i===0) ? 'class="slide-nav__button--current" ' : '';
+              var kurrent = (i===0) ? ' <span class="visually-hidden">(Current Item)</span>' : '';
+              li.innerHTML = '<button '+ klass +'data-slide="' + i + '"><span class="visually-hidden">Item</span> ' + (i+1) + kurrent + '</button>';
+              slidenav.appendChild(li);
+            });
+          }
+
+          slidenav.addEventListener('click', function(event) {
+            var button = event.target;
+            if (button.localName == 'button') {
+              if (button.getAttribute('data-slide')) {
+                setSlides(button.getAttribute('data-slide'), true);
+              }
+            }
+          }, true);
+
+          carousel.className = 'accessible-carousel with-slidenav';
+          carousel.appendChild(slidenav);
         }
 
-        slidenav.addEventListener('click', function(event) {
-          var button = event.target;
-          if (button.localName == 'button') {
-            if (button.getAttribute('data-slide')) {
-              setSlides(button.getAttribute('data-slide'), true);
+        // Add a live region to announce the slide number when using the previous/next buttons
+        var liveregion = document.createElement('div');
+        liveregion.setAttribute('aria-live', 'polite');
+        liveregion.setAttribute('aria-atomic', 'true');
+        liveregion.setAttribute('class', 'liveregion visually-hidden');
+        carousel.appendChild(liveregion);
+
+        // After the slide transitioned, remove the in-transition class, if focus should be set, set the tabindex attribute to -1 and focus the slide.
+        slides[0].parentNode.addEventListener('transitionend', function (event) {
+          var slide = event.target;
+          removeClass(slide, 'in-transition');
+          if (hasClass(slide, 'current'))  {
+            if(setFocus) {
+              slide.setAttribute('tabindex', '-1');
+              slide.focus();
+              setFocus = false;
             }
           }
-        }, true);
+        });
 
-        carousel.className = 'accessible-carousel with-slidenav';
-        carousel.appendChild(slidenav);
+        // Set the index (=current slide) to 0 – the first slide
+        index = 0;
+        setSlides(index);
       }
-
-      // Add a live region to announce the slide number when using the previous/next buttons
-      var liveregion = document.createElement('div');
-      liveregion.setAttribute('aria-live', 'polite');
-      liveregion.setAttribute('aria-atomic', 'true');
-      liveregion.setAttribute('class', 'liveregion visually-hidden');
-      carousel.appendChild(liveregion);
-
-      // After the slide transitioned, remove the in-transition class, if focus should be set, set the tabindex attribute to -1 and focus the slide.
-      slides[0].parentNode.addEventListener('transitionend', function (event) {
-        var slide = event.target;
-        removeClass(slide, 'in-transition');
-        if (hasClass(slide, 'current'))  {
-          if(setFocus) {
-            slide.setAttribute('tabindex', '-1');
-            slide.focus();
-            setFocus = false;
-          }
-        }
-      });
-
-      // Set the index (=current slide) to 0 – the first slide
-      index = 0;
-      setSlides(index);
     }
 
     // Function to set a slide the current slide
@@ -188,7 +191,7 @@ jQuery(document).ready(function ($) {
 
       // Reset slide classes
       for (var i = slides.length - 1; i >= 0; i--) {
-        slides[i].className = "slide";
+        slides[i].className = "accessible-carousel__slide";
       }
 
       // Add classes to the previous, next and current slide
@@ -267,7 +270,7 @@ jQuery(document).ready(function ($) {
 
   var carousel = new myCarousel();
   carousel.init({
-    id: 'new-carousel',
+    id: 'accessible-carousel',
     slidenav: true
   })
 });
