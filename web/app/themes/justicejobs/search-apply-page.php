@@ -72,7 +72,7 @@ Template Name: Search/Apply Template
                     $options = jj_select_options(null, 'Role Type');
 
                     ?>
-                    <select class="select" id="role-type"<?= $options['title'] ?>>
+                    <select class="select" id="role-type" <?= $options['title'] ?>>
                         <?= $options['list'] ?>
                     </select>
                 </div>
@@ -216,7 +216,7 @@ Template Name: Search/Apply Template
                         $job_query->the_post();
                         ?>
 
-                        <tr class="search_contain__item">
+                        <tr class="search_contain__item" id="<?= 'job-listing-' . $post->ID ?>">
                             <td>
                                 <p><?php the_title(); ?></p>
                             </td>
@@ -248,7 +248,12 @@ Template Name: Search/Apply Template
                                 </p>
                             </td>
                             <td>
-                                <a href="<?php the_permalink(); ?>" class="btn btn--blue btn--small">View</a>
+                                <?php
+                                $jj_view_label = strstr(get_the_title(), ' &#8211;', true);
+                                ?>
+                                <a href="<?php the_permalink(); ?>"
+                                   class="btn btn--blue btn--small"
+                                   aria-label="View <?= $jj_view_label ?: get_the_title() ?>">View</a>
                             </td>
                             <?php
 
