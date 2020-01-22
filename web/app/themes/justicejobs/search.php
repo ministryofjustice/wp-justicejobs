@@ -571,7 +571,7 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                                 ?>
                                 <a href="<?php the_permalink(); ?>"
                                    class="btn btn--blue btn--small"
-                                   aria-label="View <?= $jj_view_label ?: get_the_title() ?>">View</a>
+                                   aria-label="View the job description for <?= $jj_view_label ?: get_the_title() ?>">View</a>
                             </td>
                             <?php
 
