@@ -190,13 +190,7 @@
   background-color: #2c5d94;
 
   &--full-width {
-    height: 600px;
-    .accessible-carousel__slide {
-      padding-top: 0px;
-      padding-left: 0px;
-      padding-right: 0px;
-      padding-bottom: 0px;
-      margin-top: 0px;
+    @include respond-to(md) {
       height: 600px;
     }
   }
@@ -230,7 +224,6 @@
 
     &--prev {
       left: 20px;
-
       svg {
         transform: rotate(180deg);
       }
@@ -242,26 +235,43 @@
   }
 
   &__wrap {
-    padding: 50px;
-    height: 100%;
-    width: 50%;
+    float: none;
+    width: 100%;
+    padding: 100px 50px 50px;
+    height: auto;
     outline: none;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 80% 50%;
+    background: no-repeat 80% 50%/cover;
     float: left;
-    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    -webkit-box-pack: justify;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+
+    .accessible-carousel--full-width & {
+      @include respond-to(md) {
+        float: left;
+        width: 50%;
+        height: 100%;
+      }
+    }
   }
 
   &__slide {
     display: none;
     transition: left .6s ease-out;
     height: 100%;
-    padding: 50px;
+    padding: 100px 50px 50px;
     margin-top: 50px;
-    padding-top: 100px;
     background-repeat: no-repeat;
     background-size: cover;
+
+    .accessible-carousel--full-width & {
+      padding: 0;
+      margin-top: 0px;
+      height: 600px;
+    }
 
     @include respond-to(lg) {
       padding-top: 75px;
@@ -271,19 +281,24 @@
       display: block;
       left: 0;
     }
+
     &.next {
       left: 100%;
+
       &.in-transition {
-        visibility:visible;
+        visibility: visible;
       }
     }
+
     &.prev {
       display: none;
+
       &.in-transition {
-        visibility:visible;
+        visibility: visible;
       }
     }
   }
+
   .heading--sm,
   .heading--xxs,
   .btn-secondary {
@@ -294,7 +309,6 @@
   .heading--md {
     margin-bottom: 5px;
     color: #fff;
-
     @include respond-to(sm) {
       margin-bottom: 30px;
     }
