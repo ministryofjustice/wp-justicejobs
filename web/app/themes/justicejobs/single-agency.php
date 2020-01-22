@@ -99,7 +99,7 @@ Template Post Type: agency
                         $a_class = '';
                         $data_index = '';
                     }
-      
+
                     ?>
         <div
           class="agency__featured"
@@ -309,14 +309,14 @@ Template Post Type: agency
         class="btn-secondary btn-secondary--light <?php echo $a_class; ?>"
                     <?php echo $data_index; ?>
       >
-                    <?php 
-                    
-                    
+                    <?php
+
+
         // echo '<pre>';
         // var_dump($more_link_bottom);
         // echo '<pre>';
         // die();
-                    
+
                     echo esc_html($more_link_bottom['title']); ?>
         <svg width="8" height="13">
           <use xlink:href="#icon-arrow"></use>
