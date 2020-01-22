@@ -157,39 +157,15 @@ jQuery(document).ready(function ($) {
             setSlides(index);
         }
 
-        // Function to set a slide the current slide
-        function setSlides(new_current, setFocusHere, transition, announceItemHere) {
-            // Focus, transition and announce Item are optional parameters.
-            // focus denotes if the focus should be set after the
-            // carousel advanced to slide number new_current.
-            // transition denotes if the transition is going into the
-            // next or previous direction.
-            // If announceItem is set to true, the live region’s text is changed (and announced)
-            // Here defaults are set:
+      // Select the element and the individual slides
+      carousel = document.getElementById(settings.id);
 
-            setFocus = typeof setFocusHere !== 'undefined' ? setFocusHere : false;
-            transition = typeof transition !== 'undefined' ? transition : 'none';
-            announceItem = typeof announceItemHere !== 'undefined' ? announceItemHere : false;
-            new_current = parseFloat(new_current);
+      if (!carousel) {
+        return false;
+      }
+      slides = carousel.querySelectorAll('.accessible-carousel__slide');
 
-            var length = slides.length;
-            var new_next = new_current+1;
-            var new_prev = new_current-1;
-
-            // If the next slide number is equal to the length,
-            // the next slide should be the first one of the slides.
-            // If the previous slide number is less than 0.
-            // the previous slide is the last of the slides.
-            if(new_next === length) {
-                new_next = 0;
-            } else if(new_prev < 0) {
-                new_prev = length-1;
-            }
-
-            // Reset slide classes
-            for (var i = slides.length - 1; i >= 0; i--) {
-                slides[i].className = "slide";
-            }
+      carousel.className = 'accessible-carousel';
 
             // Add classes to the previous, next and current slide
             slides[new_next].className = 'next accessible-carousel__slide' + ((transition == 'next') ? ' in-transition' : '');
@@ -205,6 +181,32 @@ jQuery(document).ready(function ($) {
             if (announceItem) {
                 carousel.querySelector('.liveregion').textContent = 'Item ' + (new_current + 1) + ' of ' + slides.length;
             }
+          }
+        }, true);
+
+        carousel.className = 'accessible-carousel with-slidenav';
+        carousel.appendChild(slidenav);
+      }
+
+      // Add a live region to announce the slide number when using the previous/next buttons
+      var liveregion = document.createElement('div');
+      liveregion.setAttribute('aria-live', 'polite');
+      liveregion.setAttribute('aria-atomic', 'true');
+      liveregion.setAttribute('class', 'liveregion visually-hidden');
+      carousel.appendChild(liveregion);
+
+      // After the slide transitioned, remove the in-transition class, if focus should be set, set the tabindex attribute to -1 and focus the slide.
+      slides[0].parentNode.addEventListener('transitionend', function (event) {
+        var slide = event.target;
+        removeClass(slide, 'in-transition');
+        if (hasClass(slide, 'current'))  {
+          if(setFocus) {
+            slide.setAttribute('tabindex', '-1');
+            slide.focus();
+            setFocus = false;
+          }
+        }
+      });
 
             // Update the buttons in the slider navigation to match the currently displayed  item
             if(settings.slidenav) {
@@ -217,8 +219,61 @@ jQuery(document).ready(function ($) {
                 buttons[new_current].innerHTML = '<span class="visually-hidden">Item</span> ' + (new_current+1) + ' <span class="visually-hidden">(Current Item)</span>';
             }
 
-            // Set the global index to the new current value
-            index = new_current;
+    // Function to set a slide the current slide
+    function setSlides(new_current, setFocusHere, transition, announceItemHere) {
+      // Focus, transition and announce Item are optional parameters.
+      // focus denotes if the focus should be set after the
+      // carousel advanced to slide number new_current.
+      // transition denotes if the transition is going into the
+      // next or previous direction.
+      // If announceItem is set to true, the live region’s text is changed (and announced)
+      // Here defaults are set:
+
+      setFocus = typeof setFocusHere !== 'undefined' ? setFocusHere : false;
+      transition = typeof transition !== 'undefined' ? transition : 'none';
+      announceItem = typeof announceItemHere !== 'undefined' ? announceItemHere : false;
+      new_current = parseFloat(new_current);
+
+      var length = slides.length;
+      var new_next = new_current+1;
+      var new_prev = new_current-1;
+
+      // If the next slide number is equal to the length,
+      // the next slide should be the first one of the slides.
+      // If the previous slide number is less than 0.
+      // the previous slide is the last of the slides.
+      if(new_next === length) {
+        new_next = 0;
+      } else if(new_prev < 0) {
+        new_prev = length-1;
+      }
+
+      // Reset slide classes
+      for (var i = slides.length - 1; i >= 0; i--) {
+        slides[i].className = "accessible-carousel__slide";
+      }
+
+      // Add classes to the previous, next and current slide
+      slides[new_next].className = 'next accessible-carousel__slide' + ((transition == 'next') ? ' in-transition' : '');
+      slides[new_next].setAttribute('aria-hidden', 'true');
+
+      slides[new_prev].className = 'prev accessible-carousel__slide' + ((transition == 'prev') ? ' in-transition' : '');
+      slides[new_prev].setAttribute('aria-hidden', 'true');
+
+      slides[new_current].className = 'current accessible-carousel__slide';
+      slides[new_current].removeAttribute('aria-hidden');
+
+      // Update the text in the live region which is then announced by screen readers.
+      if (announceItem) {
+        carousel.querySelector('.liveregion').textContent = 'Item ' + (new_current + 1) + ' of ' + slides.length;
+      }
+
+      // Update the buttons in the slider navigation to match the currently displayed  item
+      if(settings.slidenav) {
+        var buttons = carousel.querySelectorAll('.slidenav button[data-slide]');
+        for (var j = buttons.length - 1; j >= 0; j--) {
+          buttons[j].className = '';
+          buttons[j].innerHTML = '<span class="visually-hidden">Item</span> ' + (j+1);
         }
 
         // Function to advance to the next slide
@@ -267,7 +322,7 @@ jQuery(document).ready(function ($) {
 
     var carousel = new myCarousel();
     carousel.init({
-        id: 'new-carousel',
+        id: 'accessible-carousel',
         slidenav: true
     })
 });
