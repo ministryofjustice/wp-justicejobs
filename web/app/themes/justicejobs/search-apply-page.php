@@ -253,7 +253,7 @@ Template Name: Search/Apply Template
                                 ?>
                                 <a href="<?php the_permalink(); ?>"
                                    class="btn btn--blue btn--small"
-                                   aria-label="View <?= $jj_view_label ?: get_the_title() ?>">View</a>
+                                   aria-label="View the job description for <?= $jj_view_label ?: get_the_title() ?>">View</a>
                             </td>
                             <?php
 
