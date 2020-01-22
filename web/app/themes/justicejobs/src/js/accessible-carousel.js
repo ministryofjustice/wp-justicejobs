@@ -5,30 +5,28 @@ jQuery(document).ready(function ($) {
     var w = window,
         d = w.document;
 
-    if (w.onfocusin === undefined) {
-        d.addEventListener('focus', addPolyfill, true);
-        d.addEventListener('blur', addPolyfill, true);
-        d.addEventListener('focusin', removePolyfill, true);
-        d.addEventListener('focusout', removePolyfill, true);
+    if( w.onfocusin === undefined ){
+        d.addEventListener('focus' ,addPolyfill ,true);
+        d.addEventListener('blur' ,addPolyfill ,true);
+        d.addEventListener('focusin' ,removePolyfill ,true);
+        d.addEventListener('focusout' ,removePolyfill ,true);
     }
-
-    function addPolyfill(e) {
+    function addPolyfill(e){
         var type = e.type === 'focus' ? 'focusin' : 'focusout';
-        var event = new CustomEvent(type, {bubbles: true, cancelable: false});
+        var event = new CustomEvent(type, { bubbles:true, cancelable:false });
         event.c1Generated = true;
-        e.target.dispatchEvent(event);
+        e.target.dispatchEvent( event );
     }
-
-    function removePolyfill(e) {
-        if (!e.c1Generated) { // focus after focusin, so chrome will the first time trigger tow times focusin
-            d.removeEventListener('focus', addPolyfill, true);
-            d.removeEventListener('blur', addPolyfill, true);
-            d.removeEventListener('focusin', removePolyfill, true);
-            d.removeEventListener('focusout', removePolyfill, true);
+    function removePolyfill(e){
+        if(!e.c1Generated){ // focus after focusin, so chrome will the first time trigger tow times focusin
+            d.removeEventListener('focus' ,addPolyfill ,true);
+            d.removeEventListener('blur' ,addPolyfill ,true);
+            d.removeEventListener('focusin' ,removePolyfill ,true);
+            d.removeEventListener('focusout' ,removePolyfill ,true);
         }
-        setTimeout(function () {
-            d.removeEventListener('focusin', removePolyfill, true);
-            d.removeEventListener('focusout', removePolyfill, true);
+        setTimeout(function(){
+            d.removeEventListener('focusin' ,removePolyfill ,true);
+            d.removeEventListener('focusout' ,removePolyfill ,true);
         });
     }
 
@@ -37,7 +35,7 @@ jQuery(document).ready(function ($) {
        Eric Eggert for W3C
     */
 
-    var myCarousel = (function () {
+    var myCarousel = (function() {
 
         "use strict";
 
@@ -74,17 +72,12 @@ jQuery(document).ready(function ($) {
         // id <string> ID of the carousel wrapper element (required).
         // slidenav <bool> If true, a list of slides is shown.
         function init(set) {
+
             // Make settings available to all functions
             settings = set;
 
             // Select the element and the individual slides
             carousel = document.getElementById(settings.id);
-
-            // if no carousel available, bail
-            if (!carousel) {
-                return false;
-            }
-
             slides = carousel.querySelectorAll('.accessible-carousel__slide');
 
             carousel.className = 'carousel';
@@ -117,16 +110,16 @@ jQuery(document).ready(function ($) {
                 slidenav.className = 'slidenav';
 
                 if (settings.slidenav) {
-                    forEachElement(slides, function (el, i) {
+                    forEachElement(slides, function(el, i){
                         var li = document.createElement('li');
-                        var klass = (i === 0) ? 'class="slide-nav__button--current" ' : '';
-                        var kurrent = (i === 0) ? ' <span class="visually-hidden">(Current Item)</span>' : '';
-                        li.innerHTML = '<button ' + klass + 'data-slide="' + i + '"><span class="visually-hidden">Item</span> ' + (i + 1) + kurrent + '</button>';
+                        var klass = (i===0) ? 'class="slide-nav__button--current" ' : '';
+                        var kurrent = (i===0) ? ' <span class="visually-hidden">(Current Item)</span>' : '';
+                        li.innerHTML = '<button '+ klass +'data-slide="' + i + '"><span class="visually-hidden">Item</span> ' + (i+1) + kurrent + '</button>';
                         slidenav.appendChild(li);
                     });
                 }
 
-                slidenav.addEventListener('click', function (event) {
+                slidenav.addEventListener('click', function(event) {
                     var button = event.target;
                     if (button.localName == 'button') {
                         if (button.getAttribute('data-slide')) {
@@ -150,8 +143,8 @@ jQuery(document).ready(function ($) {
             slides[0].parentNode.addEventListener('transitionend', function (event) {
                 var slide = event.target;
                 removeClass(slide, 'in-transition');
-                if (hasClass(slide, 'current')) {
-                    if (setFocus) {
+                if (hasClass(slide, 'current'))  {
+                    if(setFocus) {
                         slide.setAttribute('tabindex', '-1');
                         slide.focus();
                         setFocus = false;
@@ -180,17 +173,17 @@ jQuery(document).ready(function ($) {
             new_current = parseFloat(new_current);
 
             var length = slides.length;
-            var new_next = new_current + 1;
-            var new_prev = new_current - 1;
+            var new_next = new_current+1;
+            var new_prev = new_current-1;
 
             // If the next slide number is equal to the length,
             // the next slide should be the first one of the slides.
             // If the previous slide number is less than 0.
             // the previous slide is the last of the slides.
-            if (new_next === length) {
+            if(new_next === length) {
                 new_next = 0;
-            } else if (new_prev < 0) {
-                new_prev = length - 1;
+            } else if(new_prev < 0) {
+                new_prev = length-1;
             }
 
             // Reset slide classes
@@ -214,14 +207,14 @@ jQuery(document).ready(function ($) {
             }
 
             // Update the buttons in the slider navigation to match the currently displayed  item
-            if (settings.slidenav) {
+            if(settings.slidenav) {
                 var buttons = carousel.querySelectorAll('.slidenav button[data-slide]');
                 for (var j = buttons.length - 1; j >= 0; j--) {
                     buttons[j].className = '';
-                    buttons[j].innerHTML = '<span class="visually-hidden">Item</span> ' + (j + 1);
+                    buttons[j].innerHTML = '<span class="visually-hidden">Item</span> ' + (j+1);
                 }
                 buttons[new_current].className = "current";
-                buttons[new_current].innerHTML = '<span class="visually-hidden">Item</span> ' + (new_current + 1) + ' <span class="visually-hidden">(Current Item)</span>';
+                buttons[new_current].innerHTML = '<span class="visually-hidden">Item</span> ' + (new_current+1) + ' <span class="visually-hidden">(Current Item)</span>';
             }
 
             // Set the global index to the new current value
@@ -235,7 +228,7 @@ jQuery(document).ready(function ($) {
             var length = slides.length,
                 new_current = index + 1;
 
-            if (new_current === length) {
+            if(new_current === length) {
                 new_current = 0;
             }
 
@@ -253,8 +246,8 @@ jQuery(document).ready(function ($) {
                 new_current = index - 1;
 
             // If we are already on the first slide, show the last slide instead.
-            if (new_current < 0) {
-                new_current = length - 1;
+            if(new_current < 0) {
+                new_current = length-1;
             }
 
             // If we advance to the previous slide, the next needs to be
@@ -265,10 +258,10 @@ jQuery(document).ready(function ($) {
 
         // Making some functions public
         return {
-            init: init,
-            next: nextSlide,
-            prev: prevSlide,
-            goto: setSlides
+            init:init,
+            next:nextSlide,
+            prev:prevSlide,
+            goto:setSlides
         };
     });
 
