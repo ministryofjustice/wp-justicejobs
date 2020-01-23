@@ -74,20 +74,19 @@ jQuery(document).ready(function ($) {
         // id <string> ID of the carousel wrapper element (required).
         // slidenav <bool> If true, a list of slides is shown.
         function init(set) {
+
             // Make settings available to all functions
             settings = set;
 
             // Select the element and the individual slides
             carousel = document.getElementById(settings.id);
 
-            // if no carousel available, bail
             if (!carousel) {
                 return false;
             }
-
             slides = carousel.querySelectorAll('.accessible-carousel__slide');
 
-            carousel.className = 'carousel';
+            carousel.className = 'accessible-carousel';
 
             // Create unordered list for controls, and attach click events fo previous and next slide
             var ctrls = document.createElement('ul');
@@ -135,7 +134,7 @@ jQuery(document).ready(function ($) {
                     }
                 }, true);
 
-                carousel.className = 'carousel with-slidenav';
+                carousel.className = 'accessible-carousel with-slidenav';
                 carousel.appendChild(slidenav);
             }
 
@@ -195,7 +194,7 @@ jQuery(document).ready(function ($) {
 
             // Reset slide classes
             for (var i = slides.length - 1; i >= 0; i--) {
-                slides[i].className = "slide";
+                slides[i].className = "accessible-carousel__slide";
             }
 
             // Add classes to the previous, next and current slide
@@ -274,7 +273,7 @@ jQuery(document).ready(function ($) {
 
     var carousel = new myCarousel();
     carousel.init({
-        id: 'new-carousel',
+        id: 'accessible-carousel',
         slidenav: true
     })
 });
