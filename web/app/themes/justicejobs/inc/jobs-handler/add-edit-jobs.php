@@ -41,7 +41,6 @@ function import_jobs_from_xml() {
 
           if(count($job_check) == 0) {
 
-
               // Creates job post
               $job_post = array(
                   'post_title' => $job_title,
@@ -93,10 +92,6 @@ function import_jobs_from_xml() {
 
     }
 
-
-
-
-
 }
 
 }
@@ -105,6 +100,7 @@ function set_job_details($job_content, $totalspans, $post_id) {
 
     $working_patterns = array();
     $job_locations = array();
+    $job_city = '';
 
     for ($y = 0; $y < $totalspans; $y++) {
         // Save Role Type Info
@@ -138,8 +134,12 @@ function set_job_details($job_content, $totalspans, $post_id) {
 
         // Save Location Info
         if ($job_content->div->span[$y]->attributes()->itemprop[0] == "City/Town") {
-            $location = (string) $job_content->div->span[$y];
-            update_field('location', $location, $post_id);
+            if(strlen($job_city) > 0) {
+                $job_city = 'Multiple Locations';
+            }
+            else {
+                $job_city = (string)$job_content->div->span[$y];
+            }
         }
 
         // Save Closing Date
@@ -183,6 +183,10 @@ function set_job_details($job_content, $totalspans, $post_id) {
 
         }
 
+    }
+
+    if(strlen($job_city) > 0) {
+        update_field('location', $job_city, $post_id);
     }
 
 }

@@ -1,6 +1,10 @@
 
 $text-font-stack: 'Barlow', 'Arial', sans-serif !default;
 
+$font-size-small: 1rem;
+
+$font-size-large-medium: 1.9rem;
+
 $text-color: #020202 !default;
 
 $brand-color: rgb(229, 0, 80) !default;
@@ -34,4 +38,6 @@ $breakpoints: (
     'xxl': only screen and ( min-width: 1920px )
 ) !default;
 
-$base-url: '/assets/' !default;
+$common-spacing: 10;
+
+$base-url: '/src/' !default;
