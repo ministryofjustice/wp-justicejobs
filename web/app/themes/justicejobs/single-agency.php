@@ -219,52 +219,52 @@ Template Post Type: agency
             $add_carousel = get_field('add_locations_carousel');
             if ($add_carousel == 1) :
                 ?>
-    <div class="agency__carousel agency__carousel--full carousel">
-      <div class="carousel__dots"></div>
-      <h3 class="heading--xs"><?php the_field('category_text'); ?></h3>
+            <div class="agency__carousel agency__carousel--full carousel">
+              <div class="carousel__dots"></div>
+              <h3 class="heading--xs"><?php the_field('category_text'); ?></h3>
 
-                <?php if (have_rows('carousel')) : ?>
-        <div class="carousel__container">
-                    <?php while (have_rows('carousel')) :
-                        the_row();
+                        <?php if (have_rows('carousel')) : ?>
+                <div class="carousel__container">
+                            <?php while (have_rows('carousel')) :
+                                the_row();
 
-                        $image_url = get_sub_field('background_image');
-                        $title = get_sub_field('title');
-                        $subtitle = get_sub_field('subtitle');
-                        $more_link = get_sub_field('link');
-                        ?>
-          <div
-            class="carousel__slide"
-            style="background-image: url('<?php echo $image_url; ?>');"
-          >
-            <div class="carousel__wrap">
-              <h3 class="heading--sm"><?php echo $title; ?></h3>
-              <span class="heading--xxs"><?php echo $subtitle; ?></span>
+                                $image_url = get_sub_field('background_image');
+                                $title = get_sub_field('title');
+                                $subtitle = get_sub_field('subtitle');
+                                $more_link = get_sub_field('link');
+                                ?>
+                  <div
+                    class="carousel__slide"
+                    style="background-image: url('<?php echo $image_url; ?>');"
+                  >
+                    <div class="carousel__wrap">
+                      <h3 class="heading--sm"><?php echo $title; ?></h3>
+                      <span class="heading--xxs"><?php echo $subtitle; ?></span>
 
-              <a href="<?php echo esc_url($more_link['url']); ?>" target="<?php echo $more_link['target']; ?>" class="btn-secondary btn-secondary--light">
-                        <?php echo esc_html($more_link['title']); ?>
-                <svg width="8" height="13">
-                  <use xlink:href="#icon-arrow"></use>
-                </svg>
-              </a>
+                      <a href="<?php echo esc_url($more_link['url']); ?>" target="<?php echo $more_link['target']; ?>" class="btn-secondary btn-secondary--light">
+                                <?php echo esc_html($more_link['title']); ?>
+                        <svg width="8" height="13">
+                          <use xlink:href="#icon-arrow"></use>
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                            <?php endwhile; ?>
+              </div>
+                        <?php endif; ?>
+              <div class="carousel__controls">
+                <button class="carousel__arrow carousel__arrow--prev" role="button" aria-label="Previous Agency">
+                  <svg width="16" height="25">
+                    <use xlink:href="#icon-arrow"></use>
+                  </svg>
+                </button>
+                <button class="carousel__arrow carousel__arrow--next" role="button" aria-label="Next Agency">
+                  <svg width="16" height="25">
+                    <use xlink:href="#icon-arrow"></use>
+                  </svg>
+                </button>
+              </div>
             </div>
-          </div>
-                    <?php endwhile; ?>
-      </div>
-                <?php endif; ?>
-      <div class="carousel__controls">
-        <button class="carousel__arrow carousel__arrow--prev" role="button" aria-label="Previous Agency">
-          <svg width="16" height="25">
-            <use xlink:href="#icon-arrow"></use>
-          </svg>
-        </button>
-        <button class="carousel__arrow carousel__arrow--next" role="button" aria-label="Next Agency">
-          <svg width="16" height="25">
-            <use xlink:href="#icon-arrow"></use>
-          </svg>
-        </button>
-      </div>
-    </div>
             <?php endif; ?>
 
             <?php if (have_rows('bottom_block')) :
@@ -297,58 +297,58 @@ Template Post Type: agency
                     }
 
                     ?>
-    <div
-      class="agency__featured"
-      style="background-image: url('<?php echo $image_url_bottom; ?>');"
-    >
-      <span class="heading--xs"><?php echo $name_role_bottom; ?></span>
-      <h3><?php echo $title_bottom; ?></h3>
-      <a href="<?php echo esc_url($more_link_bottom['url']); ?>" target="<?php if (isset($more_link_bottom['target'])) {
-          echo $more_link_bottom['target'];
-      }; ?>"
-        class="btn-secondary btn-secondary--light <?php echo $a_class; ?>"
-                    <?php echo $data_index; ?>
-      >
+                    <div
+                      class="agency__featured"
+                      style="background-image: url('<?php echo $image_url_bottom; ?>');"
+                    >
+                      <span class="heading--xs"><?php echo $name_role_bottom; ?></span>
+                      <h3><?php echo $title_bottom; ?></h3>
+                      <a href="<?php echo esc_url($more_link_bottom['url']); ?>" target="<?php if (isset($more_link_bottom['target'])) {
+                          echo $more_link_bottom['target'];
+                      }; ?>"
+                        class="btn-secondary btn-secondary--light <?php echo $a_class; ?>"
+                                    <?php echo $data_index; ?>
+                      >
                     <?php
 
 
-        // echo '<pre>';
-        // var_dump($more_link_bottom);
-        // echo '<pre>';
-        // die();
+                      // echo '<pre>';
+                      // var_dump($more_link_bottom);
+                      // echo '<pre>';
+                      // die();
 
                     echo esc_html($more_link_bottom['title']); ?>
-        <svg width="8" height="13">
-          <use xlink:href="#icon-arrow"></use>
-        </svg>
-      </a>
-    </div>
-                    <?php $cur++;
-                endwhile;
-            endif; ?>
+                <svg width="8" height="13">
+                  <use xlink:href="#icon-arrow"></use>
+                </svg>
+              </a>
+            </div>
+                            <?php $cur++;
+                        endwhile;
+                    endif; ?>
 
-        <?php
-        $add_link = get_field('add_link');
-        if ($add_link == 1) :
-            $link = get_field('find-out-more_link');
-            if ($link) :
-                $link_url = $link['url'];
-                $link_title = $link['title'];
-                $link_target = $link['target'] ? $link['target'] : '_self';
-                ?>
-    <a href="<?php echo esc_url($link_url); ?>" class="btn-big btn-big--green"
-      target="<?php echo esc_attr($link_target); ?>"
-      style="background-color: <?php echo get_field('agency_colour'); ?>"
-    >
-      Find out more about <?php echo $link_title; ?>
-      <svg width="14" height="26">
-        <use xlink:href="#icon-arrow"></use>
-      </svg>
-    </a>
-            <?php endif;
-        endif; ?>
-  </div>
-</div>
+                <?php
+                $add_link = get_field('add_link');
+                if ($add_link == 1) :
+                    $link = get_field('find-out-more_link');
+                    if ($link) :
+                        $link_url = $link['url'];
+                        $link_title = $link['title'];
+                        $link_target = $link['target'] ? $link['target'] : '_self';
+                        ?>
+            <a href="<?php echo esc_url($link_url); ?>" class="btn-big btn-big--green"
+              target="<?php echo esc_attr($link_target); ?>"
+              style="background-color: <?php echo get_field('agency_colour'); ?>"
+            >
+              Find out more about <?php echo $link_title; ?>
+              <svg width="14" height="26">
+                <use xlink:href="#icon-arrow"></use>
+              </svg>
+            </a>
+                    <?php endif;
+                endif; ?>
+          </div>
+        </div>
 
         <?php get_footer(); ?>
 
@@ -359,67 +359,45 @@ Template Post Type: agency
 
         <?php
 
-    // if ( $popup_row == 'top' ) {
-    //
-    // }
-    // elseif ( $popup_row == 'bottom' ) {
-    //
-    // }
-
         if (have_rows('bottom_block')) :
             while (have_rows('bottom_block')) :
                 the_row();
                 $ispopup = get_sub_field('pop_up_block');
-        // echo $ispopup;
+                // echo $ispopup;
                 if ($ispopup) :
                     ?>
-<div class="popup popup--carousel">
-  <div class="popup__block">
-                    <?php if (have_rows('pop-up_carousel')) : ?>
-    <div class="popup__carousel">
+                  <div class="popup popup--carousel">
+                    <div class="popup__block">
+                      <?php if (have_rows('pop-up_carousel')) : ?>
+                      <div class="popup__carousel">
 
-                        <?php while (have_rows('pop-up_carousel')) :
-                            the_row(); ?>
-
-      <section class="popup__item">
-        <header>
-          <span class="heading--xs "><?php the_sub_field('carousel_category'); ?></span>
-          <h3 class="heading--sm"><?php the_sub_field('carousel_title'); ?></h3>
-        </header>
-        <div class="popup__body">
-          <div>
-            <img src="<?php the_sub_field('carousel_image'); ?>" alt="" />
-          </div>
-          <div>
-                            <?php the_sub_field('carousel_content'); ?>
-          </div>
-        </div>
-      </section>
+                      <?php while (have_rows('pop-up_carousel')) : the_row(); ?>
+                        <section class="popup__item">
+                          <header>
+                            <span class="heading--xs "><?php the_sub_field('carousel_category'); ?></span>
+                            <h3 class="heading--sm"><?php the_sub_field('carousel_title'); ?></h3>
+                          </header>
+                          <div class="popup__body">
+                            <div>
+                              <img src="<?php the_sub_field('carousel_image'); ?>" alt="" />
+                            </div>
+                            <div>
+                              <?php the_sub_field('carousel_content'); ?>
+                            </div>
+                          </div>
+                        </section>
 
                         <?php endwhile; ?>
+                      </div>
 
-    </div>
-
-                    <?php endif;?>
-
-    <button class="popup__arrow popup__arrow--prev" role="button" aria-label="Previous">
-      <svg width="16" height="25">
-        <use xlink:href="#icon-arrow"></use>
-      </svg>
-    </button>
-    <button class="popup__arrow popup__arrow--next" role="button" aria-label="Next">
-      <svg width="16" height="25">
-        <use xlink:href="#icon-arrow"></use>
-      </svg>
-    </button>
-    <div class="popup__dots carousel__dots"></div>
-    <button class="btn-close" role="button" aria-label="Close">
-      <svg width="33" height="33">
-        <use xlink:href="#icon-close"></use>
-      </svg>
-    </button>
-  </div>
-</div>
+                      <?php endif;?>
+                      <button class="btn-close" role="button" aria-label="Close">
+                        <svg width="33" height="33">
+                          <use xlink:href="#icon-close"></use>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
 
                 <?php endif; ?>
             <?php endwhile;
