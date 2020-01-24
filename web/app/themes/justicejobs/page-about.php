@@ -1,7 +1,7 @@
 <?php
 /* Template Name: About Us Template */
 
-get_header(); 
+get_header();
 ?>
 
 <?php if( have_posts() ) : while ( have_posts() ) :the_post();   ?>
@@ -63,86 +63,70 @@ get_header();
     <p> <?php echo the_field('agency_carousel_title'); ?> </p>
   </div>
 
-  <div class="work__carousel carousel">
-    <div class="carousel__dots"></div>
+  <div class="work__carousel accessible-carousel accessible-carousel--full-width">
+    <div id="accessible-carousel">
 
-    <?php $agencies = get_field('featured_agencies'); ?>
+      <?php $agencies = get_field('featured_agencies'); ?>
 
-    <div class="carousel__container">
-      <?php foreach ($agencies as $agency):
+      <ul class="accessible-carousel__container">
+        <?php foreach ($agencies as $agency):
 
-        $agency_image = get_field('agency_hero_desktop_image', $agency->ID);
-        $agency_name = get_the_title($agency->ID);
-        $agency_colour = get_field('agency_colour', $agency->ID);
-        $agency_link = get_permalink($agency->ID);
+          $agency_image = get_field('agency_hero_desktop_image', $agency->ID);
+          $agency_name = get_the_title($agency->ID);
+          $agency_colour = get_field('agency_colour', $agency->ID);
+          $agency_link = get_permalink($agency->ID);
 
-        $agency_description = get_field('homepage_description', $agency->ID);
-        $agency_quote_text = get_field('homepage_quote', $agency->ID);
-        $agency_quote_author = get_field('homepage_quote_author', $agency->ID);
-        $agency_quote_author_position = get_field('homepage_quote_author_position', $agency->ID);
+          $agency_description = get_field('homepage_description', $agency->ID);
+          $agency_quote_text = get_field('homepage_quote', $agency->ID);
+          $agency_quote_author = get_field('homepage_quote_author', $agency->ID);
+          $agency_quote_author_position = get_field('homepage_quote_author_position', $agency->ID);
 
-        ?>
-      <div style="position: relative;">
-        <div
-          class="carousel__slide"
-          style="background-image: url('<?php echo $agency_image; ?>');">
-        <a href="<?php echo $agency_link; ?>">
-          <div class="carousel__wrap">
-            <h3 class="heading--md">
-              <?php echo $agency_name; ?>
-            </h3>
-            <p class="heading--body">
-              <?php echo $agency_description; ?>
-            </p>
-            <a
-              href="<?php echo $agency_link; ?>"
-              class="btn-secondary btn-secondary--light">
-              Find out more
-              <svg width="8" height="13">
-                <use xlink:href="#icon-arrow"></use>
+          ?>
+        <li class="accessible-carousel__slide slide" >
+          <a href="<?php echo $agency_link; ?>">
+            <div class="accessible-carousel__wrap" style="background-image: url('<?php echo $agency_image; ?>');">
+              <h3 class="heading--md">
+                <?php echo $agency_name; ?>
+              </h3>
+              <p class="heading--body">
+                <?php echo $agency_description; ?>
+              </p>
+              <a
+                href="<?php echo $agency_link; ?>"
+                class="btn-secondary btn-secondary--light">
+                Find out more
+                <svg width="8" height="13">
+                  <use xlink:href="#icon-arrow"></use>
+                </svg>
+              </a>
+            </div>
+          </a>
+          <div class="work__text-block"
+          style="background-color: <?php echo $agency_colour; ?>;">
+            <div class="work__text-wrap">
+              <svg width="37" height="24">
+                <use xlink:href="#icon-arrow--decor"></use>
               </svg>
-            </a>
-          </div>
-        </a>
-        </div>
-        <div class="work__text-block"
-        style="background-color: <?php echo $agency_colour; ?>;">
-          <div class="work__text-wrap">
-            <svg width="37" height="24">
-              <use xlink:href="#icon-arrow--decor"></use>
-            </svg>
-            <blockquote class="quote-copy">
-              <?php echo $agency_quote_text; ?>
-            </blockquote>
-            <p class="work__cite-wrap heading--xxs">
-              <span><?php echo $agency_quote_author; ?></span>
-              <span><?php echo $agency_quote_author_position; ?></span>
-            </p>
-            <svg width="37" height="24">
-              <use xlink:href="#icon-arrow--decor"></use>
+              <blockquote class="quote-copy">
+                <?php echo $agency_quote_text; ?>
+              </blockquote>
+              <p class="work__cite-wrap heading--xxs">
+                <span><?php echo $agency_quote_author; ?></span>
+                <span><?php echo $agency_quote_author_position; ?></span>
+              </p>
+              <svg width="37" height="24">
+                <use xlink:href="#icon-arrow--decor"></use>
+              </svg>
+            </div>
+            <svg width="791" height="75">
+              <use xlink:href="#icon-decor-line-1"></use>
             </svg>
           </div>
-          <svg width="791" height="75">
-            <use xlink:href="#icon-decor-line-1"></use>
-          </svg>
-        </div>
-      </div>
+        </li>
 
-    <?php endforeach; ?>
+        <?php endforeach; ?>
+      </ul>
     </div>
-
-      <div class="carousel__controls">
-        <button class="carousel__arrow carousel__arrow--prev" role="button" aria-label="Previous Agency">
-          <svg width="16" height="25">
-            <use xlink:href="#icon-arrow"></use>
-          </svg>
-        </button>
-        <button class="carousel__arrow carousel__arrow--next" role="button" aria-label="Next Agency">
-          <svg width="16" height="25">
-            <use xlink:href="#icon-arrow"></use>
-          </svg>
-        </button>
-      </div>
   </div>
 
 </section>
@@ -163,5 +147,5 @@ get_header();
 
 <?php endwhile; endif; ?>
 
-<?php 
+<?php
 get_footer();

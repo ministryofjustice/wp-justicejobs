@@ -151,7 +151,7 @@ add_action( 'login_enqueue_scripts', 'my_login_logo' );
 // ACF Google Maps API
 function my_acf_init() {
 
-    $map_key = get_field( 'google_maps_api_key', 'option' );
+    $map_key = get_field( 'google_maps_api_key_location_lookup', 'option' );
 
     if(strlen($map_key) > 0) {
         acf_update_setting('google_api_key', $map_key);
