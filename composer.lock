@@ -2154,7 +2154,6 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-<<<<<<< HEAD
             "version": "12.9.1",
             "source": {
                 "type": "svn",
@@ -2164,17 +2163,6 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/wordpress-seo.12.9.1.zip"
-=======
-            "version": "12.8.1",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/12.8.1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.12.8.1.zip"
->>>>>>> a4d644aa3eabf6c2bf8b91ca5ac9e141c19092b4
             },
             "require": {
                 "composer/installers": "~1.0"
