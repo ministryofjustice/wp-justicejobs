@@ -83,7 +83,7 @@
           margin-bottom: 30px;
         }
       }
-  
+
       iframe,
       object,
       embed {
@@ -122,33 +122,6 @@
       position: absolute;
       top: 50px;
       left: 50px;
-    }
-  }
-
-  .agency__carousel {
-    width: 100%;
-    height: 285px;
-    flex-grow: 0;
-    background: $light-green;
-
-    @include respond-to(lg) {
-      width: 50%;
-    }
-
-    &--full {
-      width: 100%;
-    }
-
-    .carousel__dots {
-      right: 50px;
-      left: auto;
-    }
-
-    > .heading--xs {
-      position: absolute;
-      top: 50px;
-      left: 50px;
-      z-index: 5;
     }
   }
 

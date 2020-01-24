@@ -122,97 +122,92 @@ Template Post Type: agency
                     $carousel_top = $campaign_block['pop-up_carousel'];
                     if ($ispopup_top) :
                         ?>
-      <div class="popup popup--carousel">
-        <div class="popup__block">
-                        <?php if ($carousel_top) : ?>
-          <div class="popup__carousel">
 
-                            <?php foreach ($carousel_top as $row) : ?>
-            <section class="popup__item">
-              <header>
-                <span class="heading--xs "><?php echo $row['carousel_category']; ?></span>
-                <h3 class="heading--sm"><?php echo $row['carousel_title']; ?></h3>
-              </header>
-              <div class="popup__body">
-                <div>
-                  <img src="<?php echo $row['carousel_image']; ?>" alt="" />
-                </div>
-                <div>
-                                <?php echo $row['carousel_content']; ?>
-                </div>
+<div class="popup popup--carousel">
+  <div class="popup__block">
+    <?php if ($carousel_top) : ?>
+      <div class="popup__carousel">
+
+        <?php foreach ($carousel_top as $row) : ?>
+          <section class="popup__item">
+            <header>
+              <span class="heading--xs "><?php echo $row['carousel_category']; ?></span>
+              <h3 class="heading--sm"><?php echo $row['carousel_title']; ?></h3>
+            </header>
+            <div class="popup__body">
+              <div>
+                <img src="<?php echo $row['carousel_image']; ?>" alt="" />
               </div>
-            </section>
+              <div>
+                <?php echo $row['carousel_content']; ?>
+              </div>
+            </div>
+          </section>
 
-                            <?php endforeach; ?>
+          <?php endforeach; ?>
 
-          </div>
+        </div>
 
-                        <?php endif;?>
+        <?php endif;?>
 
-      <button class="popup__arrow popup__arrow--prev" role="button" aria-label="Previous Campaign">
-        <svg width="16" height="25">
-          <use xlink:href="#icon-arrow"></use>
-        </svg>
-      </button>
-      <button class="popup__arrow popup__arrow--next" role="button" aria-label="Next Campaign">
-        <svg width="16" height="25">
-          <use xlink:href="#icon-arrow"></use>
-        </svg>
-      </button>
-      <div class="popup__dots carousel__dots"></div>
-      <button class="btn-close" role="button" aria-label="Close">
-        <svg width="33" height="33">
-          <use xlink:href="#icon-close"></use>
-        </svg>
-      </button>
+        <button class="popup__arrow popup__arrow--prev" role="button" aria-label="Previous Campaign">
+          <svg width="16" height="25">
+            <use xlink:href="#icon-arrow"></use>
+          </svg>
+        </button>
+        <button class="popup__arrow popup__arrow--next" role="button" aria-label="Next Campaign">
+          <svg width="16" height="25">
+            <use xlink:href="#icon-arrow"></use>
+          </svg>
+        </button>
+        <div class="popup__dots carousel__dots"></div>
+        <button class="btn-close" role="button" aria-label="Close">
+          <svg width="33" height="33">
+            <use xlink:href="#icon-close"></use>
+          </svg>
+        </button>
+      </div>
     </div>
-  </div>
 
-                    <?php endif; ?>
-                <?php endif; ?>
+    <?php endif; ?>
+    <?php endif; ?>
 
-    <div class="agency__carousel carousel" style="background-color: <?php the_field('agency_colour'); ?>;">
-      <div class="carousel__dots"></div>
-                <?php if (have_rows('roles_carousel')) : ?>
-      <h3 class="heading--xs"><?php the_field('carousel_title'); ?></h3>
-      <div class="carousel__container">
-                    <?php while (have_rows('latest_roles_carousel')) :
+    <!--
+      - refactor JS so that it doesn't rely on unique ids?
+      - Remove unneccessary markup
+      - correct styling
+      - check existing carousel still works and looks ok
+    -->
+
+    <div class="agency__carousel accessible-carousel" style="background-color: <?php the_field('agency_colour'); ?>;">
+      <?php if (have_rows('roles_carousel')) : ?>
+        <h3 class="heading--xs"><?php the_field('carousel_title'); ?></h3>
+        <div id="accessible-carousel">
+          <ul class="carousel__container"  >
+          <?php while (have_rows('latest_roles_carousel')) :
                         the_row();
                         $agency_name = get_sub_field('agency_name');
                         $position_title = get_sub_field('position_title');
                         $position_location = get_sub_field(' position_location');
                         $more_link = get_sub_field('find-out-more_link');
                         ?>
-        <div class="carousel__slide">
-          <div class="carousel__wrap">
-            <span class="heading--xxs"><?php echo $agency_name; ?></span>
-            <h3 class="heading--sm"><?php echo $position_title; ?></h3>
-            <span class="heading--xxs"><?php echo $position_location; ?></span>
+            <li class="accessible-carousel__slide">
+              <span class="heading--xxs"><?php echo $agency_name; ?></span>
+              <h3 class="heading--sm"><?php echo $position_title; ?></h3>
+              <span class="heading--xxs"><?php echo $position_location; ?></span>
 
-            <a href="<?php echo esc_url($more_link['url']); ?>" target="<?php echo $more_link['target']; ?>" class="btn-secondary btn-secondary--light">
-                        <?php echo esc_html($more_link['title']); ?>
-              <svg width="8" height="13">
-                <use xlink:href="#icon-arrow"></use>
-              </svg>
-            </a>
-          </div>
-        </div>
+              <a href="<?php echo esc_url($more_link['url']); ?>" target="<?php echo $more_link['target']; ?>" class="btn-secondary btn-secondary--light">
+                          <?php echo esc_html($more_link['title']); ?>
+                <svg width="8" height="13">
+                  <use xlink:href="#icon-arrow"></use>
+                </svg>
+              </a>
+            </li>
                     <?php endwhile; ?>
-      </div>
+            </ul>
+          </div>
                 <?php endif; ?>
-      <div class="carousel__controls">
-        <button class="carousel__arrow carousel__arrow--prev" role="button" aria-label="Previous Agency">
-          <svg width="16" height="25">
-            <use xlink:href="#icon-arrow"></use>
-          </svg>
-        </button>
-        <button class="carousel__arrow carousel__arrow--next" role="button" aria-label="Next Agency">
-          <svg width="16" height="25">
-            <use xlink:href="#icon-arrow"></use>
-          </svg>
-        </button>
-      </div>
-    </div>
+          </div>
             <?php endif; ?>
 
             <?php

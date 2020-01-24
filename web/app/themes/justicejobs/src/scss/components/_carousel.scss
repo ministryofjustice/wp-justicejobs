@@ -360,3 +360,28 @@
     }
   }
 }
+
+.agency__carousel {
+  width: 100%;
+  height: 285px;
+  flex-grow: 0;
+  background: $light-green;
+
+  @include respond-to(lg) {
+    width: 50%;
+  }
+
+  .heading--xs {
+    position: absolute;
+    top: 100px;
+    left: 50px;
+    z-index: 5;
+  }
+
+  &--full {
+    width: 100%;
+    .heading--xs {
+      top: 75px;
+    }
+  }
+}
