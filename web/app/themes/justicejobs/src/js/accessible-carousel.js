@@ -276,4 +276,10 @@ jQuery(document).ready(function ($) {
         id: 'accessible-carousel',
         slidenav: true
     })
+
+    var secondCarousel = new myCarousel();
+    secondCarousel.init({
+      id: 'accessible-full-carousel',
+      slidenav: true
+    })
 });

@@ -150,17 +150,6 @@ Template Post Type: agency
 
         <?php endif;?>
 
-        <button class="popup__arrow popup__arrow--prev" role="button" aria-label="Previous Campaign">
-          <svg width="16" height="25">
-            <use xlink:href="#icon-arrow"></use>
-          </svg>
-        </button>
-        <button class="popup__arrow popup__arrow--next" role="button" aria-label="Next Campaign">
-          <svg width="16" height="25">
-            <use xlink:href="#icon-arrow"></use>
-          </svg>
-        </button>
-        <div class="popup__dots carousel__dots"></div>
         <button class="btn-close" role="button" aria-label="Close">
           <svg width="33" height="33">
             <use xlink:href="#icon-close"></use>
@@ -214,12 +203,12 @@ Template Post Type: agency
             $add_carousel = get_field('add_locations_carousel');
             if ($add_carousel == 1) :
                 ?>
-            <div class="agency__carousel agency__carousel--full carousel">
-              <div class="carousel__dots"></div>
+            <div class="agency__carousel agency__carousel--full accessible-carousel">
               <h3 class="heading--xs"><?php the_field('category_text'); ?></h3>
 
                         <?php if (have_rows('carousel')) : ?>
-                <div class="carousel__container">
+                          <div id="accessible-full-carousel">
+                          <ul class="carousel__container">
                             <?php while (have_rows('carousel')) :
                                 the_row();
 
@@ -228,8 +217,8 @@ Template Post Type: agency
                                 $subtitle = get_sub_field('subtitle');
                                 $more_link = get_sub_field('link');
                                 ?>
-                  <div
-                    class="carousel__slide"
+                  <li
+                    class="accessible-carousel__slide"
                     style="background-image: url('<?php echo $image_url; ?>');"
                   >
                     <div class="carousel__wrap">
@@ -243,22 +232,11 @@ Template Post Type: agency
                         </svg>
                       </a>
                     </div>
-                  </div>
+                  </li>
                             <?php endwhile; ?>
-              </div>
+                </ul>
+                            </div>
                         <?php endif; ?>
-              <div class="carousel__controls">
-                <button class="carousel__arrow carousel__arrow--prev" role="button" aria-label="Previous Agency">
-                  <svg width="16" height="25">
-                    <use xlink:href="#icon-arrow"></use>
-                  </svg>
-                </button>
-                <button class="carousel__arrow carousel__arrow--next" role="button" aria-label="Next Agency">
-                  <svg width="16" height="25">
-                    <use xlink:href="#icon-arrow"></use>
-                  </svg>
-                </button>
-              </div>
             </div>
             <?php endif; ?>
 
