@@ -71,6 +71,9 @@ if (!function_exists('theme_setup')) :
 endif;
 add_action('after_setup_theme', 'theme_setup');
 
+
+
+
 // Adds CSS
 // Adds JS
 // ==========
@@ -84,7 +87,16 @@ function enqueue_justice_jobs_scripts()
     // JS and jQuery
     wp_enqueue_script('slick-js', mix_asset('/js/slick.min.js'), array('jquery', 'core-js'), null, true);
     wp_enqueue_script('core-js', mix_asset('/js/main.min.js'), array('jquery'), null, true);
-    wp_enqueue_script('jj-gtm', mix_asset('/js/jj-gtm.min.js'), array('jquery'));
+
+    // Temporary workaround to comply with GDPR - tracking off by default
+    if (isset($_COOKIE['ccfwCookiePolicy'])) {
+
+        $cookieAccepted = htmlspecialchars($_COOKIE['ccfwCookiePolicy']);
+
+        if ($cookieAccepted === 'true') {
+            wp_enqueue_script('jj-gtm', mix_asset('/js/jj-gtm.min.js'), array('jquery'));
+        }
+    }
 
     // Third party vendor scripts
     wp_deregister_script('jquery'); // This removes jquery shipped with WP so that we can add our own.
