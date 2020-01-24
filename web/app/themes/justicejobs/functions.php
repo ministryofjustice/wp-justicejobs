@@ -13,7 +13,7 @@ if (!function_exists('theme_setup')) :
      *
      * Note that this function is hooked into the after_setup_theme hook, which
      * runs before the init hook. The init hook is too late for some features, such
-     * as indicating support for post thumbnails.
+     * as indicating support for post thumbnails..
      */
     function theme_setup()
     {
@@ -71,9 +71,6 @@ if (!function_exists('theme_setup')) :
 endif;
 add_action('after_setup_theme', 'theme_setup');
 
-
-
-
 // Adds CSS
 // Adds JS
 // ==========
@@ -90,7 +87,6 @@ function enqueue_justice_jobs_scripts()
 
     // Temporary workaround to comply with GDPR - tracking off by default
     if (isset($_COOKIE['ccfwCookiePolicy'])) {
-
         $cookieAccepted = htmlspecialchars($_COOKIE['ccfwCookiePolicy']);
 
         if ($cookieAccepted === 'true') {
@@ -139,7 +135,6 @@ function add_specific_menu_location_atts($atts, $item, $args)
 
     // check if the item is in the footer menu
     if ($args->theme_location == 'footer-menu') {
-
         // add desired attributes:
         $atts['class'] = 'jj-nav-footer';
     }
@@ -192,7 +187,6 @@ function moj_custom_styles($init_array)
     $init_array['style_formats'] = json_encode($style_formats);
 
     return $init_array;
-
 }
 
 // Attach callback to 'tiny_mce_before_init'
@@ -214,9 +208,7 @@ function example_add_cron_interval($schedules)
 
 // Add Options page
 if (function_exists('acf_add_options_page')) {
-
     acf_add_options_page();
-
 }
 
 /*
@@ -335,7 +327,6 @@ add_action('wp', 'test_import');
 function test_import()
 {
     if (is_user_logged_in() && current_user_can('administrator')) {
-
         $import_test = get_query_var('importScriptTest');
         if ($import_test == 'pull-jobs') {
             saveJobsXMLFile();
@@ -357,9 +348,9 @@ if (!function_exists('deleteJobs')) {
 
     function deleteJobs()
     {
-        $allposts= get_posts( array('post_type'=>'job','numberposts'=>-1) );
+        $allposts = get_posts(array('post_type' => 'job','numberposts' => -1));
         foreach ($allposts as $eachpost) {
-            wp_delete_post( $eachpost->ID, true );
+            wp_delete_post($eachpost->ID, true);
         }
 
         echo "Jobs Deleted";
@@ -421,6 +412,5 @@ function jj_select_options($qs_param, $default = 'option')
 
     $pre_options .= '<option value="all">All ' . $default . 's</option>';
 
-    return ['list' => $pre_options . $role_options, 'title' => ' title="'.$selectedFound.'"'];
+    return ['list' => $pre_options . $role_options, 'title' => ' title="' . $selectedFound . '"'];
 }
-
