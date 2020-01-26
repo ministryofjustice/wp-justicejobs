@@ -11,6 +11,7 @@
 
     &::placeholder {
         color: $text-color;
+        opacity: 1;
     }
 
     &:hover {
