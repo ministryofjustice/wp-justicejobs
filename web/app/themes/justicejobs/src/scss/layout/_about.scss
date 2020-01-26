@@ -85,7 +85,7 @@
             }
         }
 
-        &:hover::before {
+        &:hover::before, &:active::before, &:focus::before {
             background-color: inherit;
         }
 

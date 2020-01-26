@@ -48,6 +48,14 @@
     @include respond-to(sm) {
       order: 0;
     }
+
+    a {
+      padding: 3px;;
+
+      &:focus, &:hover, &:active {
+        outline: 2px solid $focus-orange;
+      }
+    }
   }
 
   &__copy {
@@ -105,6 +113,10 @@
       @include respond-to(md) {
         font-weight: 300;
       }
+
+      &:focus, &:hover, &:active {
+        outline: 2px solid $focus-orange;
+      }
     }
   }
 
@@ -113,6 +125,10 @@
 
     @include respond-to(md) {
       margin-bottom: 25px;
+    }
+
+    &:focus, &:hover, &:active {
+      outline: 2px solid $focus-orange;
     }
 
     img {

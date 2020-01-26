@@ -71,6 +71,10 @@
         flex-direction: column;
         align-items: center;
         font-weight: 400;
+        border: 2px solid transparent;
+        padding: 2px;
+        margin-top: -2px;
+
         cursor: pointer;
         @include transition;
         svg {
@@ -84,6 +88,13 @@
                 fill: $mid-blue;
             }
 
+        }
+        &:hover,
+        &:focus,
+        &:active {
+            border: 2px solid #000;
+            background: $focus-orange;
+            color: #000;
         }
     }
 

@@ -82,10 +82,14 @@
             }
             a {
                 text-decoration: none !important;
-                color: $light-blue !important;
-                &:hover,
-                &:focus {
-                    text-decoration: underline !important;
+                color: $light-blue;
+                text-decoration: underline !important;
+                &:focus, &:hover, &:active {
+                    border: 2px solid #000;
+                    background: $focus-orange;
+                    span {
+                        color: #000 !important;
+                    }
                 }
                 span {
                     color: $light-blue !important;

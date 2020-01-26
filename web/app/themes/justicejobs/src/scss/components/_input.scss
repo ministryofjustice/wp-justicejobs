@@ -14,8 +14,9 @@
         opacity: 1;
     }
 
-    &:hover {
-        border-color: $light-blue;
+    &:hover, &:focus, &:active {
+        border-color: #000;
+        outline: 4px solid $focus-orange;
     }
 
     &:focus::placeholder {

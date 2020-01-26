@@ -35,13 +35,10 @@
         display: none;
     }
 
-    &:hover {
-        border-color: $light-blue;
-    }
-
-    &:focus {
-        border-color: #aaa;
-        color: #222;
+    &:hover,
+    &:focus,
+    &:active {
+        outline: 4px solid $focus-orange;
     }
 
     option {

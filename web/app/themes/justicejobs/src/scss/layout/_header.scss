@@ -24,6 +24,10 @@
         svg {
             fill: #fff;
         }
+
+        &:focus, &:hover, &:active {
+            outline: 2px solid $focus-orange;
+        }
     }
 
     &__menu {
@@ -129,6 +133,10 @@
         > li {
             position: relative;
             text-align: center;
+
+            a:focus, a:hover, a:active {
+                outline: 2px solid $focus-orange;
+            }
 
             @include respond-to(md) {
                 &:not(:last-child) {
