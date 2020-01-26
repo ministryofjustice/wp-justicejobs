@@ -20,11 +20,8 @@
     <a href="<?php bloginfo('url'); ?>" aria-label="Back to Home" class="page-header__logo">
         <span class="screen-reader-text">Back to Home</span>
         <img
-            width="188"
-            height="28"
             src="<?php echo esc_url(get_template_directory_uri()); ?>/dist/img/logo--white.svg"
-            alt="Ministry of Justice Logo - this takes the user back to the homepage"
-            aria-hidden="true"
+            alt="Ministry of Justice Logo - homepage"
         />
     </a>
     <button class="page-header__menu closed">
