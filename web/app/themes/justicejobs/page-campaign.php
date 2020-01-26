@@ -24,7 +24,7 @@ Template Post Type: page, campaign
                 <li><a href="<?php echo get_bloginfo('url'); ?>">Home</a></li>
                 <li>Campaign</li>
             </ul>
-            <h1 class="heading--lg"><?php the_title(); ?></h1>
+            <h1 class="heading--lg"><span class="text-highlight"><?php the_title(); ?></span></h1>
             <p>
                 <?php the_field('hero_text'); ?>
             </p>
@@ -38,7 +38,7 @@ Template Post Type: page, campaign
 <div class="campaign">
 
     <?php
-    
+
     $back_link = get_field('back_button');
 
     if ($back_link) :

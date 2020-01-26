@@ -25,13 +25,13 @@
       </ul>
       <h1 class="heading--lg">
         <?php // the_title(); ?>
-        <?php //the_field( 'role_type' );
+        <span class="text-highlight"><?php //the_field( 'role_type' );
          $terms = wp_get_post_terms($post->ID, 'role_type', array("fields" => "all"));
          foreach ($terms as $term) {
            echo $term->name;
          }
 
-        ?>
+        ?></span>
       </h1>
       <svg class="hero__arrow hero__arrow--bottom" width="37" height="24">
         <use xlink:href="#icon-arrow--decor"></use>

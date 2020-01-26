@@ -33,7 +33,7 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                 <li>Search jobs</li>
             </ul>
             <h1 class="heading--lg">
-                Search Results
+                <span class="text-highlight">Search Results</span>
             </h1>
             <svg class="hero__arrow hero__arrow--bottom" width="37" height="24">
                 <use xlink:href="#icon-arrow--decor"></use>
