@@ -161,18 +161,11 @@ Template Post Type: agency
     <?php endif; ?>
     <?php endif; ?>
 
-    <!--
-      - refactor JS so that it doesn't rely on unique ids?
-      - Remove unneccessary markup
-      - correct styling
-      - check existing carousel still works and looks ok
-    -->
-
     <div class="agency__carousel accessible-carousel" style="background-color: <?php the_field('agency_colour'); ?>;">
       <?php if (have_rows('roles_carousel')) : ?>
         <h3 class="heading--xs"><?php the_field('carousel_title'); ?></h3>
         <div id="accessible-carousel">
-          <ul class="carousel__container"  >
+          <ul class="accessible-carousel__container"  >
           <?php while (have_rows('latest_roles_carousel')) :
                         the_row();
                         $agency_name = get_sub_field('agency_name');
@@ -208,7 +201,7 @@ Template Post Type: agency
 
                         <?php if (have_rows('carousel')) : ?>
                           <div id="accessible-full-carousel">
-                          <ul class="carousel__container">
+                          <ul class="accessible-carousel__container">
                             <?php while (have_rows('carousel')) :
                                 the_row();
 
