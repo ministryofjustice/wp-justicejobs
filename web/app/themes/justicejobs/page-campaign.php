@@ -20,7 +20,7 @@ Template Post Type: page, campaign
             <svg class="hero__arrow hero__arrow--top" width="37" height="24">
                 <use xlink:href="#icon-arrow--decor"></use>
             </svg>
-            <ul class="breadcrumbs">
+            <ul class="breadcrumbs text-highlight">
                 <li><a href="<?php echo get_bloginfo('url'); ?>">Home</a></li>
                 <li>Campaign</li>
             </ul>

@@ -171,6 +171,10 @@
         line-height: 1.55;
     }
 
+    ul.text-highlight > li {
+       background-color: $dark-grey;
+    }
+
     &--home &__text-wrap {
         padding: 20px;
         text-align: center;
