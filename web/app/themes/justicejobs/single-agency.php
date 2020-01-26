@@ -221,7 +221,7 @@ Template Post Type: agency
                     class="accessible-carousel__slide"
                     style="background-image: url('<?php echo $image_url; ?>');"
                   >
-                    <div class="carousel__wrap">
+                    <div class="accessible-carousel__wrap">
                       <h3 class="heading--sm"><?php echo $title; ?></h3>
                       <span class="heading--xxs"><?php echo $subtitle; ?></span>
 
