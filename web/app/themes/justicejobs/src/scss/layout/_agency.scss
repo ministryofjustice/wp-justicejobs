@@ -131,6 +131,7 @@
         height: 285px;
         flex-grow: 0;
         background: $darker-blue;
+        border: 1px solid #fff;
 
         @include respond-to(lg) {
             width: 50%;
@@ -165,6 +166,7 @@
         background-size: cover;
         background-position: 68% 50%;
         position: relative;
+        border: 1px solid #fff;
 
         &::before {
             content: '';
