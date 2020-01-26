@@ -1,6 +1,6 @@
 .job {
     margin-bottom: 100px;
-    width: 100rem;
+    max-width: 100rem;
     &__wrap {
         padding: 40px 15px;
         @include respond-to(md) {
