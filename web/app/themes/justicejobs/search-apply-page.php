@@ -124,7 +124,7 @@ Template Name: Search/Apply Template
                         <?= $options['list'] ?>
                     </select>
                 </div>
-                <button class="btn btn--blue search-page-link ga-main-form-button" role="button" type="submit">Search
+                <button class="btn btn--dark-blue search-page-link ga-main-form-button" role="button" type="submit">Search
                     jobs
                 </button>
                 <div class="btn-reset-button-contain">

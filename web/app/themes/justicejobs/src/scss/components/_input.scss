@@ -6,11 +6,15 @@
     letter-spacing: 0.15px;
     line-height: 1.1;
     background: #fff;
-    border: 1px solid $light-grey;
+    border: 1px solid $dark-grey;
     border-radius: 3px;
 
     &::placeholder {
         color: $text-color;
+    }
+
+    &:hover {
+        border-color: $light-blue;
     }
 
     &:focus::placeholder {

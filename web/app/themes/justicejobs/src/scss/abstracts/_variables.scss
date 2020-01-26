@@ -13,6 +13,10 @@ $light-blue: #00b1eb !default;
 
 $mid-blue: #336699 !default;
 
+$dark-blue: #2c5d94 !default;
+
+$darker-blue: rgb(15, 48, 84) !default;
+
 
 $orange-color: #f68000 !default;
 
@@ -27,10 +31,16 @@ $purple-color: #620067 !default;
 
 $light-grey: #d9d9d9 !default;
 
+$dark-grey: #29363B !default;
+
+
+$trans-dark-grey: rgba(41, 54, 59, 0.9) !default;
+
 
 $max-width: 1170px !default;
 
 $breakpoints: (
+    'xs': only screen and ( min-width: 500px ),
     'sm': only screen and ( min-width: 768px ),
     'md': only screen and ( min-width: 1024px ),
     'lg': only screen and ( min-width: 1280px ),
