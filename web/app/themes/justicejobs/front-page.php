@@ -2,12 +2,10 @@
 
 <section class="hero hero--home hero--arrows">
     <div class="hero__img-block">
-        <div
-            class="hero__img hero__img--desktop"
+        <div class="hero__img hero__img--desktop"
             style="background-image: url('<?php the_field('hero_desktop_image'); ?>');"
         ></div>
-        <div
-            class="hero__img hero__img--mobile"
+        <div class="hero__img hero__img--mobile"
             style="background-image: url('<?php the_field('hero_mobile_image'); ?>');"
         ></div>
         <div class="hero__img_description">
@@ -21,7 +19,9 @@
                 <svg class="hero__arrow hero__arrow--top" width="37" height="24">
                     <use xlink:href="#icon-arrow--decor"></use>
                 </svg>
-                <h1 class="heading--lg"><?php the_field('hero_title'); ?></h1>
+                <h1 class="heading--lg">
+                    <span class="front-page text-highlight"><?php the_field('hero_title'); ?></span>
+                </h1>
                 <svg
                     class="hero__arrow hero__arrow--bottom"
                     width="37"
@@ -30,11 +30,11 @@
                     <use xlink:href="#icon-arrow--decor"></use>
                 </svg>
             </div>
-            <p>
-                <?php the_field('hero_text'); ?>
+            <p class="text-highlight">
+                <span class="front-page text-highlight"><?php the_field('hero_text'); ?></span>
             </p>
-            <a href="<?php bloginfo('url'); ?>/search-page/" class="btn btn--bw search-page-link ga-nav-top-right">Search
-                & Apply</a>
+            <!--<a href="<?php /*bloginfo('url'); */?>/search-page/" class="btn btn--bw search-page-link ga-nav-top-right">Search
+                & Apply</a>-->
         </div>
     </div>
 
@@ -69,7 +69,8 @@
                     <input id="location" name="location" aria-label="Location" type="text" class="input"
                            placeholder="City / Postcode"/>
                 </div>
-                <button class="btn btn--blue btn--full search-page-link ga-mini-home-form-button" type="submit">Search
+                <button class="btn btn--dark-blue btn--full search-page-link ga-mini-home-form-button" type="submit">
+                    Search
                     jobs
                 </button>
             </fieldset>
@@ -99,7 +100,7 @@
                                 <p class="heading--xxs"><?php echo $position_location; ?></p>
 
                                 <a href="<?php echo esc_url($more_link['url']); ?>"
-                                    class="btn-secondary btn-secondary--light">
+                                   class="btn-secondary btn-secondary--light">
                                     <?php echo esc_html($more_link['title']); ?>
                                     <svg width="8" height="13">
                                         <use xlink:href="#icon-arrow"></use>
@@ -144,30 +145,24 @@ if ($the_query->have_posts()) : ?>
             $post_id = get_the_id();
 
             $featured_img_url = get_field('agency_hero_desktop_image');
-            $agency_logo = get_field('agency_logo_white');
             $agency_name = get_the_title($post_id);
-            $agency_link = get_post_permalink($post_id);
             $agency_colour = get_field('agency_colour');
 
             ?>
 
             <a
-                href="<?php echo $agency_link; ?>"
+                href="<?= get_post_permalink($post_id); ?>"
                 class="about__block"
-                style="text-decoration:none; color:inherit; display:inline-block; background-image: url('<?php echo $featured_img_url; ?>');"
+                style="text-decoration:none; color:inherit; display:inline-block; background-color: <?= $agency_colour ?>;background-image: url('<?= $featured_img_url ?>');"
+                aria-label="Find out more about the <?= $agency_name ?>"
             >
 
                 <img
-                    class="about__logo"
-                    src="<?php echo $agency_logo; ?>"
-                    alt=""
+                    class="about__logo <?= get_post_field('post_name', $post_id) ?>"
+                    src="<?= get_field('agency_logo_white'); ?>"
+                    alt="<?= $agency_name ?> logo"
                 />
-                <h3><?php echo $agency_name; ?></h3>
                 <div class="btn-secondary btn-secondary--light">
-          <span
-              class="about__btn-bg"
-              style="background-color: <?php echo $agency_colour; ?>"
-          ></span>
                     Find out more
                     <svg width="8" height="13">
                         <use xlink:href="#icon-arrow"></use>

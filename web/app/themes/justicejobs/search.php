@@ -28,12 +28,12 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
             <svg class="hero__arrow hero__arrow--top" width="37" height="24">
                 <use xlink:href="#icon-arrow--decor"></use>
             </svg>
-            <ul class="breadcrumbs">
+            <ul class="breadcrumbs text-highlight">
                 <li><a href="<?php echo get_bloginfo('url'); ?>">Home</a></li>
                 <li>Search jobs</li>
             </ul>
             <h1 class="heading--lg">
-                Search Results
+                <span class="text-highlight">Search Results</span>
             </h1>
             <svg class="hero__arrow hero__arrow--bottom" width="37" height="24">
                 <use xlink:href="#icon-arrow--decor"></use>
@@ -132,7 +132,7 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                         <?= $options['list'] ?>
                     </select>
                 </div>
-                <button class="btn btn--blue search-page-link ga-main-form-button" role="button" type="submit">Search
+                <button class="btn btn--dark-blue search-page-link ga-main-form-button" role="button" type="submit">Search
                     jobs
                 </button>
                 <div class="btn-reset-button-contain">

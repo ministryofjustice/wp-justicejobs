@@ -22,13 +22,13 @@ get_header();
       <svg class="hero__arrow hero__arrow--top" width="37" height="24">
         <use xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/img/icon-arrow--decor"></use>
       </svg>
-      <ul class="breadcrumbs">
+      <ul class="breadcrumbs text-highlight">
         <li><a href="<?php echo get_bloginfo( 'url' ); ?>">Home</a></li>
         <li><?php the_title(); ?></li>
       </ul>
-      <h1 class="heading--lg"><?php the_title(); ?></h1>
+      <h1 class="heading--lg"><span class="text-highlight"><?php the_title(); ?></span></h1>
       <p>
-        <?php the_field('hero_text');?>
+        <span class="text-highlight"><?php the_field('hero_text');?></span>
       </p>
       <svg class="hero__arrow hero__arrow--bottom" width="37" height="24">
         <use xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/img/icon-arrow--decor"></use>

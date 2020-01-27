@@ -11,7 +11,7 @@
     box-sizing: border-box;
     margin: 0;
     margin-bottom: 15px;
-    border: 1px solid $light-grey;
+    border: 1px solid $dark-grey;
     border-radius: 3px;
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -35,13 +35,14 @@
         display: none;
     }
 
-    &:hover {
+    &:hover,
+    &:focus,
+    &:active {
         border-color: $light-blue;
     }
 
     &:focus {
-        border-color: #aaa;
-        color: #222;
+        outline: 4px solid $focus-orange;
     }
 
     option {
