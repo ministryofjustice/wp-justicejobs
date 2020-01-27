@@ -24,8 +24,7 @@
         <li>Job</li>
       </ul>
       <h1 class="heading--lg">
-        <?php // the_title(); ?>
-        <?php //the_field( 'role_type' );
+        <?php
          $terms = wp_get_post_terms($post->ID, 'role_type', array("fields" => "all"));
          foreach ($terms as $term) {
            echo $term->name;
@@ -44,14 +43,6 @@
   <div class="job__wrap">
     <h2 class="heading--sm">
       <?php the_title(); ?>
-      <?php
-      /*
-      $terms = wp_get_post_terms($post->ID, 'role_type', array("fields" => "all"));
-      foreach ($terms as $term) {
-        echo $term->name;
-      }
-      */
-       ?>
       <br />
       <?php
 
@@ -93,12 +84,6 @@
       </footer>
     </div>
   </div>
-  <!-- <a href="#" class="btn-big">
-    Find out more about MOJ HQ
-    <svg width="14" height="26">
-      <use xlink:href="#icon-arrow"></use>
-    </svg>
-  </a> -->
 </div>
 <?php endwhile; endif; ?>
 

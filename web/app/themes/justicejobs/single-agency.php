@@ -46,10 +46,6 @@ Template Post Type: agency
       />
     </div>
   </div>
-  <!-- <div class="hero__search hero__search--agency">
-    <h2 class="heading--sm">Roles at HMCTS</h2>
-    <a href="search.html" class="btn btn--green btn--full">Search jobs</a>
-  </div> -->
 </section>
 
 <div class="agency">
