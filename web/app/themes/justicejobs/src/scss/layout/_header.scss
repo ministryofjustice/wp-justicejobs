@@ -2,342 +2,280 @@
 // This file contains all styles related to the header of the site/application.
 // -----------------------------------------------------------------------------
 .page-header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding-top: 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 1;
-
-
-  &__logo {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 50;
-
-    svg {
-      fill: #fff;
-    }
-  }
-
-  &__menu {
-    position: relative;
-    background: none;
-    border: 0;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    z-index: 50;
-
-    @include respond-to(md) {
-      display: none;
-    }
-
-    span {
-      position: relative;
-      font-size: 0;
-      width: 20px;
-      height: 2px;
-      display: block;
-      background: #fff;
-      @include transition;
-
-      &::before,
-      &::after {
-        position: absolute;
-        left: 0;
-        right: 0;
-        height: 2px;
-        display: block;
-        background: #fff;
-        content: '';
-        @include transition;
-      }
-
-      &::before {
-        top: -6px;
-      }
-
-      &::after {
-        bottom: -6px;
-      }
-    }
-  }
-
-  &__menu.open {
-    span {
-      background: transparent;
-
-      &::before {
-        top: 0;
-        transform: rotate(45deg);
-      }
-
-      &::after {
-        bottom: 0;
-        transform: rotate(-45deg);
-      }
-    }
-  }
-
-  &__nav-wrap {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    background: #000;
-    opacity: 0;
-    visibility: hidden;
-    @include transition;
-    z-index: 5;
+    z-index: 60;
+    background-color: rgba(0,0,0,0.9);
 
-    @include respond-to(md) {
-      position: static;
-      opacity: 1;
-      visibility: visible;
-      background: none;
-    }
-  }
+    &__logo {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 50;
 
-  &__nav {
-    list-style: none;
-    width: 100%;
+        svg {
+            fill: #fff;
+        }
 
+        &:focus, &:hover, &:active {
+            opacity: .9;
+        }
 
-
-    @include respond-to(md) {
-      display: flex;
-      width: auto;
-      position: fixed;
-      left: 50%;
-      transform: translateX(-40%);
-
+        &:focus {
+            outline: 2px solid $focus-orange;
+        }
     }
 
-    > li {
-      position: relative;
-      text-align: center;
+    &__menu {
+        position: relative;
+        background: none;
+        border: 0;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        z-index: 50;
 
-      @include respond-to(md) {
-        &:not(:last-child) {
-          padding-right: 25px;
-          margin-right: 25px;
+        @include respond-to(md) {
+            display: none;
+        }
 
-          &::before {
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 1px;
-            height: 30px;
+        span {
+            position: relative;
+            font-size: 0;
+            width: 20px;
+            height: 2px;
             display: block;
             background: #fff;
-            content: '';
-          }
+            @include transition;
+
+            &::before,
+            &::after {
+                position: absolute;
+                left: 0;
+                right: 0;
+                height: 2px;
+                display: block;
+                background: #fff;
+                content: '';
+                @include transition;
+            }
+
+            &::before {
+                top: -6px;
+            }
+
+            &::after {
+                bottom: -6px;
+            }
         }
-      }
+    }
 
-      &.current-menu-item > a {
+    &__menu.open {
+        span {
+            background: transparent;
+
+            &::before {
+                top: 0;
+                transform: rotate(45deg);
+            }
+
+            &::after {
+                bottom: 0;
+                transform: rotate(-45deg);
+            }
+        }
+    }
+
+    &__nav-wrap {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #000;
+        opacity: 0;
+        visibility: hidden;
+        @include transition;
+        z-index: 5;
+
+        @include respond-to(md) {
+            position: static;
+            opacity: 1;
+            visibility: visible;
+            background: none;
+        }
+    }
+
+    &__nav {
+        list-style: none;
+        width: 100%;
+
+
+        @include respond-to(md) {
+            display: flex;
+            width: auto;
+            position: fixed;
+            left: 50%;
+            transform: translateX(-40%);
+
+        }
+
+        > li {
+            position: relative;
+            text-align: center;
+
+            @include respond-to(md) {
+                &:not(:last-child) {
+                    padding-right: 25px;
+                    margin-right: 25px;
+
+                    &::before {
+                        position: absolute;
+                        right: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        width: 1px;
+                        height: 30px;
+                        display: block;
+                        background: #fff;
+                        content: '';
+                    }
+                }
+            }
+
+            &.current-menu-item > a {
+                opacity: 1;
+            }
+
+        }
+
+        a {
+            position: relative;
+            padding-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            color: #ffffff;
+            font-size: 2.6rem;
+            font-weight: 600;
+            letter-spacing: 0.23px;
+            line-height: 1.1;
+            opacity: 0.6;
+            text-transform: uppercase;
+
+            @include respond-to(md) {
+                padding-bottom: 0;
+                width: auto;
+                letter-spacing: 0.12px;
+                font-size: 1.4rem;
+            }
+
+            &:hover {
+                opacity: 1;
+            }
+
+            &:focus {
+                outline: 2px solid $focus-orange;
+                opacity: 1;
+            }
+        }
+
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+    }
+
+    // .sub-menu {
+    //   list-style: none;
+    //   opacity: 0;
+    //   visibility: hidden;
+    //   @include transition;
+
+    //   @include respond-to(md) {
+    //     position: absolute;
+    //     top: 100%;
+    //     left: 0;
+    //   }
+
+    //   li {
+    //     margin-top: 30px;
+
+    //     @include respond-to(md) {
+    //       margin-top: 10px;
+    //       display: flex;
+    //       justify-content: flex-start;
+    //     }
+    //   }
+
+    //   a {
+    //     padding-bottom: 0;
+    //     font-size: 1.6rem;
+
+    //     @include respond-to(md) {
+    //       font-size: 1.4rem;
+    //       white-space: nowrap;
+    //     }
+    //   }
+    // }
+
+    &__menu.open ~ &__nav-wrap {
         opacity: 1;
-      }
-
-      // &.menu-item-has-children {
-      //   > a {
-      //     &::before {
-      //       position: absolute;
-      //       bottom: 0;
-      //       left: 0;
-      //       right: 0;
-      //       height: 1px;
-      //       display: block;
-      //       background: rgba($light-grey, 0.4);
-      //       @include transition;
-      //     }
-
-      //     &::after {
-      //       margin-left: 15px;
-      //       width: 15px;
-      //       height: 15px;
-      //       display: inline-block;
-      //       background-image: url('../img/icon-arrow.svg');
-      //       background-repeat: no-repeat;
-      //       background-size: contain;
-      //       background-position: center center;
-      //       content: '';
-      //       @include transition;
-      //     }
-      //   }
-
-      //   &.is-opened {
-      //     a {
-      //       opacity: 1;
-
-      //       &::after {
-      //         transform: rotate(90deg);
-      //       }
-      //     }
-
-      //     > a::before {
-      //       content: '';
-
-      //       @include respond-to(md) {
-      //         content: none;
-      //       }
-      //     }
-
-      //     .sub-menu {
-      //       opacity: 1;
-      //       visibility: visible;
-      //     }
-      //   }
-
-      //   @include respond-to(md) {
-      //     &:hover {
-      //       a {
-      //         opacity: 1;
-
-      //         &::after {
-      //           transform: rotate(90deg);
-      //         }
-      //       }
-
-      //       > a::before {
-      //         content: '';
-
-      //         @include respond-to(md) {
-      //           content: none;
-      //         }
-      //       }
-
-      //       .sub-menu {
-      //         opacity: 1;
-      //         visibility: visible;
-      //       }
-      //     }
-      //   }
-      // }
+        visibility: visible;
     }
 
-    a {
-      position: relative;
-      padding-bottom: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      color: #ffffff;
-      font-size: 2.6rem;
-      font-weight: 600;
-      letter-spacing: 0.23px;
-      line-height: 1.1;
-      opacity: 0.6;
-      text-transform: uppercase;
+    .btn {
+        display: none;
 
-      @include respond-to(md) {
-        padding-bottom: 0;
-        width: auto;
-        letter-spacing: 0.12px;
-        font-size: 1.4rem;
-      }
-
-      &:hover {
-        opacity: 1;
-      }
+        @include respond-to(md) {
+            position: relative;
+            display: flex;
+            font-size: 1.4rem;
+            z-index: 50;
+        }
     }
-
-    a {
-      -webkit-tap-highlight-color: transparent;
-    }
-  }
-
-  // .sub-menu {
-  //   list-style: none;
-  //   opacity: 0;
-  //   visibility: hidden;
-  //   @include transition;
-
-  //   @include respond-to(md) {
-  //     position: absolute;
-  //     top: 100%;
-  //     left: 0;
-  //   }
-
-  //   li {
-  //     margin-top: 30px;
-
-  //     @include respond-to(md) {
-  //       margin-top: 10px;
-  //       display: flex;
-  //       justify-content: flex-start;
-  //     }
-  //   }
-
-  //   a {
-  //     padding-bottom: 0;
-  //     font-size: 1.6rem;
-
-  //     @include respond-to(md) {
-  //       font-size: 1.4rem;
-  //       white-space: nowrap;
-  //     }
-  //   }
-  // }
-
-  &__menu.open ~ &__nav-wrap {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  .btn {
-    display: none;
-
-    @include respond-to(md) {
-      position: relative;
-      display: flex;
-      font-size: 1.4rem;
-      z-index: 50;
-    }
-  }
 }
 
 .scroll-down {
-  position: fixed;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  background-color: #000;
-  transition: background-color 1s linear;
-  opacity: 0.9;
-  z-index: 60;
+    position: fixed;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #000;
+    transition: background-color 1s linear;
+    opacity: 0.9;
+    z-index: 60;
 }
 
 .scroll-up {
-  position: fixed;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  transition: background-color 1s linear;
-  background-color: transparent;
-  opacity: 0.9;
-  z-index: 60;
+    position: fixed;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    transition: background-color 1s linear;
+    background-color: transparent;
+    opacity: 0.9;
+    z-index: 60;
 }
 
 #ccfw-page-banner-container {
 
-  z-index: 2;
-  position: relative;
+    z-index: 2;
+    position: relative;
 
-  .ccfw-banner__message {
-    margin-bottom: 15px;
-  }
+    .ccfw-banner__message {
+        margin-bottom: 15px;
+    }
 }
