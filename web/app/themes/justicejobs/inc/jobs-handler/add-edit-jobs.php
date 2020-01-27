@@ -100,7 +100,7 @@ function import_jobs_from_xml() {
     if(count($active_jobs) > 0){
         $allposts= get_posts( array('post_type'=>'job', 'post__not_in' => $active_jobs, 'numberposts'=>-1) );
         foreach ($allposts as $eachpost) {
-            echo "Job Deleted - " . $eachpost->title;
+            echo "Job Deleted - " . $eachpost->post_title;
             wp_delete_post( $eachpost->ID, true );
         }
     }
