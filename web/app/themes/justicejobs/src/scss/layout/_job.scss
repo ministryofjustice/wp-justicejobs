@@ -1,7 +1,6 @@
 .job {
     margin-bottom: 100px;
-    display: flex;
-    flex-direction: column;
+    max-width: 100rem;
     &__wrap {
         padding: 40px 15px;
         @include respond-to(md) {
@@ -10,35 +9,30 @@
         @include respond-to(lg) {
             padding: 40px 130px;
         }
-        >.heading--sm {
+
+        > .heading--sm {
             margin-bottom: 40px;
         }
     }
+
     &__text-wrap {
-        @include respond-to(sm) {
-            column-count: 2;
-            column-gap: 60px;
-        }
         header,
         footer {
             margin-bottom: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             @include respond-to(md) {
                 margin-bottom: 60px;
             }
         }
+
         footer {
             margin-bottom: 0;
             @include respond-to(md) {
-                flex-direction: column;
-                align-items: flex-start;
                 .btn {
                     margin-bottom: 30px;
                 }
             }
         }
+
         .btn {
             min-width: 120px;
             @include respond-to(sm) {
@@ -46,54 +40,78 @@
             }
         }
     }
+
     &__text {
         margin-bottom: 40px;
+
         .heading--sm {
             margin-bottom: 25px;
             color: $mid-blue;
+
             &:not(:first-child) {
                 margin-top: 40px;
             }
         }
+
         ul {
             padding: 0 0 15px 25px;
         }
+
         li,
         li p,
         li p span {
             font-size: 1.8rem !important;
         }
+
         li {
             margin-bottom: 10px;
+
             span {
                 font-size: 1.8rem !important;
             }
         }
+
         p {
             break-inside: avoid;
             margin-bottom: 24px;
             text-align: left !important;
+
             span {
                 font-size: inherit !important;
                 color: $text-color !important;
             }
+
             u {
                 text-decoration: none !important;
             }
+
             a {
                 text-decoration: none !important;
-                color: $light-blue !important;
-                &:hover,
-                &:focus {
-                    text-decoration: underline !important;
+                color: $light-blue;
+                text-decoration: underline !important;
+
+                &:focus, &:hover, &:active {
+                    border: 2px solid #000;
+                    background: $focus-orange;
+
+                    span {
+                        color: #000 !important;
+                    }
                 }
+
+                &:focus {
+
+                    background: $focus-orange;
+                }
+
                 span {
                     color: $light-blue !important;
                 }
             }
         }
     }
-    >.btn-big {
+
+    > .btn-big {
         @include respond-to(sm) {
             width: 50%;
             align-self: flex-end;

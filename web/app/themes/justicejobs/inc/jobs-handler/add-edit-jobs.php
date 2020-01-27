@@ -7,6 +7,7 @@ function import_jobs_from_xml() {
   $xml = simplexml_load_file( "app/uploads/job-feed/jobs.xml") or die("Fail");
 
   $totaljobs = count($xml->entry);
+  $active_jobs = [];
 
     for ($x = 0; $x < $totaljobs; $x++) {
       $job_content =  $xml->entry[$x]->content;
@@ -52,6 +53,8 @@ function import_jobs_from_xml() {
               // Insert the post into the database
               $post_id = wp_insert_post($job_post);
 
+              $active_jobs[] = $post_id;
+
               set_job_details($job_content, $totalspans, $post_id);
 
               // Save Application Link
@@ -67,6 +70,8 @@ function import_jobs_from_xml() {
               $post_id = $job_check[0]->ID;
 
               $current_hash = get_field('job_content_hash', $post_id);
+
+              $active_jobs[] = $post_id;
 
               if($job_content_hash != $current_hash){
 
@@ -90,6 +95,14 @@ function import_jobs_from_xml() {
         echo "<br/>";
       }
 
+    }
+
+    if(count($active_jobs) > 0){
+        $allposts= get_posts( array('post_type'=>'job', 'post__not_in' => $active_jobs, 'numberposts'=>-1) );
+        foreach ($allposts as $eachpost) {
+            echo "Job Deleted - " . $eachpost->post_title;
+            wp_delete_post( $eachpost->ID, true );
+        }
     }
 
 }
@@ -157,10 +170,7 @@ function set_job_details($job_content, $totalspans, $post_id) {
         if ($job_content->div->span[$y]->attributes()->itemprop[0] == "Job description Additional Information") {
             $job_info_string = $job_content->div->span[$y]->asXML();
 
-
-            $job_info_string = str_replace('<strong>', "<h3>", $job_info_string);
-            $job_info_string = str_replace("</strong>", "</h3>", $job_info_string);
-            $job_info_string = str_replace("<strong/>", "</h3>", $job_info_string);
+            $job_info_string = replace_content_headers($job_info_string);
 
             $update_post = array(
                 'ID' => $post_id,
@@ -174,10 +184,7 @@ function set_job_details($job_content, $totalspans, $post_id) {
         if ($job_content->div->span[$y]->attributes()->itemprop[0] == "Additional Information") {
             $job_add_info_string = $job_content->div->span[$y]->asXML();
 
-
-            $job_add_info_string = str_replace('<strong>', "<h3>", $job_add_info_string);
-            $job_add_info_string = str_replace("</strong>", "</h3>", $job_add_info_string);
-            $job_add_info_string = str_replace("<strong/>", "</h3>", $job_add_info_string);
+            $job_add_info_string = replace_content_headers($job_add_info_string);
 
             update_field('additional_information', $job_add_info_string, $post_id);
 
@@ -190,4 +197,33 @@ function set_job_details($job_content, $totalspans, $post_id) {
     }
 
 }
- ?>
+
+function replace_content_headers($input_lines)
+{
+    return $input_lines;
+
+    $input_lines = preg_replace( '/>(\s)+</m', '><', $input_lines );//remove whitespace between tags
+    $input_lines = str_replace("</p>", "</p>\n", $input_lines);
+    $pattern_array = [
+        '/\<p.*\>\<span\sstyle\=\"font-size.*?\"\>(\<strong\>(.*)\<\/strong\>)\<\/span\><\/p>/',
+        '/\<p.*\>(\<strong\>\<span\sstyle\=\"font-size.*?\"\>(.*)\<\/span\><\/strong\>)\<\/p>/',
+        '/\<h1.*\>(\<span\sstyle\=\"font-size.*?\"\>(.*)\<\/span\>)\<\/h1>/'
+    ];
+    foreach($pattern_array as $pattern) {
+        preg_match_all(
+            $pattern,
+            $input_lines,
+            $output_array
+        );
+        if (!empty($output_array)) {
+            $headings = [];
+            foreach ($output_array[0] as $key => $original_string) {
+                $headings[] = '<h3>' . strip_tags($output_array[1][$key]) . '</h3>';
+            }
+            $input_lines = str_replace($output_array[0], $headings, $input_lines);
+        }
+    }
+
+    return $input_lines;
+}
+
