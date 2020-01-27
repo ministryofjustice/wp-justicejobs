@@ -314,6 +314,7 @@ Template Post Type: agency
                         <div
                             class="agency__featured"
                             style="background-image: url('<?= $image_url_bottom; ?>'); background-color: <?php the_field('agency_colour'); ?>"
+                            role="link"
                         >
                             <span class="heading--xs"><?= $name_role_bottom; ?></span>
                             <h3><?= $title_bottom; ?></h3>
@@ -322,7 +323,7 @@ Template Post Type: agency
                                    echo $more_link_bottom['target'];
                                }; ?>"
                                class="btn-secondary btn-secondary--light <?= $a_class; ?>"
-                                <?= $data_index; ?>
+                               <?= $data_index; ?>
                             >
                                 <?php
 

@@ -40,6 +40,8 @@
         &:active {
             color: #000;
             border: 1px solid #000;
+        }
+        &:focus {
             background: $focus-orange;
         }
     }
@@ -54,8 +56,11 @@
         &:focus,
         &:active {
             color: #000;
-            background: $focus-orange;
             border: 2px solid black;
+        }
+
+        &:focus {
+            background: $focus-orange;
         }
     }
 
@@ -69,8 +74,11 @@
         &:focus,
         &:active {
             color: #000;
-            background: $focus-orange;
             border: 2px solid black;
+        }
+
+        &:focus {
+            background: $focus-orange;
         }
     }
 
@@ -201,6 +209,9 @@
     &:focus,
     &:active {
         border: 2px solid #000;
+    }
+
+    &:focus {
         background: $focus-orange;
     }
 
@@ -250,6 +261,9 @@
     &:focus,
     &:active {
         border: 2px solid #000;
+    }
+
+    &:focus {
         background: $focus-orange;
     }
 

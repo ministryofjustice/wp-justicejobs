@@ -137,44 +137,38 @@
         &.hm-courts-tribunals-service {
             height: 60px;
 
-            @include respond-to(sm) {
-                height: 70px;
-            }
+            @include respond-to(sm) { height: 70px; }
+            @include respond-to(lg) { height: 92px; }
         }
         &.ministry-of-justice-hq {
             height: 60px;
 
-            @include respond-to(sm) {
-                height: 70px;
-            }
+            @include respond-to(sm) { height: 70px; }
+            @include respond-to(lg) { height: 92px; }
         }
         &.hm-prisons-probations-service {
             height: 60px;
 
-            @include respond-to(sm) {
-                height: 70px;
-            }
+            @include respond-to(sm) { height: 70px; }
+            @include respond-to(lg) { height: 92px; }
         }
         &.criminal-injuries-compensation-authority {
             height: 74px;
 
-            @include respond-to(sm) {
-                height: 88px;
-            }
+            @include respond-to(sm) { height: 88px; }
+            @include respond-to(lg) { height: 120px; }
         }
         &.legal-aid-agency {
             height: 60px;
 
-            @include respond-to(sm) {
-                height: 70px;
-            }
+            @include respond-to(sm) { height: 70px; }
+            @include respond-to(lg) { height: 92px; }
         }
         &.office-of-the-public-guardian {
             height: 60px;
 
-            @include respond-to(sm) {
-                height: 70px;
-            }
+            @include respond-to(sm) { height: 70px; }
+            @include respond-to(lg) { height: 92px; }
         }
     }
 

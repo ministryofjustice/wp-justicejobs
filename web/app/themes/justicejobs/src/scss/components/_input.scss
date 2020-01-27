@@ -16,6 +16,9 @@
 
     &:hover, &:focus, &:active {
         border-color: #000;
+    }
+
+    &:focus {
         outline: 4px solid $focus-orange;
     }
 

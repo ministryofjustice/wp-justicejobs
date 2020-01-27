@@ -6,15 +6,18 @@
         display: flex;
         padding-bottom: 70px;
     }
+
     &__results {
         color: $mid-blue;
         font-size: 2.6rem;
         font-weight: 300;
         line-height: 1.2;
+
         b {
             font-weight: 700;
         }
     }
+
     &__wrap {
         @include respond-to(md) {
             margin-left: 30px;
@@ -24,6 +27,7 @@
             flex-direction: column;
         }
     }
+
     header {
         padding: 40px 15px;
         display: flex;
@@ -34,6 +38,7 @@
             margin-right: 20px;
             padding: 0;
         }
+
         .pagination {
             display: none;
             @include respond-to(md) {
@@ -41,12 +46,14 @@
             }
         }
     }
+
     footer {
         padding: 30px 15px;
         display: flex;
         justify-content: center;
         align-items: center;
     }
+
     &__controls {
         display: none;
         @include respond-to(md) {
@@ -63,6 +70,7 @@
             }
         }
     }
+
     &__label {
         background: none;
         border: 0;
@@ -77,23 +85,24 @@
 
         cursor: pointer;
         @include transition;
+
         svg {
             margin-top: 10px;
             fill: rgba(#000, 1);
             @include transition;
         }
+
         &[aria-pressed=true] {
             color: #000;
+
             svg {
                 fill: $mid-blue;
             }
-
         }
-        &:hover,
-        &:focus,
-        &:active {
-            border: 2px solid #000;
+
+        &:focus {
             background: $focus-orange;
+            border: 2px solid #000;
             color: #000;
         }
     }
@@ -102,6 +111,7 @@
         flex-grow: 1;
         display: flex;
     }
+
     &__map-wrap {
         @include transition;
         opacity: 0;
@@ -109,12 +119,14 @@
         visibility: hidden;
         transform: translateX(100%);
     }
+
     &__container#js-show-map > &__map-wrap {
         transform: translateX(0);
         opacity: 1;
         visibility: visible;
         min-width: calc(100vw - 590px);
     }
+
     &__map {
         width: 100%;
         max-height: 85vh;
@@ -122,29 +134,35 @@
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center center;
+
         &::before {
             padding-top: 100%;
             display: block;
             content: '';
         }
     }
+
     &__list-wrap {
         margin-right: 20px;
         padding-right: 10px;
         width: 100%;
+
         &::-webkit-scrollbar {
             width: 11px;
             background-color: rgba(#d8d8d8, 0.1);
         }
+
         &::-webkit-scrollbar-thumb {
             background-color: $light-blue;
         }
     }
+
     &__container#js-show-map > &__list-wrap {
         max-height: 75vh;
         overflow-y: auto;
         overflow-x: hidden;
     }
+
     &__list {
         margin-right: 20px;
         width: 100%;
@@ -159,12 +177,14 @@
             border: none;
         }
     }
+
     &__heading {
         display: none;
         @include respond-to(md) {
             display: table-row;
             border-bottom: 1px solid rgba(#979797, 0.3);
         }
+
         th {
             padding-bottom: 20px;
             opacity: 0.5;
@@ -176,9 +196,11 @@
             text-align: left;
         }
     }
+
     &__container#js-show-map &__heading {
         display: none;
     }
+
     &__item {
         padding: 20px 10px;
         display: flex;
@@ -193,6 +215,7 @@
             padding: 0;
             display: table-row;
         }
+
         td {
             margin-bottom: 10px;
             display: block;
@@ -214,6 +237,7 @@
             @include respond-to(lg) {
                 font-size: 1.6rem;
             }
+
             &.marker {
                 visibility: hidden;
                 height: 0px;
@@ -223,6 +247,7 @@
             }
         }
     }
+
     &__container#js-show-map &__item {
         margin-bottom: 30px;
         padding-bottom: 15px;
@@ -232,9 +257,11 @@
         flex-direction: row;
         align-items: flex-start;
         padding: 10px;
+
         &.active {
             background: #EFEFEF;
         }
+
         td {
             margin-bottom: 0;
             padding: 0;
@@ -242,27 +269,34 @@
             display: block;
             width: 100%;
             text-align: left;
+
             &:nth-child(1) {
                 order: 1;
             }
+
             &:nth-child(2) {
                 order: 2;
             }
+
             &:nth-child(3) {
                 order: 4;
             }
+
             &:nth-child(4) {
                 order: 3;
             }
+
             &:nth-child(5) {
                 order: 5;
                 margin-top: 10px;
             }
+
             &:last-child {
                 order: 6;
             }
         }
     }
+
     &__container#js-show-map .btn--small {
         @include respond-to(md) {
             font-size: 1.8rem;
@@ -270,6 +304,7 @@
             min-height: 48px;
         }
     }
+
     &__empty {
         padding: 20px 15px;
         width: 100%;
@@ -280,9 +315,11 @@
         @include respond-to(md) {
             margin-top: 70px;
         }
+
         .heading--sm {
             color: $mid-blue;
         }
+
         span {
             color: #7f7f7f;
             font-size: 1.7rem;

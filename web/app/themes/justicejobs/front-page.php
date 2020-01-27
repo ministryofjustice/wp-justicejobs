@@ -2,12 +2,10 @@
 
 <section class="hero hero--home hero--arrows">
     <div class="hero__img-block">
-        <div
-            class="hero__img hero__img--desktop"
+        <div class="hero__img hero__img--desktop"
             style="background-image: url('<?php the_field('hero_desktop_image'); ?>');"
         ></div>
-        <div
-            class="hero__img hero__img--mobile"
+        <div class="hero__img hero__img--mobile"
             style="background-image: url('<?php the_field('hero_mobile_image'); ?>');"
         ></div>
         <div class="hero__img_description">
@@ -32,11 +30,11 @@
                     <use xlink:href="#icon-arrow--decor"></use>
                 </svg>
             </div>
-            <p>
+            <p class="text-highlight">
                 <span class="front-page text-highlight"><?php the_field('hero_text'); ?></span>
             </p>
-            <a href="<?php bloginfo('url'); ?>/search-page/" class="btn btn--bw search-page-link ga-nav-top-right">Search
-                & Apply</a>
+            <!--<a href="<?php /*bloginfo('url'); */?>/search-page/" class="btn btn--bw search-page-link ga-nav-top-right">Search
+                & Apply</a>-->
         </div>
     </div>
 
@@ -71,7 +69,8 @@
                     <input id="location" name="location" aria-label="Location" type="text" class="input"
                            placeholder="City / Postcode"/>
                 </div>
-                <button class="btn btn--dark-blue btn--full search-page-link ga-mini-home-form-button" type="submit">Search
+                <button class="btn btn--dark-blue btn--full search-page-link ga-mini-home-form-button" type="submit">
+                    Search
                     jobs
                 </button>
             </fieldset>

@@ -38,6 +38,10 @@
     &:hover,
     &:focus,
     &:active {
+        border-color: $light-blue;
+    }
+
+    &:focus {
         outline: 4px solid $focus-orange;
     }
 

@@ -155,6 +155,10 @@
             }
         }
 
+        p.text-highlight span {
+            display: block;
+        }
+
         .btn {
             margin-top: 50px;
             @include respond-to(md) {
@@ -172,7 +176,8 @@
     }
 
     ul.text-highlight > li {
-       background-color: $dark-grey;
+        box-shadow: -3px 0px 0 3px #29363B, 6px 0px 0 3px #29363B;
+        background-color: $dark-grey;
     }
 
     &--home &__text-wrap {

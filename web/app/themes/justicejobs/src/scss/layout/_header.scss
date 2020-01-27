@@ -26,6 +26,10 @@
         }
 
         &:focus, &:hover, &:active {
+            opacity: .9;
+        }
+
+        &:focus {
             outline: 2px solid $focus-orange;
         }
     }
@@ -134,10 +138,6 @@
             position: relative;
             text-align: center;
 
-            a:focus, a:hover, a:active {
-                outline: 2px solid $focus-orange;
-            }
-
             @include respond-to(md) {
                 &:not(:last-child) {
                     padding-right: 25px;
@@ -161,81 +161,6 @@
                 opacity: 1;
             }
 
-            // &.menu-item-has-children {
-            //   > a {
-            //     &::before {
-            //       position: absolute;
-            //       bottom: 0;
-            //       left: 0;
-            //       right: 0;
-            //       height: 1px;
-            //       display: block;
-            //       background: rgba($light-grey, 0.4);
-            //       @include transition;
-            //     }
-
-            //     &::after {
-            //       margin-left: 15px;
-            //       width: 15px;
-            //       height: 15px;
-            //       display: inline-block;
-            //       background-image: url('../img/icon-arrow.svg');
-            //       background-repeat: no-repeat;
-            //       background-size: contain;
-            //       background-position: center center;
-            //       content: '';
-            //       @include transition;
-            //     }
-            //   }
-
-            //   &.is-opened {
-            //     a {
-            //       opacity: 1;
-
-            //       &::after {
-            //         transform: rotate(90deg);
-            //       }
-            //     }
-
-            //     > a::before {
-            //       content: '';
-
-            //       @include respond-to(md) {
-            //         content: none;
-            //       }
-            //     }
-
-            //     .sub-menu {
-            //       opacity: 1;
-            //       visibility: visible;
-            //     }
-            //   }
-
-            //   @include respond-to(md) {
-            //     &:hover {
-            //       a {
-            //         opacity: 1;
-
-            //         &::after {
-            //           transform: rotate(90deg);
-            //         }
-            //       }
-
-            //       > a::before {
-            //         content: '';
-
-            //         @include respond-to(md) {
-            //           content: none;
-            //         }
-            //       }
-
-            //       .sub-menu {
-            //         opacity: 1;
-            //         visibility: visible;
-            //       }
-            //     }
-            //   }
-            // }
         }
 
         a {
@@ -261,6 +186,11 @@
             }
 
             &:hover {
+                opacity: 1;
+            }
+
+            &:focus {
+                outline: 2px solid $focus-orange;
                 opacity: 1;
             }
         }
