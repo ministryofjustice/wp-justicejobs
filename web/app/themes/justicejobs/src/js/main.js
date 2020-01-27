@@ -16,7 +16,7 @@ jQuery(document).ready(function ($) {
     };
     ajax.send();
 
-    $('.page-header__menu').click(function() {
+    $('.page-header__menu').click(function () {
         var target = $(this);
         console.log(target);
         if (target.hasClass('closed')) {
@@ -73,7 +73,7 @@ jQuery(document).ready(function ($) {
         }, 300);
 
         window.onkeyup = function (e) {
-            if (e.keyCode == 27) {
+            if (e.keyCode === 27) {
                 window.close();
             }
         }
@@ -88,7 +88,7 @@ jQuery(document).ready(function ($) {
     //agency.php / Bottom block carousel
     $('.carousel-popup-open').on('click', e => {
         e.preventDefault();
-        var i = e.target.dataset.index;
+        var i = $(this).data('index');
         $('.popup--carousel').eq(i).addClass('is-opened');
     });
 
@@ -195,7 +195,7 @@ jQuery(document).ready(function ($) {
         }
     });
 
-    $('.accordion__btn').on('keydown', function () {
+    $('.accordion__btn').on('keydown', function (event) {
         var target = event.target;
         var key = event.which.toString();
 
@@ -214,8 +214,7 @@ jQuery(document).ready(function ($) {
             var newIndex = (position + length + direction) % length;
             triggers[newIndex].focus();
             event.preventDefault();
-        }
-        else if (key.match(/35|36/)) {
+        } else if (key.match(/35|36/)) {
             // 35 = End, 36 = Home keyboard operations
             switch (key) {
                 case '36':
@@ -378,7 +377,6 @@ jQuery(document).ready(function ($) {
     // });
 
     if ($('.job__text').length) {
-        console.log('woot');
         $('.job__text').children('p').each(function (e) {
             if (isEmpty($(this))) {
                 $(this).remove();
@@ -390,4 +388,23 @@ jQuery(document).ready(function ($) {
         return !$.trim(el.html())
     }
 
+    $('.agency__featured').click(function(e) {
+        var link = $(this).closest('.agency__featured').find('a').eq(0),
+            resolveLink = null;
+
+        // check for popup...
+        if (link.attr('href')[0] === '#') {
+            resolveLink = $(this).find('a.carousel-popup-open');
+            console.log($(this));
+            console.log(resolveLink);
+            if (resolveLink.length > 0) {
+                // open the popup
+                console.log(resolveLink.data('index'));
+                $('.popup--carousel').eq(resolveLink.data('index')).addClass('is-opened');
+            }
+            return false;
+        }
+
+        window.location = link.prop('href');
+    });
 });

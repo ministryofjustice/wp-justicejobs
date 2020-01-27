@@ -275,11 +275,17 @@ jQuery(document).ready(function ($) {
     carousel.init({
         id: 'accessible-carousel',
         slidenav: true
-    })
+    });
 
-    var secondCarousel = new myCarousel();
-    secondCarousel.init({
-      id: 'accessible-full-carousel',
-      slidenav: true
-    })
+    var carouselLatestRoles = new myCarousel();
+    carouselLatestRoles.init({
+        id: 'accessible-carousel-latest-roles',
+        slidenav: true
+    });
+
+    var carouselCurrentRoles = new myCarousel();
+    carouselCurrentRoles.init({
+        id: 'accessible-full-carousel',
+        slidenav: true
+    });
 });

@@ -25,7 +25,7 @@ Template Name: Search/Apply Template
                 <li>Search jobs</li>
             </ul>
             <h1 class="heading--lg">
-                <?php the_title(); ?>
+                <span class="text-highlight"><?php the_title(); ?></span>
             </h1>
             <svg class="hero__arrow hero__arrow--bottom" width="37" height="24">
                 <use xlink:href="#icon-arrow--decor"></use>
@@ -124,7 +124,7 @@ Template Name: Search/Apply Template
                         <?= $options['list'] ?>
                     </select>
                 </div>
-                <button class="btn btn--blue search-page-link ga-main-form-button" role="button" type="submit">Search
+                <button class="btn btn--dark-blue search-page-link ga-main-form-button" role="button" type="submit">Search
                     jobs
                 </button>
                 <div class="btn-reset-button-contain">

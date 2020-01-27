@@ -34,25 +34,54 @@
         color: #000;
         background: #fff;
         border: 1px solid white;
+        @include transition(all);
 
         &:hover,
         &:focus,
         &:active {
             color: #fff;
-            border: 1px solid #fff;
+            background: black;
+        }
+
+        &:focus {
+            color: #000;
+            background: $focus-orange;
         }
     }
 
     &--blue {
-        background: $light-blue;
+        background: $dark-blue;
         color: #fff;
-        border: 1px solid $light-blue;
-        box-shadow: 0 17px 15px -5px rgba($light-blue, 0.3);
+        border: 1px solid $dark-blue;
+        box-shadow: 0 17px 15px -5px rgba($dark-blue, 0.3);
 
         &:hover,
         &:focus,
         &:active {
-            color: $light-blue;
+            color: #000;
+            border: 2px solid black;
+        }
+
+        &:focus {
+            background: $focus-orange;
+        }
+    }
+
+    &--dark-blue {
+        background: $darker-blue;
+        color: #fff;
+        border: 1px solid $darker-blue;
+        box-shadow: 0 17px 15px -5px rgba($darker-blue, 0.3);
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: #000;
+            border: 2px solid black;
+        }
+
+        &:focus {
+            background: $focus-orange;
         }
     }
 
@@ -87,7 +116,7 @@
     display: flex;
     align-items: center;
     color: #000000;
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     font-weight: 600;
     letter-spacing: 0.12px;
     line-height: 1;
@@ -101,9 +130,10 @@
 
     svg {
         margin-left: 15px;
-        height: 13px;
-        width: 8px;
+        height: 15px;
+        width: 10px;
         fill: #000;
+        margin-top: 3px;
     }
 
     &:hover,
@@ -174,8 +204,19 @@
     font-size: 1.8rem;
     font-weight: 600;
     line-height: 0.8;
-    //color: #adadad;
     color: #000;
+    border: 2px solid transparent;
+    padding: 4px;
+
+    &:hover,
+    &:focus,
+    &:active {
+        border: 2px solid #000;
+    }
+
+    &:focus {
+        background: $focus-orange;
+    }
 
     svg {
         margin-right: 8px;
@@ -205,10 +246,11 @@
     font-size: inherit;
     color: $mid-blue;
     outline: none;
-    border: none;
     background: none;
     cursor: pointer;
     text-decoration: underline;
+    border: 2px solid transparent;
+    padding: 2px;
 
     svg {
         margin-right: 8px;
@@ -216,6 +258,16 @@
         height: 13px;
         transform: rotate(180deg);
         fill: #000;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        border: 2px solid #000;
+    }
+
+    &:focus {
+        background: $focus-orange;
     }
 
     &--blue {
