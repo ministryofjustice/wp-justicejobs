@@ -32,6 +32,7 @@ $max-width: 1170px !default;
 
 $breakpoints: (
     'sm': only screen and ( min-width: 768px ),
+    'lm': only screen and ( min-width: 813px ),
     'md': only screen and ( min-width: 1024px ),
     'lg': only screen and ( min-width: 1280px ),
     'xl': only screen and ( min-width: 1440px ),
