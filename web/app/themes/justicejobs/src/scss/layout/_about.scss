@@ -42,7 +42,6 @@
 
         @include respond-to(sm) {
             width: 50%;
-            background-position: 100% 50%;
         }
         @include respond-to(lg) {
             width: 33.33%;
@@ -83,6 +82,22 @@
                 -webkit-clip-path: polygon(0 0, 30% 0, 70% 100%, 0% 100%);
                 clip-path: polygon(0 0, 30% 0, 70% 100%, 0% 100%);
             }
+
+            @include respond-to(sm) {
+                -webkit-clip-path: polygon(0 0, 40% 0, 80% 100%, 0% 100%);
+                clip-path: polygon(0 0, 40% 0, 80% 100%, 0% 100%);
+            }
+
+            @include respond-to(md) {
+                -webkit-clip-path: polygon(0 0, 35% 0, 75% 100%, 0% 100%);
+                clip-path: polygon(0 0, 35% 0, 75% 100%, 0% 100%);
+            }
+
+            @include respond-to(lg) {
+                -webkit-clip-path: polygon(0 0, 30% 0, 70% 100%, 0% 100%);
+                clip-path: polygon(0 0, 30% 0, 70% 100%, 0% 100%);
+            }
+
         }
 
         &:hover::before, &:active::before, &:focus::before {
@@ -122,37 +137,37 @@
             height: 60px;
 
             @include respond-to(sm) { height: 60px; }
-            @include respond-to(xl) { height: 92px; }
+            @include respond-to(md) { height: 82px; }
         }
         &.ministry-of-justice-hq {
             height: 60px;
 
             @include respond-to(sm) { height: 70px; }
-            @include respond-to(xl) { height: 92px; }
+            @include respond-to(md) { height: 82px; }
         }
         &.hm-prisons-probations-service {
             height: 60px;
 
             @include respond-to(sm) { height: 70px; }
-            @include respond-to(xl) { height: 92px; }
+            @include respond-to(md) { height: 82px; }
         }
         &.criminal-injuries-compensation-authority {
             height: 74px;
 
             @include respond-to(sm) { height: 88px; }
-            @include respond-to(xl) { height: 120px; }
+            @include respond-to(md) { height: 100px; }
         }
         &.legal-aid-agency {
             height: 60px;
 
             @include respond-to(sm) { height: 70px; }
-            @include respond-to(xl) { height: 92px; }
+            @include respond-to(md) { height: 82px; }
         }
         &.office-of-the-public-guardian {
             height: 60px;
 
             @include respond-to(sm) { height: 70px; }
-            @include respond-to(xl) { height: 92px; }
+            @include respond-to(md) { height: 82px; }
         }
     }
 
