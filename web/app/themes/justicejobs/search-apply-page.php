@@ -36,7 +36,7 @@ Template Name: Search/Apply Template
 
 
 <div class="search_contain">
-    <div id="allLocations" data-user-location='<?php echo $_location; ?>' data-relevant-terms=''>
+    <div id="allLocations" data-user-location='' data-relevant-terms=''>
         <?php
         $terms = get_terms(array(
             'taxonomy' => 'job_location',
