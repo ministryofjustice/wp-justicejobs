@@ -13,7 +13,7 @@ if (!function_exists('theme_setup')) :
      *
      * Note that this function is hooked into the after_setup_theme hook, which
      * runs before the init hook. The init hook is too late for some features, such
-     * as indicating support for post thumbnails.
+     * as indicating support for post thumbnails..
      */
     function theme_setup()
     {
@@ -84,7 +84,15 @@ function enqueue_justice_jobs_scripts()
     // JS and jQuery
     wp_enqueue_script('slick-js', mix_asset('/js/slick.min.js'), array('jquery', 'core-js'), null, true);
     wp_enqueue_script('core-js', mix_asset('/js/main.min.js'), array('jquery'), null, true);
-    wp_enqueue_script('jj-gtm', mix_asset('/js/jj-gtm.min.js'), array('jquery'));
+
+    // Temporary workaround to comply with GDPR - tracking off by default
+    if (isset($_COOKIE['ccfwCookiePolicy'])) {
+        $cookieAccepted = htmlspecialchars($_COOKIE['ccfwCookiePolicy']);
+
+        if ($cookieAccepted === 'true') {
+            wp_enqueue_script('jj-gtm', mix_asset('/js/jj-gtm.min.js'), array('jquery'));
+        }
+    }
 
     // Third party vendor scripts
     wp_deregister_script('jquery'); // This removes jquery shipped with WP so that we can add our own.
@@ -127,7 +135,6 @@ function add_specific_menu_location_atts($atts, $item, $args)
 
     // check if the item is in the footer menu
     if ($args->theme_location == 'footer-menu') {
-
         // add desired attributes:
         $atts['class'] = 'jj-nav-footer';
     }
@@ -180,7 +187,6 @@ function moj_custom_styles($init_array)
     $init_array['style_formats'] = json_encode($style_formats);
 
     return $init_array;
-
 }
 
 // Attach callback to 'tiny_mce_before_init'
@@ -202,9 +208,7 @@ function example_add_cron_interval($schedules)
 
 // Add Options page
 if (function_exists('acf_add_options_page')) {
-
     acf_add_options_page();
-
 }
 
 /*
@@ -325,7 +329,6 @@ add_action('wp', 'test_import');
 function test_import()
 {
     if (is_user_logged_in() && current_user_can('administrator')) {
-
         $import_test = get_query_var('importScriptTest');
         if ($import_test == 'pull-jobs') {
             saveJobsXMLFile();
@@ -347,7 +350,9 @@ if (!function_exists('deleteJobs')) {
 
     function deleteJobs()
     {
+
         $allposts = get_posts(array('post_type' => 'job', 'numberposts' => -1));
+      
         foreach ($allposts as $eachpost) {
             wp_delete_post($eachpost->ID, true);
         }
@@ -412,6 +417,7 @@ function jj_select_options($qs_param, $default = 'option')
     $pre_options .= '<option value="all">All ' . $default . 's</option>';
 
     return ['list' => $pre_options . $role_options, 'title' => ' title="' . $selectedFound . '"'];
+  
 }
 
 if (!function_exists('moj_at_glance_cpt_display')) {
