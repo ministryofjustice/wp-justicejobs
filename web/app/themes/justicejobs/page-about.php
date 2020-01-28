@@ -83,24 +83,22 @@ get_header();
 
           ?>
         <li class="accessible-carousel__slide slide" >
-          <a href="<?php echo $agency_link; ?>">
-            <div class="accessible-carousel__wrap" style="background-image: url('<?php echo $agency_image; ?>');">
-              <h3 class="heading--md">
-                <?php echo $agency_name; ?>
-              </h3>
-              <p class="heading--body">
-                <?php echo $agency_description; ?>
-              </p>
-              <a
-                href="<?php echo $agency_link; ?>"
-                class="btn-secondary btn-secondary--light">
-                Find out more
-                <svg width="8" height="13">
-                  <use xlink:href="#icon-arrow"></use>
-                </svg>
-              </a>
-            </div>
-          </a>
+          <div class="accessible-carousel__wrap" style="background-image: url('<?php echo $agency_image; ?>');">
+            <h3 class="heading--md">
+              <?php echo $agency_name; ?>
+            </h3>
+            <p class="heading--body">
+              <?php echo $agency_description; ?>
+            </p>
+            <a
+              href="<?php echo $agency_link; ?>"
+              class="btn-secondary btn-secondary--light">
+              Find out more
+              <svg width="8" height="13">
+                <use xlink:href="#icon-arrow"></use>
+              </svg>
+            </a>
+          </div>
           <div class="work__text-block"
           style="background-color: <?php echo $agency_colour; ?>;">
             <div class="work__text-wrap">
