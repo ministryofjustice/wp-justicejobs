@@ -93,10 +93,10 @@ jQuery(document).ready(function ($) {
 
             ctrls.className = 'controls';
             ctrls.innerHTML = '<li>' +
-                '<button type="button" class="btn-prev accessible-carousel__arrow--prev accessible-carousel__arrow"><svg width="16" height="25" aria-describedby="previous-carousel-button><title id="previous-carousel-button">Previous item</title><use xlink:href= "#icon-arrow"></use></svg ></button>' +
+                '<button type="button" class="btn-prev accessible-carousel__arrow--prev accessible-carousel__arrow"><svg width="16" height="25" aria-describedby="previous-carousel-button"><title id="previous-carousel-button">Previous item</title><use xlink:href= "#icon-arrow"></use></svg ></button>' +
                 '</li>' +
                 '<li>' +
-                '<button type="button" class="btn-next accessible-carousel__arrow--next accessible-carousel__arrow"><svg width="16" height="25" aria-describedby="next-carousel-button><title id="next-carousel-button">Next item</title><use xlink:href= "#icon-arrow"></use></svg ></button>' +
+                '<button type="button" class="btn-next accessible-carousel__arrow--next accessible-carousel__arrow"><svg width="16" height="25" aria-describedby="next-carousel-button"><title id="next-carousel-button">Next item</title><use xlink:href= "#icon-arrow"></use></svg ></button>' +
                 '</li>';
 
             ctrls.querySelector('.btn-prev')
@@ -108,7 +108,7 @@ jQuery(document).ready(function ($) {
                     nextSlide(true);
                 });
 
-            carousel.appendChild(ctrls);
+            carousel.insertBefore(ctrls, carousel.childNodes[0]);
 
             // If slide navigation is requested in the settings, another unordered list that contains those elements is added.
             if (settings.slidenav) {
@@ -135,7 +135,7 @@ jQuery(document).ready(function ($) {
                 }, true);
 
                 carousel.className = 'accessible-carousel with-slidenav';
-                carousel.appendChild(slidenav);
+                carousel.insertBefore(slidenav, carousel.childNodes[0]);
             }
 
             // Add a live region to announce the slide number when using the previous/next buttons
