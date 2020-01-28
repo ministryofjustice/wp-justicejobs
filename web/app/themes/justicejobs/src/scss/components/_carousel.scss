@@ -58,6 +58,7 @@
 
         &--next {
             right: 20px;
+            z-index: 1;
         }
     }
 
@@ -77,6 +78,7 @@
         -webkit-box-direction: normal;
 
         .accessible-carousel--full-width & {
+          align-items: flex-start;
             @include respond-to(sm) {
                 height: 50%;
             }
@@ -89,6 +91,7 @@
         }
 
         .agency__carousel & {
+            align-items: flex-start;
             padding: 50px 0 50px;
         }
     }
@@ -133,7 +136,7 @@
             }
         }
 
-         a {
+         a.btn-secondary {
            padding: 2rem;
            margin-right: 2rem;
             &:focus {
@@ -148,6 +151,16 @@
               }
             }
         }
+    }
+
+    &__link {
+      padding: 2rem;
+      margin-right: 2rem;
+      &:focus {
+        background: #fecf43;
+        color: #000;
+        outline: 1px solid black;
+      }
     }
 
     .heading--sm,

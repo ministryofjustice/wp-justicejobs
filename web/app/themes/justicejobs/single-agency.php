@@ -225,19 +225,17 @@ Template Post Type: agency
                                             style="background-image: url('<?php echo $image_url; ?>'); background-color: <?php the_field('agency_colour'); ?>"
                                         >
                                             <div class="accessible-carousel__wrap">
-                                              <div>
-                                                <h3 class="heading--sm"><?php echo $title; ?></h3>
-                                                <p class="heading--xxs"><?php echo $subtitle; ?></p>
+                                              <h3 class="heading--sm"><?php echo $title; ?></h3>
+                                              <p class="heading--xxs"><?php echo $subtitle; ?></p>
 
-                                                <a href="<?php echo esc_url($more_link['url']); ?>"
-                                                   target="<?php echo $more_link['target']; ?>"
-                                                   class="btn-secondary btn-secondary--light">
-                                                    <?php echo esc_html($more_link['title']); ?>
-                                                    <svg width="8" height="13">
-                                                        <use xlink:href="#icon-arrow"></use>
-                                                    </svg>
-                                                </a>
-                                              </div>
+                                              <a href="<?php echo esc_url($more_link['url']); ?>"
+                                                  target="<?php echo $more_link['target']; ?>"
+                                                  class="btn-secondary btn-secondary--light">
+                                                  <?php echo esc_html($more_link['title']); ?>
+                                                  <svg width="8" height="13">
+                                                      <use xlink:href="#icon-arrow"></use>
+                                                  </svg>
+                                              </a>
 
                                             </div>
                                         </li>
