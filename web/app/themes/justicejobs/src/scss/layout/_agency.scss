@@ -171,7 +171,7 @@
     }
 
     &__featured {
-        padding: 50px;
+        padding: 20px;
         width: 100%;
         height: 285px;
         display: flex;
@@ -201,6 +201,19 @@
         span,
         a {
             z-index: 1;
+           padding: 2rem;
+           margin-right: 2rem;
+            &:focus {
+              background: #fecf43;
+              color: #000;
+              outline: 1px solid black;
+              display: inline-block;
+              opacity: 1;
+
+              svg {
+                fill: #000;
+              }
+            }
         }
     }
 }
