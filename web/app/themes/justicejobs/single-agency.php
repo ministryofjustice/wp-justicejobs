@@ -291,12 +291,12 @@ Template Post Type: agency
                             <h3><?= $title_bottom; ?></h3>
 
                             <a href="<?= esc_url($more_link_bottom['url']); ?>"
-                               target="<?php if (isset($more_link_bottom['target'])) {
-                                   echo $more_link_bottom['target'];
-                               };
-                               ?>"
-                               class="btn-secondary btn-secondary--light<?= ' ' . $a_class; ?>"
-                               <?= $data_index; ?>
+                                target="<?php if (isset($more_link_bottom['target'])) {
+                                    echo $more_link_bottom['target'];
+                                        };
+                                        ?>"
+                                class="btn-secondary btn-secondary--light<?= ' ' . $a_class; ?>"
+                                <?= $data_index; ?>
                             >
                                 <?php
                                 echo esc_html($more_link_bottom['title']); ?>
@@ -305,7 +305,10 @@ Template Post Type: agency
                                 </svg>
                             </a>
                         </div>
-                        <?php $cur++;
+                        <?php
+                        if ($ispopup) {
+                            $cur++;
+                        }
                     endwhile;
                 endif; ?>
 

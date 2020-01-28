@@ -155,8 +155,11 @@
             }
         }
 
+
         p.text-highlight span {
             display: block;
+            max-width: 80%;
+            margin: 0 auto;
         }
 
         .btn {
@@ -173,6 +176,10 @@
         -webkit-box-decoration-break: clone;
         box-decoration-break: clone;
         line-height: 1.55;
+    }
+
+    p span.text-highlight {
+        padding: 6px 0;
     }
 
     ul.text-highlight > li {
