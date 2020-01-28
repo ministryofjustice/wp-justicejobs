@@ -108,10 +108,6 @@ jQuery(document).ready(function ($) {
                     nextSlide(true);
                 });
 
-            //carousel.appendChild(ctrls);
-            // console.log("slides [0]: " + slides[0]);
-            // console.log("ctrls: " + ctrls);
-            // console.log('carousel: ' + carousel);
             carousel.insertBefore(ctrls, carousel.childNodes[0]);
 
             // If slide navigation is requested in the settings, another unordered list that contains those elements is added.
