@@ -42,6 +42,7 @@
 
         &:focus svg {
             fill: $focus-orange;
+            border: 2px solid #000;
         }
 
         &:focus {
@@ -131,6 +132,22 @@
                 visibility: visible;
             }
         }
+
+         a {
+           padding: 2rem;
+           margin-right: 2rem;
+            &:focus {
+              background: #fecf43;
+              color: #000;
+              outline: 1px solid black;
+              display: inline-block;
+              opacity: 1;
+
+              svg {
+                fill: #000;
+              }
+            }
+        }
     }
 
     .heading--sm,
@@ -160,8 +177,10 @@
     }
 
     .btn-secondary {
-        margin-top: 45px;
-        display: flex;
+        padding: 2rem;
+        margin-left: -2rem;
+        margin-top: 2rem;
+        display: inline-block;
     }
 
     .controls {
@@ -196,6 +215,11 @@
         &.current {
             background: white;
             color: #2c5d94;
+        }
+
+        &:focus {
+          background: $focus-orange;
+          color: #000;
         }
     }
 }

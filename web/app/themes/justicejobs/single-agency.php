@@ -225,6 +225,7 @@ Template Post Type: agency
                                             style="background-image: url('<?php echo $image_url; ?>'); background-color: <?php the_field('agency_colour'); ?>"
                                         >
                                             <div class="accessible-carousel__wrap">
+                                              <div>
                                                 <h3 class="heading--sm"><?php echo $title; ?></h3>
                                                 <p class="heading--xxs"><?php echo $subtitle; ?></p>
 
@@ -236,6 +237,8 @@ Template Post Type: agency
                                                         <use xlink:href="#icon-arrow"></use>
                                                     </svg>
                                                 </a>
+                                              </div>
+
                                             </div>
                                         </li>
                                     <?php endwhile; ?>
