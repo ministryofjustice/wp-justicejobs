@@ -384,6 +384,60 @@ jQuery(document).ready(function ($) {
         });
     }
 
+    var utilities = {
+        init: function () {
+          this.storageAvailable()
+        },
+        // Run a small test to determine if the browser can use local storage functionality 
+        // if not use browser cookies
+        storageAvailable: function (type) {
+          try {
+            var storage = window[type]
+            var x = '__storage_test__'
+            storage.setItem(x, x)
+            storage.removeItem(x)
+            return true
+          } catch (e) {
+            return false
+          }
+        },
+        getCookie: function (name) {
+          var value = '; ' + document.cookie
+          var parts = value.split('; ' + name + '=')
+          if (parts.length === 2) {
+            return parts.pop().split(';').shift()
+          }
+        }
+      }
+
+    var mainNavModify = {
+
+        init: function () {
+            this.cacheDom()
+            this.replaceClass()
+          },
+
+        cacheDom: function () {
+        if (utilities.storageAvailable('localStorage')) {
+            this.localStorage = window.localStorage
+        }
+        this.$el = $('#main-nav-hook')
+        this.headerWrapClass = this.$el.find('#menu-header-menu')
+        },
+
+        replaceClass: function () {
+            var lStorage = this.localStorage.getItem('ccfwCookiePolicy') ? 'true' : 'false'
+ 
+            if (lStorage === 'false') {
+                this.$el.removeClass('page-header container').addClass('page-header__FixToCookieBanner container')
+                this.headerWrapClass.removeClass('page-header__nav').addClass('page-header__navFixCookieBanner')
+              }
+        }
+    }
+
+    utilities.init()
+    mainNavModify.init()
+
     function isEmpty(el) {
         return !$.trim(el.html())
     }

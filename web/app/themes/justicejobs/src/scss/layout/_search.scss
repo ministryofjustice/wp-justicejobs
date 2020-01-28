@@ -124,7 +124,10 @@
         transform: translateX(0);
         opacity: 1;
         visibility: visible;
-        min-width: calc(100vw - 590px);
+
+        @include respond-to(lm) {
+            min-width: calc(100vw - 590px);
+        }
     }
 
     &__map {
@@ -158,9 +161,12 @@
     }
 
     &__container#js-show-map > &__list-wrap {
-        max-height: 75vh;
         overflow-y: auto;
         overflow-x: hidden;
+
+        @include respond-to(lm) {
+            max-height: 75vh;
+        }
     }
 
     &__list {
