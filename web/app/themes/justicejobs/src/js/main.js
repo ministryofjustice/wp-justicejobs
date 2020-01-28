@@ -110,14 +110,7 @@ jQuery(document).ready(function ($) {
 
     if ($('.popup__carousel').length > 0) {
         $('.popup__carousel').each((i, el) => {
-            $(el).slick({
-                dots: true,
-                autoplay: false,
-                infinite: true,
-                appendDots: $(el).siblings('.popup__dots'),
-                prevArrow: $(el).siblings('.popup__arrow--prev'),
-                nextArrow: $(el).siblings('.popup__arrow--next')
-            });
+            // find a way to trap focus
         })
     }
 

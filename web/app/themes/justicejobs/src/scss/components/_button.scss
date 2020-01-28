@@ -34,14 +34,17 @@
         color: #000;
         background: #fff;
         border: 1px solid white;
+        @include transition(all);
 
         &:hover,
         &:focus,
         &:active {
-            color: #000;
-            border: 1px solid #000;
+            color: #fff;
+            background: black;
         }
+
         &:focus {
+            color: #000;
             background: $focus-orange;
         }
     }

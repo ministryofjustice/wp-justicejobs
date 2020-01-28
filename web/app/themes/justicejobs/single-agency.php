@@ -68,216 +68,183 @@ Template Post Type: agency
 
             <div class="agency__col">
                 <?php
+
                 $is_popup_top = 0;
+                $add_top_row  = get_field('add_top_row');
 
-                $add_top_row = get_field('add_top_row');
-                if ($add_top_row == 1) {
-                    $left_block = get_field('left_block'); ?>
-                    <div class="agency__video">
-                    <?php if ($left_block == "Video") :
-                        the_field('agency_video'); ?>
+                if ($add_top_row == 1) :
+                    $left_block = get_field('left_block');
+                    ?>
+
+                    <!-- TOP LEFT VIDEO -->
+                    <?php
+                    if ($left_block == "Video") {
+                        echo '<div class="agency__video">';
+                        the_field('agency_video');
+                        echo '</div>';
+                    /*} elseif ($left_block == "Campaign Block") {*/
+                    } elseif (123 === 321) {
+                        if (isset($campaign_block) && is_array($campaign_block)) {
+                        $image_url_top = $campaign_block['background_image'];
+                        $name_role_top = $campaign_block['name_and_role'];
+                        $is_popup_top = $campaign_block['pop_up_block'];
+                        $title_top = isset($campaign_block['title']) ?? '';
+
+                        if ($is_popup_top) {
+                            $popup_row = 'top';
+                            $more_link_top['url'] = '#';
+                            $more_link_top['title'] = 'Find out more';
+                            $a_class = 'carousel-popup-open';
+                            $cur = 0; //pop-up counter
+                            $data_index = 'data-index="' . $cur . '"';
+                        } else {
+                            $more_link_top = $campaign_block['bottom_link'];
+                            $a_class = '';
+                            $data_index = '';
+                        }
+
+                        ?>
+                        <div
+                            class="agency__featured"
+                            style="background-image: url('<?php echo $image_url_top; ?>'); background-color: <?php the_field('agency_colour'); ?>;"
+                        >
+                            <div class="agency__featured_inner">
+                                <span class="heading--xs"><?php echo $name_role_top; ?></span>
+                                <h3><?php echo $title_top; ?></h3>
+                                <a href="<?php echo esc_url($more_link_top['url']); ?>"
+                                   target="<?php echo $more_link_top['target']; ?>"
+                                   class="btn-secondary btn-secondary--light <?php echo $a_class; ?>"
+                                    <?php echo $data_index; ?>
+                                >
+                                    <?php echo esc_html($more_link_top['title']); ?>
+                                    <svg width="8" height="13">
+                                        <use xlink:href="#icon-arrow"></use>
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
-                    <?php elseif ($left_block === "Campaign Block") :
-                        if (isset($campaign_block) && is_array($campaign_block)) :
-                            $image_url_top = $campaign_block['background_image'];
-                            $name_role_top = $campaign_block['name_and_role'];
-                            $is_popup_top = $campaign_block['pop_up_block'];
-                            $title_top = isset($campaign_block['title']) ?? '';
 
-                            if ($is_popup_top) {
-                                $popup_row = 'top';
-                                $more_link_top['url'] = '#';
-                                $more_link_top['title'] = 'Find out more';
-                                $a_class = 'carousel-popup-open';
-                                $cur = 0; //pop-up counter
-                                $data_index = 'data-index="' . $cur . '"';
-                            } else {
-                                $more_link_top = $campaign_block['bottom_link'];
-                                $a_class = '';
-                                $data_index = '';
-                            }
-
+                        <?php
+                        $carousel_top = $campaign_block['pop-up_carousel'];
+                        if ($is_popup_top) {
                             ?>
-                            <div
-                                class="agency__featured"
-                                style="background-image: url('<?php echo $image_url_top; ?>'); background-color: <?php the_field('agency_colour'); ?>;"
-                            >
-                                <div class="agency__featured_inner">
-                                    <span class="heading--xs"><?php echo $name_role_top; ?></span>
-                                    <h3><?php echo $title_top; ?></h3>
-                                    <a href="<?php echo esc_url($more_link_top['url']); ?>"
-                                       target="<?php echo $more_link_top['target']; ?>"
-                                       class="btn-secondary btn-secondary--light <?php echo $a_class; ?>"
-                                        <?php echo $data_index; ?>
-                                    >
-                                        <?php echo esc_html($more_link_top['title']); ?>
-                                        <svg width="8" height="13">
-                                            <use xlink:href="#icon-arrow"></use>
+                            <div class="popup popup--carousel">
+                                <div class="popup__block">
+                                    <?php if ($carousel_top) : ?>
+                                        <div class="popup__carousel">
+
+                                            <?php foreach ($carousel_top as $row) : ?>
+                                                <section class="popup__item">
+                                                    <header>
+                                                <span
+                                                    class="heading--xs "><?php echo $row['carousel_category']; ?></span>
+                                                        <h3 class="heading--sm"><?php echo $row['carousel_title']; ?></h3>
+                                                    </header>
+                                                    <div class="popup__body">
+                                                        <div>
+                                                            <img src="<?php echo $row['carousel_image']; ?>"
+                                                                 alt=""/>
+                                                        </div>
+                                                        <div>
+                                                            <?php echo $row['carousel_content']; ?>
+                                                        </div>
+                                                    </div>
+                                                </section>
+
+                                            <?php endforeach; ?>
+
+                                        </div>
+                                    <?php endif; ?>
+                                    <button class="btn-close" role="button" aria-label="Close">
+                                        <svg width="33" height="33">
+                                            <use xlink:href="#icon-close"></use>
                                         </svg>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
-
-                            <?php
-                            $carousel_top = $campaign_block['pop-up_carousel'];
-                            if ($is_popup_top) :
-                                ?>
-                                <div class="popup popup--carousel">
-                                    <div class="popup__block">
-                                        <?php if ($carousel_top) : ?>
-                                            <div class="popup__carousel">
-
-                                                <?php foreach ($carousel_top as $row) : ?>
-                                                    <section class="popup__item">
-                                                        <header>
-                                                    <span
-                                                        class="heading--xs "><?php echo $row['carousel_category']; ?></span>
-                                                            <h3 class="heading--sm"><?php echo $row['carousel_title']; ?></h3>
-                                                        </header>
-                                                        <div class="popup__body">
-                                                            <div>
-                                                                <img src="<?php echo $row['carousel_image']; ?>"
-                                                                     alt=""/>
-                                                            </div>
-                                                            <div>
-                                                                <?php echo $row['carousel_content']; ?>
-                                                            </div>
-                                                        </div>
-                                                    </section>
-
-                                                <?php endforeach; ?>
-
-                                            </div>
-
-                                        <?php endif; ?>
-
-                                        <button class="popup__arrow popup__arrow--prev" role="button"
-                                                aria-label="Previous Campaign">
-                                            <svg width="16" height="25">
-                                                <use xlink:href="#icon-arrow"></use>
-                                            </svg>
-                                        </button>
-                                        <button class="popup__arrow popup__arrow--next" role="button"
-                                                aria-label="Next Campaign">
-                                            <svg width="16" height="25">
-                                                <use xlink:href="#icon-arrow"></use>
-                                            </svg>
-                                        </button>
-                                        <div class="popup__dots carousel__dots"></div>
-                                        <button class="btn-close" role="button" aria-label="Close">
-                                            <svg width="33" height="33">
-                                                <use xlink:href="#icon-close"></use>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-
-                            <?php endif; ?>
-                        <?php endif; ?>
-                    <?php endif; ?>
-
-                    <div class="agency__carousel carousel"
+                        <?php } ?>
+                    <?php }
+                    }
+                    ?>
+                    <!-- / END TOP LEFT VIDEO -->
+                    <!-- TOP RIGHT CAROUSEL -->
+                    <div class="agency__carousel accessible-carousel"
                          style="background-color: <?php the_field('agency_colour'); ?>;">
-                        <div class="carousel__dots"></div>
                         <?php if (have_rows('roles_carousel')) : ?>
                             <h3 class="heading--xs"><?php the_field('carousel_title'); ?></h3>
-                            <div class="carousel__container">
-                                <?php while (have_rows('latest_roles_carousel')) :
-                                    the_row();
-                                    $agency_name = get_sub_field('agency_name');
-                                    $position_title = get_sub_field('position_title');
-                                    $position_location = get_sub_field(' position_location');
-                                    $more_link = get_sub_field('find-out-more_link');
-                                    ?>
-                                    <div class="carousel__slide">
-                                        <div class="carousel__wrap">
-                                            <span class="heading--xxs"><?php echo $agency_name; ?></span>
-                                            <h3 class="heading--sm"><?php echo $position_title; ?></h3>
-                                            <span class="heading--xxs"><?php echo $position_location; ?></span>
+                            <div id="accessible-carousel-latest-roles">
+                                <ul class="accessible-carousel__container">
+                                    <?php while (have_rows('latest_roles_carousel')) :
+                                        the_row();
+                                        $agency_name = get_sub_field('agency_name');
+                                        $position_title = get_sub_field('position_title');
+                                        $position_location = get_sub_field(' position_location');
+                                        $more_link = get_sub_field('find-out-more_link');
+                                        ?>
+                                        <li class="accessible-carousel__slide">
+                                            <p class="heading--xxs"><?= $agency_name; ?></p>
+                                            <h3 class="heading--sm"><?= $position_title; ?></h3>
+                                            <p class="heading--xxs"><?= $position_location; ?></p>
 
                                             <a href="<?php echo esc_url($more_link['url']); ?>"
-                                               target="<?php echo $more_link['target']; ?>"
+                                               target="<?php echo $more_link['target'] ?? ''; ?>"
                                                class="btn-secondary btn-secondary--light">
                                                 <?php echo esc_html($more_link['title']); ?>
                                                 <svg width="8" height="13">
                                                     <use xlink:href="#icon-arrow"></use>
                                                 </svg>
                                             </a>
-                                        </div>
-                                    </div>
-                                <?php endwhile; ?>
+                                        </li>
+                                    <?php endwhile; ?>
+                                </ul>
                             </div>
                         <?php endif; ?>
-                        <div class="carousel__controls">
-                            <button class="carousel__arrow carousel__arrow--prev" role="button"
-                                    aria-label="Previous Agency">
-                                <svg width="16" height="25">
-                                    <use xlink:href="#icon-arrow"></use>
-                                </svg>
-                            </button>
-                            <button class="carousel__arrow carousel__arrow--next" role="button"
-                                    aria-label="Next Agency">
-                                <svg width="16" height="25">
-                                    <use xlink:href="#icon-arrow"></use>
-                                </svg>
-                            </button>
-                        </div>
                     </div>
-                <?php } ?>
+                    <!-- / END TOP RIGHT CAROUSEL -->
+                <?php endif ?>
 
                 <?php
                 $add_carousel = get_field('add_locations_carousel');
                 if ($add_carousel == 1) :
                     ?>
-                    <div class="agency__carousel agency__carousel--full carousel">
-                        <div class="carousel__dots"></div>
+                    <div class="agency__carousel agency__carousel--full accessible-carousel">
                         <h3 class="heading--xs"><?php the_field('category_text'); ?></h3>
 
                         <?php if (have_rows('carousel')) : ?>
-                            <div class="carousel__container">
-                                <?php while (have_rows('carousel')) :
-                                    the_row();
+                            <div id="accessible-full-carousel">
+                                <ul class="accessible-carousel__container">
+                                    <?php while (have_rows('carousel')) :
+                                        the_row();
+                                        $image_url = get_sub_field('background_image');
+                                        $title = get_sub_field('title');
+                                        $subtitle = get_sub_field('subtitle');
+                                        $more_link = get_sub_field('link');
+                                        ?>
+                                        <li
+                                            class="accessible-carousel__slide agency__polygon"
+                                            style="background-image: url('<?php echo $image_url; ?>'); background-color: <?php the_field('agency_colour'); ?>"
+                                        >
+                                            <div class="accessible-carousel__wrap">
+                                              <div>
+                                                <h3 class="heading--sm"><?php echo $title; ?></h3>
+                                                <p class="heading--xxs"><?php echo $subtitle; ?></p>
 
-                                    $image_url = get_sub_field('background_image');
-                                    $title = get_sub_field('title');
-                                    $subtitle = get_sub_field('subtitle');
-                                    $more_link = get_sub_field('link');
-                                    ?>
-                                    <div
-                                        class="carousel__slide"
-                                        style="background-image: url('<?php echo $image_url; ?>'); background-color: <?php the_field('agency_colour'); ?>"
-                                    >
-                                        <div class="carousel__wrap">
-                                            <h3 class="heading--sm"><?php echo $title; ?></h3>
-                                            <span class="heading--xxs"><?php echo $subtitle; ?></span>
+                                                <a href="<?php echo esc_url($more_link['url']); ?>"
+                                                   target="<?php echo $more_link['target']; ?>"
+                                                   class="btn-secondary btn-secondary--light">
+                                                    <?php echo esc_html($more_link['title']); ?>
+                                                    <svg width="8" height="13">
+                                                        <use xlink:href="#icon-arrow"></use>
+                                                    </svg>
+                                                </a>
+                                              </div>
 
-                                            <a href="<?php echo esc_url($more_link['url']); ?>"
-                                               target="<?php echo $more_link['target']; ?>"
-                                               class="btn-secondary btn-secondary--light">
-                                                <?php echo esc_html($more_link['title']); ?>
-                                                <svg width="8" height="13">
-                                                    <use xlink:href="#icon-arrow"></use>
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    </div>
-                                <?php endwhile; ?>
+                                            </div>
+                                        </li>
+                                    <?php endwhile; ?>
+                                </ul>
                             </div>
                         <?php endif; ?>
-                        <div class="carousel__controls">
-                            <button class="carousel__arrow carousel__arrow--prev" role="button"
-                                    aria-label="Previous Agency">
-                                <svg width="16" height="25">
-                                    <use xlink:href="#icon-arrow"></use>
-                                </svg>
-                            </button>
-                            <button class="carousel__arrow carousel__arrow--next" role="button"
-                                    aria-label="Next Agency">
-                                <svg width="16" height="25">
-                                    <use xlink:href="#icon-arrow"></use>
-                                </svg>
-                            </button>
-                        </div>
                     </div>
                 <?php endif; ?>
 
@@ -288,7 +255,6 @@ Template Post Type: agency
                     } else {
                         $cur = 0;
                     }
-
 
                     while (have_rows('bottom_block')) :
                         the_row();
@@ -302,7 +268,6 @@ Template Post Type: agency
                             $more_link_bottom['url'] = '#';
                             $more_link_bottom['title'] = 'Find out more';
                             $a_class = 'carousel-popup-open';
-                            //$cur = 0; //pop-up counter
                             $data_index = 'data-index="' . $cur . '"';
                         } else {
                             $more_link_bottom = get_sub_field('bottom_link');
@@ -366,27 +331,15 @@ Template Post Type: agency
             </div>
         </div>
 
-        <?php get_footer(); ?>
-
         <?php
+
+        get_footer();
         get_template_part('content', 'videopopup');
-        ?>
-
-
-        <?php
-
-        // if ( $popup_row == 'top' ) {
-        //
-        // }
-        // elseif ( $popup_row == 'bottom' ) {
-        //
-        // }
 
         if (have_rows('bottom_block')) :
             while (have_rows('bottom_block')) :
                 the_row();
                 $ispopup = get_sub_field('pop_up_block');
-                // echo $ispopup;
                 if ($ispopup) :
                     ?>
                     <div class="popup popup--carousel">
@@ -394,8 +347,7 @@ Template Post Type: agency
                             <?php if (have_rows('pop-up_carousel')) : ?>
                                 <div class="popup__carousel">
 
-                                    <?php while (have_rows('pop-up_carousel')) :
-                                        the_row(); ?>
+                                    <?php while (have_rows('pop-up_carousel')) : the_row(); ?>
 
                                         <section class="popup__item">
                                             <header>
@@ -413,34 +365,22 @@ Template Post Type: agency
                                             </div>
                                         </section>
 
-                                    <?php endwhile; ?>
-
-                                </div>
-
-                            <?php endif; ?>
-
-                            <button class="popup__arrow popup__arrow--prev" role="button" aria-label="Previous">
-                                <svg width="16" height="25">
-                                    <use xlink:href="#icon-arrow"></use>
-                                </svg>
-                            </button>
-                            <button class="popup__arrow popup__arrow--next" role="button" aria-label="Next">
-                                <svg width="16" height="25">
-                                    <use xlink:href="#icon-arrow"></use>
-                                </svg>
-                            </button>
-                            <div class="popup__dots carousel__dots"></div>
-                            <button class="btn-close" role="button" aria-label="Close">
-                                <svg width="33" height="33">
-                                    <use xlink:href="#icon-close"></use>
-                                </svg>
-                            </button>
+                                        <?php endwhile; ?>
+                                    </div>
+                                <?php endif; ?>
+                                <button class="btn-close" role="button" aria-label="Close">
+                                    <svg width="33" height="33">
+                                        <use xlink:href="#icon-close"></use>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
-                    </div>
 
                 <?php endif; ?>
             <?php endwhile;
         endif; ?>
 
-    <?php endwhile;
-endif; ?>
+        <?php
+    endwhile;
+endif;
+?>

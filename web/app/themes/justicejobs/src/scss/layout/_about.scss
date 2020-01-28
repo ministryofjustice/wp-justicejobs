@@ -97,23 +97,7 @@
             padding: 30px;
             z-index: 5;
 
-            /*&::before {
-                position: absolute;
-                top: 0;
-                right: 0;
-                left: 0;
-                bottom: 0;
-                display: block;
-                background: var(--color, $light-blue);
-                content: '';
-                z-index: -1;
-                @include transition;
-            }*/
-
             @include respond-to(lg) {
-                /*&::before {
-                    transform: translateY(100%);
-                }*/
 
                 &:hover,
                 &:focus {
@@ -137,38 +121,38 @@
         &.hm-courts-tribunals-service {
             height: 60px;
 
-            @include respond-to(sm) { height: 70px; }
-            @include respond-to(lg) { height: 92px; }
+            @include respond-to(sm) { height: 60px; }
+            @include respond-to(xl) { height: 92px; }
         }
         &.ministry-of-justice-hq {
             height: 60px;
 
             @include respond-to(sm) { height: 70px; }
-            @include respond-to(lg) { height: 92px; }
+            @include respond-to(xl) { height: 92px; }
         }
         &.hm-prisons-probations-service {
             height: 60px;
 
             @include respond-to(sm) { height: 70px; }
-            @include respond-to(lg) { height: 92px; }
+            @include respond-to(xl) { height: 92px; }
         }
         &.criminal-injuries-compensation-authority {
             height: 74px;
 
             @include respond-to(sm) { height: 88px; }
-            @include respond-to(lg) { height: 120px; }
+            @include respond-to(xl) { height: 120px; }
         }
         &.legal-aid-agency {
             height: 60px;
 
             @include respond-to(sm) { height: 70px; }
-            @include respond-to(lg) { height: 92px; }
+            @include respond-to(xl) { height: 92px; }
         }
         &.office-of-the-public-guardian {
             height: 60px;
 
             @include respond-to(sm) { height: 70px; }
-            @include respond-to(lg) { height: 92px; }
+            @include respond-to(xl) { height: 92px; }
         }
     }
 
