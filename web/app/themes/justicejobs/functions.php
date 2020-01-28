@@ -81,6 +81,9 @@ function enqueue_justice_jobs_scripts()
     // CSS
     wp_enqueue_style('core-css', mix_asset('/css/main.min.css'), array(), null, 'all');
 
+    wp_enqueue_style('ie-css', mix_asset('/css/ie.min.css'), array(), null, 'all');
+    wp_style_add_data( 'ie-css', 'conditional', 'IE' );
+
     // JS and jQuery
     wp_enqueue_script('slick-js', mix_asset('/js/slick.min.js'), array('jquery', 'core-js'), null, true);
     wp_enqueue_script('core-js', mix_asset('/js/main.min.js'), array('jquery'), null, true);
