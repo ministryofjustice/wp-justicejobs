@@ -68,10 +68,10 @@
     }
 
     &--dark-blue {
-        background: $darker-blue;
+        background: $even-darker-blue;
         color: #fff;
-        border: 1px solid $darker-blue;
-        box-shadow: 0 17px 15px -5px rgba($darker-blue, 0.3);
+        border: 1px solid $even-darker-blue;
+        box-shadow: 0 17px 15px -5px rgba($even-darker-blue, 0.3);
 
         &:hover,
         &:focus,
