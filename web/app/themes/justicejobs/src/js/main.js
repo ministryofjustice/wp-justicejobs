@@ -388,7 +388,7 @@ jQuery(document).ready(function ($) {
         return !$.trim(el.html())
     }
 
-    $('.agency__featured').click(function(e) {
+    $('.agency__featured').click(function (e) {
         var link = $(this).closest('.agency__featured').find('a').eq(0),
             resolveLink = null;
 
@@ -407,4 +407,9 @@ jQuery(document).ready(function ($) {
 
         window.location = link.prop('href');
     });
+
+    $('.agency__carousel--full .accessible-carousel__arrow').each(function () {
+        var color = $(this).closest('.agency__carousel').css('background-color');
+        $(this).css('background-color', color);
+    })
 });

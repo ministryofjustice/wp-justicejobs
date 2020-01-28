@@ -185,7 +185,7 @@ Template Post Type: agency
                                             <p class="heading--xxs"><?= $agency_name; ?></p>
                                             <h3 class="heading--sm"><?= $position_title; ?></h3>
                                             <p class="heading--xxs"><?= $position_location; ?></p>
-
+                                            <?php if (isset($more_link['url'])) : ?>
                                             <a href="<?php echo esc_url($more_link['url']); ?>"
                                                target="<?php echo $more_link['target'] ?? ''; ?>"
                                                class="btn-secondary btn-secondary--light">
@@ -194,6 +194,7 @@ Template Post Type: agency
                                                     <use xlink:href="#icon-arrow"></use>
                                                 </svg>
                                             </a>
+                                            <?php endif?>
                                         </li>
                                     <?php endwhile; ?>
                                 </ul>
@@ -222,7 +223,7 @@ Template Post Type: agency
                                         ?>
                                         <li
                                             class="accessible-carousel__slide agency__polygon"
-                                            style="background-image: url('<?php echo $image_url; ?>'); background-color: <?php the_field('agency_colour'); ?>"
+                                            style="background-image: url('<?php echo $image_url; ?>');"
                                         >
                                             <div class="accessible-carousel__wrap">
                                                 <h3 class="heading--sm"><?php echo $title; ?></h3>
@@ -343,9 +344,8 @@ Template Post Type: agency
                         <div class="popup__block">
                             <?php if (have_rows('pop-up_carousel')) : ?>
                                 <div class="popup__carousel">
-
-                                    <?php while (have_rows('pop-up_carousel')) : the_row(); ?>
-
+                                    <?php while (have_rows('pop-up_carousel')) :
+                                        the_row(); ?>
                                         <section class="popup__item">
                                             <header>
                                                 <span
@@ -361,18 +361,16 @@ Template Post Type: agency
                                                 </div>
                                             </div>
                                         </section>
-
-                                        <?php endwhile; ?>
+                                    <?php endwhile; ?>
                                     </div>
-                                <?php endif; ?>
-                                <button class="btn-close" role="button" aria-label="Close">
-                                    <svg width="33" height="33">
-                                        <use xlink:href="#icon-close"></use>
-                                    </svg>
-                                </button>
-                            </div>
+                            <?php endif; ?>
+                            <button class="btn-close" role="button" aria-label="Close">
+                                <svg width="33" height="33">
+                                    <use xlink:href="#icon-close"></use>
+                                </svg>
+                            </button>
                         </div>
-
+                    </div>
                 <?php endif; ?>
             <?php endwhile;
         endif; ?>
