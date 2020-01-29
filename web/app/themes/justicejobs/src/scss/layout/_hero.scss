@@ -19,8 +19,12 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        align-items: flex-end;
+        align-items: center;
         height: 750px;
+
+        .hero--home & {
+            align-items: flex-end;
+        }
 
         @include respond-to(sm) {
             padding: 0 45px;
@@ -133,13 +137,20 @@
         padding: 25px 20px;
         padding-right: 0;
         max-width: 550px;
-        background: $dark-blue;
         width: 100%;
+
+        .hero--home & {
+            background: $dark-blue;
+        }
 
         @include respond-to(md) {
             // padding: 45px 50px;
             //max-width: 620px;
             background: none;
+
+            .hero--home & {
+                background: none;
+            }
         }
 
         @include respond-to(sm) {
@@ -235,7 +246,10 @@
         @include respond-to(md) {
             margin-bottom: 70px;
             padding: 54px 0;
-            margin-top: 80px;
+
+            .hero--home & {
+                margin-top: 80px;
+            }
         }
     }
 
