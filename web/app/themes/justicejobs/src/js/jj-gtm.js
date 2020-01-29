@@ -101,8 +101,6 @@ jQuery(function ($) {
     $('.apply-btn').on('click', function () {
         var label = $(this).data('id');
 
-        alert(label);
-        return;
         if (!label) {
             label = null; // catch null in GTM
         }
