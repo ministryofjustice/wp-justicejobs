@@ -87,7 +87,7 @@ jQuery(function ($) {
     });
 
     // when an about block is clicked
-    $('.about__block').on('click', function(){
+    $('.about__block').on('click', function () {
         var label = $(this).find('h3').text();
 
         if (!label) {
@@ -95,5 +95,18 @@ jQuery(function ($) {
         }
 
         _trackEvent('about-block-click', {'aboutBlockLabel': label});
+    });
+
+    // when an about block is clicked
+    $('.apply-btn').on('click', function () {
+        var label = $(this).data('id');
+
+        alert(label);
+        return;
+        if (!label) {
+            label = null; // catch null in GTM
+        }
+
+        _trackEvent('apply-button-click', {'applyButtonJobId': label});
     });
 });

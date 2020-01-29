@@ -60,13 +60,15 @@
                     echo $term->name;
                 }
 
+                $aria_label = strstr($post->post_title, ' -', true);
+                $data_label = substr(strstr($post->post_title, '- '), 2, strlen($post->post_title));
                 ?>
                 <br/>
                 <?php the_field('location'); ?>
             </h2>
             <div class="job__text-wrap">
                 <header>
-                    <a href="<?php the_field('application_link'); ?>" class="btn btn--blue apply-btn" target="_blank">Apply</a>
+                    <a href="<?php the_field('application_link'); ?>" class="btn btn--blue apply-btn" target="_blank" data-id="<?= $data_label ?>" aria-label="Apply for the <?= $aria_label ?> job">Apply</a>
                     <a class="btn-back btn-back--blue back-to-search">
                         <svg width="8" height="13">
                             <use xlink:href="#icon-arrow"></use>
@@ -83,7 +85,7 @@
 
                 </div>
                 <footer>
-                    <a href="<?php the_field('application_link'); ?>" class="btn btn--blue apply-btn" target="_blank">Apply</a>
+                    <a href="<?php the_field('application_link'); ?>" class="btn btn--blue apply-btn" target="_blank" data-id="<?= $data_label ?>" aria-label="Apply for the <?= $aria_label ?> job">Apply</a>
                     <a class="btn-back btn-back--blue back-to-search">
                         <svg width="8" height="13">
                             <use xlink:href="#icon-arrow"></use>
