@@ -57,7 +57,7 @@ The Map Functionality
                 url: $(this).data('url'),
                 animation: google.maps.Animation.DROP,
                 icon: new google.maps.MarkerImage(
-                    'https://justicejobs.dev.wp.dsd.io/app/themes/justicejobs/dist/img/icons/marker.png',
+                    'https://jobs.justice.gov.uk/app/themes/justicejobs/dist/img/icons/marker.png',
                     null, // size
                     null, // origin
                     new google.maps.Point(9, 19), // anchor (move to center of marker)
