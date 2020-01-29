@@ -30,20 +30,6 @@ jQuery(document).ready(function ($) {
         }
     });
 
-    $('.carousel').each((i, el) => {
-        $(el)
-            .find('.carousel__container')
-            .slick({
-                dots: true,
-                speed: 700,
-                cssEase: 'ease-in',
-                infinite: true,
-                appendDots: $(el).find('.carousel__dots'),
-                prevArrow: $(el).find('.carousel__arrow--prev'),
-                nextArrow: $(el).find('.carousel__arrow--next')
-            });
-    });
-
     // $('.video-popup').on('click', function(e) {
     //   console.log('in video popup');
     //   e.preventDefault();
@@ -229,30 +215,6 @@ jQuery(document).ready(function ($) {
     });
 
 
-    if ($('.campaign__carousel').length > 0) {
-        $('.campaign__carousel').slick({
-            dots: true,
-            infinite: true,
-            slidesToShow: 3,
-            appendDots: $('.campaign__carousel-wrap .carousel__dots'),
-            prevArrow: $('.campaign__carousel-wrap .carousel__arrow--prev'),
-            nextArrow: $('.campaign__carousel-wrap .carousel__arrow--next'),
-            responsive: [{
-                breakpoint: 1023,
-                settings: {
-                    slidesToShow: 2
-                }
-            },
-                {
-                    breakpoint: 768,
-                    settings: {
-                        slidesToShow: 1
-                    }
-                }
-            ]
-        });
-    }
-
     // Remove default inline styles from MCE tables
     $('td,th,table').removeAttr('style');
     $('td,th,table').removeAttr('width');
@@ -275,41 +237,6 @@ jQuery(document).ready(function ($) {
         // }
         // position = scroll;
 
-    });
-
-
-    // Awards carousel on homepage
-    $(window).on('load resize', function () {
-        if ($(window).width() < 1024) {
-            $('.awards-carousel').slick({
-                infinite: true,
-                arrows: false,
-                slidesToScroll: 1,
-                responsive: [{
-                    breakpoint: 1023,
-                    settings: {
-                        slidesToShow: 3,
-                    }
-                },
-                    {
-                        breakpoint: 768,
-                        settings: {
-                            slidesToShow: 2,
-                        }
-                    },
-                    {
-                        breakpoint: 480,
-                        settings: {
-                            slidesToShow: 1,
-                        }
-                    }
-                ]
-            });
-        } else {
-            if ($('.awards-carousel').hasClass('slick-initialized')) {
-                $('.awards-carousel').slick("unslick");
-            }
-        }
     });
 
 
@@ -388,7 +315,7 @@ jQuery(document).ready(function ($) {
         init: function () {
           this.storageAvailable()
         },
-        // Run a small test to determine if the browser can use local storage functionality 
+        // Run a small test to determine if the browser can use local storage functionality
         // if not use browser cookies
         storageAvailable: function (type) {
           try {
@@ -427,7 +354,7 @@ jQuery(document).ready(function ($) {
 
         replaceClass: function () {
             var lStorage = this.localStorage.getItem('ccfwCookiePolicy') ? 'true' : 'false'
- 
+
             if (lStorage === 'false') {
                 this.$el.removeClass('page-header container').addClass('page-header__FixToCookieBanner container')
                 this.headerWrapClass.removeClass('page-header__nav').addClass('page-header__navFixCookieBanner')
