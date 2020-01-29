@@ -21,6 +21,17 @@
       background-color: black;
       justify-content: space-between;
       padding: 15px 45px;
+
+      .btn {
+        display: none;
+
+        @include respond-to(md) {
+          position: relative;
+          display: flex;
+          font-size: 1.4rem;
+          z-index: 50;
+        }
+      }
     }
 
     &__navFixCookieBanner {
