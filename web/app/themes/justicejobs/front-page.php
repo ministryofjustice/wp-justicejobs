@@ -11,9 +11,6 @@
         <div class="hero__img_description">
             <?php the_field('hero_image_description'); ?>
         </div>
-        <svg class="hero__line" width="843" height="83">
-            <use xlink:href="#icon-decor-line-2"></use>
-        </svg>
         <div class="hero__text-wrap">
             <div class="hero__heading-wrap">
                 <svg class="hero__arrow hero__arrow--top" width="37" height="24">
