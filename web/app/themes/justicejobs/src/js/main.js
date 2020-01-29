@@ -23,10 +23,20 @@ jQuery(document).ready(function ($) {
             $('body').addClass('disable-scrolling');
             target.removeClass('closed');
             target.addClass('open');
+
+            if ( $('#ccfw-page-banner-container').css('display') == 'block') {
+                console.log('a');
+                $('#main-nav-hook').removeClass('page-header__FixToCookieBanner container').addClass('page-header container')
+            }
         } else {
             $('body').removeClass('disable-scrolling');
             target.removeClass('open');
             target.addClass('closed');
+
+            if ( $('#ccfw-page-banner-container').css('display') == 'block') {
+                console.log('b');
+                $('#main-nav-hook').removeClass('page-header container').addClass('page-header__FixToCookieBanner container')
+            }
         }
     });
 
