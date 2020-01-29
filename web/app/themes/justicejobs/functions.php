@@ -76,17 +76,22 @@ add_action('after_setup_theme', 'theme_setup');
 // ==========
 function enqueue_justice_jobs_scripts()
 {
+    global $manifest;
     define('MOJ_ENQUEUE_PATH', get_template_directory_uri() . '/dist');
+    $manifest = json_decode(
+        file_get_contents('dist/mix-manifest.json', true),
+        true
+    );
 
     // CSS
     wp_enqueue_style('core-css', mix_asset('/css/main.min.css'), array(), null, 'all');
 
     wp_enqueue_style('ie-css', mix_asset('/css/ie.min.css'), array(), null, 'all');
-    wp_style_add_data( 'ie-css', 'conditional', 'IE' );
+    wp_style_add_data('ie-css', 'conditional', 'IE');
 
     // JS and jQuery
-    wp_enqueue_script('slick-js', mix_asset('/js/slick.min.js'), array('jquery', 'core-js'), null, true);
     wp_enqueue_script('core-js', mix_asset('/js/main.min.js'), array('jquery'), null, true);
+    wp_enqueue_script('slick-js', mix_asset('/js/slick.min.js'), array('jquery', 'core-js'), null, true);
 
     // Temporary workaround to comply with GDPR - tracking off by default
     if (isset($_COOKIE['ccfwCookiePolicy'])) {
@@ -152,8 +157,7 @@ add_filter('nav_menu_link_attributes', 'add_specific_menu_location_atts', 10, 3)
  */
 function mix_asset($filename)
 {
-    $manifest_path = MOJ_ENQUEUE_PATH . '/mix-manifest.json';
-    $manifest = json_decode(file_get_contents($manifest_path), true);
+    global $manifest;
     if (!isset($manifest[$filename])) {
         error_log("Mix asset '$filename' does not exist in manifest.");
     }
@@ -198,7 +202,6 @@ add_filter('tiny_mce_before_init', 'moj_custom_styles');
 // ************ Cron Jobs for Jobs Feed ****************************************
 // Create custom cron interval
 add_filter('cron_schedules', 'example_add_cron_interval');
-
 function example_add_cron_interval($schedules)
 {
     $schedules['two_hours'] = array(
@@ -355,7 +358,7 @@ if (!function_exists('deleteJobs')) {
     {
 
         $allposts = get_posts(array('post_type' => 'job', 'numberposts' => -1));
-      
+
         foreach ($allposts as $eachpost) {
             wp_delete_post($eachpost->ID, true);
         }
@@ -420,7 +423,7 @@ function jj_select_options($qs_param, $default = 'option')
     $pre_options .= '<option value="all">All ' . $default . 's</option>';
 
     return ['list' => $pre_options . $role_options, 'title' => ' title="' . $selectedFound . '"'];
-  
+
 }
 
 if (!function_exists('moj_at_glance_cpt_display')) {
