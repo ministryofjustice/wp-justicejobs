@@ -20,7 +20,6 @@ mix.js([
     .copy('src/fonts/*', dist + 'fonts')
     .copy('node_modules/jquery/dist/jquery.min.js', dist + 'js/')
     .copy('node_modules/rellax/rellax.min.js', dist + 'js/')
-    .copy('node_modules/slick-carousel/slick/slick.min.js', dist + 'js/')
     .imagemin([
             'img/**.*',
             'img/icons/**.*'

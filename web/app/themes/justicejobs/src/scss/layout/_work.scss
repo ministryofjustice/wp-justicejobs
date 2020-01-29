@@ -14,25 +14,6 @@
   &__carousel {
     width: 100%;
 
-    .slick-track {
-      display: flex;
-    }
-
-    .slick-slide {
-      display: flex;
-      flex-direction: column;
-      height: auto;
-
-      @include respond-to(md) {
-        height: 600px;
-        flex-direction: row;
-
-        .carousel__wrap {
-          padding-left: 50px;
-        }
-      }
-    }
-
     .carousel__wrap .btn-secondary {
       margin-top: 0;
       font-size: 1.8rem;

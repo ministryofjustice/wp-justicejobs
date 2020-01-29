@@ -32,7 +32,6 @@
     "dependencies": {
         "core-js": "^3.4.8",
         "jquery": "^3.4.1",
-        "rellax": "^1.10.0",
-        "slick-carousel": "^1.8.1"
+        "rellax": "^1.10.0"
     }
 }
