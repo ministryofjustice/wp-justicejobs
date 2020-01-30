@@ -14,7 +14,7 @@
             .quote-copy {
                 font-size: 2.0rem;
 
-                @include respond-to(lm) {
+                @include respond-to(sm) {
                     font-size: 2.6rem;
                 }
             }
