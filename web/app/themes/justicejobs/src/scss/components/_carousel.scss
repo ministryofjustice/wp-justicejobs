@@ -7,6 +7,21 @@
     height: 100%;
     background-color: $even-darker-blue;
 
+
+    .work__text-block {
+
+        .accessible-carousel--full-width & {
+            .quote-copy {
+                font-size: 2.0rem;
+
+                @include respond-to(lm) {
+                    font-size: 2.6rem;
+                }
+            }
+        }
+    }
+
+
     &--full-width {
         @include respond-to(md) {
             height: 600px;
@@ -82,9 +97,8 @@
         z-index: 1;
 
         .accessible-carousel--full-width & {
-            @include respond-to(xs) {
-                width: 100%;
-            }
+
+            width: 100%;
 
             align-items: flex-start;
             @include respond-to(sm) {
