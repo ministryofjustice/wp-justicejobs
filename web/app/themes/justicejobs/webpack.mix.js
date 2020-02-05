@@ -13,7 +13,6 @@ mix.js([
     ], dist + 'js/main.min.js')
     .js('src/js/jj-gtm.js', dist + 'js/jj-gtm.min.js')
     .sass('src/scss/style.scss', dist + 'css/main.min.css')
-    .sass('src/scss/ie.scss', dist + 'css/ie.min.css')
     .sass('src/scss/errors/404.sass', dist + 'css/404.css')
     .sass('src/scss/errors/error-page.sass', dist + 'css/error-page.css')
     .copy('src/video/*', dist + 'video')
