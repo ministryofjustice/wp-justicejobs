@@ -200,13 +200,33 @@ add_filter('tiny_mce_before_init', 'moj_custom_styles');
 
 // ************ Cron Jobs for Jobs Feed ****************************************
 // Create custom cron interval
-add_filter('cron_schedules', 'example_add_cron_interval');
-function example_add_cron_interval($schedules)
+add_filter('cron_schedules', 'jj_add_cron_interval');
+function jj_add_cron_interval($schedules)
 {
-    $schedules['two_hours'] = array(
-        'interval' => 7200,
-        'display' => esc_html__('Every Two Hours'),
-    );
+    $schedules['six_hours'] = [
+        'interval' => 21600,
+        'display' => esc_html__('Every Six Hours')
+    ];
+
+    $schedules['thirty_minutes'] = [
+        'interval' => 1800,
+        'display' => esc_html__('Every Thirty Minutes')
+    ];
+
+    $schedules['fifteen_minutes'] = [
+        'interval' => 900,
+        'display' => esc_html__('Every Fifteen Minutes')
+    ];
+
+    $schedules['five_minutes'] = [
+        'interval' => 300,
+        'display' => esc_html__('Every Five Minutes')
+    ];
+
+    $schedules['three_minutes'] = [
+        'interval' => 180,
+        'display' => esc_html__('Every Three Minutes')
+    ];
 
     return $schedules;
 }
@@ -216,21 +236,25 @@ if (function_exists('acf_add_options_page')) {
     acf_add_options_page();
 }
 
-/*
+/**
+ * Load Jobs Handler file
+ */
+require 'inc/jobs-handler/save-jobs-xmlfile.php';
+require 'inc/jobs-handler/add-edit-jobs.php';
+require 'inc/jobs-handler/job-search.php';
+
 // Create cron hook and schedule event
-add_action( 'savexml_cron_hook', 'saveJobsXMLFile' );
-
-if ( ! wp_next_scheduled( 'savexml_cron_hook' ) ) {
-    wp_schedule_event( 1556031600, 'two_hours', 'savexml_cron_hook' );
+add_action('save_xml_cron_hook', 'saveJobsXMLFile');
+if (!wp_next_scheduled('save_xml_cron_hook')) {
+    wp_schedule_event(time(), 'five_minutes', 'save_xml_cron_hook');
 }
+//wp_clear_scheduled_hook('save_xml_cron_hook');
 
-
-add_action( 'updatejobs_cron_hook', 'addJobPost' );
-
-if ( ! wp_next_scheduled( 'updatejobs_cron_hook' ) ) {
-    wp_schedule_event( 1556035200, 'two_hours', 'updatejobs_cron_hook' );
+add_action('update_jobs_cron_hook', 'addJobPost');
+if (!wp_next_scheduled('update_jobs_cron_hook')) {
+    wp_schedule_event(time(), 'three_minutes', 'update_jobs_cron_hook');
 }
-*/
+//wp_clear_scheduled_hook('update_jobs_cron_hook');
 
 
 // Function to be executed when the time for the schedule event arrives
@@ -271,29 +295,7 @@ if ( ! wp_next_scheduled( 'updatejobs_cron_hook' ) ) {
 //   curl_exec($ch);
 //   curl_close($ch);
 //   fclose($fp);
-//
-//
 // }
-
-// Remove default styling from MCE tables
-// function tinymce_fix_table_styles() {
-//   echo '<script>jQuery(function($){
-//     if (typeof tinymce !== "undefined") {
-//       tinymce.overrideDefaults({
-//         table_default_attributes:{},
-//         table_default_styles:{}
-//       });
-//     }
-//   });</script>';
-// }
-// add_action('admin_footer', 'tinymce_fix_table_styles');
-
-// function mce_settings( $settings ) {
-//     $settings['table_default_styles'] = false;
-//     $settings['table_default_attributes'] = false;
-//     return $settings;
-// }
-// add_filter( 'tiny_mce_before_init', 'mce_settings' );
 
 
 // Implement Additional files
@@ -316,49 +318,43 @@ require 'inc/maps-endpoint.php';
 require 'inc/custom-posts.php';
 
 /**
- * Load Jobs Handler file
- */
-require 'inc/jobs-handler/save-jobs-xmlfile.php';
-require 'inc/jobs-handler/add-edit-jobs.php';
-require 'inc/jobs-handler/job-search.php';
-
-/**
  * Load Custom Taxonomies file
  */
 require 'inc/custom-taxonomies.php';
-
 require 'inc/job-location-taxonomy-meta.php';
 
-/* TEST IMPORT. TO REMOVE ON LAUNCH */
-add_action('wp', 'test_import');
-function test_import()
+/*  IMPORT OVERRIDE  */
+add_action('wp', 'jobs_import_override');
+function jobs_import_override()
 {
     if (is_user_logged_in() && current_user_can('administrator')) {
-        $import_test = get_query_var('importScriptTest');
-        if ($import_test == 'pull-jobs') {
-            saveJobsXMLFile();
-            die();
-        } else {
-            if ($import_test == 'import-jobs') {
+        switch (get_query_var('importScriptTest')) {
+            case 'pull-jobs':
+                saveJobsXMLFile();
+                die();
+                break;
+            case 'import-jobs':
                 import_jobs_from_xml();
                 die();
-            }
-            if ($import_test == 'delete-jobs') {
+                break;
+            case 'delete-jobs':
                 deleteJobs();
                 die();
-            }
+                break;
+            case 'pull-jobs-force':
+                saveJobsXMLFile(true);
+                die();
+                break;
         }
     }
 }
 
 if (!function_exists('deleteJobs')) {
-
     function deleteJobs()
     {
+        $all_posts = get_posts(array('post_type' => 'job', 'numberposts' => -1));
 
-        $allposts = get_posts(array('post_type' => 'job', 'numberposts' => -1));
-
-        foreach ($allposts as $eachpost) {
+        foreach ($all_posts as $eachpost) {
             wp_delete_post($eachpost->ID, true);
         }
 
@@ -449,3 +445,160 @@ if (!function_exists('moj_at_glance_cpt_display')) {
 }
 
 add_action('dashboard_glance_items', 'moj_at_glance_cpt_display');
+
+
+/**
+ *
+ */
+function jobs_cron_page_create()
+{
+    $page_title = 'Jobs CRON Switch';
+    $menu_title = 'Jobs CRON';
+    $capability = 'manage_options';
+    $menu_slug = 'jobs-cron-switch';
+    $function = 'jobs_cron_page_display';
+    $icon_url = '';
+    $position = 24;
+
+    add_options_page($page_title, $menu_title, $capability, $menu_slug, $function, $position);
+}
+
+add_action('admin_menu', 'jobs_cron_page_create');
+
+function jobs_cron_page_display()
+{
+    global $wp;
+
+    if (!current_user_can('manage_options')) {
+        wp_die('Sorry, you cannot access this page.');
+    }
+
+    $send_mail = false;
+    $subject = "[Justice Jobs] Job CRON: ";
+    $message = "Simple notification:\n\n";
+    if (isset($_POST['jobs_cron_switch_input'])) {
+        if (update_option('jobs-cron-switch-input', $_POST['jobs_cron_switch_input'])) {
+            $send_mail = true;
+            $subject .= 'STARTED';
+            $message .= "The Jobs CRON has been restarted.";
+        }
+    } else {
+        if (isset($_POST['jobs_cron_checker'])) {
+            if (update_option('jobs-cron-switch-input', '0')) {
+                $send_mail = true;
+                $subject .= 'DEACTIVATED';
+                $message .= "A request has been authorised to stop the Job CRON operation.\n\n" . admin_url('options-general.php?page=jobs-cron-switch');
+            }
+        }
+    }
+
+    if ($send_mail === true) {
+        wp_mail(get_option('admin_email'), $subject, $message);
+    }
+
+    $value = get_option('jobs-cron-switch-input', '1'); // catches first time use and turns the CRON on
+
+    $checked = '';
+    if ($value === '1') {
+        $checked = ' checked="checked"';
+    }
+
+    echo '<h1>Jobs CRON Switch</h1>
+            <h2 style="color:#cc0000"><em>Here be dragons!</em></h2>
+            <p>You can use this page to switch on/off the job feeds CRON.<br>Please be careful.</p>
+            ' . jobs_cron_display_notice($value) . '
+            <form method="POST">
+                <label for="jobs_cron_switch_input">Jobs CRON activate? </label>
+                <input type="checkbox" name="jobs_cron_switch_input" id="jobs_cron_switch_input" value="1" ' . $checked . '>
+                <input type="hidden" name="jobs_cron_checker" value="1">
+                <br><br><button type="submit" value="Save" class="button button-primary button-large">Save</button>
+            </form>';
+}
+
+function jobs_cron_display_notice($state)
+{
+    $message = 'The Jobs CRON is currently operational.';
+    $class = 'success';
+
+    if ($state !== '1') {
+        $message = 'The current setting is preventing new jobs from being imported.<br>... please consider activating the CRON below.';
+        $class = 'error';
+    }
+
+    return '<div class="notice notice-' . $class . '" style="display:inline-block;margin:10px 0 28px">
+                <p><strong>' . $message . '</strong></p>
+            </div>';
+}
+
+/**
+ * There are only three variables needed to operate this function
+ * Email, Subject and Message.
+ * The email address is the first argument
+ * The email subject is passed by the first pocket in the args array, message is the second.
+ * @param $email string
+ * @param $args array
+ * @return true on success | false on failure | null if args are not set
+ * @uses wp_mail()
+ */
+function jj_simple_mail($email, $args)
+{
+    if (!isset($args[0]) || !isset($args[1])) {
+        return null;
+    }
+    return wp_mail($email, $args[0], $args[1]);
+}
+
+/**
+ * A data holder for jobs CRON functions
+ * Numbers represent hours in a 24 hour clock
+ * @return array
+ */
+function jj_scheduled_hours() : array
+{
+    return [
+        6,  // 6am
+        12, // 12pm
+        18  // 6pm
+    ];
+}
+
+/**
+ * Returns true when the current hour is listed in jj_scheduled_hours()
+ *
+ * requires the scheduled time is every 30 minutes
+ *
+ * @uses jj_scheduled_hours()
+ * @param $hour int
+ * @return bool
+ */
+function inside_schedule_window($hour = null)
+{
+    $time = $hour ?? (int)date("H");
+    $windows = jj_scheduled_hours();
+    if (in_array($time, $windows)) {
+        return true;
+    }
+
+    return false;
+}
+
+/**
+ * Determine if time is more than 2 hours from a schedule point but no greater than the next scheduled time
+ *
+ * @uses jj_scheduled_hours()
+ * @return bool
+ */
+function is_2_hours_past_window()
+{
+    $windows = jj_scheduled_hours();
+
+    // add 2 hours to time
+    $time = (int)date("H")+2;
+    foreach ($windows as $key => $window) {
+        // store next hour unless the last hour in the array
+        $mod_key = ($key === count($windows)-1 ? 0 : $key+1);
+        if ($time >= $window && $time < $windows[$mod_key]) {
+            return true;
+        }
+    }
+}
