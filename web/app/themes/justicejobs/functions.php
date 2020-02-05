@@ -243,13 +243,13 @@ require 'inc/jobs-handler/job-search.php';
 // Create cron hook and schedule event
 add_action('save_xml_cron_hook', 'saveJobsXMLFile');
 if (!wp_next_scheduled('save_xml_cron_hook')) {
-    wp_schedule_event(time(), 'five_minutes', 'save_xml_cron_hook');
+    wp_schedule_event(time(), 'hourly', 'save_xml_cron_hook');
 }
 //wp_clear_scheduled_hook('save_xml_cron_hook');
 
 add_action('update_jobs_cron_hook', 'addJobPost');
 if (!wp_next_scheduled('update_jobs_cron_hook')) {
-    wp_schedule_event(time(), 'three_minutes', 'update_jobs_cron_hook');
+    wp_schedule_event(time(), 'hourly', 'update_jobs_cron_hook');
 }
 //wp_clear_scheduled_hook('update_jobs_cron_hook');
 
