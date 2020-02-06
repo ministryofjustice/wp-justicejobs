@@ -32,6 +32,25 @@
 <div class="page-content">
     <div class="page-content__wrap">
       <?php the_field('page_content'); ?>
+
+        <?php
+        $add_link = get_field( 'add_link' );
+        if( $add_link == 1 ):
+            $link = get_field( 'find-out-more_link' );
+            if( $link ):
+                $link_url = $link['url'];
+                $link_title = $link['title'];
+                $link_target = $link['target'] ? $link['target'] : '_self';
+                ?>
+                <a href="<?php echo esc_url($link_url); ?>" class="btn-big btn-big--green"
+                   target="<?php echo esc_attr($link_target); ?>"
+                >
+                    Find out more about <?php echo $link_title; ?>
+                    <svg width="14" height="26">
+                        <use xlink:href="#icon-arrow"></use>
+                    </svg>
+                </a>
+            <?php endif; endif; ?>
     </div>
 </div>
 
