@@ -286,6 +286,7 @@ require 'inc/job-location-taxonomy-meta.php';
 function jobs_import_override()
 {
     $query = get_query_var('import-override');
+    var_dump($query);
     if (is_user_logged_in() && current_user_can('administrator')) {
         switch ($query) {
             case 'pull-jobs':
@@ -350,7 +351,7 @@ if (!function_exists('deleteJobs')) {
 
 function rj_add_query_vars_filter($vars)
 {
-    $vars[] = "importScriptTest";
+    $vars[] = "import-override";
     return $vars;
 }
 
