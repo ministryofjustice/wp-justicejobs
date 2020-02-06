@@ -5,6 +5,17 @@ function saveJobsXMLFile($force_pull = false)
     // get admin email for messaging
     $to = get_option('admin_email');
 
+    jj_simple_mail($to, [
+        '[Justice Jobs] Fixed broken flag',
+        'BROKEN -> the jobs schedule was repaired.'
+    ]);
+
+    die();
+
+    if (get_option('jobs-cron-switch-input') !== '1') {
+        return false;
+    }
+
     // should we run?
     if (!inside_schedule_window() && !$force_pull) {
         // fix potential broken 'cron is running' flag (due to nginx 504 timeout bug)
@@ -23,7 +34,7 @@ function saveJobsXMLFile($force_pull = false)
     }
 
     // check if this script is already running, bail if it is.
-    if (get_option('jobs_request_cron_is_running')) {
+    if (get_option('jobs_request_cron_is_running', false)) {
         jj_simple_mail($to, [
             '[Justice Jobs] Getting Remote Data',
             'WARNING -> the jobs script is already running. A request to refresh the job list has failed.'
