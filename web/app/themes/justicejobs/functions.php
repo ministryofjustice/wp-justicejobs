@@ -286,7 +286,6 @@ require 'inc/job-location-taxonomy-meta.php';
 function jobs_import_override()
 {
     $query = get_query_var('import-override');
-    var_dump($query);
     if (is_user_logged_in() && current_user_can('administrator')) {
         switch ($query) {
             case 'pull-jobs':
