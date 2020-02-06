@@ -15,8 +15,11 @@
   }
 
   &__text {
-    float: left;
-    padding-right: 5%;
+
+    @include respond-to(md) {
+      float: left;
+      padding-right: 5%;
+    }
   }
 
   .heading--md {
@@ -58,11 +61,12 @@
 
     h3 {
       text-align: left;
-      margin-bottom: 20px;
 
       @include respond-to(sm) {
-        margin-top: 10px;
         margin-bottom: 20px;
+      }
+      @include respond-to(md) {
+        margin-top: 10px;
       }
     }
   }
