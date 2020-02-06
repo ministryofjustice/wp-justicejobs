@@ -245,64 +245,12 @@ add_action('save_xml_cron_hook', 'saveJobsXMLFile');
 if (!wp_next_scheduled('save_xml_cron_hook')) {
     wp_schedule_event(time(), 'hourly', 'save_xml_cron_hook');
 }
-//wp_clear_scheduled_hook('save_xml_cron_hook');
 
 add_action('update_jobs_cron_hook', 'addJobPost');
 if (!wp_next_scheduled('update_jobs_cron_hook')) {
     wp_schedule_event(time(), 'hourly', 'update_jobs_cron_hook');
 }
-//wp_clear_scheduled_hook('update_jobs_cron_hook');
 
-
-// Function to be executed when the time for the schedule event arrives
-// function bl_cron_exec() {
-//   // Use wp_remote_get to fetch the data
-//   // $url = "https://justicejobs.tal.net/vx/mobile-0/appcentre-1/brand-2/candidate/jobboard/vacancy/3/feed/structured";
-//   $url = "https://justicejobs.tal.net/vx/mobile-0/appcentre-1/brand-2/candidate/jobboard/vacancy/3/feed";
-//   // $response = wp_remote_get($url);
-//
-//   // $ch = curl_init();
-//   // $timeout = 10;
-//   // curl_setopt($ch, CURLOPT_URL, $url);
-//   // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-//   // curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-//   // $data = curl_exec($ch);
-//   // curl_close($ch);
-//
-//   // Create the name of the file and the declare the directory and path
-//   $file = "wp-content/uploads/job-feed/jobs_big.xml";
-//   // $data = $response['body'];
-//
-//   $fp = fopen($file, "w");
-//   // fwrite($fp, $data);
-//   // fclose($fp);
-//
-//   $ch = curl_init();
-//   curl_setopt($ch, CURLOPT_URL, $url);
-//   // curl_setopt($ch, CURLOPT_PROGRESSFUNCTION, 'progressCallback');
-//   // curl_setopt($ch, CURLOPT_BUFFERSIZE, (1024*1024*512));
-//   // curl_setopt($ch, CURLOPT_NOPROGRESS, FALSE);
-//   curl_setopt($ch, CURLOPT_FAILONERROR, 1);
-//   curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-//   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-//   curl_setopt($ch, CURLOPT_TIMEOUT, 60);
-//   // curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
-//   curl_setopt($ch, CURLOPT_FILE, $fp);
-//
-//   curl_exec($ch);
-//   curl_close($ch);
-//   fclose($fp);
-// }
-
-
-// Implement Additional files
-//==========
-//
-/**
- * Customizer additions.
- */
-// require get_template_directory() . '/inc/customizer.php';
-//
 /**
  * Custom functions that act independently of the theme templates.
  */
@@ -320,30 +268,70 @@ require 'inc/custom-posts.php';
 require 'inc/custom-taxonomies.php';
 require 'inc/job-location-taxonomy-meta.php';
 
-/*  IMPORT OVERRIDE  */
-add_action('wp', 'jobs_import_override');
+/**
+ * Manually invoke a jobs import process. Available options are:
+ * - Refresh feed and DB
+ * - Pull from server
+ * - Pull with force
+ * - Import stored data
+ * - Delete stored data
+ * Requires the logged in capability of administrator.
+ * When a singular process completes the function will either die() on completion or redirect to the home page
+ * If a user who is not logged in attempts to fire a process, they are redirected to the home page
+ *
+ * @uses is_user_logged_in()
+ * @uses current_user_can()
+ * @example https://justicejobs.dev.wp.dsd.io/?import-override=refresh-feed
+ */
 function jobs_import_override()
 {
+    $query = get_query_var('import-override');
     if (is_user_logged_in() && current_user_can('administrator')) {
-        switch (get_query_var('importScriptTest')) {
+        switch ($query) {
             case 'pull-jobs':
                 saveJobsXMLFile();
-                die();
+                jobs_import_override_complete();
                 break;
             case 'import-jobs':
                 import_jobs_from_xml();
-                die();
+                jobs_import_override_complete();
                 break;
             case 'delete-jobs':
                 deleteJobs();
-                die();
+                jobs_import_override_complete();
                 break;
             case 'pull-jobs-force':
                 saveJobsXMLFile(true);
-                die();
+                jobs_import_override_complete();
+                break;
+            case 'refresh-feed':
+                saveJobsXMLFile(true);
+                import_jobs_from_xml();
+                jobs_import_override_complete();
                 break;
         }
     }
+
+    if (!empty($query)) {
+        jobs_import_override_complete(true);
+    }
+}
+
+add_action('wp', 'jobs_import_override');
+
+/**
+ * When a manual import override process has completed
+ * Handles white-page script output correctly in production
+ * @param $redirect bool
+ */
+function jobs_import_override_complete($redirect = false)
+{
+    if (WP_ENV === 'production' || $redirect) {
+        if (wp_redirect('/', 301)) {
+            exit;
+        }
+    }
+    die();
 }
 
 if (!function_exists('deleteJobs')) {
@@ -550,7 +538,7 @@ function jj_simple_mail($email, $args)
  * Numbers represent hours in a 24 hour clock
  * @return array
  */
-function jj_scheduled_hours() : array
+function jj_scheduled_hours(): array
 {
     return [
         6,  // 6am
@@ -564,9 +552,9 @@ function jj_scheduled_hours() : array
  *
  * requires the scheduled time is every 30 minutes
  *
- * @uses jj_scheduled_hours()
  * @param $hour int
  * @return bool
+ * @uses jj_scheduled_hours()
  */
 function inside_schedule_window($hour = null)
 {
@@ -582,18 +570,18 @@ function inside_schedule_window($hour = null)
 /**
  * Determine if time is more than 2 hours from a schedule point but no greater than the next scheduled time
  *
- * @uses jj_scheduled_hours()
  * @return bool
+ * @uses jj_scheduled_hours()
  */
 function is_2_hours_past_window()
 {
     $windows = jj_scheduled_hours();
 
     // add 2 hours to time
-    $time = (int)date("H")+2;
+    $time = (int)date("H") + 2;
     foreach ($windows as $key => $window) {
         // store next hour unless the last hour in the array
-        $mod_key = ($key === count($windows)-1 ? 0 : $key+1);
+        $mod_key = ($key === count($windows) - 1 ? 0 : $key + 1);
         if ($time >= $window && $time < $windows[$mod_key]) {
             return true;
         }
