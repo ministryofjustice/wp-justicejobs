@@ -48,6 +48,23 @@
       width: 50%;
       text-align: center;
     }
+
+    &.overview__video_has_title {
+
+      @include respond-to(md) {
+        padding-top: 0;
+      }
+    }
+
+    h3 {
+      text-align: left;
+      margin-bottom: 20px;
+
+      @include respond-to(sm) {
+        margin-top: 10px;
+        margin-bottom: 20px;
+      }
+    }
   }
 
   &__video * {

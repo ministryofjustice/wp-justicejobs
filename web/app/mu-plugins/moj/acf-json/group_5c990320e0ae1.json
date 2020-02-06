@@ -240,6 +240,25 @@
             "delay": 0
         },
         {
+            "key": "field_5e3c14b081e2e",
+            "label": "Overview Video Title",
+            "name": "overview_video_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
             "key": "field_5e131e128ca08",
             "label": "Overview video",
             "name": "about_us_video_oembed",
@@ -330,5 +349,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1578326921
+    "modified": 1580998106
 }
