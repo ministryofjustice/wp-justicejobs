@@ -2,6 +2,10 @@
 
 function saveJobsXMLFile($force_pull = false)
 {
+    if (get_option('jobs-cron-switch-input') !== '1') {
+        return false;
+    }
+
     // get admin email for messaging
     $to = get_option('admin_email');
 
@@ -23,7 +27,7 @@ function saveJobsXMLFile($force_pull = false)
     }
 
     // check if this script is already running, bail if it is.
-    if (get_option('jobs_request_cron_is_running')) {
+    if (get_option('jobs_request_cron_is_running', false)) {
         jj_simple_mail($to, [
             '[Justice Jobs] Getting Remote Data',
             'WARNING -> the jobs script is already running. A request to refresh the job list has failed.'

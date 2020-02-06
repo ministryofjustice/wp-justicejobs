@@ -285,7 +285,7 @@ require 'inc/job-location-taxonomy-meta.php';
  */
 function jobs_import_override()
 {
-    $query = get_query_var('import-override');
+    $query = get_query_var('jobs_process');
     if (is_user_logged_in() && current_user_can('administrator')) {
         switch ($query) {
             case 'pull-jobs':
@@ -317,7 +317,7 @@ function jobs_import_override()
     }
 }
 
-add_action('wp', 'jobs_import_override');
+add_action('wp', 'jobs_import_override', 1);
 
 /**
  * When a manual import override process has completed
@@ -342,15 +342,12 @@ if (!function_exists('deleteJobs')) {
         foreach ($all_posts as $eachpost) {
             wp_delete_post($eachpost->ID, true);
         }
-
-        echo "Jobs Deleted";
-        die();
     }
 }
 
 function rj_add_query_vars_filter($vars)
 {
-    $vars[] = "import-override";
+    $vars[] = "jobs_process";
     return $vars;
 }
 
@@ -430,7 +427,6 @@ if (!function_exists('moj_at_glance_cpt_display')) {
 }
 
 add_action('dashboard_glance_items', 'moj_at_glance_cpt_display');
-
 
 /**
  *
