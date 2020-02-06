@@ -2,19 +2,12 @@
 
 function saveJobsXMLFile($force_pull = false)
 {
-    // get admin email for messaging
-    $to = get_option('admin_email');
-
-    jj_simple_mail($to, [
-        '[Justice Jobs] Fixed broken flag',
-        'BROKEN -> the jobs schedule was repaired.'
-    ]);
-
-    die();
-
     if (get_option('jobs-cron-switch-input') !== '1') {
         return false;
     }
+
+    // get admin email for messaging
+    $to = get_option('admin_email');
 
     // should we run?
     if (!inside_schedule_window() && !$force_pull) {
