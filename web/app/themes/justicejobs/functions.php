@@ -350,7 +350,7 @@ if (!function_exists('deleteJobs')) {
 
 function rj_add_query_vars_filter($vars)
 {
-    $vars[] = "importScriptTest";
+    $vars[] = "import-override";
     return $vars;
 }
 
