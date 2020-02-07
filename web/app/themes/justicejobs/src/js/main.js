@@ -24,8 +24,7 @@ jQuery(document).ready(function ($) {
             target.removeClass('closed');
             target.addClass('open');
 
-            if ( $('#ccfw-page-banner-container').css('display') == 'block') {
-
+            if ($('#ccfw-page-banner-container').css('display') == 'block') {
                 $('#main-nav-hook').removeClass('page-header__FixToCookieBanner container').addClass('page-header container')
             }
         } else {
@@ -33,8 +32,7 @@ jQuery(document).ready(function ($) {
             target.removeClass('open');
             target.addClass('closed');
 
-            if ( $('#ccfw-page-banner-container').css('display') == 'block') {
-
+            if ($('#ccfw-page-banner-container').css('display') == 'block') {
                 $('#main-nav-hook').removeClass('page-header container').addClass('page-header__FixToCookieBanner container')
             }
         }
@@ -323,43 +321,43 @@ jQuery(document).ready(function ($) {
 
     var utilities = {
         init: function () {
-          this.storageAvailable()
+            this.storageAvailable()
         },
         // Run a small test to determine if the browser can use local storage functionality
         // if not use browser cookies
         storageAvailable: function (type) {
-          try {
-            var storage = window[type]
-            var x = '__storage_test__'
-            storage.setItem(x, x)
-            storage.removeItem(x)
-            return true
-          } catch (e) {
-            return false
-          }
+            try {
+                var storage = window[type]
+                var x = '__storage_test__'
+                storage.setItem(x, x)
+                storage.removeItem(x)
+                return true
+            } catch (e) {
+                return false
+            }
         },
         getCookie: function (name) {
-          var value = '; ' + document.cookie
-          var parts = value.split('; ' + name + '=')
-          if (parts.length === 2) {
-            return parts.pop().split(';').shift()
-          }
+            var value = '; ' + document.cookie
+            var parts = value.split('; ' + name + '=')
+            if (parts.length === 2) {
+                return parts.pop().split(';').shift()
+            }
         }
-      }
+    }
 
     var mainNavModify = {
 
         init: function () {
             this.cacheDom()
             this.replaceClass()
-          },
+        },
 
         cacheDom: function () {
-        if (utilities.storageAvailable('localStorage')) {
-            this.localStorage = window.localStorage
-        }
-        this.$el = $('#main-nav-hook')
-        this.headerWrapClass = this.$el.find('#menu-header-menu')
+            if (utilities.storageAvailable('localStorage')) {
+                this.localStorage = window.localStorage
+            }
+            this.$el = $('#main-nav-hook')
+            this.headerWrapClass = this.$el.find('#menu-header-menu')
         },
 
         replaceClass: function () {
@@ -368,7 +366,7 @@ jQuery(document).ready(function ($) {
             if (lStorage === 'false') {
                 this.$el.removeClass('page-header container').addClass('page-header__FixToCookieBanner container')
                 this.headerWrapClass.removeClass('page-header__nav').addClass('page-header__navFixCookieBanner')
-              }
+            }
         }
     }
 
