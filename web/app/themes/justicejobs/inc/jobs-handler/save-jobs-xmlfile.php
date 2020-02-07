@@ -1,4 +1,6 @@
 <?php
+// bootstrap WP
+require_once(ABSPATH . "wp-load.php");
 
 function saveJobsXMLFile($force_pull = false)
 {
@@ -44,9 +46,12 @@ function saveJobsXMLFile($force_pull = false)
     // we are ready to start, lock the script...
     update_option('jobs_request_cron_is_running', true);
 
+    // get the uploads directory path
+    $upload_dir = wp_get_upload_dir();
+
     $url = "https://justicejobs.tal.net/vx/mobile-0/appcentre-1/brand-2/candidate/jobboard/vacancy/3/feed/structured";
     $tmp = get_temp_dir() . "jobs.xml";
-    $file = "app/uploads/job-feed/jobs.xml";
+    $file = $upload_dir['basedir'] . "/job-feed/jobs.xml";
 
     $response = wp_remote_get($url, [
         'timeout' => 1800,
@@ -85,6 +90,11 @@ function saveJobsXMLFile($force_pull = false)
 
         // clean up tmp file
         unlink($tmp);
+    } else {
+        jj_simple_mail($to, [
+            '[Justice Jobs] Copying data',
+            'FAIL -> jobs have not been saved to public file.'
+        ]);
     }
 
     // unlock this script for next schedule window

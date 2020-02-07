@@ -1,4 +1,6 @@
 <?php
+// bootstrap WP
+require_once(ABSPATH . "wp-load.php");
 
 if (!function_exists('import_jobs_from_xml')) {
 
