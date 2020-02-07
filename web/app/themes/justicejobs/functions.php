@@ -248,7 +248,7 @@ if (!wp_next_scheduled('save_xml_cron_hook')) {
 
 add_action('update_jobs_cron_hook', 'addJobPost');
 if (!wp_next_scheduled('update_jobs_cron_hook')) {
-    wp_schedule_event(time(), 'hourly', 'update_jobs_cron_hook');
+    wp_schedule_event(time() + 1800, 'hourly', 'update_jobs_cron_hook');
 }
 
 /**
