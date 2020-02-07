@@ -15,8 +15,11 @@
   }
 
   &__text {
-    float: left;
-    padding-right: 5%;
+
+    @include respond-to(md) {
+      float: left;
+      padding-right: 5%;
+    }
   }
 
   .heading--md {
@@ -47,6 +50,24 @@
       padding-top: 60px;
       width: 50%;
       text-align: center;
+    }
+
+    &.overview__video_has_title {
+
+      @include respond-to(md) {
+        padding-top: 0;
+      }
+    }
+
+    h3 {
+      text-align: left;
+
+      @include respond-to(sm) {
+        margin-bottom: 20px;
+      }
+      @include respond-to(md) {
+        margin-top: 10px;
+      }
     }
   }
 

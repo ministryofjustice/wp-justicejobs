@@ -47,11 +47,27 @@ get_header();
                 </div>
             </div>
 
-            <div class="overview__video-wrap">
-                <div class="overview__video">
-                    <?php the_field('about_us_video_oembed'); ?>
+            <?php
+            $about_us_video_url = get_field('about_us_video_oembed', false, false);
+
+            if(empty($about_us_video_url) == false){
+
+                $wrap_class = '';
+                $video_title = get_field('overview_video_title');
+
+                if(empty($video_title) == false){
+                    $wrap_class = 'overview__video_has_title';
+                }
+            ?>
+                <div class="overview__video-wrap <?php echo $wrap_class; ?>">
+                    <div class="overview__video">
+                        <?php if(empty($video_title) == false){ ?>
+                            <h3 class="heading--sm"><?php echo $video_title; ?></h3>
+                        <?php } ?>
+                        <?php the_field('about_us_video_oembed'); ?>
+                    </div>
                 </div>
-            </div>
+            <?php } ?>
 
         </div>
 
