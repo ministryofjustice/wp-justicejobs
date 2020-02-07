@@ -8,7 +8,7 @@ function saveJobsXMLFile($force_pull = false)
     ]);
 
     // check admin hasn't switch the cron off, default is on
-    if ((string)get_option('jobs-cron-switch-input', '1') !== '1') {
+    if (get_option('jobs-cron-switch-input', '1') != '1') {
         return false;
     }
 
@@ -33,7 +33,7 @@ function saveJobsXMLFile($force_pull = false)
     }
 
     // check if this script is already running, bail if it is. Default to 'not running'.
-    if (get_option('jobs_request_cron_is_running', false)) {
+    if (get_option('jobs_request_cron_is_running', false) == true) {
         jj_simple_mail($to, [
             '[Justice Jobs] Getting Remote Data',
             'WARNING -> the jobs script is already running. A request to refresh the job list has failed.'
@@ -48,11 +48,19 @@ function saveJobsXMLFile($force_pull = false)
     $tmp = get_temp_dir() . "jobs.xml";
     $file = "app/uploads/job-feed/jobs.xml";
 
-    wp_remote_get($url, [
+    $response = wp_remote_get($url, [
         'timeout' => 1800,
         'stream' => true,
         'filename' => $tmp
     ]);
+
+    if (is_wp_error($response)) {
+        jj_simple_mail($to, [
+            '[Justice Jobs] Getting Remote Data',
+            'WARNING -> We could not receive jobs data from the remote server.'
+        ]);
+        return false;
+    }
 
     // let's check the data is xml
     if (!simplexml_load_file($tmp)) {
