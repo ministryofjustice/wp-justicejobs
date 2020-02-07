@@ -95,16 +95,16 @@
         },
         {
             "name": "composer/installers",
-            "version": "v1.7.0",
+            "version": "v1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "141b272484481432cda342727a427dc1e206bfa0"
+                "reference": "7d610d50aae61ae7ed6675e58efeabdf279bb5e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/141b272484481432cda342727a427dc1e206bfa0",
-                "reference": "141b272484481432cda342727a427dc1e206bfa0",
+                "url": "https://api.github.com/repos/composer/installers/zipball/7d610d50aae61ae7ed6675e58efeabdf279bb5e3",
+                "reference": "7d610d50aae61ae7ed6675e58efeabdf279bb5e3",
                 "shasum": ""
             },
             "require": {
@@ -152,6 +152,7 @@
                 "Kanboard",
                 "Lan Management System",
                 "MODX Evo",
+                "MantisBT",
                 "Mautic",
                 "Maya",
                 "OXID",
@@ -206,6 +207,7 @@
                 "shopware",
                 "silverstripe",
                 "sydes",
+                "sylius",
                 "symfony",
                 "typo3",
                 "wordpress",
@@ -213,7 +215,7 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2019-08-12T15:00:31+00:00"
+            "time": "2020-02-07T10:39:20+00:00"
         },
         {
             "name": "daverandom/exceptional-json",
@@ -720,12 +722,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ministryofjustice/cookie-compliance-for-wordpress.git",
-                "reference": "411d361ae83f623450caae2b68bec3f652ebc8e0"
+                "reference": "a8e15876a29a5a6d9f0e397160904b4483b3248b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ministryofjustice/cookie-compliance-for-wordpress/zipball/411d361ae83f623450caae2b68bec3f652ebc8e0",
-                "reference": "411d361ae83f623450caae2b68bec3f652ebc8e0",
+                "url": "https://api.github.com/repos/ministryofjustice/cookie-compliance-for-wordpress/zipball/a8e15876a29a5a6d9f0e397160904b4483b3248b",
+                "reference": "a8e15876a29a5a6d9f0e397160904b4483b3248b",
                 "shasum": ""
             },
             "require": {
@@ -754,21 +756,21 @@
                 "source": "https://github.com/ministryofjustice/cookie-compliance-for-wordpress/tree/justice-jobs",
                 "issues": "https://github.com/ministryofjustice/cookie-compliance-for-wordpress/issues"
             },
-            "time": "2020-01-29T15:47:28+00:00"
+            "time": "2020-02-07T16:59:08+00:00"
         },
         {
             "name": "ministryofjustice/wp-moj-components",
-            "version": "3.0.1",
+            "version": "3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ministryofjustice/wp-moj-components.git",
-                "reference": "e761d303414e29983c9e0317d94eeb67b6bd03e9"
+                "reference": "e53c3a9c7b7e4894bc2e42ec789fa5731c5c2ac9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.wp.dsd.io/dist/ministryofjustice/wp-moj-components/ministryofjustice-wp-moj-components-e761d303414e29983c9e0317d94eeb67b6bd03e9-zip-ff939d.zip",
-                "reference": "e761d303414e29983c9e0317d94eeb67b6bd03e9",
-                "shasum": "b1d9c72c1dce889d30a87572b36fc0496e40f13d"
+                "url": "https://composer.wp.dsd.io/dist/ministryofjustice/wp-moj-components/ministryofjustice-wp-moj-components-e53c3a9c7b7e4894bc2e42ec789fa5731c5c2ac9-zip-3ff57b.zip",
+                "reference": "e53c3a9c7b7e4894bc2e42ec789fa5731c5c2ac9",
+                "shasum": "7400d6802266fade8a168705ea43c612aa81e409"
             },
             "require": {
                 "composer/installers": "^1.0"
@@ -803,10 +805,10 @@
             ],
             "description": "A plugin to introduce global functions to a collection of WP sites",
             "support": {
-                "source": "https://github.com/ministryofjustice/wp-moj-components/tree/3.0.1",
+                "source": "https://github.com/ministryofjustice/wp-moj-components/tree/3.0.2",
                 "issues": "https://github.com/ministryofjustice/wp-moj-components/issues"
             },
-            "time": "2019-11-12T23:26:43+00:00"
+            "time": "2020-02-07T12:21:01+00:00"
         },
         {
             "name": "ministryofjustice/wp-rewrite-media-to-s3",
