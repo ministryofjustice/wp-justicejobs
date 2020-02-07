@@ -2,7 +2,12 @@
 
 function saveJobsXMLFile($force_pull = false)
 {
-    if (get_option('jobs-cron-switch-input') !== '1') {
+    jj_simple_mail('damien.wilson@digital.justice.gov.uk', [
+        '[Justice Jobs] Script init',
+        'DEBUG -> the jobs feed pull is starting.'
+    ]);
+    // check admin hasn't switch the cron off, default is on
+    if ((string)get_option('jobs-cron-switch-input', '1') !== '1') {
         return false;
     }
 
@@ -26,7 +31,7 @@ function saveJobsXMLFile($force_pull = false)
         update_option('jobs_request_cron_is_running', false);
     }
 
-    // check if this script is already running, bail if it is.
+    // check if this script is already running, bail if it is. Default to 'not running'.
     if (get_option('jobs_request_cron_is_running', false)) {
         jj_simple_mail($to, [
             '[Justice Jobs] Getting Remote Data',
@@ -75,4 +80,6 @@ function saveJobsXMLFile($force_pull = false)
 
     // unlock this script for next schedule window
     update_option('jobs_request_cron_is_running', false);
+
+    return true;
 }
