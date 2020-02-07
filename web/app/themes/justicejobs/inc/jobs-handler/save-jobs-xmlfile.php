@@ -6,6 +6,7 @@ function saveJobsXMLFile($force_pull = false)
         '[Justice Jobs] Script init',
         'DEBUG -> the jobs feed pull is starting.'
     ]);
+
     // check admin hasn't switch the cron off, default is on
     if ((string)get_option('jobs-cron-switch-input', '1') !== '1') {
         return false;
