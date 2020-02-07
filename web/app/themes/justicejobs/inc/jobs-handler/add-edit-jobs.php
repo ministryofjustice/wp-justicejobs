@@ -15,7 +15,7 @@ if (!function_exists('import_jobs_from_xml')) {
 
         jj_simple_mail($to, [
             '[Justice Jobs] Import status',
-            "A change is detected. About to begin importing jobs."
+            "A change in jobs has been detected. Moving to begin importing jobs."
         ]);
 
         // collect significant data

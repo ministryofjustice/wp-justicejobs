@@ -326,7 +326,7 @@ add_action('wp', 'jobs_import_override', 1);
  */
 function jobs_import_override_complete($redirect = false)
 {
-    if (WP_ENV === 'production' || $redirect) {
+    if (WP_ENV === 'production' || $redirect === true) {
         if (wp_redirect('/', 301)) {
             exit;
         }
