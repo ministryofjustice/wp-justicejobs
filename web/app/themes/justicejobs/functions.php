@@ -433,7 +433,7 @@ add_action('dashboard_glance_items', 'moj_at_glance_cpt_display');
  */
 function jobs_cron_page_create()
 {
-    $page_title = 'Jobs CRON Switch';
+    $page_title = 'Jobs CRON Settings';
     $menu_title = 'Jobs CRON';
     $capability = 'manage_options';
     $menu_slug = 'jobs-cron-switch';
@@ -484,7 +484,13 @@ function jobs_cron_page_display()
         $checked = ' checked="checked"';
     }
 
-    echo '<h1>Jobs CRON Switch</h1>
+    // options
+    $is_running = get_option('jobs_request_cron_is_running');
+    $jobs_available = get_option('jobs_request_has_updated');
+    $next_schedule = wp_next_scheduled('save_xml_cron_hook');
+    $next_import = wp_next_scheduled('update_jobs_cron_hook');
+
+    echo '<h1>Jobs CRON Settings</h1>
             <h2 style="color:#cc0000"><em>Here be dragons!</em></h2>
             <p>You can use this page to switch on/off the job feeds CRON.<br>Please be careful.</p>
             ' . jobs_cron_display_notice($value) . '
@@ -493,7 +499,27 @@ function jobs_cron_page_display()
                 <input type="checkbox" name="jobs_cron_switch_input" id="jobs_cron_switch_input" value="1" ' . $checked . '>
                 <input type="hidden" name="jobs_cron_checker" value="1">
                 <br><br><button type="submit" value="Save" class="button button-primary button-large">Save</button>
-            </form>';
+            </form>
+            <br>
+            <hr>
+            <div>
+                <h2>Current Settings</h2>
+                <table>
+                <thead>
+                    <tr>
+                        <th style="text-align: left">Description</th>
+                        <th style="text-align: left">Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Is jobs save process running? </td><td><strong>' . ($is_running == true ? 'Yes' : 'No') . '</strong></td></tr>
+                    <tr><td>Hours when jobs save occurs: </td><td><strong>' . implode(', ', jj_scheduled_hours()) . '</strong></td></tr>
+                    <tr><td>Are jobs ready to import? </td><td><strong>' . ($jobs_available == true ? 'Yes' : 'No') . '</strong></td></tr>
+                    <tr><td>Save XML CRON will run at: </td><td><strong>' . date("H:i:s", $next_schedule) . '</strong></td></tr>
+                    <tr><td>Update Jobs CRON will run at: </td><td><strong>' . date("H:i:s", $next_import) . '</strong></td></tr>
+                </tbody>
+                </table>
+            </div>';
 }
 
 function jobs_cron_display_notice($state)
