@@ -7,18 +7,13 @@ if (!function_exists('import_jobs_from_xml')) {
     function import_jobs_from_xml()
     {
         // update available?
-        $job_data_updated = get_option('jobs_request_has_updated');
+        $job_data_updated = get_option('jobs_request_has_updated', true);
         if (!$job_data_updated) {
             return false;
         }
 
         // get admin email for simple notifications
         $to = get_option('admin_email');
-
-        jj_simple_mail($to, [
-            '[Justice Jobs] Import status',
-            "A change in jobs has been detected. Moving to begin importing jobs."
-        ]);
 
         // collect significant data
         $errors = [];
@@ -31,9 +26,23 @@ if (!function_exists('import_jobs_from_xml')) {
             'deleted' => 0
         ];
 
-        require_once(ABSPATH . 'wp-admin/includes/post.php');
+        // get the uploads directory path
+        $upload_dir = wp_get_upload_dir();
+        $file = $upload_dir['basedir'] . "/job-feed/jobs.xml";
 
-        $xml = simplexml_load_file("app/uploads/job-feed/jobs.xml") or die("Fail");
+        $xml = simplexml_load_file($file);
+
+        if (!$xml) {
+            // inform admin
+            jj_simple_mail($to, [
+                "[Justice Jobs] Security: error detected in jobs XML file",
+                "Please check jobs.xml for errors. The job feed load process failed in " . __FUNCTION__
+            ]);
+
+            return false;
+        }
+
+        require_once(ABSPATH . 'wp-admin/includes/post.php');
 
         $total_jobs = count($xml->entry);
         $active_jobs = [];
@@ -149,13 +158,13 @@ if (!function_exists('import_jobs_from_xml')) {
             $message .= "Errors:\n";
             foreach ($errors as $error) {
                 $error_title = $error[0] ?? 'No title saved';
-                $error_link  = $error[1] ?? 'No link saved';
+                $error_link = $error[1] ?? 'No link saved';
                 $message .= $error_title . " | " . $error_link . "\n";
             }
         }
 
         jj_simple_mail($to, [
-            '[Justice Jobs] Import Result',
+            '[Justice Jobs] Latest job import results',
             $message
         ]);
 
@@ -279,4 +288,3 @@ function replace_content_headers($input_lines)
 
     return $input_lines;
 }
-
