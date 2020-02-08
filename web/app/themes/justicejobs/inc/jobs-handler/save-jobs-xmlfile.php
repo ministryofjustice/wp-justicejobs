@@ -2,13 +2,8 @@
 // bootstrap WP
 require_once(ABSPATH . "wp-load.php");
 
-function saveJobsXMLFile($force_pull = false)
+function save_jobs_xml_file($force_pull = false)
 {
-    jj_simple_mail('damien.wilson@digital.justice.gov.uk', [
-        '[Justice Jobs] Script init',
-        'DEBUG -> the jobs feed pull is starting.'
-    ]);
-
     // check admin hasn't switch the cron off, default is on
     if (get_option('jobs-cron-switch-input', '1') != '1') {
         return false;
@@ -37,7 +32,7 @@ function saveJobsXMLFile($force_pull = false)
     // check if this script is already running, bail if it is. Default to 'not running'.
     if (get_option('jobs_request_cron_is_running', false) == true) {
         jj_simple_mail($to, [
-            '[Justice Jobs] Getting Remote Data',
+            '[Justice Jobs] Job script already running',
             'WARNING -> the jobs script is already running. A request to refresh the job list has failed.'
         ]);
         return false;
@@ -61,8 +56,8 @@ function saveJobsXMLFile($force_pull = false)
 
     if (is_wp_error($response)) {
         jj_simple_mail($to, [
-            '[Justice Jobs] Getting Remote Data',
-            'WARNING -> We could not receive jobs data from the remote server.'
+            '[Justice Jobs] Getting remote data',
+            'WARNING -> We did not receive jobs data from the remote server. This could be a temporary error'
         ]);
         return false;
     }
@@ -82,19 +77,14 @@ function saveJobsXMLFile($force_pull = false)
     if (copy($tmp, $file)) {
         // set flag to notify import process that data is refreshed
         update_option('jobs_request_has_updated', true);
-        // fire off an email 'thumbs-up' to say all is well.
-        jj_simple_mail($to, [
-            '[Justice Jobs] Saving remote data',
-            'SUCCESS -> jobs have been saved from remote server.'
-        ]);
-
         // clean up tmp file
         unlink($tmp);
     } else {
         jj_simple_mail($to, [
             '[Justice Jobs] Copying data',
-            'FAIL -> jobs have not been saved to public file.'
+            'WARNING -> jobs have not been saved successfully. The job save process has not completed which means the import process will not take place.'
         ]);
+        return false;
     }
 
     // unlock this script for next schedule window

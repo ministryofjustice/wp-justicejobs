@@ -241,14 +241,14 @@ require 'inc/jobs-handler/add-edit-jobs.php';
 require 'inc/jobs-handler/job-search.php';
 
 // Create cron hook and schedule event
-add_action('save_xml_cron_hook', 'saveJobsXMLFile');
+add_action('save_xml_cron_hook', 'save_jobs_xml_file');
 if (!wp_next_scheduled('save_xml_cron_hook')) {
     wp_schedule_event(time(), 'hourly', 'save_xml_cron_hook');
 }
 
-add_action('update_jobs_cron_hook', 'addJobPost');
+add_action('update_jobs_cron_hook', 'import_jobs_from_xml');
 if (!wp_next_scheduled('update_jobs_cron_hook')) {
-    wp_schedule_event(time() + 1800, 'hourly', 'update_jobs_cron_hook');
+    wp_schedule_event(time() + 900, 'hourly', 'update_jobs_cron_hook');
 }
 
 /**
@@ -289,7 +289,7 @@ function jobs_import_override()
     if (is_user_logged_in() && current_user_can('administrator')) {
         switch ($query) {
             case 'pull-jobs':
-                saveJobsXMLFile();
+                save_jobs_xml_file();
                 jobs_import_override_complete();
                 break;
             case 'import-jobs':
@@ -301,11 +301,11 @@ function jobs_import_override()
                 jobs_import_override_complete();
                 break;
             case 'pull-jobs-force':
-                saveJobsXMLFile(true);
+                save_jobs_xml_file(true);
                 jobs_import_override_complete();
                 break;
             case 'refresh-feed':
-                saveJobsXMLFile(true);
+                save_jobs_xml_file(true);
                 import_jobs_from_xml();
                 jobs_import_override_complete();
                 break;
@@ -448,8 +448,6 @@ add_action('admin_menu', 'jobs_cron_page_create');
 
 function jobs_cron_page_display()
 {
-    global $wp;
-
     if (!current_user_can('manage_options')) {
         wp_die('Sorry, you cannot access this page.');
     }
@@ -477,49 +475,7 @@ function jobs_cron_page_display()
         wp_mail(get_option('admin_email'), $subject, $message);
     }
 
-    $value = get_option('jobs-cron-switch-input', '1'); // catches first time use and turns the CRON on
-
-    $checked = '';
-    if ($value === '1') {
-        $checked = ' checked="checked"';
-    }
-
-    // options
-    $is_running = get_option('jobs_request_cron_is_running');
-    $jobs_available = get_option('jobs_request_has_updated');
-    $next_schedule = wp_next_scheduled('save_xml_cron_hook');
-    $next_import = wp_next_scheduled('update_jobs_cron_hook');
-
-    echo '<h1>Jobs CRON Settings</h1>
-            <h2 style="color:#cc0000"><em>Here be dragons!</em></h2>
-            <p>You can use this page to switch on/off the job feeds CRON.<br>Please be careful.</p>
-            ' . jobs_cron_display_notice($value) . '
-            <form method="POST">
-                <label for="jobs_cron_switch_input">Jobs CRON activate? </label>
-                <input type="checkbox" name="jobs_cron_switch_input" id="jobs_cron_switch_input" value="1" ' . $checked . '>
-                <input type="hidden" name="jobs_cron_checker" value="1">
-                <br><br><button type="submit" value="Save" class="button button-primary button-large">Save</button>
-            </form>
-            <br>
-            <hr>
-            <div>
-                <h2>Current Settings</h2>
-                <table>
-                <thead>
-                    <tr>
-                        <th style="text-align: left">Description</th>
-                        <th style="text-align: left">Value</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>Is jobs save process running? </td><td><strong>' . ($is_running == true ? 'Yes' : 'No') . '</strong></td></tr>
-                    <tr><td>Hours when jobs save occurs: </td><td><strong>' . implode(', ', jj_scheduled_hours()) . '</strong></td></tr>
-                    <tr><td>Are jobs ready to import? </td><td><strong>' . ($jobs_available == true ? 'Yes' : 'No') . '</strong></td></tr>
-                    <tr><td>Save XML CRON will run at: </td><td><strong>' . date("H:i:s", $next_schedule) . '</strong></td></tr>
-                    <tr><td>Update Jobs CRON will run at: </td><td><strong>' . date("H:i:s", $next_import) . '</strong></td></tr>
-                </tbody>
-                </table>
-            </div>';
+    include('inc/job-cron-options-page.php');
 }
 
 function jobs_cron_display_notice($state)
