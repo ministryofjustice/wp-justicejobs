@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cdb7afc645323320b61a2927d0199db0",
+    "content-hash": "d386164b2915621370e935e095c17bf8",
     "packages": [
         {
             "name": "acf/advanced-custom-fields-pro",
@@ -2063,24 +2063,6 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/classic-editor/"
-        },
-        {
-            "name": "wpackagist-plugin/cookie-law-info",
-            "version": "1.8.2",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/cookie-law-info/",
-                "reference": "tags/1.8.2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/cookie-law-info.1.8.2.zip"
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/cookie-law-info/"
         },
         {
             "name": "wpackagist-plugin/duplicate-post",

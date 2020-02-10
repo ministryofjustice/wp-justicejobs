@@ -133,7 +133,7 @@ Template Post Type: agency
                                 <div class="popup popup--carousel">
                                     <div class="popup__block">
                                         <?php if ($carousel_top) : ?>
-                                            <div class="popup__carousel">
+                                            <div class="">
 
                                                 <?php foreach ($carousel_top as $row) : ?>
                                                     <section class="popup__item">
@@ -147,7 +147,7 @@ Template Post Type: agency
                                                                 <img src="<?php echo $row['carousel_image']; ?>"
                                                                      alt=""/>
                                                             </div>
-                                                            <div>
+                                                            <div class="popup__text">
                                                                 <?php echo $row['carousel_content']; ?>
                                                             </div>
                                                         </div>
@@ -349,7 +349,7 @@ Template Post Type: agency
                     <div class="popup popup--carousel">
                         <div class="popup__block">
                             <?php if (have_rows('pop-up_carousel')) : ?>
-                                <div class="popup__carousel">
+                                <div class="">
                                     <?php while (have_rows('pop-up_carousel')) :
                                         the_row(); ?>
                                         <section class="popup__item">
@@ -362,7 +362,7 @@ Template Post Type: agency
                                                 <div>
                                                     <img src="<?php the_sub_field('carousel_image'); ?>" alt=""/>
                                                 </div>
-                                                <div>
+                                                <div class="popup__text">
                                                     <?php the_sub_field('carousel_content'); ?>
                                                 </div>
                                             </div>

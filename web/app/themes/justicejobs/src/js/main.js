@@ -73,9 +73,17 @@ jQuery(document).ready(function ($) {
         }
     });
 
+    // close popup: escape key
     $(document).on('keydown', function (event) {
         if (event.key == "Escape") {
             $('.popup .btn-close').click();
+        }
+    });
+
+    // close popup: background clicked
+    $(".popup").click(function (event) {
+        if ($(event.target).hasClass('is-opened')) {
+            $('.popup').removeClass('is-opened');
         }
     });
 
@@ -91,6 +99,8 @@ jQuery(document).ready(function ($) {
         e.preventDefault();
         var i = $(this).data('index');
         $('.popup--carousel').eq(i).addClass('is-opened');
+
+        maybe_show_close_btn($('.popup--carousel').eq(i));
     });
 
     $('.popup .btn-close').on('click', () => {
@@ -384,21 +394,66 @@ jQuery(document).ready(function ($) {
         // check for popup...
         if (link.attr('href')[0] === '#') {
             resolveLink = $(this).find('a.carousel-popup-open');
-            console.log($(this));
-            console.log(resolveLink);
             if (resolveLink.length > 0) {
                 // open the popup
-                console.log(resolveLink.data('index'));
                 $('.popup--carousel').eq(resolveLink.data('index')).addClass('is-opened');
+                maybe_show_close_btn($('.popup.is-opened'));
             }
             return false;
         }
-
         window.location = link.prop('href');
     });
 
     $('.agency__carousel--full .accessible-carousel__arrow').each(function () {
         var color = $(this).closest('.agency__carousel').css('background-color');
         $(this).css('background-color', color);
-    })
+    });
+
+    $(window).resize(function () {
+        maybe_show_close_btn($('.popup.is-opened'));
+    });
 });
+
+function maybe_show_close_btn(ele) {
+    if (ele instanceof jQuery) {
+        var closeBtn = ele.find('.btn-close'),
+            ii = 100,
+            cnt = 0;
+
+        if (closeBtn.is(':offscreen')) {
+            var position = closeBtn.position(),
+                blockToMove = ele.find('.popup__block'),
+                distance = 10;
+
+            for (ii; cnt < ii; ii++) {
+                distance = distance + 10;
+                blockToMove.css({
+                    top: distance
+                });
+
+                if (!closeBtn.is(':offscreen')) {
+                    blockToMove.css({
+                        top: distance + closeBtn.outerHeight()
+                    });
+                    break;
+                }
+                cnt++;
+            }
+        }
+    }
+}
+
+/**
+ * Create a new jquery selector - :offscreen
+ * obj.is(':offscreen')
+ * @param el
+ * @returns {boolean}
+ */
+jQuery.expr.filters.offscreen = function (el) {
+    var rect = el.getBoundingClientRect();
+    return (
+        (rect.x + rect.width) < 0
+        || (rect.y + rect.height) < 0
+        || (rect.x > window.innerWidth || rect.y > window.innerHeight)
+    );
+};
