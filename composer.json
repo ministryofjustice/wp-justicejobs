@@ -37,7 +37,6 @@
         "wpackagist-plugin/mce-table-buttons": "*",
         "wpackagist-plugin/wordpress-seo": "*",
         "wpackagist-plugin/duplicate-post":"*",
-        "wpackagist-plugin/wp-cron-cleaner":"*",
         "ministryofjustice/wp-rewrite-media-to-s3": "^0.1.1",
         "ministryofjustice/wp-user-roles": "*",
         "ministryofjustice/wp-moj-components": "*",
