@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d386164b2915621370e935e095c17bf8",
+    "content-hash": "87b2e800f93690b370e26b4286068681",
     "packages": [
         {
             "name": "acf/advanced-custom-fields-pro",
@@ -2171,24 +2171,6 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/wp-accessibility/"
-        },
-        {
-            "name": "wpackagist-plugin/wp-cron-cleaner",
-            "version": "1.0.1",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/wp-cron-cleaner/",
-                "reference": "tags/1.0.1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-cron-cleaner.1.0.1.zip"
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/wp-cron-cleaner/"
         }
     ],
     "packages-dev": [
