@@ -1,4 +1,4 @@
-# Template WordPress project
+# Justice Jobs site
 
 Use this template to bootstrap a new WordPress project for use in the MOJ docker hosting environment.
 
