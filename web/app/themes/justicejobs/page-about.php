@@ -50,18 +50,18 @@ get_header();
             <?php
             $about_us_video_url = get_field('about_us_video_oembed', false, false);
 
-            if(empty($about_us_video_url) == false){
+            if (empty($about_us_video_url) == false) {
 
                 $wrap_class = '';
                 $video_title = get_field('overview_video_title');
 
-                if(empty($video_title) == false){
+                if (empty($video_title) == false) {
                     $wrap_class = 'overview__video_has_title';
                 }
-            ?>
+                ?>
                 <div class="overview__video-wrap <?php echo $wrap_class; ?>">
                     <div class="overview__video">
-                        <?php if(empty($video_title) == false){ ?>
+                        <?php if (empty($video_title) == false) { ?>
                             <h3 class="heading--sm"><?php echo $video_title; ?></h3>
                         <?php } ?>
                         <?php the_field('about_us_video_oembed'); ?>
@@ -85,12 +85,12 @@ get_header();
                 <?php $agencies = get_field('featured_agencies'); ?>
 
                 <ul class="accessible-carousel__container">
-                    <?php foreach ($agencies as $agency):
-
+                    <?php foreach ($agencies as $agency) :
                         $agency_image = get_field('agency_hero_desktop_image', $agency->ID);
                         $agency_name = get_the_title($agency->ID);
                         $agency_colour = get_field('agency_colour', $agency->ID);
                         $agency_link = get_permalink($agency->ID);
+                        $agency_link_text = get_field('homepage_link_text', $agency->ID) ?? 'Find out more';
 
                         $agency_description = get_field('homepage_description', $agency->ID);
                         $agency_quote_text = get_field('homepage_quote', $agency->ID);
@@ -102,15 +102,15 @@ get_header();
                             <div class="accessible-carousel__wrap"
                                  style="background-image: url('<?php echo $agency_image; ?>');">
                                 <h3 class="heading--md">
-                                    <?php echo $agency_name; ?>
+                                    <span class="text-highlight"><?= $agency_name ?></span>
                                 </h3>
                                 <p class="heading--body">
-                                    <?php echo $agency_description; ?>
+                                    <span class="text-highlight"><?= $agency_description ?></span>
                                 </p>
                                 <a
-                                    href="<?php echo $agency_link; ?>"
+                                    href="<?= $agency_link ?>"
                                     class="btn-secondary btn-secondary--light">
-                                    Find out more
+                                    <?= $agency_link_text ?>
                                     <svg width="8" height="13">
                                         <use xlink:href="#icon-arrow"></use>
                                     </svg>
@@ -123,11 +123,11 @@ get_header();
                                         <use xlink:href="#icon-arrow--decor"></use>
                                     </svg>
                                     <blockquote class="quote-copy">
-                                        <?php echo $agency_quote_text; ?>
+                                        <?= $agency_quote_text ?>
                                     </blockquote>
                                     <p class="work__cite-wrap heading--xxs">
-                                        <span><?php echo $agency_quote_author; ?></span>
-                                        <span><?php echo $agency_quote_author_position; ?></span>
+                                        <span><?= $agency_quote_author ?></span>
+                                        <span><?= $agency_quote_author_position ?></span>
                                     </p>
                                     <svg width="37" height="24">
                                         <use xlink:href="#icon-arrow--decor"></use>
