@@ -98,13 +98,8 @@ jQuery(function ($) {
     });
 
     // when an about block is clicked
-    $('.apply-btn').on('click', function () {
-        var label = $(this).data('id');
-
-        if (!label) {
-            label = null; // catch null in GTM
-        }
-
-        _trackEvent('apply-button-click', {'applyButtonJobId': label});
+    $('.apply-btn').on('click', function (event) {
+        var title = $('h2.heading--sm').html().split('<br>')[0].trim();
+        _trackEvent('apply-button-click', {'applyButtonJobId': title});
     });
 });

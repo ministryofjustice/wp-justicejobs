@@ -415,25 +415,30 @@ jQuery(document).ready(function ($) {
 });
 
 function maybe_show_close_btn(ele) {
-    if (ele instanceof jQuery) {
+    if (ele instanceof jQuery && ele.length > 0) {
         var closeBtn = ele.find('.btn-close'),
+            position = closeBtn.position(),
+            btnHeight = closeBtn.outerHeight(),
             ii = 100,
             cnt = 0;
 
-        if (closeBtn.is(':offscreen')) {
-            var position = closeBtn.position(),
-                blockToMove = ele.find('.popup__block'),
+        if (!position.top) {
+            return false;
+        }
+
+        if (closeBtn.is(':offscreen') || (position.top - 5) < btnHeight) {
+            var blockToMove = ele.find('.popup__block'),
                 distance = 10;
 
             for (ii; cnt < ii; ii++) {
-                distance = distance + 10;
+                distance = distance + 20;
                 blockToMove.css({
                     top: distance
                 });
 
                 if (!closeBtn.is(':offscreen')) {
                     blockToMove.css({
-                        top: distance + closeBtn.outerHeight()
+                        top: distance + btnHeight
                     });
                     break;
                 }
