@@ -144,6 +144,7 @@ if ($the_query->have_posts()) : ?>
             $featured_img_url = get_field('agency_hero_desktop_image');
             $agency_name = get_the_title($post_id);
             $agency_colour = get_field('agency_colour');
+            $more_link_text = get_field('homepage_link_text') ?? 'Find out more';
 
             ?>
 
@@ -160,7 +161,7 @@ if ($the_query->have_posts()) : ?>
                     alt="<?= $agency_name ?> logo"
                 />
                 <div class="btn-secondary btn-secondary--light">
-                    Find out more
+                    <?= $more_link_text ?>
                     <svg width="8" height="13">
                         <use xlink:href="#icon-arrow"></use>
                     </svg>

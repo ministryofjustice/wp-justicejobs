@@ -300,6 +300,25 @@
             "prepend": "",
             "append": "",
             "maxlength": ""
+        },
+        {
+            "key": "field_5e4280a261217",
+            "label": "Homepage Link Text",
+            "name": "homepage_link_text",
+            "type": "text",
+            "instructions": "Instead of 'Find out more'  (the default link text) you can change it here. This will impact the homepage and also, relevant buttons in carousels.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "Find out more",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         }
     ],
     "location": [
@@ -319,5 +338,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1573138224
+    "modified": 1581416905
 }
