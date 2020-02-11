@@ -564,4 +564,21 @@ function is_2_hours_past_window()
             return true;
         }
     }
+    return false;
 }
+
+
+/**
+ * Remove post types from
+ */
+function remove_from_admin_menu()
+{
+    // Check capability (admin)
+    if (current_user_can('manage_options')) {
+        return null;
+    }
+
+    remove_menu_page('edit.php'); // add here your cpt name
+    remove_menu_page('edit-comments.php');
+}
+add_action('admin_menu', 'remove_from_admin_menu');
