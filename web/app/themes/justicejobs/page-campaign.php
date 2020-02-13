@@ -22,7 +22,7 @@ Template Post Type: page, campaign
             </svg>
             <ul class="breadcrumbs text-highlight">
                 <li><a href="<?php echo get_bloginfo('url'); ?>">Home</a></li>
-                <li>Campaign</li>
+                <li>Role</li>
             </ul>
             <h1 class="heading--lg"><span class="text-highlight"><?php the_title(); ?></span></h1>
             <p>
