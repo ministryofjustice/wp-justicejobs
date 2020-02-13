@@ -77,7 +77,7 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                         'hide_empty' => true,
                     ));
 
-                    $options = jj_select_options($_role_type, 'Role Type');
+                    $options = jj_select_options($_role_type, 'Role type');
 
                     ?>
                     <select class="select" id="role-type" <?= $options['title'] ?>>
@@ -100,7 +100,7 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                         <option value="100">100 miles</option>
                     </select>
                 </div>
-                <span class="filter__label">Salary Range</span>
+                <span class="filter__label">Salary range</span>
                 <div class="select-list">
                     <?php
                     $terms = get_terms(array(
@@ -108,15 +108,15 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                         'hide_empty' => true,
                     ));
 
-                    $options = jj_select_options($_salary_range, 'Salary Range');
+                    $options = jj_select_options($_salary_range, 'Salary range');
 
                     ?>
-                    <label for="salary-range" class="screen-reader-text">Salary Range</label>
+                    <label for="salary-range" class="screen-reader-text">Salary range</label>
                     <select class="select" id="salary-range" <?= $options['title'] ?>>
                         <?= $options['list'] ?>
                     </select>
                 </div>
-                <span class="filter__label">Working Pattern</span>
+                <span class="filter__label">Working pattern</span>
                 <div class="select-list">
                     <?php
                     $terms = get_terms(array(
@@ -124,10 +124,10 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                         'hide_empty' => true,
                     ));
 
-                    $options = jj_select_options($_working_pattern, 'Working Pattern');
+                    $options = jj_select_options($_working_pattern, 'Working pattern');
 
                     ?>
-                    <label for="working-pattern" class="screen-reader-text">Working Pattern</label>
+                    <label for="working-pattern" class="screen-reader-text">Working pattern</label>
                     <select class="select" id="working-pattern" <?= $options['title'] ?>>
                         <?= $options['list'] ?>
                     </select>

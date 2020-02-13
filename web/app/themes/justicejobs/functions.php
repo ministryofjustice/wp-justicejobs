@@ -396,7 +396,7 @@ function jj_select_options($qs_param, $default = 'option')
     }
 
     if (!$selectedFound) {
-        $pre_options .= '<option value="" disabled selected>' . ucwords($default) . '</option>';
+        $pre_options .= '<option value="" disabled selected>' . ucfirst($default) . '</option>';
         $selectedFound = '';
     }
 
