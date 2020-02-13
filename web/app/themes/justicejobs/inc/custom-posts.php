@@ -164,6 +164,7 @@ function add_campaign_post_type() {
 		'exclude_from_search'   => false,
 		'publicly_queryable'    => true,
 		'capability_type'       => 'page',
+        'rewrite' => array('slug' => 'role','with_front' => false)
 	);
 	register_post_type( 'campaign', $args );
 

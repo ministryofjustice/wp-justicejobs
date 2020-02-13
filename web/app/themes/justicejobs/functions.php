@@ -309,6 +309,9 @@ function jobs_import_override()
                 import_jobs_from_xml();
                 jobs_import_override_complete();
                 break;
+            case 'move-campaigns':
+                move_campaigns();
+                break;
         }
     }
 
@@ -582,3 +585,26 @@ function remove_from_admin_menu()
     remove_menu_page('edit-comments.php');
 }
 add_action('admin_menu', 'remove_from_admin_menu');
+
+function move_campaigns(){
+
+    $campaigns =  get_posts( array(
+        'post_type' => 'page',
+        'meta_key' => '_wp_page_template',
+        'meta_value' => 'page-campaign.php',
+        'posts_per_page' => -1,
+        'post_status' => 'any'
+        )
+    );
+
+    foreach ($campaigns as $campaign){
+
+        $campaign_post = array(
+            'ID'           => $campaign->ID,
+            'post_type'   => 'campaign',
+        );
+
+        wp_update_post( $campaign_post );
+
+    }
+}
