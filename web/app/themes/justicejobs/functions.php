@@ -309,8 +309,8 @@ function jobs_import_override()
                 import_jobs_from_xml();
                 jobs_import_override_complete();
                 break;
-            case 'move-campaigns':
-                move_campaigns();
+            case 'move-agency-data':
+                move_agency_data();
                 break;
         }
     }
@@ -586,25 +586,94 @@ function remove_from_admin_menu()
 }
 add_action('admin_menu', 'remove_from_admin_menu');
 
-function move_campaigns(){
+function move_agency_data(){
 
-    $campaigns =  get_posts( array(
-        'post_type' => 'page',
-        'meta_key' => '_wp_page_template',
-        'meta_value' => 'page-campaign.php',
-        'posts_per_page' => -1,
-        'post_status' => 'any'
+    $agencies =  get_posts( array(
+            'post_type' => 'agency',
+            'posts_per_page' => -1,
+
         )
     );
 
-    foreach ($campaigns as $campaign){
+    foreach ($agencies as $agency){
 
-        $campaign_post = array(
-            'ID'           => $campaign->ID,
-            'post_type'   => 'campaign',
-        );
+        $add_carousel = get_post_meta($agency->ID, 'add_locations_carousel');
+        $carousel_title = get_post_meta($agency->ID, 'category_text');
 
-        wp_update_post( $campaign_post );
+        if(!empty($add_carousel)){
+            update_field('add_vacancies_carousel', $add_carousel[0], $agency->ID);
+        }
+
+        if(!empty($carousel_title)){
+            update_field('carousel_title', $carousel_title[0], $agency->ID);
+        }
+
+        $block_count = 0;
+
+        if (have_rows('bottom_block', $agency->ID)) :
+
+            while (have_rows('bottom_block', $agency->ID)) :
+                the_row();
+
+                $block_title = get_post_meta($agency->ID, 'bottom_block_' . $block_count . '_bottom_name_and_role');
+                $bg_img = get_post_meta($agency->ID, 'bottom_block_' . $block_count . '_bottom_background_image');
+
+                if(!empty($block_title)){
+                    $new_block_settings = array();
+                    $block_settings = get_sub_field('bottom');
+
+                    if(!empty($block_settings) && is_array($block_settings)){
+                        $new_block_settings = $block_settings;
+                    }
+
+                    if(!empty($block_title)) {
+                        $new_block_settings['block_title'] = $block_title[0];
+                    }
+
+                    if(!empty($bg_img)) {
+                        $new_block_settings['background_image'] = $bg_img[0];
+                    }
+
+                    update_sub_field('bottom', $new_block_settings,$agency->ID);
+                }
+
+                $ispopup = get_sub_field('pop_up_block');
+
+                if ($ispopup) :
+
+                    $persons_name = get_post_meta($agency->ID, 'bottom_block_' . $block_count . '_pop-up_carousel_0_carousel_title');
+                    $story_title = get_post_meta($agency->ID, 'bottom_block_' . $block_count . '_pop-up_carousel_0_carousel_category');
+                    $story_content = get_post_meta($agency->ID, 'bottom_block_' . $block_count . '_pop-up_carousel_0_carousel_content');
+                    $story_image = get_post_meta($agency->ID, 'bottom_block_' . $block_count . '_pop-up_carousel_0_carousel_image');
+
+                    $pop_up_story = array();
+
+                    if(!empty($persons_name)){
+                        $pop_up_story['persons_name'] = $persons_name[0];
+                    }
+
+                    if(!empty($story_title)){
+                        $pop_up_story['story_title'] = $story_title[0];
+                    }
+
+                    if(!empty($story_content)){
+                        $pop_up_story['story_content'] = $story_content[0];
+                    }
+
+                    if(!empty($story_image)){
+                        $pop_up_story['story_image'] = $story_image[0];
+                    }
+                    update_sub_field('pop-up_story', $pop_up_story,$agency->ID);
+
+                endif;
+
+                $block_count++;
+
+            endwhile;
+        endif;
+
 
     }
+
+    die();
 }
