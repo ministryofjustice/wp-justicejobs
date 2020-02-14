@@ -1,10 +1,10 @@
 {
     "key": "group_5c99fa47800fd",
-    "title": "Agency Template Fields",
+    "title": "Agency main content",
     "fields": [
         {
             "key": "field_5ca7326c056bf",
-            "label": "General Agency Fields",
+            "label": "Hero and body content",
             "name": "",
             "type": "tab",
             "instructions": "",
@@ -211,7 +211,7 @@
         },
         {
             "key": "field_5ca1d969285ef",
-            "label": "Homepage Fields",
+            "label": "Carousel content",
             "name": "",
             "type": "tab",
             "instructions": "",
@@ -227,10 +227,10 @@
         },
         {
             "key": "field_5ca1da867dff7",
-            "label": "Homepage Description",
+            "label": "Description",
             "name": "homepage_description",
             "type": "textarea",
-            "instructions": "Add agency description to appear in the homepage agency carousel",
+            "instructions": "Add description to appear on the agency carousel",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -246,10 +246,10 @@
         },
         {
             "key": "field_5ca1dab07dff8",
-            "label": "Homepage Quote",
+            "label": "Quote",
             "name": "homepage_quote",
             "type": "textarea",
-            "instructions": "Add quote text to appear in the right column of the homepage carousel",
+            "instructions": "Add quote text to appear in the right column of the carousel",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -265,7 +265,7 @@
         },
         {
             "key": "field_5ca1db0f7dff9",
-            "label": "Homepage Quote Author",
+            "label": "Author",
             "name": "homepage_quote_author",
             "type": "text",
             "instructions": "Add name and surname of the quote author",
@@ -284,10 +284,10 @@
         },
         {
             "key": "field_5ca1db427dffa",
-            "label": "Homepage Quote Author Position",
+            "label": "Job title",
             "name": "homepage_quote_author_position",
             "type": "text",
-            "instructions": "Add the quote author's position",
+            "instructions": "Add the author's job title",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -303,10 +303,10 @@
         },
         {
             "key": "field_5e4280a261217",
-            "label": "Homepage Link Text",
+            "label": "Link",
             "name": "homepage_link_text",
             "type": "text",
-            "instructions": "Instead of 'Find out more'  (the default link text) you can change it here. This will impact the homepage and also, relevant buttons in carousels.",
+            "instructions": "Change the agency link from the default of 'Find out more'",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -338,5 +338,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1581416905
+    "modified": 1581695932
 }
