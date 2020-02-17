@@ -211,29 +211,35 @@ Template Post Type: agency
                 the_row();
                 $ispopup = get_sub_field('pop_up_block');
                 if ($ispopup) :
+                    $popup_story = get_sub_field('pop-up_story');
                     ?>
                     <div class="popup popup--carousel">
                         <div class="popup__block">
-                            <?php if (have_rows('pop-up_story')) : ?>
+                            <?php if (is_array($popup_story)) :
+                                ?>
                                 <div class="">
-                                    <?php while (have_rows('pop-up_story')) :
-                                        the_row(); ?>
                                         <section class="popup__item">
                                             <header>
-                                                <span
-                                                    class="heading--xs "><?php the_sub_field('story_title'); ?></span>
-                                                <h3 class="heading--sm"><?php the_sub_field('persons_name'); ?></h3>
+                                                <?php if(array_key_exists('story_title', $popup_story) && !empty($popup_story['story_title'])){ ?>
+                                                    <span class="heading--xs "><?php echo $popup_story['story_title']; ?></span>
+                                                <?php } ?>
+                                                <?php if(array_key_exists('persons_name', $popup_story) && !empty($popup_story['persons_name'])){ ?>
+                                                    <h3 class="heading--sm"><?php echo $popup_story['persons_name']; ?></h3>
+                                                <?php } ?>
                                             </header>
                                             <div class="popup__body">
                                                 <div>
-                                                    <img src="<?php the_sub_field('story_image'); ?>" alt=""/>
+                                                    <?php if(array_key_exists('story_image', $popup_story) && !empty($popup_story['story_image'])){ ?>
+                                                        <img src="<?php echo $popup_story['story_image']; ?>" alt=""/>
+                                                    <?php } ?>
                                                 </div>
                                                 <div class="popup__text">
-                                                    <?php the_sub_field('story_content'); ?>
+                                                    <?php if(array_key_exists('story_content', $popup_story) && !empty($popup_story['story_content'])){ ?>
+                                                        <?php echo $popup_story['story_content']; ?>
+                                                    <?php } ?>
                                                 </div>
                                             </div>
                                         </section>
-                                    <?php endwhile; ?>
                                 </div>
                             <?php endif; ?>
                             <button class="btn-close" role="button" aria-label="Close">
