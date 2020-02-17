@@ -270,17 +270,6 @@ jQuery(document).ready(function ($) {
 
     }
 
-    // Saves most recent search for use in Back button
-    $('.back-to-search').each(function () {
-
-        var referrer = document.referrer
-
-        if(referrer.length > 0) {
-            this.attr("href", referrer)
-        }
-    });
-
-
     // My video code
     // $('.agency__video').on('click', function(e) {
     //   var video = this.querySelector('video');
