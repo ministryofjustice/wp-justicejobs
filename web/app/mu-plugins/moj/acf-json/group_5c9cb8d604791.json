@@ -1,10 +1,10 @@
 {
     "key": "group_5c9cb8d604791",
-    "title": "Agency Full Template Fields",
+    "title": "Agency - Righthand side content blocks",
     "fields": [
         {
             "key": "field_5c9cb9725435b",
-            "label": "Location Carousel",
+            "label": "Tow row",
             "name": "",
             "type": "tab",
             "instructions": "",
@@ -20,8 +20,8 @@
         },
         {
             "key": "field_5cb74f3ad0a2e",
-            "label": "Add Locations Carousel",
-            "name": "add_locations_carousel",
+            "label": "Add vacancies carousel",
+            "name": "add_vacancies_carousel",
             "type": "true_false",
             "instructions": "",
             "required": 0,
@@ -39,10 +39,10 @@
         },
         {
             "key": "field_5c9ceb727c6b8",
-            "label": "Category Text",
-            "name": "category_text",
+            "label": "Carousel title",
+            "name": "carousel_title",
             "type": "text",
-            "instructions": "Add block category",
+            "instructions": "(e.g. Current vacancies)",
             "required": 0,
             "conditional_logic": [
                 [
@@ -117,12 +117,12 @@
                 },
                 {
                     "key": "field_5c9cb9f95435f",
-                    "label": "Title",
+                    "label": "Job title",
                     "name": "title",
                     "type": "text",
-                    "instructions": "Add title",
+                    "instructions": "(e.g Psychologist, Caseworker)",
                     "required": 0,
-                    "conditional_logic": null,
+                    "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
                         "class": "",
@@ -136,10 +136,10 @@
                 },
                 {
                     "key": "field_5c9cba0e54360",
-                    "label": "Subtitle",
+                    "label": "Job location or tagline",
                     "name": "subtitle",
                     "type": "text",
-                    "instructions": "Add subtitle",
+                    "instructions": "(e.g. Leeds)",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -188,7 +188,7 @@
         },
         {
             "key": "field_5c9ce0c1d4456",
-            "label": "Bottom Block",
+            "label": "Bottom Blocks",
             "name": "bottom_block",
             "type": "repeater",
             "instructions": "",
@@ -246,10 +246,10 @@
                         },
                         {
                             "key": "field_5cc1784e5ccff",
-                            "label": "Name and Role",
-                            "name": "name_and_role",
+                            "label": "Block title",
+                            "name": "block_title",
                             "type": "text",
-                            "instructions": "",
+                            "instructions": "(e.g. My story)",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -331,10 +331,10 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_5c9cecafe8e6a",
-                    "label": "Pop-up carousel",
-                    "name": "pop-up_carousel",
-                    "type": "repeater",
+                    "key": "field_5e46cf2e11dc6",
+                    "label": "Pop-up story",
+                    "name": "pop-up_story",
+                    "type": "group",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": [
@@ -351,16 +351,12 @@
                         "class": "",
                         "id": ""
                     },
-                    "collapsed": "",
-                    "min": 0,
-                    "max": 0,
-                    "layout": "row",
-                    "button_label": "Add carousel slide",
+                    "layout": "block",
                     "sub_fields": [
                         {
-                            "key": "field_5c9cecf2e8e6b",
-                            "label": "Carousel Title",
-                            "name": "carousel_title",
+                            "key": "field_5e46cf7a11dc7",
+                            "label": "Person's name",
+                            "name": "persons_name",
                             "type": "text",
                             "instructions": "",
                             "required": 0,
@@ -377,11 +373,11 @@
                             "maxlength": ""
                         },
                         {
-                            "key": "field_5c9dfa7606e99",
-                            "label": "Carousel Category",
-                            "name": "carousel_category",
+                            "key": "field_5e46cfaa11dc8",
+                            "label": "Story title",
+                            "name": "story_title",
                             "type": "text",
-                            "instructions": "",
+                            "instructions": "(e.g. Read my story)",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -396,9 +392,9 @@
                             "maxlength": ""
                         },
                         {
-                            "key": "field_5c9dfa8806e9a",
-                            "label": "Carousel Content",
-                            "name": "carousel_content",
+                            "key": "field_5e46d07911dc9",
+                            "label": "Story content",
+                            "name": "story_content",
                             "type": "textarea",
                             "instructions": "",
                             "required": 0,
@@ -415,9 +411,9 @@
                             "new_lines": "wpautop"
                         },
                         {
-                            "key": "field_5c9dfaa006e9b",
-                            "label": "Carousel Image",
-                            "name": "carousel_image",
+                            "key": "field_5e46d0df11dca",
+                            "label": "Story Image",
+                            "name": "story_image",
                             "type": "image",
                             "instructions": "",
                             "required": 0,
@@ -483,5 +479,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1581416152
+    "modified": 1581714202
 }

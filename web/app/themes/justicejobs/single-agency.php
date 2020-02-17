@@ -68,11 +68,11 @@ Template Post Type: agency
 
             <div class="agency__col">
                 <?php
-                $add_carousel = get_field('add_locations_carousel');
+                $add_carousel = get_field('add_vacancies_carousel');
                 if ($add_carousel == 1) :
                     ?>
                     <div class="agency__carousel agency__carousel--full accessible-carousel">
-                        <h3 class="heading--xs"><?php the_field('category_text'); ?></h3>
+                        <h3 class="heading--xs"><?php the_field('carousel_title'); ?></h3>
 
                         <?php if (have_rows('carousel')) : ?>
                             <div id="accessible-full-carousel">
@@ -121,7 +121,7 @@ Template Post Type: agency
                         the_row();
                         $bottom_block = get_sub_field('bottom');
                         $image_url_bottom = $bottom_block['background_image'];
-                        $name_role_bottom = $bottom_block['name_and_role'];
+                        $block_title = $bottom_block['block_title'];
                         $title_bottom = $bottom_block['title'];
                         $ispopup = get_sub_field('pop_up_block');
                         $bg_colour = 'background-color: ' . get_field('agency_colour');
@@ -153,7 +153,7 @@ Template Post Type: agency
                             style="background-image: url('<?= $image_url_bottom; ?>');<?= $bg_colour ?>"
                             role="link"
                         >
-                            <span class="heading--xs"><?= $name_role_bottom; ?></span>
+                            <span class="heading--xs"><?= $block_title; ?></span>
                             <h3><?= $title_bottom; ?></h3>
 
                             <a href="<?= esc_url($more_link_bottom['url']); ?>"
@@ -211,29 +211,35 @@ Template Post Type: agency
                 the_row();
                 $ispopup = get_sub_field('pop_up_block');
                 if ($ispopup) :
+                    $popup_story = get_sub_field('pop-up_story');
                     ?>
                     <div class="popup popup--carousel">
                         <div class="popup__block">
-                            <?php if (have_rows('pop-up_carousel')) : ?>
+                            <?php if (is_array($popup_story)) :
+                                ?>
                                 <div class="">
-                                    <?php while (have_rows('pop-up_carousel')) :
-                                        the_row(); ?>
                                         <section class="popup__item">
                                             <header>
-                                                <span
-                                                    class="heading--xs "><?php the_sub_field('carousel_category'); ?></span>
-                                                <h3 class="heading--sm"><?php the_sub_field('carousel_title'); ?></h3>
+                                                <?php if(array_key_exists('story_title', $popup_story) && !empty($popup_story['story_title'])){ ?>
+                                                    <span class="heading--xs "><?php echo $popup_story['story_title']; ?></span>
+                                                <?php } ?>
+                                                <?php if(array_key_exists('persons_name', $popup_story) && !empty($popup_story['persons_name'])){ ?>
+                                                    <h3 class="heading--sm"><?php echo $popup_story['persons_name']; ?></h3>
+                                                <?php } ?>
                                             </header>
                                             <div class="popup__body">
                                                 <div>
-                                                    <img src="<?php the_sub_field('carousel_image'); ?>" alt=""/>
+                                                    <?php if(array_key_exists('story_image', $popup_story) && !empty($popup_story['story_image'])){ ?>
+                                                        <img src="<?php echo $popup_story['story_image']; ?>" alt=""/>
+                                                    <?php } ?>
                                                 </div>
                                                 <div class="popup__text">
-                                                    <?php the_sub_field('carousel_content'); ?>
+                                                    <?php if(array_key_exists('story_content', $popup_story) && !empty($popup_story['story_content'])){ ?>
+                                                        <?php echo $popup_story['story_content']; ?>
+                                                    <?php } ?>
                                                 </div>
                                             </div>
                                         </section>
-                                    <?php endwhile; ?>
                                 </div>
                             <?php endif; ?>
                             <button class="btn-close" role="button" aria-label="Close">
