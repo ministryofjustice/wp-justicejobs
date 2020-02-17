@@ -257,12 +257,27 @@ jQuery(document).ready(function ($) {
 
     });
 
+    if ($('.back-to-search').length) {
+
+        var back_url = '/search-page/'
+        var referrer = document.referrer;
+
+        if(referrer.length > 0 && referrer.indexOf(document.domain) >= 0) {
+            back_url = referrer;
+        }
+
+        $('.back-to-search').attr("href", back_url);
+
+    }
 
     // Saves most recent search for use in Back button
     $('.back-to-search').each(function () {
-        $(this).on('click', function () {
-            history.back();
-        });
+
+        var referrer = document.referrer
+
+        if(referrer.length > 0) {
+            this.attr("href", referrer)
+        }
     });
 
 
