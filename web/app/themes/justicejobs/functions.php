@@ -376,7 +376,7 @@ function select_if_match($name, $compare)
     return '';
 }
 
-function jj_select_options($qs_param, $default = 'option', $sentance_case = false)
+function jj_select_options($qs_param, $default = 'option', $sentence_case = false)
 {
     global $terms;
 
@@ -389,7 +389,7 @@ function jj_select_options($qs_param, $default = 'option', $sentance_case = fals
                 $selectedFound = $term->name;
             }
 
-            if($sentance_case){
+            if($sentence_case){
                 $term->name = ucfirst(strtolower($term->name));
             }
             $role_options .= '<option value="' . $term->slug . '"' . $selected . '>' . $term->name . '</option>';
