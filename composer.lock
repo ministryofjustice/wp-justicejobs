@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "124d6096d5ddf73c44c9bed292e3461d",
+    "content-hash": "8b5517bdc56829964859ed9c6daf614b",
     "packages": [
         {
             "name": "acf/advanced-custom-fields-pro",
@@ -2045,6 +2045,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/advanced-custom-fields-table-field/"
+        },
+        {
+            "name": "wpackagist-plugin/analytify-analytics-dashboard-widget",
+            "version": "1.1.2",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/analytify-analytics-dashboard-widget/",
+                "reference": "tags/1.1.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/analytify-analytics-dashboard-widget.1.1.2.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/analytify-analytics-dashboard-widget/"
         },
         {
             "name": "wpackagist-plugin/classic-editor",
