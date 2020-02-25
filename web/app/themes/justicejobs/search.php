@@ -77,7 +77,7 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                         'hide_empty' => true,
                     ));
 
-                    $options = jj_select_options($_role_type, 'Role type');
+                    $options = jj_select_options($_role_type, 'role type');
 
                     ?>
                     <select class="select" id="role-type" <?= $options['title'] ?>>
@@ -108,7 +108,7 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                         'hide_empty' => true,
                     ));
 
-                    $options = jj_select_options($_salary_range, 'Salary range');
+                    $options = jj_select_options($_salary_range, 'salary range');
 
                     ?>
                     <label for="salary-range" class="screen-reader-text">Salary range</label>
@@ -124,7 +124,7 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                         'hide_empty' => true,
                     ));
 
-                    $options = jj_select_options($_working_pattern, 'Working pattern');
+                    $options = jj_select_options($_working_pattern, 'working pattern', true);
 
                     ?>
                     <label for="working-pattern" class="screen-reader-text">Working pattern</label>

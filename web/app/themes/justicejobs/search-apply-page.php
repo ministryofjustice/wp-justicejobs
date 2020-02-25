@@ -69,7 +69,7 @@ Template Name: Search/Apply Template
                         'hide_empty' => true,
                     ));
 
-                    $options = jj_select_options(null, 'Role type');
+                    $options = jj_select_options(null, 'role type');
 
                     ?>
                     <select class="select" id="role-type" <?= $options['title'] ?>>
@@ -100,7 +100,7 @@ Template Name: Search/Apply Template
                         'hide_empty' => true,
                     ));
 
-                    $options = jj_select_options(null, 'Salary range');
+                    $options = jj_select_options(null, 'salary range');
 
                     ?>
                     <label for="salary-range" class="screen-reader-text">Salary range</label>
@@ -116,7 +116,7 @@ Template Name: Search/Apply Template
                         'hide_empty' => true,
                     ));
 
-                    $options = jj_select_options(null, 'Working pattern');
+                    $options = jj_select_options(null, 'working pattern', true);
 
                     ?>
                     <label for="working-pattern" class="screen-reader-text">Working pattern</label>

@@ -376,7 +376,7 @@ function select_if_match($name, $compare)
     return '';
 }
 
-function jj_select_options($qs_param, $default = 'option')
+function jj_select_options($qs_param, $default = 'option', $sentance_case = false)
 {
     global $terms;
 
@@ -387,6 +387,10 @@ function jj_select_options($qs_param, $default = 'option')
             $selected = select_if_match($term->slug, $qs_param);
             if ($selected !== '') {
                 $selectedFound = $term->name;
+            }
+
+            if($sentance_case){
+                $term->name = ucfirst(strtolower($term->name));
             }
             $role_options .= '<option value="' . $term->slug . '"' . $selected . '>' . $term->name . '</option>';
         }
