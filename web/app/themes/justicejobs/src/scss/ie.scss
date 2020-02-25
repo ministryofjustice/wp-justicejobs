@@ -10,4 +10,12 @@
     }
 
   }
+
+  .accordion__btn {
+    justify-content: flex-start;
+
+    .btn-plus {
+      margin-left: auto;
+    }
+  }
 }

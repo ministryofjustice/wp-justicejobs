@@ -9,6 +9,7 @@
 </head>
 
 <body <?php body_class(); ?>>
+<?php do_action('after_body_open_tag'); ?>
 <!-- Google Tag Manager (noscript) -->
 <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PWKHW94"

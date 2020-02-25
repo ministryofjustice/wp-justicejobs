@@ -1,7 +1,6 @@
 <?php
 /*
 Template Name: Campaign Template
-Template Post Type: page, campaign
 */
 
 ?>
