@@ -376,7 +376,7 @@ function select_if_match($name, $compare)
     return '';
 }
 
-function jj_select_options($qs_param, $default = 'option')
+function jj_select_options($qs_param, $default = 'option', $sentence_case = false)
 {
     global $terms;
 
@@ -388,12 +388,16 @@ function jj_select_options($qs_param, $default = 'option')
             if ($selected !== '') {
                 $selectedFound = $term->name;
             }
+
+            if($sentence_case){
+                $term->name = ucfirst(strtolower($term->name));
+            }
             $role_options .= '<option value="' . $term->slug . '"' . $selected . '>' . $term->name . '</option>';
         }
     }
 
     if (!$selectedFound) {
-        $pre_options .= '<option value="" disabled selected>' . ucwords($default) . '</option>';
+        $pre_options .= '<option value="" disabled selected>' . ucfirst($default) . '</option>';
         $selectedFound = '';
     }
 

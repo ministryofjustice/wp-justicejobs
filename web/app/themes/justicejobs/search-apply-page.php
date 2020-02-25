@@ -69,7 +69,7 @@ Template Name: Search/Apply Template
                         'hide_empty' => true,
                     ));
 
-                    $options = jj_select_options(null, 'Role Type');
+                    $options = jj_select_options(null, 'role type');
 
                     ?>
                     <select class="select" id="role-type" <?= $options['title'] ?>>
@@ -92,7 +92,7 @@ Template Name: Search/Apply Template
                         <option value="100">100 miles</option>
                     </select>
                 </div>
-                <span class="filter__label">Salary Range</span>
+                <span class="filter__label">Salary range</span>
                 <div class="select-list">
                     <?php
                     $terms = get_terms(array(
@@ -100,15 +100,15 @@ Template Name: Search/Apply Template
                         'hide_empty' => true,
                     ));
 
-                    $options = jj_select_options(null, 'Salary Range');
+                    $options = jj_select_options(null, 'salary range');
 
                     ?>
-                    <label for="salary-range" class="screen-reader-text">Salary Range</label>
+                    <label for="salary-range" class="screen-reader-text">Salary range</label>
                     <select class="select" id="salary-range">
                         <?= $options['list'] ?>
                     </select>
                 </div>
-                <span class="filter__label">Working Pattern</span>
+                <span class="filter__label">Working pattern</span>
                 <div class="select-list">
                     <?php
                     $terms = get_terms(array(
@@ -116,10 +116,10 @@ Template Name: Search/Apply Template
                         'hide_empty' => true,
                     ));
 
-                    $options = jj_select_options(null, 'Working Pattern');
+                    $options = jj_select_options(null, 'working pattern', true);
 
                     ?>
-                    <label for="working-pattern" class="screen-reader-text">Working Pattern</label>
+                    <label for="working-pattern" class="screen-reader-text">Working pattern</label>
                     <select class="select" id="working-pattern">
                         <?= $options['list'] ?>
                     </select>
