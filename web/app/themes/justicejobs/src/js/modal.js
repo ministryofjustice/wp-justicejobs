@@ -1,4 +1,6 @@
 jQuery(document).ready(function ($) {
+  // OPENS MODALS
+
   //page-campaign.php / People Stories section / videos inside section carousel
   $('.campaign__carousel').on('click', '.video-campaign', function (e) {
     e.preventDefault();
@@ -6,6 +8,7 @@ jQuery(document).ready(function ($) {
     $('.popup--video').find('iframe').prop('src', videoSrc);
     setTimeout(function () {
       $('.popup--video').addClass('is-opened');
+      disableBodyScrolling();
     }, 500);
   });
 
@@ -16,6 +19,7 @@ jQuery(document).ready(function ($) {
     $('.popup--video').find('iframe').prop('src', videoSrc);
     setTimeout(function () {
       $('.popup--video').addClass('is-opened');
+      disableBodyScrolling();
     }, 300);
 
     window.onkeyup = function (e) {
@@ -25,18 +29,13 @@ jQuery(document).ready(function ($) {
     }
   });
 
-  // close popup: escape key
-  $(document).on('keydown', function (event) {
-    if (event.key == "Escape") {
-      $('.popup .btn-close').click();
-    }
-  });
-
-  // close popup: background clicked
-  $(".popup").click(function (event) {
-    if ($(event.target).hasClass('is-opened')) {
-      $('.popup').removeClass('is-opened');
-    }
+  //page-campaign.php / People Stories section / pop-up carousel inside section carousel
+  $('.campaign__carousel').on('click', '.campaign-carousel-popup-open', function (e) {
+    e.preventDefault();
+    var i = $(this).data('index');
+    $('.popup--carousel').eq(i).addClass('is-opened');
+    disableBodyScrolling();
+    maybe_show_close_btn($('.popup--carousel').eq(i));
   });
 
   //agency.php / Bottom block carousel
@@ -44,31 +43,8 @@ jQuery(document).ready(function ($) {
     e.preventDefault();
     var i = $(this).data('index');
     $('.popup--carousel').eq(i).addClass('is-opened');
+    disableBodyScrolling();
   });
-
-  //page-campaign.php / People Stories section / pop-up carousel inside section carousel
-  $('.campaign__carousel').on('click', '.campaign-carousel-popup-open', function (e) {
-    e.preventDefault();
-    var i = $(this).data('index');
-    $('.popup--carousel').eq(i).addClass('is-opened');
-
-    maybe_show_close_btn($('.popup--carousel').eq(i));
-  });
-
-  $('.popup .btn-close').on('click', () => {
-    $('.popup').removeClass('is-opened');
-    var iframe = document.querySelector('iframe');
-    if (iframe) {
-      var iframeSrc = iframe.src;
-      iframe.src = iframeSrc;
-    }
-  });
-
-  if ($('.popup__carousel').length > 0) {
-    $('.popup__carousel').each((i, el) => {
-      // find a way to trap focus
-    })
-  }
 
   $('.agency__featured').click(function (e) {
     var link = $(this).closest('.agency__featured').find('a').eq(0),
@@ -81,6 +57,7 @@ jQuery(document).ready(function ($) {
         // open the popup
         $('.popup--carousel').eq(resolveLink.data('index')).addClass('is-opened');
         maybe_show_close_btn($('.popup.is-opened'));
+        disableBodyScrolling();
       }
       return false;
     }
@@ -89,6 +66,40 @@ jQuery(document).ready(function ($) {
 
   $(window).resize(function () {
     maybe_show_close_btn($('.popup.is-opened'));
+  });
+
+
+
+  // FOCUS TRAP & BACKGROUND SCROLL FIX
+
+
+
+  // CLOSES MODALS
+
+  $('.popup .btn-close').on('click', () => {
+    $('.popup').removeClass('is-opened');
+    enableBodyScrolling();
+    var iframe = document.querySelector('iframe');
+    if (iframe) {
+      var iframeSrc = iframe.src;
+      iframe.src = iframeSrc;
+    }
+  });
+
+  // close popup: escape key
+  // TO-DO: make this only fire if pop-up is up
+  $(document).on('keydown', function (event) {
+    if (event.key == "Escape") {
+      $('.popup .btn-close').click();
+    }
+  });
+
+  // close popup: background clicked
+  $(".popup").click(function (event) {
+    if ($(event.target).hasClass('is-opened')) {
+      $('.popup').removeClass('is-opened');
+      enableBodyScrolling();
+    }
   });
 });
 
@@ -141,3 +152,15 @@ jQuery.expr.filters.offscreen = function (el) {
     || (rect.x > window.innerWidth || rect.y > window.innerHeight)
   );
 };
+
+function disableBodyScrolling() {
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${window.scrollY}px`;
+}
+
+function enableBodyScrolling() {
+  const scrollY = document.body.style.top;
+  document.body.style.position = '';
+  document.body.style.top = '';
+  window.scrollTo(0, parseInt(scrollY || '0') * -1);
+}
