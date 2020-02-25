@@ -9,6 +9,7 @@ jQuery(document).ready(function ($) {
     setTimeout(function () {
       $('.popup--video').addClass('is-opened');
       disableBodyScrolling();
+      trapFocus();
     }, 500);
   });
 
@@ -20,13 +21,8 @@ jQuery(document).ready(function ($) {
     setTimeout(function () {
       $('.popup--video').addClass('is-opened');
       disableBodyScrolling();
+      trapFocus();
     }, 300);
-
-    window.onkeyup = function (e) {
-      if (e.keyCode === 27) {
-        window.close();
-      }
-    }
   });
 
   //page-campaign.php / People Stories section / pop-up carousel inside section carousel
@@ -35,15 +31,8 @@ jQuery(document).ready(function ($) {
     var i = $(this).data('index');
     $('.popup--carousel').eq(i).addClass('is-opened');
     disableBodyScrolling();
+    trapFocus();
     maybe_show_close_btn($('.popup--carousel').eq(i));
-  });
-
-  //agency.php / Bottom block carousel
-  $('.carousel-popup-open').on('click', e => {
-    e.preventDefault();
-    var i = $(this).data('index');
-    $('.popup--carousel').eq(i).addClass('is-opened');
-    disableBodyScrolling();
   });
 
   $('.agency__featured').click(function (e) {
@@ -58,6 +47,7 @@ jQuery(document).ready(function ($) {
         $('.popup--carousel').eq(resolveLink.data('index')).addClass('is-opened');
         maybe_show_close_btn($('.popup.is-opened'));
         disableBodyScrolling();
+        trapFocus();
       }
       return false;
     }
@@ -68,14 +58,7 @@ jQuery(document).ready(function ($) {
     maybe_show_close_btn($('.popup.is-opened'));
   });
 
-
-
-  // FOCUS TRAP & BACKGROUND SCROLL FIX
-
-
-
   // CLOSES MODALS
-
   $('.popup .btn-close').on('click', () => {
     $('.popup').removeClass('is-opened');
     enableBodyScrolling();
@@ -86,15 +69,15 @@ jQuery(document).ready(function ($) {
     }
   });
 
-  // close popup: escape key
-  // TO-DO: make this only fire if pop-up is up
   $(document).on('keydown', function (event) {
-    if (event.key == "Escape") {
-      $('.popup .btn-close').click();
+    if($('.popup.is-opened')) {
+      if (event.key == "Escape" || event.keyCode === 27) {
+        $('.popup .btn-close').click();
+      }
     }
   });
 
-  // close popup: background clicked
+  // Closes popup if background is clicked
   $(".popup").click(function (event) {
     if ($(event.target).hasClass('is-opened')) {
       $('.popup').removeClass('is-opened');
@@ -102,6 +85,7 @@ jQuery(document).ready(function ($) {
     }
   });
 });
+
 
 function maybe_show_close_btn(ele) {
   if (ele instanceof jQuery && ele.length > 0) {
@@ -163,4 +147,41 @@ function enableBodyScrolling() {
   document.body.style.position = '';
   document.body.style.top = '';
   window.scrollTo(0, parseInt(scrollY || '0') * -1);
+}
+
+
+// Based on example by Hidde de Vries
+// https://hiddedevries.nl/en/blog/2017-01-29-using-javascript-to-trap-focus-in-an-element
+
+function trapFocus() {
+  var close = document.querySelector('.popup.is-opened .btn-close');
+  console.log(close);
+  close.focus();
+  var element = document.querySelector('.popup.is-opened');
+  console.log(element);
+  var focusableEls = element.querySelectorAll('.popup.is-opened a[href]:not([disabled]), button:not([disabled]');
+  var firstFocusableEl = focusableEls[0];
+  lastFocusableEl = focusableEls[focusableEls.length - 1];
+  KEYCODE_TAB = 9;
+
+  element.addEventListener('keydown', function (e) {
+    console.log("boop");
+    var isTabPressed = (e.key === 'Tab' || e.keyCode === KEYCODE_TAB);
+
+    if (!isTabPressed) {
+      return;
+    }
+
+    if (e.shiftKey) /* shift + tab */ {
+      if (document.activeElement === firstFocusableEl) {
+        lastFocusableEl.focus();
+        e.preventDefault();
+      }
+    } else /* tab */ {
+      if (document.activeElement === lastFocusableEl) {
+        firstFocusableEl.focus();
+        e.preventDefault();
+      }
+    }
+  });
 }
