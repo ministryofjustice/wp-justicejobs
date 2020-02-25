@@ -256,78 +256,10 @@ jQuery(document).ready(function ($) {
         return !$.trim(el.html())
     }
 
-    $('.agency__featured').click(function (e) {
-        var link = $(this).closest('.agency__featured').find('a').eq(0),
-            resolveLink = null;
-
-        // check for popup...
-        if (link.attr('href')[0] === '#') {
-            resolveLink = $(this).find('a.carousel-popup-open');
-            if (resolveLink.length > 0) {
-                // open the popup
-                $('.popup--carousel').eq(resolveLink.data('index')).addClass('is-opened');
-                maybe_show_close_btn($('.popup.is-opened'));
-            }
-            return false;
-        }
-        window.location = link.prop('href');
-    });
 
     $('.agency__carousel--full .accessible-carousel__arrow').each(function () {
         var color = $(this).closest('.agency__carousel').css('background-color');
         $(this).css('background-color', color);
     });
 
-    $(window).resize(function () {
-        maybe_show_close_btn($('.popup.is-opened'));
-    });
 });
-
-function maybe_show_close_btn(ele) {
-    if (ele instanceof jQuery && ele.length > 0) {
-        var closeBtn = ele.find('.btn-close'),
-            position = closeBtn.position(),
-            btnHeight = closeBtn.outerHeight(),
-            ii = 100,
-            cnt = 0;
-
-        if (!position.top) {
-            return false;
-        }
-
-        if (closeBtn.is(':offscreen') || (position.top - 5) < btnHeight) {
-            var blockToMove = ele.find('.popup__block'),
-                distance = 10;
-
-            for (ii; cnt < ii; ii++) {
-                distance = distance + 20;
-                blockToMove.css({
-                    top: distance
-                });
-
-                if (!closeBtn.is(':offscreen')) {
-                    blockToMove.css({
-                        top: distance + btnHeight
-                    });
-                    break;
-                }
-                cnt++;
-            }
-        }
-    }
-}
-
-/**
- * Create a new jquery selector - :offscreen
- * obj.is(':offscreen')
- * @param el
- * @returns {boolean}
- */
-jQuery.expr.filters.offscreen = function (el) {
-    var rect = el.getBoundingClientRect();
-    return (
-        (rect.x + rect.width) < 0
-        || (rect.y + rect.height) < 0
-        || (rect.x > window.innerWidth || rect.y > window.innerHeight)
-    );
-};
