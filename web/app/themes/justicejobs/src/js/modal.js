@@ -25,16 +25,6 @@ jQuery(document).ready(function ($) {
     }, 300);
   });
 
-  //page-campaign.php / People Stories section / pop-up carousel inside section carousel
-  $('.campaign__carousel').on('click', '.campaign-carousel-popup-open', function (e) {
-    e.preventDefault();
-    var i = $(this).data('index');
-    $('.popup--carousel').eq(i).addClass('is-opened');
-    disableBodyScrolling();
-    trapFocus();
-    maybe_show_close_btn($('.popup--carousel').eq(i));
-  });
-
   $('.agency__featured').click(function (e) {
     var link = $(this).closest('.agency__featured').find('a').eq(0),
       resolveLink = null;
@@ -43,10 +33,10 @@ jQuery(document).ready(function ($) {
     if (link.attr('href')[0] === '#') {
       resolveLink = $(this).find('a.carousel-popup-open');
       if (resolveLink.length > 0) {
-        // open the popup
         $('.popup--carousel').eq(resolveLink.data('index')).addClass('is-opened');
-        maybe_show_close_btn($('.popup.is-opened'));
-        disableBodyScrolling();
+        setTimeout(function () {
+          trapFocus();
+        }, 300);
         trapFocus();
       }
       return false;
@@ -154,18 +144,14 @@ function enableBodyScrolling() {
 // https://hiddedevries.nl/en/blog/2017-01-29-using-javascript-to-trap-focus-in-an-element
 
 function trapFocus() {
-  var close = document.querySelector('.popup.is-opened .btn-close');
-  console.log(close);
-  close.focus();
+  $('.popup.is-opened .btn-close').focus;
   var element = document.querySelector('.popup.is-opened');
-  console.log(element);
   var focusableEls = element.querySelectorAll('.popup.is-opened a[href]:not([disabled]), button:not([disabled]');
   var firstFocusableEl = focusableEls[0];
   lastFocusableEl = focusableEls[focusableEls.length - 1];
   KEYCODE_TAB = 9;
 
   element.addEventListener('keydown', function (e) {
-    console.log("boop");
     var isTabPressed = (e.key === 'Tab' || e.keyCode === KEYCODE_TAB);
 
     if (!isTabPressed) {

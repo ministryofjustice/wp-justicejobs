@@ -336,6 +336,12 @@
             fill: #dedede;
         }
     }
+    &:focus {
+        outline: 3px solid $focus-orange;
+        svg {
+            fill: $focus-orange;
+        }
+    }
 }
 
 .btn-plus {
@@ -358,8 +364,4 @@
     svg {
         fill: $darker-blue;
     }
-}
-
-.form-reset-button-contain {
-
 }
