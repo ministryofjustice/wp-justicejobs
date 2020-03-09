@@ -9,12 +9,12 @@ Template Name: Search/Apply Template
 <section class="hero hero--job hero--arrows">
     <div class="hero__img-block">
         <div
-            class="hero__img hero__img--desktop"
-            style="background-image: url('<?php the_field('hero_desktop_image'); ?>');"
+                class="hero__img hero__img--desktop"
+                style="background-image: url('<?php the_field('hero_desktop_image'); ?>');"
         ></div>
         <div
-            class="hero__img hero__img--mobile"
-            style="background-image: url('<?php the_field('hero_mobile_image'); ?>');"
+                class="hero__img hero__img--mobile"
+                style="background-image: url('<?php the_field('hero_mobile_image'); ?>');"
         ></div>
         <div class="hero__text-wrap">
             <svg class="hero__arrow hero__arrow--top" width="37" height="24">
@@ -54,9 +54,8 @@ Template Name: Search/Apply Template
     <div class="filter">
         <form action="#" id="search-form">
             <fieldset class="filter__fieldset">
-                <div class="header">
-                    <legend class="heading--sm">Refine by:</legend>
-                </div>
+                <legend class="heading--sm">Refine by:</legend>
+
                 <label for="keyword" class="screen-reader-text">Keyword</label>
                 <input aria-label="Keyword" type="text" class="input" placeholder="Keyword" name="keyword" id="keyword"
                        value=""/>
@@ -124,7 +123,8 @@ Template Name: Search/Apply Template
                         <?= $options['list'] ?>
                     </select>
                 </div>
-                <button class="btn btn--dark-blue search-page-link ga-main-form-button" role="button" type="submit">Search
+                <button class="btn btn--dark-blue search-page-link ga-main-form-button" role="button" type="submit">
+                    Search
                     jobs
                 </button>
                 <div class="btn-reset-button-contain">
@@ -285,10 +285,10 @@ Template Name: Search/Apply Template
 
             <div class="search_contain__map-wrap">
                 <div
-                    class="map"
-                    id="map"
-                    data-zoom="14"
-                    style="width: 100%; height: 100%;"
+                        class="map"
+                        id="map"
+                        data-zoom="14"
+                        style="width: 100%; height: 100%;"
                 >
                 </div>
             </div>

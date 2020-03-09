@@ -17,12 +17,12 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
 <section class="hero hero--job hero--arrows">
     <div class="hero__img-block">
         <div
-            class="hero__img hero__img--desktop"
-            style="background-image: url('<?php the_field('hero_desktop_image', 1870); ?>');"
+                class="hero__img hero__img--desktop"
+                style="background-image: url('<?php the_field('hero_desktop_image', 1870); ?>');"
         ></div>
         <div
-            class="hero__img hero__img--mobile"
-            style="background-image: url('<?php the_field('hero_mobile_image', 1870); ?>');"
+                class="hero__img hero__img--mobile"
+                style="background-image: url('<?php the_field('hero_mobile_image', 1870); ?>');"
         ></div>
         <div class="hero__text-wrap">
             <svg class="hero__arrow hero__arrow--top" width="37" height="24">
@@ -62,9 +62,8 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
     <div class="filter">
         <form action="#" id="search-form">
             <fieldset class="filter__fieldset">
-                <div class="header">
-                    <legend class="heading--sm">Refine by:</legend>
-                </div>
+                <legend class="heading--sm">Refine by:</legend>
+
                 <label for="keyword" class="screen-reader-text">Keyword</label>
                 <input aria-label="Keyword" type="text" class="input" placeholder="Keyword" name="keyword" id="keyword"
                        value="<?php echo $search_query; ?>"/>
@@ -132,7 +131,8 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                         <?= $options['list'] ?>
                     </select>
                 </div>
-                <button class="btn btn--dark-blue search-page-link ga-main-form-button" role="button" type="submit">Search
+                <button class="btn btn--dark-blue search-page-link ga-main-form-button" role="button" type="submit">
+                    Search
                     jobs
                 </button>
                 <div class="btn-reset-button-contain">
@@ -448,11 +448,11 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
             $job_query = new WP_Query($args);
 
             if ($job_query->have_posts()) {
-                $pagenum = $job_query->query_vars['paged'] < 1 ? 1 : $job_query->query_vars['paged'];
-                $first = (($pagenum - 1) * $job_query->query_vars['posts_per_page']) + 1;
-                $last = $first + $job_query->post_count - 1;
-                echo "<span class='search_contain__results search_contain__results--live'>Showing <b>" . $first . " - " . $last . "</b> of <b>" . "$job_query->found_posts" . "</b> job results</span>";
-                ?>
+            $pagenum = $job_query->query_vars['paged'] < 1 ? 1 : $job_query->query_vars['paged'];
+            $first = (($pagenum - 1) * $job_query->query_vars['posts_per_page']) + 1;
+            $last = $first + $job_query->post_count - 1;
+            echo "<span class='search_contain__results search_contain__results--live'>Showing <b>" . $first . " - " . $last . "</b> of <b>" . "$job_query->found_posts" . "</b> job results</span>";
+            ?>
             <div class="pagination">
                 <?php
 
@@ -464,27 +464,27 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                     'current' => max(1, get_query_var('paged')),
                     'total' => $job_query->max_num_pages,
                     'prev_text' => '<span class="screen-reader-text">' . __(
-                        'Search results - previous page',
-                        'justicejobs'
-                    ) . '</span><span aria-hidden="true">' . __('PREV', 'justicejobs') . '</span>',
+                            'Search results - previous page',
+                            'justicejobs'
+                        ) . '</span><span aria-hidden="true">' . __('PREV', 'justicejobs') . '</span>',
                     'next_text' => '<span class="screen-reader-text"> ' . __(
-                        'Search results',
-                        'justicejobs'
-                    ) . ' -  </span>' . __(
-                        'NEXT',
-                        'justicejobs'
-                    ) . ' <span class="screen-reader-text">' . __(
-                        'page',
-                        'justicejobs'
-                    ) . '</span>',
+                            'Search results',
+                            'justicejobs'
+                        ) . ' -  </span>' . __(
+                            'NEXT',
+                            'justicejobs'
+                        ) . ' <span class="screen-reader-text">' . __(
+                            'page',
+                            'justicejobs'
+                        ) . '</span>',
                     'before_page_number' => '<span class="screen-reader-text">' . __(
-                        'Search results - page',
-                        'justicejobs'
-                    ) . '</span>',
+                            'Search results - page',
+                            'justicejobs'
+                        ) . '</span>',
                     'after_page_number' => '<span class="screen-reader-text"> ' . __(
-                        ' of ',
-                        'justicejobs'
-                    ) . __($job_query->max_num_pages) . '</span>'
+                            ' of ',
+                            'justicejobs'
+                        ) . __($job_query->max_num_pages) . '</span>'
                 ));
 
                 ?>
@@ -597,26 +597,26 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
 
             <div class="search_contain__map-wrap">
                 <div
-                    class="map"
-                    id="map"
-                    data-zoom="14"
-                    style="width: 100%; height: 100%;"
+                        class="map"
+                        id="map"
+                        data-zoom="14"
+                        style="width: 100%; height: 100%;"
                 >
                 </div>
             </div>
         </div>
-                <?php
-            } else { ?>
+        <?php
+        } else { ?>
             <div class="search_contain__empty">
                 <p class="heading--sm">Sorry no results found</p>
                 <span>Please try again or <button class="btn-reset" id="reset-2"
                                                   type="reset">reset the form</button></span>
             </div>
 
-            <?php }
-            wp_reset_postdata();
+        <?php }
+        wp_reset_postdata();
 
-            ?>
+        ?>
 
         <footer>
             <div class="pagination">
@@ -630,27 +630,27 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                     'current' => max(1, get_query_var('paged')),
                     'total' => $job_query->max_num_pages,
                     'prev_text' => '<span class="screen-reader-text">' . __(
-                        'Search results - previous page',
-                        'justicejobs'
-                    ) . '</span><span aria-hidden="true">' . __('PREV', 'justicejobs') . '</span>',
+                            'Search results - previous page',
+                            'justicejobs'
+                        ) . '</span><span aria-hidden="true">' . __('PREV', 'justicejobs') . '</span>',
                     'next_text' => '<span class="screen-reader-text"> ' . __(
-                        'Search results',
-                        'justicejobs'
-                    ) . ' -  </span>' . __(
-                        'NEXT',
-                        'justicejobs'
-                    ) . ' <span class="screen-reader-text">' . __(
-                        'page',
-                        'justicejobs'
-                    ) . '</span>',
+                            'Search results',
+                            'justicejobs'
+                        ) . ' -  </span>' . __(
+                            'NEXT',
+                            'justicejobs'
+                        ) . ' <span class="screen-reader-text">' . __(
+                            'page',
+                            'justicejobs'
+                        ) . '</span>',
                     'before_page_number' => '<span class="screen-reader-text">' . __(
-                        'Search results - page',
-                        'justicejobs'
-                    ) . '</span>',
+                            'Search results - page',
+                            'justicejobs'
+                        ) . '</span>',
                     'after_page_number' => '<span class="screen-reader-text"> ' . __(
-                        ' of ',
-                        'justicejobs'
-                    ) . __($job_query->max_num_pages) . '</span>'
+                            ' of ',
+                            'justicejobs'
+                        ) . __($job_query->max_num_pages) . '</span>'
                 ));
 
                 ?>
