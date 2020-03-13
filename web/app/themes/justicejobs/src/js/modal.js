@@ -155,8 +155,8 @@ function trapFocus() {
   var element = document.querySelector('.popup.is-opened');
   var focusableEls = element.querySelectorAll('.popup.is-opened a[href]:not([disabled]), button:not([disabled]');
   var firstFocusableEl = focusableEls[0];
-  lastFocusableEl = focusableEls[focusableEls.length - 1];
-  KEYCODE_TAB = 9;
+  var lastFocusableEl = focusableEls[focusableEls.length - 1];
+  var KEYCODE_TAB = 9;
 
   element.addEventListener('keydown', function (e) {
     var isTabPressed = (e.key === 'Tab' || e.keyCode === KEYCODE_TAB);
