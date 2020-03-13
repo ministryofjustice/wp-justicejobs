@@ -36,8 +36,7 @@ jQuery(document).ready(function ($) {
         $('.popup--carousel').eq(resolveLink.data('index')).addClass('is-opened');
         setTimeout(function () {
           trapFocus();
-        }, 300);
-        trapFocus();
+        }, 250);
       }
       return false;
     }
@@ -52,6 +51,9 @@ jQuery(document).ready(function ($) {
   $('.popup .btn-close').on('click', () => {
     $('.popup').removeClass('is-opened');
     enableBodyScrolling();
+    var firstPopupButton = document.getElementsByClassName("carousel-popup-open")[0];
+    console.log(firstPopupButton);
+    firstPopupButton.focus();
     var iframe = document.querySelector('iframe');
     if (iframe) {
       var iframeSrc = iframe.src;
@@ -63,6 +65,8 @@ jQuery(document).ready(function ($) {
     if($('.popup.is-opened')) {
       if (event.key == "Escape" || event.keyCode === 27) {
         $('.popup .btn-close').click();
+        var firstPopupButton = document.getElementsByClassName("carousel-popup-open")[0];
+        firstPopupButton.focus();
       }
     }
   });
@@ -72,6 +76,8 @@ jQuery(document).ready(function ($) {
     if ($(event.target).hasClass('is-opened')) {
       $('.popup').removeClass('is-opened');
       enableBodyScrolling();
+      var firstPopupButton = document.getElementsByClassName("carousel-popup-open")[0];
+      firstPopupButton.focus();
     }
   });
 });
@@ -144,7 +150,8 @@ function enableBodyScrolling() {
 // https://hiddedevries.nl/en/blog/2017-01-29-using-javascript-to-trap-focus-in-an-element
 
 function trapFocus() {
-  $('.popup.is-opened .btn-close').focus;
+  var close = $('.popup.is-opened .btn-close');
+  close.focus();
   var element = document.querySelector('.popup.is-opened');
   var focusableEls = element.querySelectorAll('.popup.is-opened a[href]:not([disabled]), button:not([disabled]');
   var firstFocusableEl = focusableEls[0];
