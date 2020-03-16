@@ -306,6 +306,10 @@
                 order: 6;
             }
         }
+
+        @include target-ie-10-11 {
+            display: block;
+        }
     }
 
     &__container#js-show-map .btn--small {
