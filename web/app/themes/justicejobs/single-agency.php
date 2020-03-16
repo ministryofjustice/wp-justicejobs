@@ -42,7 +42,7 @@ Template Post Type: agency
                         src="<?php echo get_field('agency_logo_black'); ?>"
                         width="164"
                         height="77"
-                        alt="HM Courts & Tribunals Service"
+                        alt="<?php echo strip_tags(get_the_title()) ?>"
                     />
                 </div>
             </div>
