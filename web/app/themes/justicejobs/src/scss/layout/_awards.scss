@@ -37,7 +37,6 @@
   &__slide {
     margin: 0 10px;
     height: 127px;
-    outline: none;
 
     @include respond-to(md) {
       margin: 0 15px;
@@ -56,7 +55,6 @@
     top: 50%;
     transform: translateY(-50%);
     font-size: 0;
-    outline: none;
     border: none;
     background: none;
     cursor: pointer;

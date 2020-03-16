@@ -88,7 +88,6 @@ function my_login_logo() {
        font-size: 1.7rem;
        letter-spacing: 0.15px;
        line-height: 18.7px;
-       outline: none;
        background: #fff;
        border: 1px solid #d9d9d9;
        border-radius: 3px;
@@ -117,7 +116,6 @@ function my_login_logo() {
       text-shadow: none;
       text-align: center;
       border-radius: 3px;
-      outline: none;
       border: 1px solid #000 !important;
       /* border: 1px solid #00b1eb; */
       /* background-color: #00b1eb; */
