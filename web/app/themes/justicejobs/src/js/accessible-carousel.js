@@ -86,7 +86,6 @@ jQuery(document).ready(function ($) {
             }
 
             carouselCtrls = carousel.querySelectorAll('.accessible-carousel__controls')[0];
-            console.log(carouselCtrls);
             slides = carousel.querySelectorAll('.accessible-carousel__slide');
 
             carousel.className = 'accessible-carousel';
