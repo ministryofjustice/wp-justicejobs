@@ -88,10 +88,6 @@
         }
     }
 
-    &__item {
-        outline: none;
-    }
-
     &__body {
         display: flex;
         justify-content: center; //change 2
@@ -148,7 +144,6 @@
         top: 50%;
         transform: translateY(-50%);
         font-size: 0;
-        outline: none;
         border: none;
         background: none;
         cursor: pointer;
