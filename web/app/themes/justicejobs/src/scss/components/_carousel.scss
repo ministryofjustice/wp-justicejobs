@@ -81,7 +81,7 @@
 
     &__wrap {
         float: none;
-        width: 40%;
+        width: 63%;
         padding: 100px 50px 50px;
         height: 50%;
         outline: none;
@@ -95,6 +95,10 @@
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
         z-index: 1;
+
+        @include respond-to(sm) {
+            width: 40%;
+        }
 
         .accessible-carousel--full-width & {
 
@@ -127,6 +131,7 @@
         background-repeat: no-repeat;
         background-size: cover;
         padding: 75px 60px 50px;
+        position: relative;
 
         .accessible-carousel--full-width & {
             padding: 0 !important;
@@ -162,6 +167,12 @@
         a.btn-secondary {
             padding: 2rem;
             margin-right: 2rem;
+            position: absolute;
+            bottom: 88px;
+
+            &.about {
+                background-color: inherit;
+            }
 
             &:focus {
                 background: #fecf43;
@@ -174,6 +185,7 @@
                     fill: #000;
                 }
             }
+
         }
 
         .agency__polygon.full {
@@ -185,13 +197,43 @@
             left: 0;
 
             &:before {
-                -webkit-clip-path: polygon(0 0, 30% 0, 50% 100%, 0% 100%);
-                clip-path: polygon(0 0, 30% 0, 50% 100%, 0% 100%);
+                -webkit-clip-path: polygon(0 0, 50% 0, 90% 100%, 0% 100%);
+                clip-path: polygon(0 0, 50% 0, 90% 100%, 0% 100%);
                 background-color: $even-darker-blue;
 
+                @include target-ie-10-11 {
+                    width: 60% !important;
+                    -webkit-clip-path: none;
+                    clip-path: none;
+                }
+
                 @include respond-to(xs) {
-                    /*-webkit-clip-path: polygon(0 0, 35% 0, 75% 100%, 0% 100%);
-                    clip-path: polygon(0 0, 35% 0, 75% 100%, 0% 100%);*/
+                    -webkit-clip-path: polygon(0 0, 40% 0, 80% 100%, 0% 100%);
+                    clip-path: polygon(0 0, 40% 0, 80% 100%, 0% 100%);
+
+                    @include target-ie-10-11 {
+                        width: 65% !important;
+                        -webkit-clip-path: none;
+                        clip-path: none;
+                    }
+                }
+                @include respond-to(sm) {
+                    -webkit-clip-path: polygon(0 0,30% 0,50% 100%,0 100%);
+                    clip-path: polygon(0 0,30% 0,50% 100%,0 100%);
+
+                    @include target-ie-10-11 {
+                        width: 56% !important;
+                        -webkit-clip-path: none;
+                        clip-path: none;
+                    }
+                }
+                @include respond-to(md) {
+                    -webkit-clip-path: polygon(0 0,40% 0,65% 100%,0 100%);
+                    clip-path: polygon(0 0,40% 0,65% 100%,0 100%);
+                }
+                @include respond-to(lg) {
+                    -webkit-clip-path: polygon(0 0,30% 0,50% 100%,0 100%);
+                    clip-path: polygon(0 0,30% 0,50% 100%,0 100%);
                 }
             }
 
@@ -263,7 +305,7 @@
     top: 0;
     list-style-type: none;
     margin-top: 3rem;
-    z-index: 1;
+    z-index: 2;
 
     li {
         display: inline;
@@ -313,6 +355,9 @@
     &--full {
         width: 100%;
 
+        a.btn-secondary {
+            bottom: -20px;
+        }
         .accessible-carousel__slide {
             margin-top: 0;
         }

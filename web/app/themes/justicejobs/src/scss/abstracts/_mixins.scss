@@ -39,3 +39,9 @@
 @mixin transition($prop: all) {
   transition: $prop 0.2s ease-in;
 }
+
+@mixin target-ie-10-11 {
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+        @content;
+    }
+}

@@ -13,7 +13,7 @@ Template Name: Campaign Template
         <div class="hero__img hero__img--mobile"
             style="background-image: url('<?php the_field('hero_mobile_image'); ?>');"></div>
         <div class="hero__img_description">
-            <?php the_field('hero_image_description'); ?>
+            <span class="text-highlight"><?php the_field('hero_image_description'); ?></span>
         </div>
         <div class="hero__text-wrap">
             <svg class="hero__arrow hero__arrow--top" width="37" height="24">
@@ -25,7 +25,7 @@ Template Name: Campaign Template
             </ul>
             <h1 class="heading--lg"><span class="text-highlight"><?php the_title(); ?></span></h1>
             <p>
-                <?php the_field('hero_text'); ?>
+                <span class="text-highlight"><?php the_field('hero_text'); ?></span>
             </p>
             <svg class="hero__arrow hero__arrow--bottom" width="37" height="24">
                 <use xlink:href="#icon-arrow--decor"></use>

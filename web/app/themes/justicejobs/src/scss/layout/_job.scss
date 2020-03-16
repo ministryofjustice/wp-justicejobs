@@ -87,7 +87,7 @@
 
             a {
                 text-decoration: none !important;
-                color: $light-blue;
+                color: $dark-blue;
                 text-decoration: underline !important;
 
                 &:focus, &:hover, &:active {
@@ -105,7 +105,7 @@
                 }
 
                 span {
-                    color: $light-blue !important;
+                    color: $dark-blue !important;
                 }
             }
         }

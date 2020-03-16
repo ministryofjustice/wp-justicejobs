@@ -25,7 +25,7 @@
             alt="Ministry of Justice Logo - homepage"
         />
     </a>
-    <button class="page-header__menu closed">
+    <button class="page-header__menu closed" aria-expanded="false">
         <span>MENU<span>
     </button>
     <nav class="page-header__nav-wrap">

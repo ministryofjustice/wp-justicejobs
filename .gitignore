@@ -5,6 +5,7 @@
 ._.*
 
 # Application
+web/.well-known/security.txt
 web/app/plugins/*
 web/app/mu-plugins/*/
 web/app/upgrade
@@ -13,7 +14,6 @@ web/app/uploads/*
 !web/app/plugins/.gitkeep
 !web/app/uploads/.gitkeep
 !web/app/mu-plugins/moj/
-web/.well-known/security.txt
 
 web/app/themes/justicejobs/dist
 web/app/themes/justicejobs/node_modules

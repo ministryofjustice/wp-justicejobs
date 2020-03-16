@@ -13,7 +13,7 @@
                 style="background-image: url('<?php the_field('hero_mobile_image', 'option'); ?>');"
             ></div>
             <div class="hero__img_description">
-                <?php the_field('hero_image_description'); ?>
+                <span class="text-highlight"><?php the_field('hero_image_description'); ?></span>
             </div>
             <div class="hero__text-wrap">
                 <svg class="hero__arrow hero__arrow--top" width="37" height="24">

@@ -42,7 +42,7 @@ jQuery(document).ready(function ($) {
         "use strict";
 
         // Initial variables
-        var carousel, slides, index, slidenav, settings, timer, setFocus, animationSuspended, announceItem, _this;
+        var carousel, carouselCtrls, slides, index, slidenav, settings, timer, setFocus, animationSuspended, announceItem, _this;
 
         // Helper function: Iterates over an array of elements
         function forEachElement(elements, fn) {
@@ -84,6 +84,9 @@ jQuery(document).ready(function ($) {
             if (!carousel) {
                 return false;
             }
+
+            carouselCtrls = carousel.querySelectorAll('.accessible-carousel__controls')[0];
+            console.log(carouselCtrls);
             slides = carousel.querySelectorAll('.accessible-carousel__slide');
 
             carousel.className = 'accessible-carousel';
@@ -93,10 +96,10 @@ jQuery(document).ready(function ($) {
 
             ctrls.className = 'controls';
             ctrls.innerHTML = '<li>' +
-                '<button type="button" class="btn-prev accessible-carousel__arrow--prev accessible-carousel__arrow"><svg width="16" height="25" aria-describedby="previous-carousel-button><title id="previous-carousel-button">Previous item</title><use xlink:href= "#icon-arrow"></use></svg ></button>' +
+                '<button type="button" class="btn-prev accessible-carousel__arrow--prev accessible-carousel__arrow"><svg width="16" height="25" aria-describedby="previous-carousel-button"><title id="previous-carousel-button">Previous item</title><use xlink:href= "#icon-arrow"></use></svg ></button>' +
                 '</li>' +
                 '<li>' +
-                '<button type="button" class="btn-next accessible-carousel__arrow--next accessible-carousel__arrow"><svg width="16" height="25" aria-describedby="next-carousel-button><title id="next-carousel-button">Next item</title><use xlink:href= "#icon-arrow"></use></svg ></button>' +
+                '<button type="button" class="btn-next accessible-carousel__arrow--next accessible-carousel__arrow"><svg width="16" height="25" aria-describedby="next-carousel-button"><title id="next-carousel-button">Next item</title><use xlink:href= "#icon-arrow"></use></svg ></button>' +
                 '</li>';
 
             ctrls.querySelector('.btn-prev')
@@ -107,8 +110,6 @@ jQuery(document).ready(function ($) {
                 .addEventListener('click', function () {
                     nextSlide(true);
                 });
-
-            carousel.appendChild(ctrls);
 
             // If slide navigation is requested in the settings, another unordered list that contains those elements is added.
             if (settings.slidenav) {
@@ -135,8 +136,10 @@ jQuery(document).ready(function ($) {
                 }, true);
 
                 carousel.className = 'accessible-carousel with-slidenav';
-                carousel.appendChild(slidenav);
+                carouselCtrls.appendChild(slidenav);
             }
+
+            carouselCtrls.appendChild(ctrls);
 
             // Add a live region to announce the slide number when using the previous/next buttons
             var liveregion = document.createElement('div');
@@ -209,7 +212,7 @@ jQuery(document).ready(function ($) {
 
             // Update the text in the live region which is then announced by screen readers.
             if (announceItem) {
-                carousel.querySelector('.liveregion').textContent = 'Item ' + (new_current + 1) + ' of ' + slides.length;
+                carousel.querySelector('.liveregion').textContent = 'Slide ' + (new_current + 1) + ' of ' + slides.length;
             }
 
             // Update the buttons in the slider navigation to match the currently displayed  item
@@ -217,10 +220,10 @@ jQuery(document).ready(function ($) {
                 var buttons = carousel.querySelectorAll('.slidenav button[data-slide]');
                 for (var j = buttons.length - 1; j >= 0; j--) {
                     buttons[j].className = '';
-                    buttons[j].innerHTML = '<span class="visually-hidden">Item</span> ' + (j + 1);
+                    buttons[j].innerHTML = '<span class="visually-hidden">Slide </span> ' + (j + 1);
                 }
                 buttons[new_current].className = "current";
-                buttons[new_current].innerHTML = '<span class="visually-hidden">Item</span> ' + (new_current + 1) + ' <span class="visually-hidden">(Current Item)</span>';
+                buttons[new_current].innerHTML = '<span class="visually-hidden">Slide </span> ' + (new_current + 1) + ' <span class="visually-hidden">(Current Item)</span>';
             }
 
             // Set the global index to the new current value

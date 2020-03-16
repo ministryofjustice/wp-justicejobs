@@ -89,6 +89,9 @@ function enqueue_justice_jobs_scripts()
     // JS and jQuery
     wp_enqueue_script('core-js', mix_asset('/js/main.min.js'), array('jquery'), null, true);
 
+    wp_enqueue_style('ie-browser', mix_asset('/css/ie.min.css'), array('core-css'));
+    wp_style_add_data('ie-browser', 'conditional', 'IE');
+
     // Temporary workaround to comply with GDPR - tracking off by default
     if (isset($_COOKIE['ccfwCookiePolicy'])) {
         $cookieAccepted = htmlspecialchars($_COOKIE['ccfwCookiePolicy']);
@@ -389,7 +392,7 @@ function jj_select_options($qs_param, $default = 'option', $sentence_case = fals
                 $selectedFound = $term->name;
             }
 
-            if($sentence_case){
+            if ($sentence_case) {
                 $term->name = ucfirst(strtolower($term->name));
             }
             $role_options .= '<option value="' . $term->slug . '"' . $selected . '>' . $term->name . '</option>';
@@ -585,4 +588,5 @@ function remove_from_admin_menu()
     remove_menu_page('edit.php'); // add here your cpt name
     remove_menu_page('edit-comments.php');
 }
+
 add_action('admin_menu', 'remove_from_admin_menu');

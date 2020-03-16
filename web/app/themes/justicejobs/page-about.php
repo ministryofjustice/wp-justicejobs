@@ -16,7 +16,7 @@ get_header();
                 style="background-image: url('<?php the_field('hero_mobile_image'); ?>');"
             ></div>
             <div class="hero__img_description">
-                <?php the_field('hero_image_description'); ?>
+                <span class="text-highlight"><?php the_field('hero_image_description'); ?></span>
             </div>
             <div class="hero__text-wrap">
                 <svg class="hero__arrow hero__arrow--top" width="37" height="24">
@@ -83,7 +83,9 @@ get_header();
             <div id="accessible-carousel">
 
                 <?php $agencies = get_field('featured_agencies'); ?>
+                <div class="accessible-carousel__controls">
 
+                </div>
                 <ul class="accessible-carousel__container">
                     <?php foreach ($agencies as $agency) :
                         $agency_image = get_field('agency_hero_desktop_image', $agency->ID);
@@ -100,7 +102,7 @@ get_header();
                         ?>
                         <li class="accessible-carousel__slide slide">
                             <div class="accessible-carousel__wrap"
-                                 style="background-image: url('<?php echo $agency_image; ?>');">
+                                 style="background-image: url('<?php echo $agency_image; ?>');background-color: <?php echo $agency_colour; ?>;">
                                 <h3 class="heading--md">
                                     <span class="text-highlight"><?= $agency_name ?></span>
                                 </h3>
@@ -109,7 +111,7 @@ get_header();
                                 </p>
                                 <a
                                     href="<?= $agency_link ?>"
-                                    class="btn-secondary btn-secondary--light">
+                                    class="btn-secondary btn-secondary--light about">
                                     <?= $agency_link_text ?>
                                     <svg width="8" height="13">
                                         <use xlink:href="#icon-arrow"></use>

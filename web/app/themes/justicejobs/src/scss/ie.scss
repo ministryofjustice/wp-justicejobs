@@ -1,21 +1,28 @@
 /** IE Specific Styles */
+.about {
+    &__block {
+        &::before {
+
+        }
+    }
+}
 
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-  .search_contain {
+    .search_contain {
 
-    &__container#js-show-map {
-      .search_contain__item {
-        display: block;
-      }
+        &__container#js-show-map {
+            .search_contain__item {
+                display: block;
+            }
+        }
+
     }
 
-  }
+    .accordion__btn {
+        justify-content: flex-start;
 
-  .accordion__btn {
-    justify-content: flex-start;
-
-    .btn-plus {
-      margin-left: auto;
+        .btn-plus {
+            margin-left: auto;
+        }
     }
-  }
 }
