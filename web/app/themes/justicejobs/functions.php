@@ -89,9 +89,6 @@ function enqueue_justice_jobs_scripts()
     // JS and jQuery
     wp_enqueue_script('core-js', mix_asset('/js/main.min.js'), array('jquery'), null, true);
 
-    wp_enqueue_style('ie-browser', mix_asset('/css/ie.min.css'), array('core-css'));
-    wp_style_add_data('ie-browser', 'conditional', 'IE');
-
     // Temporary workaround to comply with GDPR - tracking off by default
     if (isset($_COOKIE['ccfwCookiePolicy'])) {
         $cookieAccepted = htmlspecialchars($_COOKIE['ccfwCookiePolicy']);

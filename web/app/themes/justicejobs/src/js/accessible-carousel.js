@@ -95,10 +95,10 @@ jQuery(document).ready(function ($) {
 
             ctrls.className = 'controls';
             ctrls.innerHTML = '<li>' +
-                '<button type="button" class="btn-prev accessible-carousel__arrow--prev accessible-carousel__arrow"><svg width="16" height="25" aria-describedby="previous-carousel-button"><title id="previous-carousel-button">Previous item</title><use xlink:href= "#icon-arrow"></use></svg ></button>' +
+                '<button type="button" class="btn-prev accessible-carousel__arrow--prev accessible-carousel__arrow"><svg width="16" height="25" aria-describedby="previous-carousel-button"><title id="previous-carousel-button">Go to the previous slide</title><use xlink:href= "#icon-arrow"></use></svg ></button>' +
                 '</li>' +
                 '<li>' +
-                '<button type="button" class="btn-next accessible-carousel__arrow--next accessible-carousel__arrow"><svg width="16" height="25" aria-describedby="next-carousel-button"><title id="next-carousel-button">Next item</title><use xlink:href= "#icon-arrow"></use></svg ></button>' +
+                '<button type="button" class="btn-next accessible-carousel__arrow--next accessible-carousel__arrow"><svg width="16" height="25" aria-describedby="next-carousel-button"><title id="next-carousel-button">Go to the next slide</title><use xlink:href= "#icon-arrow"></use></svg ></button>' +
                 '</li>';
 
             ctrls.querySelector('.btn-prev')
@@ -119,8 +119,8 @@ jQuery(document).ready(function ($) {
                     forEachElement(slides, function (el, i) {
                         var li = document.createElement('li');
                         var klass = (i === 0) ? 'class="slide-nav__button--current" ' : '';
-                        var kurrent = (i === 0) ? ' <span class="visually-hidden">(Current Item)</span>' : '';
-                        li.innerHTML = '<button ' + klass + 'data-slide="' + i + '"><span class="visually-hidden">Item</span> ' + (i + 1) + kurrent + '</button>';
+                        var kurrent = (i === 0) ? ' <span class="visually-hidden">(Current slide)</span>' : '';
+                        li.innerHTML = '<button ' + klass + 'data-slide="' + i + '"><span class="visually-hidden">' + (i !== 0 ? 'View ' : 'Viewing ') + 'slide</span> ' + (i + 1) + kurrent + '</button>';
                         slidenav.appendChild(li);
                     });
                 }
@@ -219,10 +219,10 @@ jQuery(document).ready(function ($) {
                 var buttons = carousel.querySelectorAll('.slidenav button[data-slide]');
                 for (var j = buttons.length - 1; j >= 0; j--) {
                     buttons[j].className = '';
-                    buttons[j].innerHTML = '<span class="visually-hidden">Slide </span> ' + (j + 1);
+                    buttons[j].innerHTML = '<span class="visually-hidden">View slide </span> ' + (j + 1);
                 }
                 buttons[new_current].className = "current";
-                buttons[new_current].innerHTML = '<span class="visually-hidden">Slide </span> ' + (new_current + 1) + ' <span class="visually-hidden">(Current Item)</span>';
+                buttons[new_current].innerHTML = '<span class="visually-hidden">Viewing slide </span> ' + (new_current + 1) + ' <span class="visually-hidden">(Current slide)</span>';
             }
 
             // Set the global index to the new current value
