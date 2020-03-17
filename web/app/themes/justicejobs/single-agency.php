@@ -22,7 +22,7 @@ Template Post Type: agency
                     style="background-image: url('<?php the_field('agency_hero_mobile_image'); ?>');"
                 ></div>
                 <div class="hero__img_description">
-                    <?php the_field('agency_hero_image_description'); ?>
+                    <span class="text-highlight"><?php the_field('agency_hero_image_description'); ?></span>
                 </div>
                 <div class="hero__text-wrap">
                     <svg class="hero__arrow hero__arrow--top" width="37" height="24">
@@ -42,7 +42,7 @@ Template Post Type: agency
                         src="<?php echo get_field('agency_logo_black'); ?>"
                         width="164"
                         height="77"
-                        alt="HM Courts & Tribunals Service"
+                        alt="<?php echo strip_tags(get_the_title()) ?>"
                     />
                 </div>
             </div>
@@ -76,6 +76,9 @@ Template Post Type: agency
 
                         <?php if (have_rows('carousel')) : ?>
                             <div id="accessible-full-carousel">
+                                <div class="accessible-carousel__controls">
+
+                                </div>
                                 <ul class="accessible-carousel__container">
                                     <?php while (have_rows('carousel')) :
                                         the_row();

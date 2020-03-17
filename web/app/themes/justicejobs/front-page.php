@@ -9,7 +9,7 @@
             style="background-image: url('<?php the_field('hero_mobile_image'); ?>');"
         ></div>
         <div class="hero__img_description">
-            <?php the_field('hero_image_description'); ?>
+            <span class="text-highlight"><?php the_field('hero_image_description'); ?></span>
         </div>
         <div class="hero__text-wrap">
             <div class="hero__heading-wrap">
@@ -81,8 +81,10 @@
         ?>
         <div class="hero__carousel">
             <div class="accessible-carousel" id="accessible-carousel">
-
                 <?php if (have_rows('latest_roles_carousel')) : ?>
+                    <div class="accessible-carousel__controls">
+
+                    </div>
                     <ul class="accessible-carousel__container">
                         <?php while (have_rows('latest_roles_carousel')) :
                             the_row();

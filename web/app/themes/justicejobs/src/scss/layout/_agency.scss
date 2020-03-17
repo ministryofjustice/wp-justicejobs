@@ -160,9 +160,20 @@
             left: 0;
             transition: all 0.2s ease-in;
 
+
+
             @include respond-to(xs) {
                 -webkit-clip-path: polygon(0 0, 50% 0, 85% 100%, 0% 100%);
                 clip-path: polygon(0 0, 50% 0, 85% 100%, 0% 100%);
+
+
+            }
+
+            @include respond-to(sm) {
+                -webkit-clip-path: polygon(0 0, 50% 0, 85% 100%, 0% 100%);
+                clip-path: polygon(0 0, 50% 0, 85% 100%, 0% 100%);
+
+
             }
         }
 

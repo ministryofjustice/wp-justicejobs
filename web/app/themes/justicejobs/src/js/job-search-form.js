@@ -3,26 +3,6 @@ The Job Form Search Functionality
 */
 jQuery(document).ready(function ($) {
 
-    $('.single-video, .single-video *').on('click', function () {
-        console.log($(this));
-    });
-
-    var resultsViewWrapper = $('.search_contain__container');
-    var listButton = $('.search_contain__label--list');
-    var mapButton = $('.search_contain__label--map');
-
-    listButton.on('click', function () {
-        resultsViewWrapper.removeAttr('id', 'js-show-map').attr('id', 'js-hide-map');
-        mapButton.removeAttr('aria-pressed', 'true').attr('aria-pressed', 'false');
-        listButton.removeAttr('aria-pressed', 'false').attr('aria-pressed', 'true');
-    });
-
-    mapButton.on('click', function () {
-        resultsViewWrapper.removeAttr('id', 'js-hide-map').attr('id', 'js-show-map');
-        listButton.removeAttr('aria-pressed', 'true').attr('aria-pressed', 'false');
-        mapButton.removeAttr('aria-pressed', 'false').attr('aria-pressed', 'true');
-    });
-
     $('.dropdown__list').children('li').on('click', function () {
         var thisSelection = $(this).attr('data-slug');
         $(this).parent().siblings('.dropdown__wrap').children('input').attr('data-cur', thisSelection);

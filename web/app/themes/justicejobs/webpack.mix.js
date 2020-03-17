@@ -27,13 +27,7 @@ mix.js([
         {context: './src/'},
         {
             optipng: {optimizationLevel: 5},
-            jpegtran: null,
-            plugins: [
-                require('imagemin-mozjpeg')({
-                    quality: 82,
-                    progressive: true,
-                })
-            ]
+            jpegtran: null
         }
     )
     .copy('src/img/*.svg', dist + 'img')

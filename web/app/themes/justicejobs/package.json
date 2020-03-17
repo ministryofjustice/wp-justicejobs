@@ -8,17 +8,15 @@
     "description": "Laravel Mix compiler for Justice Jobs theme",
     "main": "index.js",
     "scripts": {
-        "dev": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "watch": "npm run dev -- --watch",
-        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+        "dev": "NODE_ENV=development webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch": "NODE_ENV=development webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "hot": "NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "production": "NODE_ENV=production webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "author": "Justice on the Web @ Ministry of Justice",
     "license": "ISC",
     "devDependencies": {
-        "copy-webpack-plugin": "^5.1.0",
-        "cross-env": "^6.0.3",
-        "imagemin-mozjpeg": "^8.0.0",
+        "copy-webpack-plugin": "^5.1.1",
         "imagemin-webpack-plugin": "^2.4.2",
         "laravel-mix": "^4.1.4",
         "laravel-mix-imagemin": "^1.0.3",
@@ -30,7 +28,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "core-js": "^3.4.8",
+        "core-js": "^3.6.4",
         "jquery": "^3.4.1",
         "rellax": "^1.10.0"
     }

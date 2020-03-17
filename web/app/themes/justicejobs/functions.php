@@ -389,7 +389,7 @@ function jj_select_options($qs_param, $default = 'option', $sentence_case = fals
                 $selectedFound = $term->name;
             }
 
-            if($sentence_case){
+            if ($sentence_case) {
                 $term->name = ucfirst(strtolower($term->name));
             }
             $role_options .= '<option value="' . $term->slug . '"' . $selected . '>' . $term->name . '</option>';
@@ -585,4 +585,5 @@ function remove_from_admin_menu()
     remove_menu_page('edit.php'); // add here your cpt name
     remove_menu_page('edit-comments.php');
 }
+
 add_action('admin_menu', 'remove_from_admin_menu');

@@ -7,11 +7,14 @@ The Map Functionality
     var map,
         infoWindow,
         markers = [],
-        $markers = [];
+        $markers = [],
+        bounds;
 
     // Toggle map appearing
-    if ($('.search_contain__map-wrap').length) {
-        _initMap();
+    function initMap() {
+        if ($('.search_contain__map-wrap').length) {
+            _initMap();
+        }
     }
 
     // Pop-up map entry
@@ -41,7 +44,7 @@ The Map Functionality
 
     function _initMap() {
         $markers = $('.search_contain__item').find('.marker');
-        var bounds = new google.maps.LatLngBounds();
+        bounds = new google.maps.LatLngBounds();
 
         map = new google.maps.Map(document.getElementById('map'), {
             center: new google.maps.LatLng(54.00366, -2.547855),
@@ -105,7 +108,61 @@ The Map Functionality
                 google.maps.event.removeListener(zoomChangeBoundsListener);
                 map.setZoom(Math.min(15, map.getZoom()));
             });
+
         //now fit the map to the newly inclusive bounds
         map.fitBounds(bounds);
     }
+
+    // monitor clicks on the map view toggle buttons (list / map)
+    // moved and refactored from job-search-form.js
+    //  - introduces _onShowMap() that solves an issue where the boundaries of markers were not drawn correctly when
+    //  the view changed, or  mobile devices sometimes changed orientation
+    $('.search_contain__label').on('click', function () {
+        if ($(this).hasClass('search_contain__label--map')) {
+            _showMapView('show');
+            _onShowMap(); // redraw
+        }
+        else {
+            _showMapView('hide');
+        }
+    });
+
+    /**
+     * Moved and refactored from job-search-form.js
+     * Toggles the view state for map view animation and accessibility features
+     * If no arguments are passed the map is shown by default
+     * @param state String [show|hide]
+     * @private
+     * @default show
+     */
+    function _showMapView(state = 'show') {
+        $('.search_contain__container').attr('id', 'js-' + state + '-map');
+        $('.search_contain__label--map').attr('aria-pressed', state === 'show');
+        $('.search_contain__label--list').attr('aria-pressed', state !== 'show');
+    }
+
+    /**
+     * Forces the map to redraw if it's visible
+     * @private
+     */
+    function _onShowMap() {
+        if ($('.search_contain__map-wrap').is(':visible')) {
+            // JS 101. Check for falsy first - default is NULL.
+            if (!bounds) {
+                // nothing, shh
+            }
+            else {
+                map.fitBounds(bounds);
+            }
+        }
+    }
+
+    $( window ).resize(function() {
+        // if the map is shown:
+        _onShowMap();
+    });
+
+    // kick-off
+    initMap();
+
 })(jQuery);

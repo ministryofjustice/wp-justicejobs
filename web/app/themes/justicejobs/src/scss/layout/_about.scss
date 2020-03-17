@@ -78,14 +78,29 @@
             left: 0;
             transition: all 0.2s ease-in;
 
+            @include target-ie-10-11 {
+                width: 52% !important;
+                -webkit-clip-path: none;
+                clip-path: none;
+            }
+
             @include respond-to(xs) {
                 -webkit-clip-path: polygon(0 0, 30% 0, 70% 100%, 0% 100%);
                 clip-path: polygon(0 0, 30% 0, 70% 100%, 0% 100%);
+
+                @include target-ie-10-11 {
+                    width: 45% !important;
+                    -webkit-clip-path: none;
+                    clip-path: none;
+                }
             }
 
             @include respond-to(sm) {
-                -webkit-clip-path: polygon(0 0, 40% 0, 80% 100%, 0% 100%);
-                clip-path: polygon(0 0, 40% 0, 80% 100%, 0% 100%);
+                @include target-ie-10-11 {
+                    width: 51% !important;
+                    -webkit-clip-path: none;
+                    clip-path: none;
+                }
             }
 
             @include respond-to(md) {
@@ -96,8 +111,21 @@
             @include respond-to(lg) {
                 -webkit-clip-path: polygon(0 0, 30% 0, 70% 100%, 0% 100%);
                 clip-path: polygon(0 0, 30% 0, 70% 100%, 0% 100%);
+
+                @include target-ie-10-11 {
+                    width: 55% !important;
+                    -webkit-clip-path: none;
+                    clip-path: none;
+                }
             }
 
+            @include respond-to(xl) {
+                @include target-ie-10-11 {
+                    width: 45% !important;
+                    -webkit-clip-path: none;
+                    clip-path: none;
+                }
+            }
         }
 
         &:hover::before, &:active::before, &:focus::before {
