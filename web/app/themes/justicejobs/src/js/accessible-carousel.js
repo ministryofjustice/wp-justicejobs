@@ -12,14 +12,14 @@ jQuery(document).ready(function ($) {
         d.addEventListener('focusout', removePolyfill, true);
     }
 
-    function addPolyfill(e) {
+    function addPolyfill (e) {
         var type = e.type === 'focus' ? 'focusin' : 'focusout';
-        var event = new CustomEvent(type, {bubbles: true, cancelable: false});
+        var event = new CustomEvent(type, { bubbles: true, cancelable: false });
         event.c1Generated = true;
         e.target.dispatchEvent(event);
     }
 
-    function removePolyfill(e) {
+    function removePolyfill (e) {
         if (!e.c1Generated) { // focus after focusin, so chrome will the first time trigger tow times focusin
             d.removeEventListener('focus', addPolyfill, true);
             d.removeEventListener('blur', addPolyfill, true);
@@ -39,19 +39,20 @@ jQuery(document).ready(function ($) {
 
     var myCarousel = (function () {
 
-        "use strict";
+        'use strict';
 
         // Initial variables
-        var carousel, carouselCtrls, slides, index, slidenav, settings, timer, setFocus, animationSuspended, announceItem, _this;
+        var carousel, carouselCtrls, slides, index, slidenav, settings, timer, setFocus, animationSuspended,
+            announceItem, _this;
 
         // Helper function: Iterates over an array of elements
-        function forEachElement(elements, fn) {
+        function forEachElement (elements, fn) {
             for (var i = 0; i < elements.length; i++)
                 fn(elements[i], i);
         }
 
         // Helper function: Remove Class
-        function removeClass(el, className) {
+        function removeClass (el, className) {
             if (el.classList) {
                 el.classList.remove(className);
             } else {
@@ -60,7 +61,7 @@ jQuery(document).ready(function ($) {
         }
 
         // Helper function: Test if element has a specific class
-        function hasClass(el, className) {
+        function hasClass (el, className) {
             if (el.classList) {
                 return el.classList.contains(className);
             } else {
@@ -73,7 +74,7 @@ jQuery(document).ready(function ($) {
         // Possible settings:
         // id <string> ID of the carousel wrapper element (required).
         // slidenav <bool> If true, a list of slides is shown.
-        function init(set) {
+        function init (set) {
 
             // Make settings available to all functions
             settings = set;
@@ -95,10 +96,10 @@ jQuery(document).ready(function ($) {
 
             ctrls.className = 'controls';
             ctrls.innerHTML = '<li>' +
-                '<button type="button" class="btn-prev accessible-carousel__arrow--prev accessible-carousel__arrow"><svg width="16" height="25" aria-describedby="previous-carousel-button"><title id="previous-carousel-button">Go to the previous slide</title><use xlink:href= "#icon-arrow"></use></svg ></button>' +
+                '<button type="button" class="btn-prev accessible-carousel__arrow--prev accessible-carousel__arrow" aria-describedby="previous-carousel-button"><title id="previous-carousel-button">Go to the previous slide</title><svg width="16" height="25"><use xlink:href= "#icon-arrow"></use></svg ></button>' +
                 '</li>' +
                 '<li>' +
-                '<button type="button" class="btn-next accessible-carousel__arrow--next accessible-carousel__arrow"><svg width="16" height="25" aria-describedby="next-carousel-button"><title id="next-carousel-button">Go to the next slide</title><use xlink:href= "#icon-arrow"></use></svg ></button>' +
+                '<button type="button" class="btn-next accessible-carousel__arrow--next accessible-carousel__arrow" aria-describedby="next-carousel-button"><title id="next-carousel-button">Go to the next slide</title><svg width="16" height="25"><use xlink:href= "#icon-arrow"></use></svg ></button>' +
                 '</li>';
 
             ctrls.querySelector('.btn-prev')
@@ -166,7 +167,7 @@ jQuery(document).ready(function ($) {
         }
 
         // Function to set a slide the current slide
-        function setSlides(new_current, setFocusHere, transition, announceItemHere) {
+        function setSlides (new_current, setFocusHere, transition, announceItemHere) {
             // Focus, transition and announce Item are optional parameters.
             // focus denotes if the focus should be set after the
             // carousel advanced to slide number new_current.
@@ -196,7 +197,7 @@ jQuery(document).ready(function ($) {
 
             // Reset slide classes
             for (var i = slides.length - 1; i >= 0; i--) {
-                slides[i].className = "accessible-carousel__slide";
+                slides[i].className = 'accessible-carousel__slide';
             }
 
             // Add classes to the previous, next and current slide
@@ -221,7 +222,7 @@ jQuery(document).ready(function ($) {
                     buttons[j].className = '';
                     buttons[j].innerHTML = '<span class="visually-hidden">View slide </span> ' + (j + 1);
                 }
-                buttons[new_current].className = "current";
+                buttons[new_current].className = 'current';
                 buttons[new_current].innerHTML = '<span class="visually-hidden">Viewing slide </span> ' + (new_current + 1) + ' <span class="visually-hidden">(Current slide)</span>';
             }
 
@@ -230,7 +231,7 @@ jQuery(document).ready(function ($) {
         }
 
         // Function to advance to the next slide
-        function nextSlide(announceItem) {
+        function nextSlide (announceItem) {
             announceItem = typeof announceItem !== 'undefined' ? announceItem : false;
 
             var length = slides.length,
@@ -247,7 +248,7 @@ jQuery(document).ready(function ($) {
         }
 
         // Function to advance to the previous slide
-        function prevSlide(announceItem) {
+        function prevSlide (announceItem) {
             announceItem = typeof announceItem !== 'undefined' ? announceItem : false;
 
             var length = slides.length,
