@@ -96,10 +96,10 @@ jQuery(document).ready(function ($) {
 
             ctrls.className = 'controls';
             ctrls.innerHTML = '<li>' +
-                '<button type="button" class="btn-prev accessible-carousel__arrow--prev accessible-carousel__arrow" aria-describedby="previous-carousel-button"><title id="previous-carousel-button">Go to the previous slide</title><svg width="16" height="25"><use xlink:href= "#icon-arrow"></use></svg ></button>' +
+                '<button type="button" class="btn-prev accessible-carousel__arrow--prev accessible-carousel__arrow" aria-describedby="previous-carousel-button"><title id="previous-carousel-button">Go to the previous item</title><svg width="16" height="25"><use xlink:href= "#icon-arrow"></use></svg ></button>' +
                 '</li>' +
                 '<li>' +
-                '<button type="button" class="btn-next accessible-carousel__arrow--next accessible-carousel__arrow" aria-describedby="next-carousel-button"><title id="next-carousel-button">Go to the next slide</title><svg width="16" height="25"><use xlink:href= "#icon-arrow"></use></svg ></button>' +
+                '<button type="button" class="btn-next accessible-carousel__arrow--next accessible-carousel__arrow" aria-describedby="next-carousel-button"><title id="next-carousel-button">Go to the next item</title><svg width="16" height="25"><use xlink:href= "#icon-arrow"></use></svg ></button>' +
                 '</li>';
 
             ctrls.querySelector('.btn-prev')
