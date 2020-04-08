@@ -82,9 +82,7 @@
         <div class="hero__carousel">
             <div class="accessible-carousel" id="accessible-carousel">
                 <?php if (have_rows('latest_roles_carousel')) : ?>
-                    <div class="accessible-carousel__controls">
 
-                    </div>
                     <ul class="accessible-carousel__container">
                         <?php while (have_rows('latest_roles_carousel')) :
                             the_row();
@@ -108,6 +106,8 @@
                             </li>
                         <?php endwhile; ?>
                     </ul>
+
+                    <div class="accessible-carousel__controls"></div>
                 <?php endif; ?>
             </div>
         </div>

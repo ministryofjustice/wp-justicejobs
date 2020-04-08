@@ -83,9 +83,7 @@ get_header();
             <div id="accessible-carousel">
 
                 <?php $agencies = get_field('featured_agencies'); ?>
-                <div class="accessible-carousel__controls">
 
-                </div>
                 <ul class="accessible-carousel__container">
                     <?php foreach ($agencies as $agency) :
                         $agency_image = get_field('agency_hero_desktop_image', $agency->ID);
@@ -143,6 +141,8 @@ get_header();
 
                     <?php endforeach; ?>
                 </ul>
+
+                <div class="accessible-carousel__controls"></div>
             </div>
         </div>
 
