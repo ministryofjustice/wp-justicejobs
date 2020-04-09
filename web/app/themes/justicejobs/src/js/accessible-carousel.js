@@ -120,8 +120,8 @@ jQuery(document).ready(function ($) {
                     forEachElement(slides, function (el, i) {
                         var li = document.createElement('li');
                         var klass = (i === 0) ? 'class="slide-nav__button--current" ' : '';
-                        var kurrent = (i === 0) ? ' <span class="visually-hidden">(Current slide)</span>' : '';
-                        li.innerHTML = '<button ' + klass + 'data-slide="' + i + '"><span class="visually-hidden">' + (i !== 0 ? 'View ' : 'Viewing ') + 'slide</span> ' + (i + 1) + kurrent + '</button>';
+                        var kurrent = (i === 0) ? ' <span class="visually-hidden">(Current item)</span>' : '';
+                        li.innerHTML = '<button ' + klass + 'data-slide="' + i + '"><span class="visually-hidden">' + (i !== 0 ? 'View ' : 'Viewing ') + 'item</span> ' + (i + 1) + kurrent + '</button>';
                         slidenav.appendChild(li);
                     });
                 }
@@ -220,10 +220,10 @@ jQuery(document).ready(function ($) {
                 var buttons = carousel.querySelectorAll('.slidenav button[data-slide]');
                 for (var j = buttons.length - 1; j >= 0; j--) {
                     buttons[j].className = '';
-                    buttons[j].innerHTML = '<span class="visually-hidden">View slide </span> ' + (j + 1);
+                    buttons[j].innerHTML = '<span class="visually-hidden">View item </span> ' + (j + 1) + '<span class="visually-hidden"> of '+ slides.length + '</span>';
                 }
                 buttons[new_current].className = 'current';
-                buttons[new_current].innerHTML = '<span class="visually-hidden">Viewing slide </span> ' + (new_current + 1) + ' <span class="visually-hidden">(Current slide)</span>';
+                buttons[new_current].innerHTML = '<span class="visually-hidden">Viewing item </span> ' + (new_current + 1) + ' <span class="visually-hidden">of ' + slides.length + ' (Current item)</span>';
             }
 
             // Set the global index to the new current value

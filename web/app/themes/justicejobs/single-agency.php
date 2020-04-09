@@ -76,9 +76,6 @@ Template Post Type: agency
 
                         <?php if (have_rows('carousel')) : ?>
                             <div id="accessible-full-carousel">
-                                <div class="accessible-carousel__controls">
-
-                                </div>
                                 <ul class="accessible-carousel__container">
                                     <?php while (have_rows('carousel')) :
                                         the_row();
@@ -109,6 +106,7 @@ Template Post Type: agency
                                         </li>
                                     <?php endwhile; ?>
                                 </ul>
+                                <div class="accessible-carousel__controls"></div>
                             </div>
                         <?php endif; ?>
                     </div>
