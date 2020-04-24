@@ -195,31 +195,6 @@ function set_job_details($job_content, $totalspans, $post_id)
 
         }
 
-        // Save Salary Min and Max
-        if ($job_content->div->span[$y]->attributes()->itemprop[0] == "Salary Minimum") {
-            $salary = (string)$job_content->div->span[$y];
-
-            $salary_range_array = explode('-', $salary);
-
-            $salary_min = '';
-            $salary_max = '';
-
-            if (count($salary_range_array) > 1) {
-                $salary_min = preg_replace("/[^0-9]/", "", $salary_range_array[0]);
-                $salary_max = preg_replace("/[^0-9]/", "", $salary_range_array[1]);
-            } else {
-                $salary_min = preg_replace("/[^0-9]/", "", $salary_range_array[0]);
-            }
-
-            if (is_numeric($salary_min)) {
-                update_field('salary_min', $salary_min, $post_id);
-            }
-            if (is_numeric($salary_max)) {
-                update_field('salary_max', $salary_max, $post_id);
-            }
-
-        }
-
         // Save Working Pattern Info
         if ($job_content->div->span[$y]->attributes()->itemprop[0] == "Working Pattern") {
             array_push($working_patterns, (string)$job_content->div->span[$y]);
