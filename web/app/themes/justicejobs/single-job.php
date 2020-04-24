@@ -54,10 +54,19 @@
                 ?>
                 <br/>
                 <?php
+                $salary_min = get_field(('salary_min'));
 
-                $terms = wp_get_post_terms($post->ID, 'salary_range', array("fields" => "all"));
-                foreach ($terms as $term) {
-                    echo $term->name;
+                if(!empty($salary_min)){
+                    echo '&#163;' . number_format($salary_min);
+
+                    $salary_max = get_field(('salary_max'));
+
+                    if(!empty($salary_max)){
+
+                        echo ' - &#163;' . number_format($salary_max);
+
+                    }
+
                 }
 
                 $aria_label = strstr($post->post_title, ' -', true);
