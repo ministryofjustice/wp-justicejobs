@@ -7,7 +7,7 @@
  */
 function job_search_register_query_vars( $vars ) {
     $vars[] = 'role-type';
-    $vars[] = 'salary-range';
+    $vars[] = 'salary-min';
     $vars[] = 'working-pattern';
     $vars[] = 'location';
     $vars[] = 'radius';
