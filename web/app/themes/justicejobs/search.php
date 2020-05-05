@@ -3,7 +3,7 @@ $search_query = get_search_query();
 
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $_role_type = get_query_var('role-type');
-$_salary_range = get_query_var('salary-range');
+$_salary_min = get_query_var('salary-min');
 $_working_pattern = get_query_var('working-pattern');
 $_location = get_query_var('location');
 $_radius = (int)trim(get_query_var('radius'));
@@ -99,20 +99,17 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                         <option value="100">100 miles</option>
                     </select>
                 </div>
-                <span class="filter__label">Salary range</span>
+                <span class="filter__label">Salary</span>
                 <div class="select-list">
-                    <?php
-                    $terms = get_terms(array(
-                        'taxonomy' => 'salary_range',
-                        'hide_empty' => true,
-                    ));
-
-                    $options = jj_select_options($_salary_range, 'salary range');
-
-                    ?>
-                    <label for="salary-range" class="screen-reader-text">Salary range</label>
-                    <select class="select" id="salary-range" <?= $options['title'] ?>>
-                        <?= $options['list'] ?>
+                    <label for="salary-min" class="screen-reader-text">Salary</label>
+                    <select class="select" id="salary-min" aria-label="Salary Minimum">
+                        <option disabled selected>Salary</option>
+                        <option value="0">All</option>
+                        <option value="20000" <?php if($_salary_min == "20000"){?>selected<?php } ?>>£20,000+</option>
+                        <option value="30000" <?php if($_salary_min == "30000"){?>selected<?php } ?>>£30,000+</option>
+                        <option value="40000" <?php if($_salary_min == "40000"){?>selected<?php } ?>>£40,000+</option>
+                        <option value="50000" <?php if($_salary_min == "50000"){?>selected<?php } ?>>£50,000+</option>
+                        <option value="60000" <?php if($_salary_min == "60000"){?>selected<?php } ?>>£60,000+</option>
                     </select>
                 </div>
                 <span class="filter__label">Working pattern</span>
@@ -146,7 +143,7 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
         <header>
             <?php
 
-            if (!empty($_role_type) && !empty($_salary_range) && !empty($_working_pattern) && !empty($_locations_relevant)) {
+            if (!empty($_role_type) && !empty($_working_pattern) && !empty($_locations_relevant)) {
                 $args = array(
                     'post_type' => 'job',
                     'posts_per_page' => 10,
@@ -158,11 +155,6 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                             'taxonomy' => 'role_type',
                             'field' => 'slug',
                             'terms' => $_role_type,
-                        ),
-                        array(
-                            'taxonomy' => 'salary_range',
-                            'field' => 'slug',
-                            'terms' => $_salary_range,
                         ),
                         array(
                             'taxonomy' => 'working_pattern',
@@ -177,7 +169,7 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                         )
                     ),
                 );
-            } elseif (!empty($_role_type) && !empty($_salary_range) && !empty($_locations_relevant)) {
+            } elseif (!empty($_role_type) && !empty($_locations_relevant)) {
                 $args = array(
                     'post_type' => 'job',
                     'posts_per_page' => 10,
@@ -189,11 +181,6 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                             'taxonomy' => 'role_type',
                             'field' => 'slug',
                             'terms' => $_role_type,
-                        ),
-                        array(
-                            'taxonomy' => 'salary_range',
-                            'field' => 'slug',
-                            'terms' => $_salary_range,
                         ),
                         array(
                             'taxonomy' => 'job_location',
@@ -229,7 +216,7 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                         )
                     ),
                 );
-            } elseif (!empty($_salary_range) && !empty($_working_pattern) && !empty($_locations_relevant)) {
+            } elseif (!empty($_working_pattern) && !empty($_locations_relevant)) {
                 $args = array(
                     'post_type' => 'job',
                     'posts_per_page' => 10,
@@ -237,11 +224,6 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                     's' => $search_query,
                     'tax_query' => array(
                         'relation' => 'AND',
-                        array(
-                            'taxonomy' => 'salary_range',
-                            'field' => 'slug',
-                            'terms' => $_salary_range,
-                        ),
                         array(
                             'taxonomy' => 'working_pattern',
                             'field' => 'slug',
@@ -253,26 +235,6 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                             'terms' => $_locations_relevant_array,
                             'operator' => 'IN',
                         )
-                    ),
-                );
-            } elseif (!empty($_role_type) && !empty($_salary_range)) {
-                $args = array(
-                    'post_type' => 'job',
-                    'posts_per_page' => 10,
-                    'paged' => $paged,
-                    's' => $search_query,
-                    'tax_query' => array(
-                        'relation' => 'AND',
-                        array(
-                            'taxonomy' => 'role_type',
-                            'field' => 'slug',
-                            'terms' => $_role_type,
-                        ),
-                        array(
-                            'taxonomy' => 'salary_range',
-                            'field' => 'slug',
-                            'terms' => $_salary_range,
-                        ),
                     ),
                 );
             } elseif (!empty($_role_type) && !empty($_working_pattern)) {
@@ -295,26 +257,6 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                         ),
                     ),
                 );
-            } elseif (!empty($_salary_range) && !empty($_working_pattern)) {
-                $args = array(
-                    'post_type' => 'job',
-                    'posts_per_page' => 10,
-                    'paged' => $paged,
-                    's' => $search_query,
-                    'tax_query' => array(
-                        'relation' => 'AND',
-                        array(
-                            'taxonomy' => 'salary_range',
-                            'field' => 'slug',
-                            'terms' => $_salary_range,
-                        ),
-                        array(
-                            'taxonomy' => 'working_pattern',
-                            'field' => 'slug',
-                            'terms' => $_working_pattern,
-                        ),
-                    ),
-                );
             } elseif (!empty($_role_type) && !empty($_locations_relevant)) {
                 $args = array(
                     'post_type' => 'job',
@@ -327,27 +269,6 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                             'taxonomy' => 'role_type',
                             'field' => 'slug',
                             'terms' => $_role_type,
-                        ),
-                        array(
-                            'taxonomy' => 'job_location',
-                            'field' => 'term_id',
-                            'terms' => $_locations_relevant_array,
-                            'operator' => 'IN',
-                        )
-                    ),
-                );
-            } elseif (!empty($_salary_range) && !empty($_locations_relevant)) {
-                $args = array(
-                    'post_type' => 'job',
-                    'posts_per_page' => 10,
-                    'paged' => $paged,
-                    's' => $search_query,
-                    'tax_query' => array(
-                        'relation' => 'AND',
-                        array(
-                            'taxonomy' => 'salary_range',
-                            'field' => 'slug',
-                            'terms' => $_salary_range,
                         ),
                         array(
                             'taxonomy' => 'job_location',
@@ -407,21 +328,7 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                         ),
                     ),
                 );
-            } elseif (!empty($_salary_range)) {
-                $args = array(
-                    'post_type' => 'job',
-                    'posts_per_page' => 10,
-                    'paged' => $paged,
-                    's' => $search_query,
-                    'tax_query' => array(
-                        array(
-                            'taxonomy' => 'salary_range',
-                            'field' => 'slug',
-                            'terms' => $_salary_range,
-                        ),
-                    ),
-                );
-            } elseif (!empty($_working_pattern)) {
+            }  elseif (!empty($_working_pattern)) {
                 $args = array(
                     'post_type' => 'job',
                     'posts_per_page' => 10,
@@ -444,6 +351,15 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                 );
             }
 
+            if (!empty($_salary_min)) {
+                $args['meta_query'] = array(
+                    array(
+                        'key'     => 'salary_min',
+                        'value'   => $_salary_min,
+                        'compare' => '>=',
+                    ),
+                );
+            }
 
             $job_query = new WP_Query($args);
 

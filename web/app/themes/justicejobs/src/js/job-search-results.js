@@ -16,7 +16,7 @@ jQuery(document).ready(function ($) {
     }
 
     var roleType = getQueryVariable("role-type");
-    var salaryRange = getQueryVariable("salary-range")
+    var salaryRange = getQueryVariable("salary-min")
     var workingPattern = getQueryVariable("working-pattern")
     var roleTypeName;
     var salaryRangeName;
@@ -43,12 +43,12 @@ jQuery(document).ready(function ($) {
     }
 
     if (salaryRange.length) {
-        $('#salary-range').parent().siblings('.dropdown__list').children('li').each(function () {
+        $('#salary-min').parent().siblings('.dropdown__list').children('li').each(function () {
             if ($(this).attr('data-slug') == salaryRange) {
                 salaryRangeName = $(this).html();
             }
         });
-        $('#salary-range').attr('value', salaryRangeName);
+        $('#salary-min').attr('value', salaryRangeName);
     }
 
     if (workingPattern.length) {

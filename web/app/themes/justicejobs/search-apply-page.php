@@ -91,20 +91,17 @@ Template Name: Search/Apply Template
                         <option value="100">100 miles</option>
                     </select>
                 </div>
-                <span class="filter__label">Salary range</span>
+                <span class="filter__label">Salary</span>
                 <div class="select-list">
-                    <?php
-                    $terms = get_terms(array(
-                        'taxonomy' => 'salary_range',
-                        'hide_empty' => true,
-                    ));
-
-                    $options = jj_select_options(null, 'salary range');
-
-                    ?>
-                    <label for="salary-range" class="screen-reader-text">Salary range</label>
-                    <select class="select" id="salary-range">
-                        <?= $options['list'] ?>
+                    <label for="salary-min" class="screen-reader-text">Salary</label>
+                    <select class="select" id="salary-min" aria-label="Salary Minimum">
+                        <option disabled selected>Salary</option>
+                        <option value="0">All</option>
+                        <option value="20000">£20,000+</option>
+                        <option value="30000">£30,000+</option>
+                        <option value="40000">£40,000+</option>
+                        <option value="50000">£50,000+</option>
+                        <option value="60000">£60,000+</option>
                     </select>
                 </div>
                 <span class="filter__label">Working pattern</span>

@@ -69,7 +69,7 @@ jQuery(document).ready(function ($) {
         event.preventDefault();
         var keyword = $(this).find('#keyword').val() || '',
             roleType = $(this).find('#role-type').val() || '',
-            salaryRange = $(this).find('#salary-range').val() || '',
+            salaryRange = $(this).find('#salary-min').val() || '',
             workingPattern = $(this).find('#working-pattern').val() || '',
             thisLocation = $(this).find('#location').val() || '',
             thisRadius = parseInt($(this).find('#radius').val()) || 10;
@@ -101,7 +101,7 @@ jQuery(document).ready(function ($) {
             if (salaryRange === 'all') {
                 salaryRangeLive = '';
             } else {
-                salaryRangeLive = '&salary-range=' + salaryRange;
+                salaryRangeLive = '&salary-min=' + salaryRange;
             }
         }
 
