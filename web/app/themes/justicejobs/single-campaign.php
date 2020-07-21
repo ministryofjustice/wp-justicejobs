@@ -214,7 +214,7 @@ if ($add_accordion == 1) :
                                     </span>
                                 </button>
                                 <div class="inner_accordion__content-wrap" id="accordion-<?= $accordion_inner_title ?>"
-                                    aria-labelledby="jj-<?= $accordion_inner_title ?>" role="region">>
+                                    aria-labelledby="jj-<?= $accordion_inner_title ?>" role="region">
                                     <?php echo $accordion_group['accordion_content']; ?>
                                 </div>
                             </div>
