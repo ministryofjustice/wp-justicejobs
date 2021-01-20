@@ -133,6 +133,10 @@
         @include respond-to(lm) {
             min-width: calc(100vw - 590px);
         }
+
+        @include respond-to(xl) {
+            min-width: calc(100vw - 900px);
+        }
     }
 
     &__map {
