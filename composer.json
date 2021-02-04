@@ -41,7 +41,6 @@
         "ministryofjustice/wp-user-roles": "*",
         "ministryofjustice/wp-moj-components": "*",
         "ministryofjustice/cookie-compliance-for-wordpress": "dev-justice-jobs",
-        "thadafinser/user-agent-parser": "^2.0",
         "browscap/browscap-php": "^4.2"
     },
     "require-dev": {
