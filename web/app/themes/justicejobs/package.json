@@ -23,13 +23,13 @@
         "laravel-mix-svg": "^0.4.1",
         "node-sass": "^5.0.0",
         "resolve-url-loader": "^3.1.2",
-        "sass": "^1.29.0",
+        "sass": "^1.32.8",
         "sass-loader": "^10.1.0",
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "core-js": "^3.7.0",
-        "jquery": "^3.5.1",
+        "core-js": "^3.9.1",
+        "jquery": "^3.6.0",
         "rellax": "^1.12.1"
     }
 }
