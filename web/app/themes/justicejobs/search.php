@@ -44,7 +44,7 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
 
 
 <div class="search_contain">
-    <div id="allLocations" data-user-location='<?php echo $_location; ?>' data-relevant-terms=''>
+    <div id="allLocations" data-user-location='<?php echo sanitize_text_field($_location); ?>' data-relevant-terms=''>
         <?php
         $terms = get_terms(array(
             'taxonomy' => 'job_location',
@@ -86,7 +86,7 @@ $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
                 <span class="filter__label">Location</span>
                 <label for="location" class="screen-reader-text">Location</label>
                 <input id="location" aria-label="Location" name="location" type="text" class="input"
-                       placeholder="City / Postcode" value="<?= $_location; ?>"/>
+                       placeholder="City / Postcode" value="<?= sanitize_text_field($_location); ?>"/>
                 <div class="select-list" data-miles="<?= $_radius ?>">
                     <label for="radius" class="screen-reader-text">Radius (in miles)</label>
                     <select disabled class="select" id="radius"
