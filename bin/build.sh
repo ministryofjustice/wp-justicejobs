@@ -20,6 +20,12 @@ npm run production
 rm -rf node_modules
 cd ../../../..
 
+# TEMP - build cookie compliance plugin files
+cd web/app/plugins/cookie-compliance-for-wordpress
+npm install
+npm run production
+rm -rf node_modules
+cd ../../../..
 
 # Remove composer auth.json
 # rm -f auth.json

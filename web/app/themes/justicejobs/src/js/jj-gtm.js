@@ -2,30 +2,14 @@
  * The data layer management script for GTM
  */
 
-mojGtm = [{}];
-
-(function (w, d, s, l, i) {
-    w[l] = w[l] || [];
-    w[l].push({
-        'gtm.start':
-            new Date().getTime(), event: 'gtm.js'
-    });
-    var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-    j.async = true;
-    j.src =
-        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-    f.parentNode.insertBefore(j, f);
-})(window, document, 'script', 'mojGtm', 'GTM-PWKHW94');
-
-
 /**
  * This function wraps around the dataLayer.push function
  * @param event
  * @param object
  * @private
  */
-function _trackEvent(event, object) {
+function _trackEvent(event, object)
+{
     if (!object) {
         var message = 'MoJ: Custom function _trackEvent() should include an object of variable name-value pairs';
         if (!console && !console.warn) {
@@ -33,15 +17,11 @@ function _trackEvent(event, object) {
         } else {
             console.warn(message);
         }
-        mojGtm.push({'event': event});
+        dataLayer.push({'event': event});
         return;
     }
 
-    mojGtm.push($.extend({}, {'event': event}, object));
-}
-
-function _jq_target(event){
-    return $(event.target);
+    dataLayer.push($.extend({}, {'event': event}, object));
 }
 
 jQuery(function ($) {
@@ -57,7 +37,7 @@ jQuery(function ($) {
 
     // when a search page link is clicked
     $('.search-page-link').on('click', function (event) {
-        var tag = _jq_target(event),
+        var tag = $(event.target),
             label = $(this).text(),
             keyword = $('#keyword').val();
 
