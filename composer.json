@@ -40,7 +40,7 @@
         "ministryofjustice/wp-rewrite-media-to-s3": "^0.1.1",
         "ministryofjustice/wp-user-roles": "*",
         "ministryofjustice/wp-moj-components": "*",
-        "ministryofjustice/cookie-compliance-for-wordpress": "dev-gtm-allowlist",
+        "ministryofjustice/cookie-compliance-for-wordpress": "*",
         "browscap/browscap-php": "^4.2"
     },
     "require-dev": {
