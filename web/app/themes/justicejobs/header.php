@@ -52,6 +52,6 @@ wp_body_open();
         ?>
 
     </nav>
-    <a href="<?php bloginfo('url'); ?>/search-page/" class="btn btn--bw search-page-link ga-nav-top-right">Search & Apply</a>
+    <a href="<?php bloginfo('url'); ?>/search-page/" class="btn btn--bw search-page-link ga-nav-top-right">View all vacancies</a>
 </header>
 <main id="main-content-hook">
