@@ -199,17 +199,18 @@ function set_job_details($job_content, $totalspans, $post_id)
         if ($job_content->div->span[$y]->attributes()->itemprop[0] == "Salary Minimum") {
             $salary = (string)$job_content->div->span[$y];
 
-            $salary_range_array = explode('-', $salary);
+            $salary = preg_replace("-", " ", $salary); // replace dash with space
+            $salary_range_array = explode(' ', $salary); //split by space, thereby catching all text but no numbers (assuming numbers don't have internal spaces)
+            $salary_range_array = preg_replace("/[^0-9]/", "", $salary_range_array); //strip all non-numerics
 
-            $salary_min = '';
-            $salary_max = '';
-
-            if (count($salary_range_array) > 1) {
-                $salary_min = preg_replace("/[^0-9]/", "", $salary_range_array[0]);
-                $salary_max = preg_replace("/[^0-9]/", "", $salary_range_array[1]);
-            } else {
-                $salary_min = preg_replace("/[^0-9]/", "", $salary_range_array[0]);
+            for ($i=0; $i<=count($salary_range_array);$i++) { //loop through array removing elements less than 5 characters long
+                if (strlen($salary_range_array[$i])<5) unset($salary_range_array[$i]);
             }
+
+            $salary_min = min($salary_range_array);
+            $salary_max = max($salary_range_array);
+
+            if ($salary_max == $salary_min) $salary_max = "";
 
             if (is_numeric($salary_min)) {
                 update_field('salary_min', $salary_min, $post_id);
