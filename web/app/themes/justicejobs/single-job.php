@@ -60,10 +60,11 @@
                     echo '&#163;' . number_format($salary_min);
 
                     $salary_max = get_field(('salary_max'));
+                    $salary_max = substr($salary_max,0,5); //temporary solution to the concat issue
 
                     if(!empty($salary_max)){
 
-                        echo ' - &#163;' . number_format($salary_max);
+                        echo ' &ndash; &#163;' . number_format($salary_max);
 
                     }
 
