@@ -7,8 +7,9 @@ if (!function_exists('import_jobs_from_xml')) {
     function import_jobs_from_xml()
     {
         // update available?
+        $update_cron = (isset($_GET["cron"]) && $_GET["cron"]=="update") ? true : false;
         $job_data_updated = get_option('jobs_request_has_updated', true);
-        if (!$job_data_updated) {
+        if (!$job_data_updated && !$update_cron) {
             return false;
         }
 
@@ -108,7 +109,7 @@ if (!function_exists('import_jobs_from_xml')) {
 
                     $active_jobs[] = $post_id;
 
-                    if ($job_content_hash != $current_hash) {
+                    if (1) { //if ($job_content_hash != $current_hash) {
                         set_job_details($job_content, $total_spans, $post_id);
 
                         update_field('application_link', $job_link, $post_id);
