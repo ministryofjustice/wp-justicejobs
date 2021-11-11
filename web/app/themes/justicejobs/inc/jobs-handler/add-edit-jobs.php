@@ -7,12 +7,11 @@ if (!function_exists('import_jobs_from_xml')) {
     function import_jobs_from_xml()
     {
         // update available?
-        /*
+        $update_cron = ($_GET["cron"]=="update") ? true : false;
         $job_data_updated = get_option('jobs_request_has_updated', true);
-        if (!$job_data_updated) {
+        if (!$job_data_updated && !$update_cron) {
             return false;
         }
-        */
 
         // get admin email for simple notifications
         $to = get_option('admin_email');
