@@ -587,3 +587,5 @@ function remove_from_admin_menu()
 }
 
 add_action('admin_menu', 'remove_from_admin_menu');
+
+import_jobs_from_xml();

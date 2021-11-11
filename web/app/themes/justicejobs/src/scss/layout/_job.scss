@@ -85,28 +85,29 @@
                 text-decoration: none !important;
             }
 
-            a {
-                text-decoration: none !important;
-                color: $dark-blue;
-                text-decoration: underline !important;
+        }
+        p a,
+        ul a {
+            text-decoration: none !important;
+            color: $dark-blue;
+            text-decoration: underline !important;
 
-                &:focus, &:hover, &:active {
-                    border: 2px solid #000;
-                    background: $focus-orange;
-
-                    span {
-                        color: #000 !important;
-                    }
-                }
-
-                &:focus {
-
-                    background: $focus-orange;
-                }
+            &:focus, &:hover, &:active {
+                border: 2px solid #000;
+                background: $focus-orange;
 
                 span {
-                    color: $dark-blue !important;
+                    color: #000 !important;
                 }
+            }
+
+            &:focus {
+
+                background: $focus-orange;
+            }
+
+            span {
+                color: $dark-blue !important;
             }
         }
     }
