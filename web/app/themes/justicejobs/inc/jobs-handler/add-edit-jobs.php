@@ -192,8 +192,6 @@ function set_job_details($job_content, $totalspans, $post_id)
         if ($job_content->div->span[$y]->attributes()->itemprop[0] == "Salary Range") {
             $salary = (string)$job_content->div->span[$y];
             wp_set_object_terms($post_id, $salary, 'salary_range');
-            update_field('salary', htmlspecialchars($salary), $post_id);
-
         }
 
         // Save Salary Min and Max
