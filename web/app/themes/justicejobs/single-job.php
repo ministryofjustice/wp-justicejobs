@@ -57,13 +57,13 @@
                 $salary_min = get_field(('salary_min'));
 
                 if(!empty($salary_min)){
-                    echo '&#163;' . number_format($salary_min);
+                    echo '&pound;' . number_format($salary_min);
 
                     $salary_max = get_field(('salary_max'));
 
                     if(!empty($salary_max)){
 
-                        echo ' - &#163;' . number_format($salary_max);
+                        echo ' &ndash; &pound;' . number_format($salary_max);
 
                     }
 
@@ -90,6 +90,17 @@
                     the_content();
                     ?>
                     <h2>Additional Information</h2>
+                    <?php
+                    $salary = get_field(('salary'));
+                    if (!empty($salary)) {
+                    ?>
+                        <h3>Salary</h3>
+                        <p>
+                            <span style="font-size: medium;">
+                                <?php echo $salary; ?>
+                            </span>
+                        </p>
+                    <?php } ?>
                     <?php the_field('additional_information'); ?>
 
                 </div>
