@@ -588,6 +588,6 @@ function remove_from_admin_menu()
 
 add_action('admin_menu', 'remove_from_admin_menu');
 
-$update_cron = ($_GET["cron"]=="update") ? true : false;
+$update_cron = (isset($_GET["cron"]) && $_GET["cron"]=="update") ? true : false;
 
 if ($update_cron) import_jobs_from_xml();
