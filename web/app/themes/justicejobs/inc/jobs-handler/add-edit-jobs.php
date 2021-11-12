@@ -204,12 +204,17 @@ function set_job_details($job_content, $totalspans, $post_id)
             $salary_range_array = explode(' ', $salary); //split by space, thereby catching all text but no numbers (assuming numbers don't have internal spaces)
             $salary_range_array = preg_replace("/[^0-9]/", "", $salary_range_array); //strip all non-numerics
 
-            for ($i=0; $i<=count($salary_range_array);$i++) { //loop through array removing elements less than 5 characters long
+            $array_length = count($salary_range_array);
+
+            for ($i=0; $i<=$array_length;$i++) { //loop through array removing elements less than 5 characters long
                 if (isset($salary_range_array[$i]) && strlen($salary_range_array[$i])<5) unset($salary_range_array[$i]);
             }
 
-            $salary_min = min($salary_range_array);
-            $salary_max = max($salary_range_array);
+            $salary_min = $salary_max = '';
+            if (count($salary_range_array)) {
+                $salary_min = min($salary_range_array);
+                $salary_max = max($salary_range_array);
+            }
 
             if ($salary_max == $salary_min) $salary_max = "";
 
