@@ -89,18 +89,18 @@
                     <?php
                     the_content();
                     ?>
-                    <h2>Additional Information</h2>
                     <?php
                     $salary = get_field(('salary'));
                     if (!empty($salary)) {
                     ?>
-                        <h3>Salary</h3>
-                        <p>
-                            <span style="font-size: medium;">
-                                <?php echo $salary; ?>
-                            </span>
-                        </p>
+                    <h2>Salary</h2>
+                    <p>
+                        <span style="font-size: medium;">
+                            <?php echo $salary; ?>
+                        </span>
+                    </p>
                     <?php } ?>
+                    <h2>Additional Information</h2>
                     <?php the_field('additional_information'); ?>
 
                 </div>
