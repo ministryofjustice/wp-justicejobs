@@ -13,7 +13,7 @@ function jj_get_location_coordinates() {
 
         if (strlen($map_key) > 0) {
             
-            $maps_endpoint = "https://maps.googleapis.com/maps/api/geocode/json?address=" . $location . "&key=" . $map_key;
+            $maps_endpoint = "https://maps.googleapis.com/maps/api/geocode/json?address=" . $location . "&key=" . $map_key . "&components=country:UK";
             $request = wp_remote_get($maps_endpoint);
 
             if (is_wp_error($request)) {
@@ -36,8 +36,7 @@ function jj_get_location_coordinates() {
         } else {
             $result["error"] = 'Map key missing';
         }
-    }
-    else {
+    } else {
         $result["error"] = 'Location not supplied';
     }
 

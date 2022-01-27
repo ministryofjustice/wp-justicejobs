@@ -10,7 +10,11 @@ $_radius = (int)trim(get_query_var('radius'));
 $_locations_relevant = get_query_var('locations-relevant');
 $_locations_relevant_array = explode(',', $_locations_relevant);
 $_locations_relevant_array_pop = array_pop($_locations_relevant_array);
-
+if ($_location && empty($_locations_relevant)) {
+    // locations_relevat is used as a proxy for search by location, so no result is treated as not searched.
+    // puts something in locations_relevant to show that location has been serched for but nothing returned.
+    $_locations_relevant = "x";
+}
 ?>
 
 

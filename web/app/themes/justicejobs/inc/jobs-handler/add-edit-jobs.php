@@ -202,6 +202,7 @@ function set_job_details($job_content, $totalspans, $post_id)
 
             $salary = str_replace("-", " ", $salary); // replace dash with space
             $salary_range_array = explode(' ', $salary); //split by space, thereby catching all text but no numbers (assuming numbers don't have internal spaces)
+            $salary_range_array = str_replace(".00", "", $salary_range_array); //strip occasional use of .00 (e.g. £34,500.00)
             $salary_range_array = preg_replace("/[^0-9]/", "", $salary_range_array); //strip all non-numerics
 
             $array_length = count($salary_range_array);
