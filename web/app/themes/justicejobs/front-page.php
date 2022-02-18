@@ -142,7 +142,15 @@
             $agency_name = $agency->title;
             $agency_colour = get_field('agency_colour', $agency->ID);
             $more_link_text = get_field('homepage_link_text', $agency->ID);
+            $agency_logo = get_field('agency_logo_white', $agency->ID);
 
+            $background_image = '';
+            if(!empty($featured_img_url)){
+                $background_image = "background-image: url('" . $featured_img_url . "');'";
+            }
+            if(empty($agency_colour)){
+                $agency_colour = '#2c5d94';
+            }
             if(empty($more_link_text)){
                 $more_link_text = 'Find out more';
             }
@@ -151,15 +159,17 @@
             <a
                 href="<?= get_post_permalink($agency->ID); ?>"
                 class="about__block"
-                style="text-decoration:none; color:inherit; display:inline-block; background-color: <?= $agency_colour ?>;background-image: url('<?= $featured_img_url ?>');"
+                style="text-decoration:none; color:inherit; display:inline-block; background-color: <?= $agency_colour ?>;<?= $background_image ?>"
                 aria-label="Find out more about the <?= $agency_name ?>"
             >
 
-                <img
-                    class="about__logo <?= get_post_field('post_name', $agency->ID) ?>"
-                    src="<?= get_field('agency_logo_white', $agency->ID); ?>"
-                    alt="<?= $agency_name ?> logo"
-                />
+                <?php if(!empty($agency_logo)){ ?>
+                    <img
+                        class="about__logo <?= get_post_field('post_name', $agency->ID) ?>"
+                        src="<?= $agency_logo ?>"
+                        alt="<?= $agency_name ?> logo"
+                    />
+                <?php } ?>
                 <div class="btn-secondary btn-secondary--light">
                     <?= $more_link_text ?>
                     <svg width="8" height="13">
