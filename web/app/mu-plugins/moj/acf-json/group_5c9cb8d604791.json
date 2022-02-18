@@ -468,6 +468,23 @@
                 "param": "post_template",
                 "operator": "==",
                 "value": "single-agency.php"
+            },
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "agency"
+            }
+        ],
+        [
+            {
+                "param": "post_template",
+                "operator": "==",
+                "value": "default"
+            },
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "agency"
             }
         ]
     ],
@@ -477,7 +494,8 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1581714202
+    "show_in_rest": 0,
+    "modified": 1645183635
 }
