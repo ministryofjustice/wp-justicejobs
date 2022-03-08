@@ -30,7 +30,7 @@ Template Post Type: agency
                     </svg>
                     <ul class="breadcrumbs text-highlight">
                         <li><a href="<?php echo get_bloginfo('url'); ?>">Home</a></li>
-                        <li><?php the_title(); ?></li>
+                        <li><?php echo strip_tags(get_the_title()); ?></li>
                     </ul>
                     <h1 class="heading--lg"><span class="text-highlight"><?php the_title(); ?></span></h1>
                     <svg class="hero__arrow hero__arrow--bottom" width="37" height="24">
