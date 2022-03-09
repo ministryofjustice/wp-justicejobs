@@ -43,13 +43,13 @@ $trans-dark-grey: rgba(41, 54, 59, 0.9) !default;
 $max-width: 1170px !default;
 
 $breakpoints: (
-    'xs': only screen and ( min-width: 500px ),
-    'sm': only screen and ( min-width: 768px ),
-    'lm': only screen and ( min-width: 813px ),
-    'md': only screen and ( min-width: 1024px ),
-    'lg': only screen and ( min-width: 1280px ),
-    'xl': only screen and ( min-width: 1440px ),
-    'xxl': only screen and ( min-width: 1920px )
+    'xs': screen and ( min-width: 500px ),
+    'sm': screen and ( min-width: 768px ),
+    'lm': screen and ( min-width: 813px ),
+    'md': screen and ( min-width: 1024px ),
+    'lg': screen and ( min-width: 1280px ),
+    'xl': screen and ( min-width: 1440px ),
+    'xxl':screen and ( min-width: 1920px )
 ) !default;
 
 $common-spacing: 10;

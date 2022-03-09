@@ -1,6 +1,6 @@
 .breadcrumbs {
     margin-bottom: 10px;
-    display: flex;
+    display: none;
     align-items: center;
     list-style: none;
     color: #ffffff;
@@ -8,6 +8,10 @@
     font-weight: 300;
     letter-spacing: 0.12px;
     font-weight: 600;
+
+    @include respond-to(sm) {
+        display: flex;
+    }
 
     li {
         white-space: nowrap;
