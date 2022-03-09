@@ -40,6 +40,12 @@
     }
   }
 
+  &__image {
+      @include respond-to(sm) {
+          padding-left: 20px;
+      }
+  }
+
   &__video {
     text-align: center;
     float: left;

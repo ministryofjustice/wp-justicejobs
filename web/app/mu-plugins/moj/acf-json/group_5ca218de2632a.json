@@ -108,8 +108,34 @@
             "prefix_name": 0
         },
         {
+            "key": "field_622896461cfd2",
+            "label": "Add Overview Image\/Video",
+            "name": "add_overview_image_or_video",
+            "type": "select",
+            "instructions": "Select if you would like to add a image or video on the right side of the overview",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "no": "No Image or Video",
+                "image": "Image",
+                "video": "Video"
+            },
+            "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_5e15e2870ded5",
-            "label": "Overview video",
+            "label": "Overview Video",
             "name": "campaign_overview_video_embed",
             "type": "oembed",
             "instructions": "",
@@ -120,6 +146,11 @@
                         "field": "field_5caf3c0b05ec5",
                         "operator": "==",
                         "value": "1"
+                    },
+                    {
+                        "field": "field_622896461cfd2",
+                        "operator": "==",
+                        "value": "video"
                     }
                 ]
             ],
@@ -130,6 +161,43 @@
             },
             "width": "",
             "height": ""
+        },
+        {
+            "key": "field_6228b361e283e",
+            "label": "Overview Image",
+            "name": "overview_image",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5caf3c0b05ec5",
+                        "operator": "==",
+                        "value": "1"
+                    },
+                    {
+                        "field": "field_622896461cfd2",
+                        "operator": "==",
+                        "value": "image"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
         },
         {
             "key": "field_5cab4a3820772",
@@ -593,6 +661,25 @@
             "endpoint": 0
         },
         {
+            "key": "field_62288cbbc3d5a",
+            "label": "Add People Stories Section",
+            "name": "add_people_stories_section",
+            "type": "true_false",
+            "instructions": "Check if you would like to add People Stories Section",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
             "key": "field_5caf4c83a846c",
             "label": "People Stories Section Title",
             "name": "people_stories_section_title",
@@ -602,7 +689,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_5caf4ac32a670",
+                        "field": "field_62288cbbc3d5a",
                         "operator": "==",
                         "value": "1"
                     }
@@ -629,8 +716,9 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_5ccedb5c0f188",
-                        "operator": "!=empty"
+                        "field": "field_62288cbbc3d5a",
+                        "operator": "==",
+                        "value": "1"
                     }
                 ]
             ],
@@ -655,8 +743,9 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_5ccedb5c0f188",
-                        "operator": "!=empty"
+                        "field": "field_62288cbbc3d5a",
+                        "operator": "==",
+                        "value": "1"
                     }
                 ]
             ],
@@ -678,8 +767,9 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_5ccedb5c0f188",
-                        "operator": "!=empty"
+                        "field": "field_62288cbbc3d5a",
+                        "operator": "==",
+                        "value": "1"
                     }
                 ]
             ],
@@ -860,7 +950,8 @@
         "the_content",
         "featured_image"
     ],
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1581606999
+    "show_in_rest": 0,
+    "modified": 1646834698
 }
