@@ -79,6 +79,9 @@ Template Name: Campaign Template
             <?php echo $overview_link_title; ?>
         </a>
         <?php endif; ?>
+        <?php
+            $overview_image_or_video = get_field('add_overview_image_or_video');
+        ?>
         <div class="campaign--container campaign__intro-block">
             <div class="campaign__text-col">
                 <h2 class="heading--md">
@@ -87,12 +90,27 @@ Template Name: Campaign Template
                 <?php echo $overview_content; ?>
             </div>
 
-            <div class="campaign--container campaign__video">
-                <?php
-                // Campaign ACF field
-                the_field('campaign_overview_video_embed');
-                ?>
-            </div>
+            <?php if($overview_image_or_video == 'image'){ ?>
+                <div class="campaign--container campaign__image">
+                    <?php
+                    $overview_image = get_field('overview_image');
+
+                    if(!empty($overview_image)) {
+                        ?>
+                        <img alt="<?php echo $overview_image['alt']; ?>" src="<?php echo $overview_image['url']; ?>"/>
+                    <?php
+                    }
+                    ?>
+                </div>
+            <?php } ?>
+
+            <?php if($overview_image_or_video == 'video'){ ?>
+                <div class="campaign--container campaign__video">
+                    <?php
+                    the_field('campaign_overview_video_embed');
+                    ?>
+                </div>
+            <?php } ?>
 
         </div>
     </div>
@@ -231,7 +249,10 @@ if ($add_accordion == 1) :
     </div>
 </div>
 <?php endif; ?>
-
+<?php
+$add_people_stories_section = get_field('add_people_stories_section');
+if ($add_people_stories_section == 1) :
+    ?>
 <div class="campaign__text-wrap container">
 
     <h2 class="heading--md"><?php the_field('people_stories_section_title');?></h2>
@@ -259,7 +280,7 @@ if ($add_accordion == 1) :
     <?php endif; ?>
 
 </div>
-
+<?php endif; ?>
 <div class="campaign__text-wrap container">
     <?php
     $add_apply_section = get_field('add_apply_section');
