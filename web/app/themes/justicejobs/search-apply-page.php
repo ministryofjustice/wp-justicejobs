@@ -178,14 +178,14 @@ Template Name: Search/Apply Template
 
             <div class="search_contain__controls">
                 <p>VIEW BY</p>
-                <button class="search_contain__label search_contain__label--list" aria-pressed="false"
+                <button class="search_contain__label search_contain__label--list" aria-pressed="true"
                         aria-controls="jj-search-results-view">
                     <span class="screen-reader-text">View search results as a </span> LIST
                     <svg width="28" height="28">
                         <use xlink:href="#icon-list"></use>
                     </svg>
                 </button>
-                <button class="search_contain__label search_contain__label--map" aria-pressed="true"
+                <button class="search_contain__label search_contain__label--map" aria-pressed="false"
                         aria-controls="jj-search-results-view">
                     <span class="screen-reader-text">View search results as a </span>MAP
                     <svg width="17" height="24">
@@ -195,7 +195,7 @@ Template Name: Search/Apply Template
             </div>
 
         </header>
-        <div class="search_contain__container" id="js-show-map">
+        <div class="search_contain__container" id="js-hide-map">
             <div class="search_contain__list-wrap">
                 <table class="search_contain__list" id="jj-search-results-view" role="region" aria-live="polite">
                     <caption class="screen-reader-text">Job search results</caption>
