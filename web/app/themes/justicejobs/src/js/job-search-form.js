@@ -17,7 +17,7 @@ jQuery(document).ready(function ($) {
     var thisRadius;
 
     // if present, get stored view from local storage using nullFirst ternary
-    var userViewPref = (!localStorage ? userViewPref : localStorage.getItem('search_results_view'));
+    var userViewPref = (!localStorage ? 'list' : localStorage.getItem('search_results_view'));
 
     if (userViewPref != null) {
         // load the preferred view on init, force element click
