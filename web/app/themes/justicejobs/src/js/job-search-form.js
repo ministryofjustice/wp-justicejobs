@@ -16,15 +16,13 @@ jQuery(document).ready(function ($) {
     var str;
     var thisRadius;
 
-
-    // user view preference default
-    var userViewPref = 'list';
-
     // if present, get stored view from local storage using nullFirst ternary
-    userViewPref = (!localStorage ? userViewPref : localStorage.getItem('search_results_view'));
+    var userViewPref = (!localStorage ? userViewPref : localStorage.getItem('search_results_view'));
 
-    // load the preferred view on init, force element click
-    $('.search_contain__label--' + userViewPref).click();
+    if (userViewPref != null) {
+        // load the preferred view on init, force element click
+        $('.search_contain__label--' + userViewPref).click();
+    }
 
     // onchange, store the preference
     $('.search_contain__label').on('click', function () {
