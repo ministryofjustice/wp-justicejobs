@@ -99,6 +99,14 @@
                             <?php echo $salary; ?>
                         </span>
                     </p>
+                    <?php 
+                    $london_allowance = get_field(('salary_london'));
+                    if (!empty($london_allowance)) {
+                    ?>
+                    <p>
+                        Plus a London weighting allowance of £<?php echo number_format($london_allowance); ?> per annum.
+                    </p>
+                    <?php } ?>
                     <?php } ?>
                     <h2>Additional Information</h2>
                     <?php the_field('additional_information'); ?>
