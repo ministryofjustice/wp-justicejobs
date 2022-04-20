@@ -234,7 +234,7 @@ function set_job_details($job_content, $totalspans, $post_id)
             if (isset($london_weighting_allowance) && is_numeric($london_weighting_allowance)) {
                 update_field('salary_london', $london_weighting_allowance, $post_id);
             } else {
-                update_field('salary_london', 1234, $post_id);
+                update_field('salary_london', '', $post_id);
             }
             
         }

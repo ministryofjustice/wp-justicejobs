@@ -475,7 +475,10 @@ if ($_location && empty($_locations_relevant)) {
                                             echo ' - &#163;' . number_format($salary_max);
 
                                         }
-
+                                        $london_allowance = number_format(get_field('salary_london'));
+                                        if (!empty($london_allowance)) {
+                                            echo "<br /> + &#163;$london_allowance LWA";
+                                        }
                                     }
                                     ?>
                                 </p>
