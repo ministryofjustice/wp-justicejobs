@@ -60,13 +60,21 @@
                     echo '&pound;' . number_format($salary_min);
 
                     $salary_max = get_field(('salary_max'));
+                    $london_allowance = intval(get_field(('salary_london')));
 
+                /*    if (!empty($london_allowance)) {
+                        if(!empty($salary_max)){
+                            $salary_max = $salary_max + $london_allowance;
+                        } else {
+                            $salary_max = $salary_min + $london_allowance;
+                        }
+                    }*/
                     if(!empty($salary_max)){
-
                         echo ' &ndash; &pound;' . number_format($salary_max);
-
                     }
-
+                    if (!empty($london_allowance)) {
+                        echo " + London weighting of &pound;" . number_format($london_allowance);
+                    }
                 }
 
                 $aria_label = strstr($post->post_title, ' -', true);
@@ -99,14 +107,6 @@
                             <?php echo $salary; ?>
                         </span>
                     </p>
-                    <?php 
-                    $london_allowance = get_field(('salary_london'));
-                    if (!empty($london_allowance)) {
-                    ?>
-                    <p>
-                        Plus a London weighting allowance of £<?php echo number_format($london_allowance); ?> per annum.
-                    </p>
-                    <?php } ?>
                     <?php } ?>
                     <h2>Additional Information</h2>
                     <?php the_field('additional_information'); ?>
