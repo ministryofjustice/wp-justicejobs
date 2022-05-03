@@ -55,12 +55,42 @@ Template Post Type: agency
         <div class="agency">
             <div class="agency__col">
                 <div class="agency__text">
+                    <?php
+                        $HMPPS_underlings = ["HM Prison Service","HM Probation Service"];
+                        $HMPPS_found = false;
+                        for ($id_search = 0; $id_search<=1000; $id_search++) {
+                            if (preg_match('/HM Prison .* Probation Service/', get_the_title($id_search))) {
+                                $HMPPS_found = true;
+                                break;
+                            }
+                        }
+                        if ($HMPPS_found && in_array(strip_tags(get_the_title()), $HMPPS_underlings)) {
+                            $parent_agency = array(
+                                "name" => "HMPPS",
+                                "link" => get_post_permalink($id_search),
+                            );
+                        }
+                    ?>
                     <a href="<?php echo get_bloginfo('url'); ?>#work" class="btn-back btn-back--agency">
                         <svg width="8" height="13">
                             <use xlink:href="#icon-arrow"></use>
                         </svg>
-                        Back to Agencies
+                        <?php
+                            if (isset($parent_agency)) {
+                                echo "All agencies";
+                            } else {
+                                echo "Back to Agencies";
+                            }
+                        ?>
                     </a>
+                    <?php if (isset($parent_agency)) { ?>
+                    <a href="<?php echo $parent_agency["link"]; ?>" class="btn-back btn-back--agency">
+                        <svg width="8" height="13">
+                            <use xlink:href="#icon-arrow"></use>
+                        </svg>
+                        <?php echo $parent_agency["name"]; ?>
+                    </a>
+                    <?php } ?>
                     <?php the_field('agency_content'); ?>
                 </div>
             </div>

@@ -233,9 +233,9 @@
     }
 
     &--agency {
-        position: absolute;
-        top: 40px;
-        left: 15px;
+        position: relative;
+        top: -40px;
+        left: -15px;
     }
 }
 

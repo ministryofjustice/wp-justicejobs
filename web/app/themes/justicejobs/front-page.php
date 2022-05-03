@@ -139,7 +139,7 @@
         foreach ($agencies as $agency) :
 
             $featured_img_url = get_field('agency_hero_desktop_image', $agency->ID);
-            $agency_name = $agency->title;
+            $agency_name = $agency->post_title;
             $agency_colour = get_field('agency_colour', $agency->ID);
             $more_link_text = get_field('homepage_link_text', $agency->ID);
             $agency_logo = get_field('agency_logo_white', $agency->ID);
