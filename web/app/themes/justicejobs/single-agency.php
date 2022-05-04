@@ -62,18 +62,20 @@ Template Post Type: agency
 
                         if (in_array(strip_tags(get_the_title()), $HMPPS_underlings)) {
                             $HMPPS_found = false;
-                            for ($id_search = 0; $id_search<=1000; $id_search++) {
-                                if (preg_match('/HM Prison .* Probation Service/', get_the_title($id_search))) {
+
+                            for ($parent_id_search = 0; $parent_id_search<=1000; $parent_id_search++) {
+                                if (preg_match('/HM Prison .* Probation Service/', get_the_title($parent_id_search))) {
                                     //If we are in either of the underlings, we go through all pages to find the parent agency (HMPPS) ID
                                     $HMPPS_found = true;
                                     break;
                                 }
                             }
+
                             if ($HMPPS_found) {
                                 $parent_agency = array(
                                     "name" => "HMPPS",
-                                    "link" => get_post_permalink($id_search),
-                                    "colour" => get_field('agency_colour',$id_search)
+                                    "link" => get_post_permalink($parent_id_search),
+                                    "colour" => get_field('agency_colour',$parent_id_search)
                                 );
                             }
                         }
