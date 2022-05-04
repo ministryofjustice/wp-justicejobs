@@ -56,6 +56,8 @@ Template Post Type: agency
             <div class="agency__col">
                 <div class="agency__text">
                     <?php
+                        //Hard coding in HMPPS subordinate agencies to mimic heirarchy
+
                         $HMPPS_underlings = ["HM Prison Service","HM Probation Service"];
                         $HMPPS_found = false;
                         for ($id_search = 0; $id_search<=1000; $id_search++) {
@@ -68,6 +70,7 @@ Template Post Type: agency
                             $parent_agency = array(
                                 "name" => "HMPPS",
                                 "link" => get_post_permalink($id_search),
+                                "colour" => get_field('agency_colour',$id_search)
                             );
                         }
                     ?>
@@ -76,11 +79,7 @@ Template Post Type: agency
                             <use xlink:href="#icon-arrow"></use>
                         </svg>
                         <?php
-                            if (isset($parent_agency)) {
-                                echo "All agencies";
-                            } else {
-                                echo "Back to Agencies";
-                            }
+                            echo "Home";
                         ?>
                     </a>
                     <?php if (isset($parent_agency)) { ?>
@@ -156,6 +155,10 @@ Template Post Type: agency
                         $title_bottom = $bottom_block['title'];
                         $ispopup = get_sub_field('pop_up_block');
                         $bg_colour = 'background-color: ' . get_field('agency_colour');
+                        if (!get_field('agency_colour') && isset($parent_agency)) {
+                            //No agency colour and a parent agency identified
+                            $bg_colour = 'background-color: ' . $parent_agency["colour"];
+                        }
 
                         if ($ispopup) {
 
@@ -185,7 +188,7 @@ Template Post Type: agency
                             role="link"
                         >
                             <span class="heading--xs"><?= $block_title; ?></span>
-                            <h3><?= $title_bottom; ?></h3>
+                            <h3 <?php if (strlen($title_bottom) > 50) echo "class='overly-long-text'"; ?>><?= $title_bottom; ?></h3>
 
                             <a href="<?= esc_url($more_link_bottom['url']); ?>"
                                 target="<?php if (isset($more_link_bottom['target'])) {
