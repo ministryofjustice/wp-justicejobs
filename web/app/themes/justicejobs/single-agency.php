@@ -78,9 +78,7 @@ Template Post Type: agency
                         <svg width="8" height="13">
                             <use xlink:href="#icon-arrow"></use>
                         </svg>
-                        <?php
-                            echo "Home";
-                        ?>
+                        Home
                     </a>
                     <?php if (isset($parent_agency)) { ?>
                     <a href="<?php echo $parent_agency["link"]; ?>" class="btn-back btn-back--agency">
