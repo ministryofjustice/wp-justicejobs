@@ -127,7 +127,7 @@
     @include transition(opacity);
 
     svg {
-        margin-left: 15px;
+        margin-left: 11px;
         height: 15px;
         width: 10px;
         fill: #000;
@@ -233,9 +233,9 @@
     }
 
     &--agency {
-        position: absolute;
-        top: 40px;
-        left: 15px;
+        position: relative;
+        top: -40px;
+        left: -15px;
     }
 }
 

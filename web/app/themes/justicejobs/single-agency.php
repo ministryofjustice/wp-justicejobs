@@ -55,12 +55,45 @@ Template Post Type: agency
         <div class="agency">
             <div class="agency__col">
                 <div class="agency__text">
+                    <?php
+                        //Hard coding in HMPPS subordinate agencies to mimic heirarchy
+
+                        $HMPPS_underlings = ["HM Prison Service","HM Probation Service"];
+
+                        if (in_array(strip_tags(get_the_title()), $HMPPS_underlings)) {
+                            $HMPPS_found = false;
+
+                            for ($parent_id_search = 0; $parent_id_search<=1000; $parent_id_search++) {
+                                if (preg_match('/HM Prison .* Probation Service/', get_the_title($parent_id_search))) {
+                                    //If we are in either of the underlings, we go through all pages to find the parent agency (HMPPS) ID
+                                    $HMPPS_found = true;
+                                    break;
+                                }
+                            }
+
+                            if ($HMPPS_found) {
+                                $parent_agency = array(
+                                    "name" => "HMPPS",
+                                    "link" => get_post_permalink($parent_id_search),
+                                    "colour" => get_field('agency_colour',$parent_id_search)
+                                );
+                            }
+                        }
+                    ?>
                     <a href="<?php echo get_bloginfo('url'); ?>#work" class="btn-back btn-back--agency">
                         <svg width="8" height="13">
                             <use xlink:href="#icon-arrow"></use>
                         </svg>
-                        Back to Agencies
+                        Home
                     </a>
+                    <?php if (isset($parent_agency)) { ?>
+                    <a href="<?php echo $parent_agency["link"]; ?>" class="btn-back btn-back--agency">
+                        <svg width="8" height="13">
+                            <use xlink:href="#icon-arrow"></use>
+                        </svg>
+                        <?php echo $parent_agency["name"]; ?>
+                    </a>
+                    <?php } ?>
                     <?php the_field('agency_content'); ?>
                 </div>
             </div>
@@ -126,6 +159,10 @@ Template Post Type: agency
                         $title_bottom = $bottom_block['title'];
                         $ispopup = get_sub_field('pop_up_block');
                         $bg_colour = 'background-color: ' . get_field('agency_colour');
+                        if (!get_field('agency_colour') && isset($parent_agency)) {
+                            //No agency colour and a parent agency identified
+                            $bg_colour = 'background-color: ' . $parent_agency["colour"];
+                        }
 
                         if ($ispopup) {
 
@@ -155,7 +192,7 @@ Template Post Type: agency
                             role="link"
                         >
                             <span class="heading--xs"><?= $block_title; ?></span>
-                            <h3><?= $title_bottom; ?></h3>
+                            <h3 <?php if (strlen($title_bottom) > 50) echo "class='overly-long-text'"; ?>><?= $title_bottom; ?></h3>
 
                             <a href="<?= esc_url($more_link_bottom['url']); ?>"
                                 target="<?php if (isset($more_link_bottom['target'])) {
