@@ -58,7 +58,7 @@ Template Post Type: agency
                     <?php
                         //Hard coding in HMPPS subordinate agencies to mimic heirarchy
 
-                        $HMPPS_underlings = ["HM Prison Service","HM Probation Service"];
+                        $HMPPS_underlings = ["HM Prison Service","HM Probation Service","Specialist Production Instructors"];
 
                         if (in_array(strip_tags(get_the_title()), $HMPPS_underlings)) {
                             $HMPPS_found = false;
