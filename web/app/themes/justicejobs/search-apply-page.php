@@ -226,18 +226,18 @@ Template Name: Search/Apply Template
                                     $salary_min = get_field('salary_min');
 
                                     if(!empty($salary_min)){
-                                        echo '&#163;' . number_format($salary_min);
+                                        echo '&pound;' . number_format($salary_min);
 
                                         $salary_max = get_field('salary_max');
 
                                         if(!empty($salary_max)){
 
-                                            echo ' - &#163;' . number_format($salary_max);
+                                            echo ' - &pound;' . number_format($salary_max);
 
                                         }
                                         $london_allowance = number_format(intval(get_field('salary_london')));
                                         if (!empty($london_allowance)) {
-                                            echo "<br /> + &#163;$london_allowance LWA";
+                                            echo "<br /> + &pound;$london_allowance LWA";
                                         }
                                     }
                                     ?>
