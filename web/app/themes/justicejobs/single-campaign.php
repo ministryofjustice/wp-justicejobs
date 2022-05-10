@@ -46,14 +46,15 @@ Template Name: Campaign Template
         $link_target = $back_link['target'] ? $back_link['target'] : '_self';
         ?>
 
-    <a href="<?php echo esc_url($link_url); ?>" class="btn-back btn-back--agency"
-        target="<?php echo esc_attr($link_target); ?>">
-        <svg width="8" height="13">
-            <use xlink:href="#icon-arrow"></use>
-        </svg>
-        <?php echo esc_html($link_title); ?>
-    </a>
-
+    <div class="container">
+        <a href="<?php echo esc_url($link_url); ?>" class="btn-back btn-back--agency"
+            target="<?php echo esc_attr($link_target); ?>">
+            <svg width="8" height="13">
+                <use xlink:href="#icon-arrow"></use>
+            </svg>
+            <?php echo esc_html($link_title); ?>
+        </a>
+    </div>
     <?php endif; ?>
 
     <?php
