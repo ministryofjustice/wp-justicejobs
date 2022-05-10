@@ -73,7 +73,7 @@
                         echo ' &ndash; &pound;' . number_format($salary_max);
                     }
                     if (!empty($london_allowance)) {
-                        echo " + London weighting of &pound;" . number_format($london_allowance);
+                        echo " + London weighting allowance of &pound;" . number_format($london_allowance);
                     }
                 }
 
