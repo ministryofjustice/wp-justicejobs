@@ -232,11 +232,12 @@
         }
     }
 
-    &--agency {
-        position: relative;
-        top: -40px;
-        left: -15px;
-    }
+}
+
+.agency__text > .btn-back--agency {
+    position: relative;
+    top: -40px;
+    left: -15px;
 }
 
 .btn-reset {
