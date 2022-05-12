@@ -60,13 +60,14 @@
                     echo '&pound;' . number_format($salary_min);
 
                     $salary_max = get_field(('salary_max'));
+                    $london_allowance = intval(get_field(('salary_london')));
 
                     if(!empty($salary_max)){
-
                         echo ' &ndash; &pound;' . number_format($salary_max);
-
                     }
-
+                    if (!empty($london_allowance)) {
+                        echo " + London weighting allowance of &pound;" . number_format($london_allowance);
+                    }
                 }
 
                 $aria_label = strstr($post->post_title, ' -', true);

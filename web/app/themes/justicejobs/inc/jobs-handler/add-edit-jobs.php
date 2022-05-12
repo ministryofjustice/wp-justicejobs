@@ -225,7 +225,19 @@ function set_job_details($job_content, $totalspans, $post_id)
             if (is_numeric($salary_max)) {
                 update_field('salary_max', $salary_max, $post_id);
             }
-
+            if (preg_match("/( .* London .* allowance of \£.*)/i", $salary)) { //London weighting string identified
+                $london_weighting_allowance = preg_replace("/London .* allowance of \£/i","|||",$salary); //replace the regex string with a constant for splitting
+                $london_weighting_allowance = explode("|||", $london_weighting_allowance)[1]; //split by start of the agreed term - take second element
+                $london_weighting_allowance = explode(")", $london_weighting_allowance)[0]; //split by end of the agreed term - take first element
+                $london_weighting_allowance = str_replace(".00", "", $london_weighting_allowance); //strip occasional use of .00 (e.g. £3,889.00)
+                $london_weighting_allowance = preg_replace("/[^0-9]/", "", $london_weighting_allowance); //strip all non-numerics
+            }
+            if (isset($london_weighting_allowance) && is_numeric($london_weighting_allowance)) {
+                update_field('salary_london', intval($london_weighting_allowance), $post_id);
+            } else {
+                update_field('salary_london', '', $post_id);
+            }
+            
         }
 
         // Save Working Pattern Info
