@@ -571,6 +571,11 @@ function is_2_hours_past_window()
     return false;
 }
 
+//Shows shortcut link button when using classic editor
+add_filter( 'get_shortlink', function ( $shortlink ) {
+
+    return $shortlink;
+} );
 
 /**
  * Remove post types from
