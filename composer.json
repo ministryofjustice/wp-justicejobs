@@ -34,7 +34,6 @@
         "wpackagist-plugin/advanced-custom-fields-table-field": "*",
         "wpackagist-plugin/wp-accessibility": "*",
         "wpackagist-plugin/classic-editor": "*",
-        "wpackagist-plugin/mce-table-buttons": "*",
         "wpackagist-plugin/wordpress-seo": "*",
         "wpackagist-plugin/duplicate-post":"*",
         "ministryofjustice/wp-rewrite-media-to-s3": "*",
