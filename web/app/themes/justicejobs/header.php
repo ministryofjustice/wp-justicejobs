@@ -26,7 +26,9 @@ wp_body_open();
             height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </noscript>
 <!-- End Google Tag Manager (noscript) -->
-
+<?php
+  include "inc/emergency-banner.php";
+?>
 <header id="main-nav-hook" class="page-header container">
     <a href="<?php bloginfo('url'); ?>" aria-label="Back to Home" class="page-header__logo">
         <span class="screen-reader-text">Back to Home</span>
