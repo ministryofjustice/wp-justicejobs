@@ -234,6 +234,11 @@ if (function_exists('acf_add_options_page')) {
 }
 
 /**
+ * Emergency banner
+ */
+require 'inc/emergency-banner-settings.php';
+
+/**
  * Load Jobs Handler file
  */
 require 'inc/jobs-handler/save-jobs-xmlfile.php';
