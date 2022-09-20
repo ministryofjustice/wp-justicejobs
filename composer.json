@@ -35,7 +35,7 @@
         "roots/wp-password-bcrypt": "*",
         "wpackagist-plugin/wp-analytify":"*",
         "wpackagist-plugin/analytify-analytics-dashboard-widget":"*",
-        "acf/advanced-custom-fields-pro": "*",
+        "acf/advanced-custom-fields-pro": "^5.12.2",
         "wpackagist-plugin/advanced-custom-fields-table-field": "*",
         "wpackagist-plugin/wp-accessibility": "*",
         "wpackagist-plugin/classic-editor": "*",
