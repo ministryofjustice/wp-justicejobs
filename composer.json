@@ -33,8 +33,6 @@
         "koodimonni-language/core-en_gb": "*",
         "oscarotero/env": "^1.1.0",
         "roots/wp-password-bcrypt": "*",
-        "wpackagist-plugin/wp-analytify":"*",
-        "wpackagist-plugin/analytify-analytics-dashboard-widget":"*",
         "acf/advanced-custom-fields-pro": "^5.12.2",
         "wpackagist-plugin/advanced-custom-fields-table-field": "*",
         "wpackagist-plugin/wp-accessibility": "*",
@@ -45,6 +43,7 @@
         "ministryofjustice/wp-user-roles": "*",
         "ministryofjustice/wp-moj-components": "*",
         "ministryofjustice/cookie-compliance-for-wordpress": "*",
+        "ministryofjustice/wp-gov-uk-notify": "*",
         "browscap/browscap-php": "*"
     },
     "require-dev": {
