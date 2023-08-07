@@ -38,6 +38,7 @@
         "wpackagist-plugin/wp-accessibility": "*",
         "wpackagist-plugin/classic-editor": "*",
         "wpackagist-plugin/wordpress-seo": "*",
+        "wpackagist-plugin/wp-force-login": "*",
         "wpackagist-plugin/duplicate-post":"*",
         "ministryofjustice/wp-rewrite-media-to-s3": "*",
         "ministryofjustice/wp-user-roles": "*",
