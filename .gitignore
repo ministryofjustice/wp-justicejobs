@@ -3,6 +3,7 @@
 ._DS*
 .DS_*
 ._.*
+*.sql
 
 # Application
 web/.well-known/security.txt
